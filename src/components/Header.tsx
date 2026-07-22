@@ -1,43 +1,92 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function Header() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex items-center justify-between text-white max-w-7xl mx-auto"
+      animate={{ y: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.25, ease: 'easeInOut' }}
+      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+      className="fixed top-0 left-0 right-0 z-50 h-20 min-h-20 bg-gray-100 shadow-md"
     >
-      <div className="flex items-center gap-2">
-        <BookOpen className="w-8 h-8" />
-        <span className="text-2xl font-bold tracking-tight">eduMentora</span>
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-8 text-black">
+        <Link href="/" className="flex shrink-0 items-center">
+          <Image 
+            src="/edumentora_logo.png" 
+            alt="eduMentora Logo" 
+            width={150} 
+            height={40} 
+            className="object-contain"
+          />
+        </Link>
+
+        <nav className="hidden md:flex flex-1 shrink-0 items-center justify-center gap-8 whitespace-nowrap text-sm font-medium text-black">
+          <Link href="/" className="hover:text-blue-600 transition-colors font-semibold">Home</Link>
+          <Link href="/b-tech-credit-transfer" className="hover:text-blue-600 transition-colors">B.Tech Credit Transfer</Link>
+          
+          <div className="group relative flex items-center h-full">
+            <Link href="#features" className="flex items-center gap-1 cursor-pointer hover:text-blue-600 transition-colors py-4">
+              Programs <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+            </Link>
+            <div className="absolute top-12 left-0 hidden w-[320px] whitespace-normal bg-white shadow-xl border border-gray-100 rounded-xl py-2 group-hover:block transition-all z-50">
+              <div className="absolute -top-4 left-0 w-full h-4 bg-transparent" />
+              <Link href="/credit-transfer" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors leading-snug">Credit Transfer</Link>
+              <Link href="/apprenticeship-program" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors leading-snug">Apprenticeship Program</Link>
+              <Link href="/work-integrated-learning-program" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors leading-snug">Work with integrated learning program</Link>
+            </div>
+          </div>
+          
+          <Link href="/universities" className="hover:text-blue-600 transition-colors">Universities</Link>
+          
+          <div className="group relative flex items-center h-full">
+            <Link href="#about" className="flex items-center gap-1 cursor-pointer hover:text-blue-600 transition-colors py-4">
+              About <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+            </Link>
+            <div className="absolute top-12 left-0 hidden w-48 whitespace-normal bg-white shadow-xl border border-gray-100 rounded-xl py-2 group-hover:block transition-all z-50">
+              <div className="absolute -top-4 left-0 w-full h-4 bg-transparent" />
+              <Link href="/about-us" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">About us</Link>
+              <Link href="/directors-message" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Director's Message</Link>
+              <Link href="/gallery" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Gallery</Link>
+              <Link href="/blog" className="block px-5 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Blog</Link>
+            </div>
+          </div>
+          
+          <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
+        </nav>
+
+        <button className="hidden md:block shrink-0 px-6 py-2 border border-black rounded-full font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors text-black">
+          Call Now
+        </button>
       </div>
-
-      <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-        <Link href="/" className="hover:text-red-200 transition-colors text-blue-900 font-semibold">Home</Link>
-        <Link href="/" className="hover:text-red-200 transition-colors">B.Tech Credit Transfer</Link>
-        
-        <div className="group relative flex items-center gap-1 cursor-pointer hover:text-red-200 transition-colors">
-          Programs <ChevronDown className="w-4 h-4" />
-        </div>
-        
-        <Link href="/" className="hover:text-red-200 transition-colors">Universities</Link>
-        
-        <div className="group relative flex items-center gap-1 cursor-pointer hover:text-red-200 transition-colors">
-          About <ChevronDown className="w-4 h-4" />
-        </div>
-        
-        <Link href="/" className="hover:text-red-200 transition-colors">Contact</Link>
-      </nav>
-
-      <button className="hidden md:block px-6 py-2 border border-white rounded-full font-medium hover:bg-white hover:text-[#da251d] transition-colors">
-        Call Now
-      </button>
     </motion.header>
   );
 }
