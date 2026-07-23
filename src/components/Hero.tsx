@@ -93,10 +93,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full h-auto bg-[rgb(240,240,228)] overflow-hidden flex items-center py-24">
+    <section className="relative w-full h-auto bg-[rgb(240,240,228)] overflow-hidden flex items-center py-16 md:py-24">
       <div className="absolute inset-0 opacity-[0.03] bg-repeat bg-center pointer-events-none" style={{ backgroundImage: "url('/about-bg.png')", backgroundSize: "120px" }}></div>
 
-      <div className="relative max-w-7xl mx-auto w-full px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div className="relative max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center z-10 mt-8 md:mt-0">
         <motion.div 
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -108,12 +108,12 @@ export default function Hero() {
               <h1
                 key={`title-ghost-${i}`}
                 aria-hidden
-                className="invisible [grid-area:1/1] text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
+                className="invisible [grid-area:1/1] text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight"
               >
                 {highlightTransfer(content.title, content.title)}
               </h1>
             ))}
-            <h1 className="[grid-area:1/1] text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+            <h1 className="[grid-area:1/1] text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
               {highlightTransfer(typedTitle, heroContent[index].title)}
               <motion.span
                 animate={{ opacity: [1, 1, 0, 0] }}
@@ -166,7 +166,7 @@ export default function Hero() {
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="relative w-full flex items-end justify-center md:justify-end z-10 mt-auto self-end -mb-24"
+          className="relative w-full flex items-end justify-center md:justify-end z-10 mt-auto self-end mb-0 md:-mb-24"
         >
           <Image 
             src="/Hero-image.webp"
