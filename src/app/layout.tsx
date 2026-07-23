@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: 'Resume your education with the Best Academic Credit Transfer institution in Kerala.',
 };
 
+import PopupForm from '@/components/PopupForm';
+
 export default function RootLayout({
   children,
 }: {
@@ -20,6 +22,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <SmoothScroll>
           {children}
+          <PopupForm />
         </SmoothScroll>
       </body>
     </html>
