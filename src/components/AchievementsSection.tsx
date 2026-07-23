@@ -24,7 +24,7 @@ function AnimatedValue({ value, start }: { value: string; start: boolean }) {
   }, [start, target]);
 
   return (
-    <h3 className="text-5xl md:text-6xl font-bold text-white mb-2">
+    <h3 className="text-4xl md:text-5xl font-bold text-[#172A53] mb-2">
       {display.toLocaleString()}{suffix}
     </h3>
   );
@@ -53,7 +53,7 @@ export default function AchievementsSection() {
   ];
 
   return (
-    <section className="w-full bg-[#da251d] pt-0 pb-24 -mt-[20px] relative z-10">
+    <section className="w-full bg-[rgb(240,240,228)] pt-16 pb-24 -mt-[20px] relative z-10">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -63,26 +63,30 @@ export default function AchievementsSection() {
         transition={{ duration: 0.8 }}
         className="mb-16 text-center"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight whitespace-nowrap">
+        <h2 className="text-2xl md:text-4xl font-bold text-[#172A53] leading-tight whitespace-nowrap">
           Our Great Achievements
         </h2>
       </motion.div>
 
       <div className="overflow-hidden">
         <motion.div
-          className="flex w-max gap-12 lg:gap-20"
+          className="flex w-max"
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 18, repeat: Infinity, repeatType: 'loop', ease: 'linear' }}
         >
-          {[...achievements, ...achievements].map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center text-center p-6 w-[220px] shrink-0 hover:scale-105 transition-transform duration-300 cursor-pointer"
-            >
-              <AnimatedValue value={item.value} start={startCount} />
-              <p className="text-white/70 text-sm font-medium leading-snug">
-                {item.title}
-              </p>
+          {[0, 1].map((setIndex) => (
+            <div key={setIndex} className="flex gap-8 lg:gap-16 pr-8 lg:pr-16">
+              {achievements.map((item, index) => (
+                <div
+                  key={`${setIndex}-${index}`}
+                  className="flex flex-col items-center justify-center text-center p-4 w-[180px] shrink-0 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                >
+                  <AnimatedValue value={item.value} start={startCount} />
+                  <p className="text-[#172A53]/80 text-xs font-medium leading-snug">
+                    {item.title}
+                  </p>
+                </div>
+              ))}
             </div>
           ))}
         </motion.div>

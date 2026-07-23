@@ -11,7 +11,7 @@ export default function ContactSection() {
     offset: ['start end', 'end start'],
   });
 
-  const revealPercent = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, 100]);
+  const revealPercent = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [100, 0, 0, 100]);
   const clipPath = useTransform(revealPercent, (v) => `inset(0 ${v}% 0 0)`);
   const edgeLeft = useTransform(revealPercent, (v) => `${100 - v}%`);
   const rodOpacity = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);

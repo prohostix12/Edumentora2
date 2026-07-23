@@ -31,9 +31,9 @@ export default function BTechCreditTransferPage() {
 
         <div className="lg:col-span-5 space-y-8">
           <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
-            <Image 
-              src="/student-portrait.png" 
-              alt="Credit Transfer Student" 
+            <Image
+              src="/about-us-hero.png"
+              alt="Credit Transfer Student"
               fill 
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"

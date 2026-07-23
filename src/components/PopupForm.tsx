@@ -71,22 +71,22 @@ export default function PopupForm() {
                 <div className="grid md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <label htmlFor="popup-name" className="text-xs font-semibold text-gray-700">Full Name</label>
-                    <input type="text" id="popup-name" placeholder="John Doe" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                    <input type="text" id="popup-name" placeholder="John Doe" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
                   </div>
                   <div className="space-y-1.5">
                     <label htmlFor="popup-phone" className="text-xs font-semibold text-gray-700">Phone Number</label>
-                    <input type="tel" id="popup-phone" placeholder="+91 98765 43210" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                    <input type="tel" id="popup-phone" placeholder="+91 98765 43210" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
                   </div>
                 </div>
                 
                 <div className="space-y-1.5">
                   <label htmlFor="popup-email" className="text-xs font-semibold text-gray-700">Email Address</label>
-                  <input type="email" id="popup-email" placeholder="john@example.com" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                  <input type="email" id="popup-email" placeholder="john@example.com" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
                 </div>
 
                 <div className="space-y-1.5">
                   <label htmlFor="popup-message" className="text-xs font-semibold text-gray-700">Message</label>
-                  <textarea id="popup-message" rows={3} placeholder="How can we help you?" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none" required></textarea>
+                  <textarea id="popup-message" rows={3} placeholder="How can we help you?" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none" required></textarea>
                 </div>
 
                 <button type="submit" className="w-full bg-[#172A53] hover:bg-[#111f3d] text-white font-bold py-3 text-sm rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 mt-2">

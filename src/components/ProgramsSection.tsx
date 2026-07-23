@@ -103,7 +103,7 @@ export default function ProgramsSection() {
   const leftCard = cards[leftCardIdx];
 
   return (
-    <section className="w-full bg-[#da251d] py-16">
+    <section className="w-full bg-[rgb(240,240,228)] py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-12 lg:gap-8 items-start">
 
         {/* Left Column: Heading + the left card's title/description */}
@@ -113,8 +113,7 @@ export default function ProgramsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ textShadow: '0 4px 10px rgba(0,0,0,0.35)' }}
-            className="text-3xl md:text-4xl font-bold text-white leading-tight mb-6 whitespace-nowrap"
+            className="text-3xl md:text-4xl font-bold text-[#172A53] leading-tight mb-6 whitespace-nowrap"
           >
             Our Credit Transfer Programs
           </motion.h2>
@@ -126,10 +125,10 @@ export default function ProgramsSection() {
             transition={{ duration: 0.6 }}
             className="mt-[80px]"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl font-bold text-[#172A53] mb-4">
               {leftCard.title}
             </h2>
-            <p className="text-white/80 text-xl leading-relaxed">
+            <p className="text-[#172A53]/80 text-xl leading-relaxed">
               {leftCard.desc}
             </p>
           </motion.div>

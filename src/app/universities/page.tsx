@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import UniversitiesSection from '@/components/UniversitiesSection';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -52,6 +53,8 @@ export default function UniversitiesPage() {
           </p>
         </div>
       </div>
+
+      <UniversitiesSection />
 
       {/* Filter Section */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-20">

@@ -1,21 +1,38 @@
-﻿import React from 'react';
 import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import StatsSection from '@/components/StatsSection';
+import AboutSection from '@/components/AboutSection';
+import ContactSection from '@/components/ContactSection';
+import MissionVisionSection from '@/components/MissionVisionSection';
+import UniversitiesSection from '@/components/UniversitiesSection';
+import AchievementsSection from '@/components/AchievementsSection';
+import ProcessSection from '@/components/ProcessSection';
+import ProgramsSection from '@/components/ProgramsSection';
+import AboutInstituteSection from '@/components/AboutInstituteSection';
+import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import TestimonialSection from '@/components/TestimonialSection';
+import SeoContentSection from '@/components/SeoContentSection';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-white pt-24">
+    <main className="min-h-screen bg-white">
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-[40vh] px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#172A53] mb-4">
-          B Tech Credit Transfer Ernakulam
-        </h1>
-        <p className="text-lg text-gray-600">
-          This is the B Tech Credit Transfer Ernakulam page.
-        </p>
-      </div>
+      <Hero />
+      <StatsSection />
+      <AboutSection />
+      <ContactSection />
+      <UniversitiesSection />
+      <MissionVisionSection />
+      <AboutInstituteSection />
+      <AchievementsSection />
+      <ProcessSection />
+      <ProgramsSection />
+      <WhyChooseUsSection />
+      <TestimonialSection />
+      <SeoContentSection />
       <LocationsSection />
       <Footer />
       <FloatingWhatsApp />

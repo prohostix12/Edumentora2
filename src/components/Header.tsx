@@ -52,12 +52,13 @@ export default function Header() {
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-8 text-black">
         <Link href="/" className="flex shrink-0 items-center">
-          <Image 
-            src="/edumentora_logo.png" 
-            alt="eduMentora Logo" 
-            width={150} 
-            height={40} 
+          <Image
+            src="/edumentora_logo.png"
+            alt="eduMentora Logo"
+            width={150}
+            height={40}
             className="object-contain"
+            priority
           />
         </Link>
 

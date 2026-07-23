@@ -20,5 +20,5 @@ export default function Page() {
       <Footer />
       <FloatingWhatsApp />
     </main>
-  );
+  ); 
 }

@@ -1,10 +1,8 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import StatsSection from '@/components/StatsSection';
-import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import MissionVisionSection from '@/components/MissionVisionSection';
-import UniversitiesSection from '@/components/UniversitiesSection';
 import AchievementsSection from '@/components/AchievementsSection';
 import ProcessSection from '@/components/ProcessSection';
 import ProgramsSection from '@/components/ProgramsSection';
@@ -22,10 +20,8 @@ export default function Home() {
       <Header />
       <Hero />
       <StatsSection />
-      <AboutSection />
-      <ContactSection />
-      <UniversitiesSection />
       <MissionVisionSection />
+      <ContactSection />
       <AboutInstituteSection />
       <AchievementsSection />
       <ProcessSection />

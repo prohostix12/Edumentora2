@@ -1,21 +1,88 @@
-﻿import React from 'react';
+import React from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
-export default function Page() {
+export default function BTechCreditTransferPage() {
   return (
     <main className="min-h-screen bg-white pt-24">
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-[40vh] px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#172A53] mb-4">
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#172A53] text-center whitespace-nowrap">
           B Tech Credit Transfer Idukki
         </h1>
-        <p className="text-lg text-gray-600">
-          This is the B Tech Credit Transfer Idukki page.
-        </p>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16 grid lg:grid-cols-12 gap-10 lg:gap-16">
+        <div className="lg:col-span-7 space-y-5 text-[#3b3226]">
+          <p className="text-base leading-relaxed text-justify">
+            The B Tech Credit Transfer Idukki program offers a second chance for engineering students who had to pause their studies due to relocation, personal issues, or institutional reasons. Through this system, students can transfer their earned credits from one recognized university to another without losing the progress they’ve already made. In Idukki, several UGC and AICTE-approved universities and learning centers help students complete their B.Tech degree through an easy and transparent credit transfer process. The B Tech Credit Transfer Idukki option involves submitting academic transcripts, mark sheets, and related documents to evaluate previously completed subjects. Once verified, eligible credits are transferred to the new institution, allowing students to resume their education from the appropriate semester. This system saves both time and money by avoiding repeated coursework and helps maintain academic continuity. For students in Idukki who want to continue their B.Tech studies through flexible modes like distance or online education, this credit transfer program is a convenient solution.
+          </p>
+          <p className="text-base leading-relaxed text-justify">
+            The B Tech Credit Transfer Idukki program is a valuable opportunity for engineering students who discontinued their studies but wish to complete their degree without starting from the first semester. This initiative allows students from Idukki and nearby regions to transfer their academic credits from one approved university to another recognized institution under UGC and AICTE norms. The B Tech Credit Transfer Idukki process ensures that previously completed subjects and practicals are carefully evaluated and matched with the syllabus of the new university. This method not only saves time and reduces financial strain but also helps students maintain academic continuity. Many universities in Idukki provide complete assistance with documentation, credit mapping, and counseling to make the transition smooth. The program is especially beneficial for students who relocated, faced personal challenges, or had to leave college mid-course. With options for regular, distance, and online learning, B Tech Credit Transfer Idukki gives students the flexibility to complete their engineering education at their own pace. It’s an efficient and recognized path to achieve a valid B.Tech degree and rebuild a successful academic and professional career.
+          </p>
+        </div>
+
+        <div className="lg:col-span-5 space-y-8">
+          <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+            <Image
+              src="/graduation.png"
+              alt="Credit Transfer Student"
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
+            <h3 className="text-xl font-bold text-[#172A53] mb-5">Enquire Now</h3>
+            <form className="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm"
+                />
+              </div>
+              <div>
+                <input
+                  type="tel"
+                  placeholder="Phone number"
+                  required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm"
+                />
+              </div>
+              <div>
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  required
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <LocationsSection />
       <Footer />
       <FloatingWhatsApp />

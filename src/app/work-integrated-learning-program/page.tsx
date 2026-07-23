@@ -155,7 +155,7 @@ export default function Page() {
                     type="text" 
                     placeholder="Name" 
                     required
-                    className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
+                    className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
                   />
                 </div>
                 <div>
@@ -163,7 +163,7 @@ export default function Page() {
                     type="email" 
                     placeholder="Email" 
                     required
-                    className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
+                    className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
                   />
                 </div>
               </div>
@@ -172,7 +172,7 @@ export default function Page() {
                   type="tel" 
                   placeholder="Phone number" 
                   required
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
+                  className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
                 />
               </div>
               <div>
@@ -180,7 +180,7 @@ export default function Page() {
                   placeholder="Message" 
                   rows={4} 
                   required
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 resize-none text-gray-800 placeholder-gray-400"
+                  className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 resize-none text-gray-800 placeholder-gray-400"
                 ></textarea>
               </div>
               <button 
