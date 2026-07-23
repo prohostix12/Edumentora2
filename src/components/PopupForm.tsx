@@ -69,24 +69,68 @@ export default function PopupForm() {
               
               <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsOpen(false); }}>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <div className="space-y-1.5">
-                    <label htmlFor="popup-name" className="text-xs font-semibold text-gray-700">Full Name</label>
-                    <input type="text" id="popup-name" placeholder="John Doe" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                  <div className="relative">
+                    <input 
+                      type="text" 
+                      id="popup-name" 
+                      placeholder="Full Name" 
+                      className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
+                      required 
+                    />
+                    <label 
+                      htmlFor="popup-name" 
+                      className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
+                    >
+                      Full Name
+                    </label>
                   </div>
-                  <div className="space-y-1.5">
-                    <label htmlFor="popup-phone" className="text-xs font-semibold text-gray-700">Phone Number</label>
-                    <input type="tel" id="popup-phone" placeholder="+91 98765 43210" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                  <div className="relative">
+                    <input 
+                      type="tel" 
+                      id="popup-phone" 
+                      placeholder="Phone Number" 
+                      className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
+                      required 
+                    />
+                    <label 
+                      htmlFor="popup-phone" 
+                      className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
+                    >
+                      Phone Number
+                    </label>
                   </div>
                 </div>
                 
-                <div className="space-y-1.5">
-                  <label htmlFor="popup-email" className="text-xs font-semibold text-gray-700">Email Address</label>
-                  <input type="email" id="popup-email" placeholder="john@example.com" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                <div className="relative">
+                  <input 
+                    type="email" 
+                    id="popup-email" 
+                    placeholder="Email Address" 
+                    className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
+                    required 
+                  />
+                  <label 
+                    htmlFor="popup-email" 
+                    className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
+                  >
+                    Email Address
+                  </label>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label htmlFor="popup-message" className="text-xs font-semibold text-gray-700">Message</label>
-                  <textarea id="popup-message" rows={3} placeholder="How can we help you?" className="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none" required></textarea>
+                <div className="relative">
+                  <textarea 
+                    id="popup-message" 
+                    rows={3} 
+                    placeholder="Message" 
+                    className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none placeholder-transparent" 
+                    required
+                  ></textarea>
+                  <label 
+                    htmlFor="popup-message" 
+                    className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
+                  >
+                    Message
+                  </label>
                 </div>
 
                 <button type="submit" className="w-full bg-[#172A53] hover:bg-[#111f3d] text-white font-bold py-3 text-sm rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 mt-2">

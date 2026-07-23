@@ -74,28 +74,36 @@ export default function WhyChooseUsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group absolute inset-0 bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-blue-400/50 hover:-top-[15px] hover:-bottom-[15px] hover:-left-[10px] hover:-right-[10px] hover:z-10 hover:shadow-2xl hover:shadow-blue-900/50 transition-all duration-300 cursor-pointer"
+                className="absolute inset-0 group [perspective:1000px]"
               >
-                {/* Default State */}
-              <div className="flex flex-col justify-between h-full absolute inset-0 p-6 transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-4">
-                <h3 className="text-xl font-bold text-white leading-tight">
-                  {reason.title}
-                </h3>
-                <div className={`w-14 h-14 rounded-xl ${reason.bgColor} flex items-center justify-center`}>
-                  {reason.icon}
-                </div>
-              </div>
+                <div className="absolute inset-0 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-hover:-top-[15px] group-hover:-bottom-[15px] group-hover:-left-[10px] group-hover:-right-[10px] group-hover:z-10 group-hover:shadow-2xl group-hover:shadow-blue-900/50 cursor-pointer rounded-2xl">
+                  
+                  {/* Default State (Front) */}
+                  <div className="flex flex-col justify-between h-full absolute inset-0 p-6 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] bg-[#172A53] rounded-2xl border border-white/10 transition-opacity duration-300 group-hover:opacity-0">
+                    {/* Optional subtle background tint */}
+                    <div className="absolute inset-0 bg-white/5 pointer-events-none rounded-2xl"></div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white leading-tight">
+                        {reason.title}
+                      </h3>
+                    </div>
+                    <div className={`w-14 h-14 rounded-xl ${reason.bgColor} flex items-center justify-center mt-auto`}>
+                      {reason.icon}
+                    </div>
+                  </div>
 
-              {/* Hover State */}
-              <div className="flex flex-col justify-center h-full absolute inset-0 p-6 bg-[#25417e] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                <h3 className="text-lg font-bold text-white mb-3">
-                  {reason.title}
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed pr-1">
-                  {reason.desc}
-                </p>
-              </div>
-            </motion.div>
+                  {/* Hover State (Back) */}
+                  <div className="flex flex-col justify-center h-full absolute inset-0 p-6 bg-[#25417e] [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] rounded-2xl border border-blue-400/50 shadow-inner opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <h3 className="text-lg font-bold text-white mb-3">
+                      {reason.title}
+                    </h3>
+                    <p className="text-white/80 text-sm leading-relaxed pr-1">
+                      {reason.desc}
+                    </p>
+                  </div>
+                  
+                </div>
+              </motion.div>
             </div>
           ))}
         </div>

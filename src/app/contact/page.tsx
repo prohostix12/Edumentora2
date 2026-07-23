@@ -94,22 +94,22 @@ export default function Page() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-semibold text-gray-700">Full Name</label>
-                  <input type="text" id="name" placeholder="John Doe" className="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                  <input type="text" id="name" placeholder="John Doe" className="w-full px-4 py-3 text-[#172A53] font-medium placeholder:text-[#172A53] rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number</label>
-                  <input type="tel" id="phone" placeholder="+91 98765 43210" className="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                  <input type="tel" id="phone" placeholder="+91 98765 43210" className="w-full px-4 py-3 text-[#172A53] font-medium placeholder:text-[#172A53] rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address</label>
-                <input type="email" id="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
+                <input type="email" id="email" placeholder="john@example.com" className="w-full px-4 py-3 text-[#172A53] font-medium placeholder:text-[#172A53] rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white" required />
               </div>
               
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-semibold text-gray-700">Message</label>
-                <textarea id="message" rows={4} placeholder="How can we help you?" className="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none" required></textarea>
+                <textarea id="message" rows={4} placeholder="How can we help you?" className="w-full px-4 py-3 text-[#172A53] font-medium placeholder:text-[#172A53] rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none" required></textarea>
               </div>
 
               <button type="submit" className="w-full bg-[#172A53] hover:bg-[#111f3d] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
