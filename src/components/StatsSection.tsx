@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useInView, animate } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: number, to: number, duration?: number, suffix?: string }) {
   const ref = useRef(null);
@@ -77,21 +78,29 @@ export default function StatsSection() {
             Our Trusted Universities:
           </p>
 
-          {/* University Logos Grid */}
           <div className="flex flex-wrap gap-4">
-            {logos.map((logo) => (
-              <div
-                key={logo.id}
-                className="bg-white rounded-lg p-2 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-center shadow-md transform hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden"
-              >
-                <Image
-                  src={logo.image}
-                  alt={logo.name}
-                  fill
-                  className="object-contain p-2"
-                />
-              </div>
-            ))}
+            {logos.map((logo) => {
+              const filterName = logo.name === 'ARNI University' 
+                ? 'Arni University' 
+                : logo.name === 'Manipur International University'
+                  ? 'All'
+                  : logo.name;
+              
+              return (
+                <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} key={logo.id}>
+                  <div
+                    className="bg-white rounded-lg p-2 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-center shadow-md transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  >
+                    <Image
+                      src={logo.image}
+                      alt={logo.name}
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </motion.div>

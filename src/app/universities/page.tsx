@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import UniversitiesSection from '@/components/UniversitiesSection';
 import LocationsSection from '@/components/LocationsSection';
@@ -29,10 +30,21 @@ const universitiesData = [
   }
 ];
 
-export default function UniversitiesPage() {
-  const [activeFilter, setActiveFilter] = useState('All');
-
+function UniversitiesContent() {
+  const searchParams = useSearchParams();
+  const filterParam = searchParams.get('filter');
   const filters = ['All', 'Glocal University', 'Arni University', 'Maya Devi University'];
+  
+  const initialFilter = filterParam && filters.includes(filterParam) ? filterParam : 'All';
+  const [activeFilter, setActiveFilter] = useState(initialFilter);
+
+  useEffect(() => {
+    if (filterParam && filters.includes(filterParam)) {
+      setActiveFilter(filterParam);
+    } else {
+      setActiveFilter('All');
+    }
+  }, [filterParam]);
 
   const filteredData = activeFilter === 'All' 
     ? universitiesData 
@@ -57,7 +69,7 @@ export default function UniversitiesPage() {
       <UniversitiesSection />
 
       {/* Filter Section */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-20">
+      <div id="universities-list" className="max-w-7xl mx-auto px-4 md:px-8 py-20">
         
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">
@@ -140,5 +152,13 @@ export default function UniversitiesPage() {
       <Footer />
       <FloatingWhatsApp />
     </main>
+  );
+}
+
+export default function UniversitiesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 pt-24 flex items-center justify-center">Loading...</div>}>
+      <UniversitiesContent />
+    </Suspense>
   );
 }
