@@ -66,7 +66,9 @@ function UniversitiesContent() {
         </div>
       </div>
 
-      <UniversitiesSection />
+      <div className="hidden">
+        <UniversitiesSection />
+      </div>
 
       {/* Filter Section */}
       <div id="universities-list" className="max-w-7xl mx-auto px-4 md:px-8 py-20">
