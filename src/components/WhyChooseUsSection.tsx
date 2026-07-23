@@ -68,15 +68,15 @@ export default function WhyChooseUsSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {reasons.map((reason, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-white/5 rounded-2xl h-[280px] overflow-hidden border border-white/10 hover:border-blue-400/50 hover:scale-[1.15] hover:z-10 hover:shadow-2xl hover:shadow-blue-900/50 transition-all duration-300 cursor-pointer"
-            >
-              {/* Default State */}
+            <div key={index} className="relative w-full h-[280px]">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group absolute inset-0 bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-blue-400/50 hover:-top-[15px] hover:-bottom-[15px] hover:-left-[10px] hover:-right-[10px] hover:z-10 hover:shadow-2xl hover:shadow-blue-900/50 transition-all duration-300 cursor-pointer"
+              >
+                {/* Default State */}
               <div className="flex flex-col justify-between h-full absolute inset-0 p-6 transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-4">
                 <h3 className="text-xl font-bold text-white leading-tight">
                   {reason.title}
@@ -91,11 +91,12 @@ export default function WhyChooseUsSection() {
                 <h3 className="text-lg font-bold text-white mb-3">
                   {reason.title}
                 </h3>
-                <p className="text-white/80 text-sm leading-relaxed overflow-y-auto custom-scrollbar pr-1">
+                <p className="text-white/80 text-sm leading-relaxed pr-1">
                   {reason.desc}
                 </p>
               </div>
             </motion.div>
+            </div>
           ))}
         </div>
       </div>

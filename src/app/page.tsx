@@ -8,7 +8,7 @@ import ProcessSection from '@/components/ProcessSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
-import TestimonialSection from '@/components/TestimonialSection';
+
 import SeoContentSection from '@/components/SeoContentSection';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
@@ -27,7 +27,7 @@ export default function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
-      <TestimonialSection />
+
       <SeoContentSection />
       <LocationsSection />
       <Footer />
