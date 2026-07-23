@@ -11,7 +11,7 @@ export default function DirectorsMessagePage() {
 
       {/* Overlapping Layout Section */}
       <div className="bg-gray-50 pb-16 lg:pb-24">
-        
+
         {/* Top Header Block */}
         <div className="w-full bg-[#172A53] pt-16 pb-40 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{ backgroundImage: "url('/about-bg.png')" }}></div>
@@ -28,7 +28,7 @@ export default function DirectorsMessagePage() {
         {/* Content Container (Overlapping) */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-24 md:-mt-28">
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-12 lg:p-16 flex flex-col md:flex-row items-start gap-12 lg:gap-16">
-            
+
             {/* Image Space */}
             <div className="md:w-5/12 w-full flex justify-center sticky top-32">
               <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-xl border-4 border-gray-50 group">
@@ -52,7 +52,7 @@ export default function DirectorsMessagePage() {
               <p>
                 We are deeply committed to providing transparent, reliable, and student-focused guidance at every step of the process. Our team works closely with each student to understand their academic background and identify the best possible pathway to a recognized qualification.
               </p>
-              
+
               <div className="bg-red-50 border-l-4 border-[#da251d] p-8 rounded-r-2xl my-10 shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 opacity-5 text-9xl font-serif leading-none transform translate-x-4 -translate-y-4 text-[#da251d]">"</div>
                 <p className="font-medium text-[#172A53] text-xl md:text-2xl italic relative z-10 leading-snug">

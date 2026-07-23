@@ -169,7 +169,7 @@ export default function Hero() {
           className="relative w-full flex items-end justify-center md:justify-end z-10 mt-auto self-end -mb-24"
         >
           <Image 
-            src="/hero-image.webp"
+            src="/Hero-image.webp"
             alt="Smiling student giving thumbs up"
             width={640}
             height={822}
