@@ -8,7 +8,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function BTechCreditTransferPage() {
   return (
-    <main className="min-h-screen bg-white pt-24">
+    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">

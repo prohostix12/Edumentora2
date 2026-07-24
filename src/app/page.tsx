@@ -16,7 +16,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
       <Hero />
       <StatsSection />

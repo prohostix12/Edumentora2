@@ -6,7 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function ApprenticeshipLearningProgram() {
   return (
-    <main className="min-h-screen bg-white pt-24">
+    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
       
       {/* Hero Section */}

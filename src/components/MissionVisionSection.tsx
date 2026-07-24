@@ -5,79 +5,66 @@ import { motion } from 'framer-motion';
 
 export default function MissionVisionSection() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 md:px-8 mt-[30px] pb-24 relative">
-      
-      <div className="relative w-full flex flex-col lg:flex-row items-center">
+    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative">
+      <div className="relative w-full mx-auto">
+        <div className="relative bg-[#f4ecd8] rounded-3xl p-6 md:p-8 lg:p-10 border-[12px] border-white shadow-2xl overflow-hidden w-full">
         
-        {/* Rope-textured frame around the paper box, shaded to read as a rolled/coiled rope tube */}
+        {/* Background textures - grid lines */}
         <div
-          className="relative w-full rounded-[46px] p-2 md:p-2.5"
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-40 mix-blend-multiply"
           style={{
-            backgroundColor: '#7a5230',
             backgroundImage:
-              'repeating-linear-gradient(48deg, rgba(255,235,205,0.45) 0px, rgba(255,235,205,0.45) 3px, transparent 3px, transparent 9px, rgba(0,0,0,0.35) 9px, rgba(0,0,0,0.35) 12px, transparent 12px, transparent 18px)',
-            boxShadow:
-              'inset 0 5px 6px rgba(255,235,205,0.45), inset 0 -6px 8px rgba(0,0,0,0.55), inset 5px 0 6px rgba(255,235,205,0.25), inset -5px 0 8px rgba(0,0,0,0.45), 0 10px 24px rgba(0,0,0,0.3)',
+              "repeating-linear-gradient(12deg, transparent 0px, transparent 38px, rgba(0,0,0,0.35) 39px, transparent 41px, transparent 90px), repeating-linear-gradient(102deg, transparent 0px, transparent 55px, rgba(0,0,0,0.3) 56px, transparent 58px, transparent 130px), repeating-linear-gradient(165deg, transparent 0px, transparent 47px, rgba(0,0,0,0.28) 48px, transparent 50px, transparent 110px)",
           }}
-        >
-        {/* Blue Box (Text Content) */}
-        <div className="relative overflow-hidden bg-[#e8dcc0] rounded-[38px] w-full p-10 md:p-16 text-[#3b3226] z-0">
-          {/* crackled paper texture - crack veins */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-40 mix-blend-multiply"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(12deg, transparent 0px, transparent 38px, rgba(0,0,0,0.35) 39px, transparent 41px, transparent 90px), repeating-linear-gradient(102deg, transparent 0px, transparent 55px, rgba(0,0,0,0.3) 56px, transparent 58px, transparent 130px), repeating-linear-gradient(165deg, transparent 0px, transparent 47px, rgba(0,0,0,0.28) 48px, transparent 50px, transparent 110px)",
-            }}
-          />
-          {/* crackled paper texture - fine grain */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-              backgroundSize: '300px 300px',
-            }}
-          />
-          {/* subtle vignette to deepen edges like an aged sheet */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: 'radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(0,0,0,0.12) 100%)',
-            }}
-          />
+        />
+        {/* crackled paper texture - fine grain */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundSize: '300px 300px',
+          }}
+        />
+        {/* subtle vignette to deepen edges like an aged sheet */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(0,0,0,0.12) 100%)',
+          }}
+        />
 
-          <div className="relative z-10 space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[#2b2418]">
-              Empowering students<br className="hidden md:block"/>through credit transfer
-            </h2>
+        <div className="relative z-10 space-y-4 w-full lg:w-[75%]">
+          <h2 className="text-[36px] md:text-[44px] lg:text-[50px] font-[Poppins] font-extrabold text-[#2b2418] leading-[1.1] tracking-tight mb-4">
+            Empowering Students<br className="hidden md:block"/>
+            <span className="text-[#da251d]">Through Credit Transfer</span>
+          </h2>
 
-            <p className="text-[#3b3226]/90 text-sm md:text-base leading-relaxed max-w-2xl">
-              Resume your graduation or postgraduate education through Edumentora, a leading academic credit transfer institution. Transfer earned credits for B. Tech, engineering, and other programs to recognized universities, saving time and costs while achieving academic success.
+          <p className="text-[18px] text-[#3b3226]/90 leading-[1.8] w-full pr-4 lg:pr-12">
+            Resume your graduation or postgraduate education through Edumentora, a leading academic credit transfer institution. Transfer earned credits for B. Tech, engineering, and other programs to recognized universities, saving time and costs while achieving academic success.
+          </p>
+
+          <div className="space-y-2 pt-2">
+            <h3 className="text-[24px] font-semibold text-[#2b2418]">Our Mission</h3>
+            <p className="text-[15px] md:text-[16px] text-[#3b3226]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+              At EduMentora, our mission is to empower students to overcome academic setbacks by providing a seamless and fully supported pathway for credit transfers. We ensure that every previously earned credit is respected, helping learners transition to UGC-accredited universities. Through personalized guidance, we strive to save students valuable time and financial resources, turning educational interruptions into renewed opportunities for lifelong success.
             </p>
+          </div>
 
-            <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-[#2b2418]">Our Mission</h3>
-              <p className="text-[#3b3226]/90 text-sm md:text-base leading-relaxed max-w-2xl">
-                In EduMentora Our Mission is to help students overcome academic setbacks by facilitating seamless credit transfers to accredited universities for successful completion.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-[#2b2418]">Our Vision</h3>
-              <p className="text-[#3b3226]/90 text-sm md:text-base leading-relaxed max-w-2xl">
-                In EduMentora Our Vision is to bright create a future where every student can complete their education without barriers through recognized credit transfer programs.
-              </p>
-            </div>
+          <div className="space-y-2 pt-2">
+            <h3 className="text-[24px] font-semibold text-[#2b2418]">Our Vision</h3>
+            <p className="text-[15px] md:text-[16px] text-[#3b3226]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+              Our vision at EduMentora is to create an inclusive educational landscape where no student is left behind due to past hurdles. We envision a future where every individual has unrestricted access to complete their higher education without having to start from scratch. By breaking down academic barriers and championing flexible learning pathways, we aim to be India's most trusted partner in transforming past progress into lasting achievement.
+            </p>
           </div>
         </div>
-        </div>
+      </div>
 
-        {/* hanging magnifying glass, swinging left to right - rope and lens are one continuous SVG so they can never appear to separate, kept outside the box's overflow-hidden so it never gets clipped */}
-        <motion.div
+      {/* hanging magnifying glass, swinging left to right */}
+      <motion.div
           aria-hidden
           style={{ transformOrigin: 'top center' }}
           animate={{ rotate: [-18, 18, -18] }}
@@ -173,9 +160,7 @@ export default function MissionVisionSection() {
             </g>
           </svg>
         </div>
-
       </div>
-
     </section>
   );
 }

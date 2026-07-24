@@ -1,149 +1,119 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { BriefcaseBusiness, GraduationCap, Settings2, LucideIcon } from 'lucide-react';
+import { BriefcaseBusiness, GraduationCap, Settings2, ArrowRight } from 'lucide-react';
 
-const cards: {
-  Icon: LucideIcon;
-  color: string;
-  iconBg: string;
-  title: React.ReactNode;
-  desc: string;
-}[] = [
+const programs = [
   {
     Icon: BriefcaseBusiness,
-    color: 'text-blue-500',
-    iconBg: 'bg-blue-50',
-    title: <>Credit Transfer<br />Program</>,
+    title: 'Credit Transfer Program',
     desc: 'Transfer your past credits to complete your degree faster with Edumentora.',
   },
   {
     Icon: GraduationCap,
-    color: 'text-orange-500',
-    iconBg: 'bg-orange-50',
-    title: <>Apprenticeship<br />Program</>,
+    title: 'Apprenticeship Program',
     desc: 'Study while gaining real work experience through Industry training.',
   },
   {
     Icon: Settings2,
-    color: 'text-yellow-500',
-    iconBg: 'bg-yellow-50',
-    title: <>Work Integrated<br />Learn Program</>,
+    title: 'Work Integrated Learn Program',
     desc: 'Learn theory and apply it practically for a career-ready education.',
   },
 ];
 
-// slot 0 = left, slot 1 = right-bottom, slot 2 = right-top
-// each card's starting slot at tick 0, matching the original layout
-const startSlot = [0, 2, 1];
-
-function ProgramCard({ card, iconOnly }: { card: typeof cards[number]; iconOnly?: boolean }) {
-  const { Icon } = card;
-  return (
-    <div
-      className={`bg-white rounded-[32px] p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow duration-300 h-[240px] flex flex-col justify-center ${iconOnly ? 'items-center' : ''}`}
-    >
-      <div
-        className={`${iconOnly ? 'w-28 h-28' : 'w-14 h-14 mb-4'} ${card.iconBg} rounded-2xl flex items-center justify-center shrink-0`}
-      >
-        <Icon className={`${iconOnly ? 'w-16 h-16' : 'w-7 h-7'} ${card.color}`} />
-      </div>
-      {!iconOnly && (
-        <div className="flex-1 overflow-hidden flex flex-col justify-start">
-          <h3 className="text-xl md:text-2xl font-bold text-black mb-2 leading-tight">
-            {card.title}
-          </h3>
-          <p className="text-gray-500 text-sm md:text-base leading-snug">
-            {card.desc}
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TravelingCard({ cardIdx, iconOnly }: { cardIdx: number; iconOnly?: boolean }) {
-  const [isMoving, setIsMoving] = useState(false);
-
-  return (
-    <motion.div
-      layoutId={`program-card-${cardIdx}`}
-      layout
-      onLayoutAnimationStart={() => setIsMoving(true)}
-      onLayoutAnimationComplete={() => setIsMoving(false)}
-      transition={{ type: 'spring', stiffness: 110, damping: 15, mass: 0.9 }}
-      animate={{ scale: isMoving ? 1.06 : 1, rotate: isMoving ? -3 : 0 }}
-      style={{ boxShadow: isMoving ? '0 25px 45px rgba(0,0,0,0.4)' : '0 0px 0px rgba(0,0,0,0)' }}
-      className="rounded-[32px]"
-    >
-      <ProgramCard card={cards[cardIdx]} iconOnly={iconOnly} />
-    </motion.div>
-  );
-}
-
 export default function ProgramsSection() {
-  const [tick, setTick] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTick((t) => t + 1);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // which card currently occupies each of the 3 slots
-  const slotToCard: number[] = [0, 0, 0];
-  cards.forEach((_, cardIdx) => {
-    const slot = (startSlot[cardIdx] + tick) % 3;
-    slotToCard[slot] = cardIdx;
-  });
-
-  const leftCardIdx = slotToCard[0];
-  const leftCard = cards[leftCardIdx];
-
   return (
-    <section className="w-full bg-[rgb(240,240,228)] py-16">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-12 lg:gap-8 items-start">
-
-        {/* Left Column: Heading + the left card's title/description */}
-        <div className="w-full lg:w-1/3 pt-10">
-          <motion.h2
+    <section className="bg-white py-[120px] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-[80px] flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+        
+        {/* LEFT SIDE: Title Area */}
+        <div className="w-full lg:w-[30%] shrink-0 relative z-10 pt-4">
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-[#172A53] leading-tight mb-6 whitespace-nowrap"
           >
-            Our Credit Transfer Programs
-          </motion.h2>
-
-          <motion.div
-            key={leftCardIdx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mt-[80px]"
-          >
-            <h2 className="text-4xl font-bold text-[#172A53] mb-4">
-              {leftCard.title}
+            <div className="text-[#E53935] font-bold tracking-widest text-sm uppercase mb-4">
+              Our Programs
+            </div>
+            <h2 className="text-[40px] lg:text-[52px] font-bold text-[#122B63] leading-tight mb-6">
+              Our Credit Transfer Programs
             </h2>
-            <p className="text-[#172A53]/80 text-xl leading-relaxed">
-              {leftCard.desc}
+            <p className="text-gray-500 text-[16px] leading-relaxed mb-8">
+              Seamlessly continue your academic journey by leveraging your prior learning across top institutions.
             </p>
+            <div className="w-16 h-[3px] bg-[#E53935]"></div>
           </motion.div>
         </div>
-
-        {/* Right Columns: Cards, physically traveling between the 3 slots */}
-        <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-          <div className="flex flex-col justify-center h-full">
-            <TravelingCard cardIdx={slotToCard[0]} iconOnly />
+        
+        {/* RIGHT SIDE: Horizontal Flow */}
+        <div className="w-full lg:w-[70%] relative flex items-start">
+          
+          {/* Background SVG curved connector line (Desktop only) */}
+          <div className="absolute left-[8%] right-[8%] top-[36px] h-[100px] hidden lg:block z-0 pointer-events-none">
+            <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+              {/* Light gray track */}
+              <path 
+                d="M 0,0 C 25,0 25,60 50,60 C 75,60 75,0 100,0" 
+                stroke="#F0F2F5" 
+                strokeWidth="2" 
+                fill="none" 
+              />
+              {/* Animated Red Connector */}
+              <motion.path 
+                d="M 0,0 C 25,0 25,60 50,60 C 75,60 75,0 100,0" 
+                stroke="#E53935" 
+                strokeWidth="2" 
+                fill="none"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+              />
+            </svg>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <TravelingCard cardIdx={slotToCard[2]} />
-            <TravelingCard cardIdx={slotToCard[1]} />
+          <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-8 relative z-10">
+            {programs.map((program, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                className={`flex-1 flex flex-col relative group ${i === 1 ? 'lg:mt-[60px]' : 'mt-0'}`}
+              >
+                {/* Icon Container */}
+                <div className="w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center shadow-[0_12px_30px_rgba(0,0,0,0.06)] mb-6 group-hover:-translate-y-2 transition-transform duration-300 border border-gray-50 mx-auto lg:mx-0">
+                  <program.Icon className="w-8 h-8 text-[#122B63]" strokeWidth={1.5} />
+                </div>
+                
+                {/* Content Block */}
+                <div className="text-center lg:text-left">
+                  {/* Step Number */}
+                  <div className="text-[48px] font-bold text-[#E53935] opacity-20 mb-2 leading-none font-serif">
+                    0{i+1}
+                  </div>
+                  
+                  <h3 className="text-[26px] font-semibold text-[#122B63] group-hover:text-[#E53935] transition-colors mb-3 leading-tight">
+                    {program.title}
+                  </h3>
+                  
+                  <p className="text-[16px] text-gray-500 leading-relaxed mb-6 font-medium">
+                    {program.desc}
+                  </p>
+                  
+                  <button className="inline-flex items-center text-[#122B63] font-bold group-hover:text-[#E53935] transition-colors overflow-hidden group/btn">
+                    Know More 
+                    <ArrowRight className="ml-2 w-5 h-5 -translate-x-full opacity-0 group-hover/btn:translate-x-0 group-hover/btn:opacity-100 transition-all duration-300" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
         </div>
       </div>
     </section>

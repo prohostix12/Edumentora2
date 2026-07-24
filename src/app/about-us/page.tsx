@@ -8,13 +8,13 @@ import TestimonialSection from '@/components/TestimonialSection';
 
 export default function AboutUsPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24">
+    <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
       
       {/* Hero Section */}
       <div className="bg-[#172A53] py-20 lg:py-32 relative overflow-hidden">
         {/* Subtle background overlay */}
-        <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{ backgroundImage: "url('/about-bg.png')" }}></div>
+        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
         
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
           

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useInView, animate } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Award, Briefcase } from 'lucide-react';
 
 function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: number, to: number, duration?: number, suffix?: string }) {
   const ref = useRef(null);
@@ -27,11 +28,6 @@ function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: n
 }
 
 export default function StatsSection() {
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 150], [0, 1]);
-  const y = useTransform(scrollY, [0, 150], [50, 0]);
-  const pointerEvents = useTransform(scrollY, (value) => (value > 0 ? 'auto' : 'none'));
-
   const logos = [
     { name: 'Manipur International University', id: 1, image: '/manipur_international_university.jpg' },
     { name: 'Maya Devi University', id: 2, image: '/maya-devi-university.png' },
@@ -40,70 +36,145 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="relative z-20 -mt-24 px-8 w-full max-w-7xl mx-auto">
-      <motion.div
-        style={{ opacity, y, pointerEvents }}
-        className="bg-[#172A53] rounded-[40px] p-10 md:p-14 flex flex-col lg:flex-row gap-12 items-center justify-between shadow-2xl shadow-black/50"
-      >
-        {/* Left Side: Cards */}
-        <div className="flex flex-col sm:flex-row gap-6 w-full lg:w-1/2">
-          {/* Card 1 */}
-          <div className="bg-white rounded-3xl p-8 flex-1 shadow-lg aspect-square flex flex-col justify-center transform hover:scale-105 transition-transform duration-300">
-            <h3 className="text-5xl md:text-6xl font-extrabold text-[#000000] mb-4">
-              <AnimatedCounter to={16} suffix="+" />
-            </h3>
-            <p className="text-[#172A53] font-semibold text-lg md:text-xl leading-snug">
-              Years of expertise<br />in Industry
-            </p>
-          </div>
+    <section className="relative z-20 w-full bg-[#FAF7F0] overflow-hidden">
+      {/* Minimal decorative dots behind the connector */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#162B63_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none"></div>
 
-          {/* Card 2 */}
-          <div className="bg-white rounded-3xl p-8 flex-1 shadow-lg aspect-square flex flex-col justify-center transform hover:scale-105 transition-transform duration-300">
-            <h3 className="text-5xl md:text-6xl font-extrabold text-[#000000] mb-4">
-              <AnimatedCounter to={163} />
-            </h3>
-            <p className="text-[#172A53] font-semibold text-lg md:text-xl leading-snug">
-              Awards and<br />Recognition<br />in Industry
-            </p>
-          </div>
+      <div className="max-w-[1400px] mx-auto py-[60px] px-4 md:px-8">
+        {/* Heading Area */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="relative z-10 flex flex-col items-center text-center mb-10"
+      >
+        <span className="text-[#E53935] text-[13px] md:text-sm font-bold tracking-[0.2em] mb-3 uppercase font-[Poppins]">
+          OUR IMPACT
+        </span>
+        <h2 className="text-[36px] md:text-[48px] font-bold text-[#162B63] font-[Playfair_Display] leading-[1.15] mb-5 max-w-4xl">
+          Edumentora Makes<br />
+          <span className="text-[#E53935]">Restarting</span> your Education Easier
+        </h2>
+        <div className="w-20 h-[2px] bg-[#E53935] rounded-full mb-8"></div>
+        
+        <h3 className="text-[20px] md:text-[24px] font-semibold text-[#162B63] font-[Poppins]">
+          Our Trusted Universities
+        </h3>
+      </motion.div>
+
+      {/* Showcase Flow Area */}
+      <div className="relative w-full py-6 mt-4">
+        
+        {/* SVG Curved Connector (Desktop only to prevent messy mobile overlap) */}
+        <div className="absolute top-1/2 left-0 w-full h-[200px] -translate-y-1/2 pointer-events-none z-0 hidden xl:block">
+          <svg width="100%" height="100%" viewBox="0 0 1200 200" fill="none" preserveAspectRatio="none">
+            {/* Smooth flowing sine-wave style path connecting the centers */}
+            <path 
+              d="M 130,100 C 300,50 400,160 600,100 C 800,40 900,150 1070,100" 
+              stroke="#E53935" 
+              strokeWidth="2" 
+              strokeDasharray="6 6"
+              fill="none"
+              className="opacity-40"
+            />
+            {/* Connection nodes under each card (approximate positions corresponding to the offsets) */}
+            <circle cx="130" cy="100" r="4" fill="#E53935" />
+            <circle cx="340" cy="72" r="4" fill="#E53935" />
+            <circle cx="510" cy="120" r="4" fill="#E53935" />
+            <circle cx="680" cy="80" r="4" fill="#E53935" />
+            <circle cx="850" cy="128" r="4" fill="#E53935" />
+            <circle cx="1070" cy="100" r="4" fill="#E53935" />
+          </svg>
         </div>
 
-        {/* Right Side: Text & Logos */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-            Edumentora Makes<br />Restarting your<br />Education Easier
-          </h2>
+        {/* Content Row */}
+        <div className="relative z-10 flex flex-col xl:flex-row items-center justify-between gap-[32px] w-full max-w-[1200px] mx-auto">
+          
+          {/* Left Stat */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="w-full sm:w-[240px] shrink-0 drop-shadow-[0_15px_25px_rgba(0,0,0,0.05)] hover:drop-shadow-[0_20px_35px_rgba(0,0,0,0.1)] hover:scale-105 transition-all duration-300 z-10"
+          >
+            <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
+                 style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
+              <div className="w-12 h-12 rounded-full border-2 border-[#E53935] text-[#E53935] flex items-center justify-center mb-4 mt-2">
+                <Briefcase size={24} strokeWidth={1.5} />
+              </div>
+              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#162B63] leading-none mb-3">
+                <AnimatedCounter to={16} suffix="+" />
+              </h4>
+              <p className="text-[15px] md:text-[16px] text-[#162B63] font-[Poppins] leading-[1.4]">
+                Years of Expertise<br/>in Industry
+              </p>
+            </div>
+          </motion.div>
 
-          <p className="text-lg font-medium mb-6">
-            Our Trusted Universities:
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            {logos.map((logo) => {
+          {/* Universities Container */}
+          <div className="flex flex-wrap xl:flex-nowrap justify-center gap-[32px] flex-1">
+            {logos.map((logo, i) => {
               const filterName = logo.name === 'ARNI University' 
                 ? 'Arni University' 
                 : logo.name === 'Manipur International University'
                   ? 'All'
                   : logo.name;
               
+              // Alternate vertical offsets for a sine wave feel on large screens
+              const offsets = ['xl:-translate-y-8', 'xl:translate-y-4', 'xl:-translate-y-4', 'xl:translate-y-8'];
+              
               return (
-                <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} key={logo.id}>
-                  <div
-                    className="bg-white rounded-lg p-2 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-center shadow-md transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
-                  >
-                    <Image
-                      src={logo.image}
-                      alt={logo.name}
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                </Link>
+                <motion.div
+                  key={logo.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] ${offsets[i]}`}
+                >
+                  <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} className="block w-full h-full">
+                    <div className="bg-white rounded-[24px] p-4 w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={logo.image}
+                          alt={logo.name}
+                          fill
+                          className="object-contain p-2"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
               );
             })}
           </div>
+
+          {/* Right Stat */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="w-full sm:w-[240px] shrink-0 drop-shadow-[0_15px_25px_rgba(0,0,0,0.05)] hover:drop-shadow-[0_20px_35px_rgba(0,0,0,0.1)] hover:scale-105 transition-all duration-300 z-10"
+          >
+            <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
+                 style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
+              <div className="w-12 h-12 rounded-full border-2 border-[#E53935] text-[#E53935] flex items-center justify-center mb-4 mt-2">
+                <Award size={24} strokeWidth={1.5} />
+              </div>
+              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#162B63] leading-none mb-3">
+                <AnimatedCounter to={163} />
+              </h4>
+              <p className="text-[15px] md:text-[16px] text-[#162B63] font-[Poppins] leading-[1.4]">
+                Awards and<br/>Recognition<br/>in Industry
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
+      </div>
     </section>
   );
 }

@@ -73,7 +73,7 @@ export default function PopupForm() {
                     <input 
                       type="text" 
                       id="popup-name" 
-                      placeholder="Full Name" 
+                      placeholder="Enter your name" 
                       className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
                       required 
                     />
@@ -81,14 +81,14 @@ export default function PopupForm() {
                       htmlFor="popup-name" 
                       className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
                     >
-                      Full Name
+                      Enter your name
                     </label>
                   </div>
                   <div className="relative">
                     <input 
                       type="tel" 
                       id="popup-phone" 
-                      placeholder="Phone Number" 
+                      placeholder="Enter phone number" 
                       className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
                       required 
                     />
@@ -96,7 +96,7 @@ export default function PopupForm() {
                       htmlFor="popup-phone" 
                       className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
                     >
-                      Phone Number
+                      Enter phone number
                     </label>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export default function PopupForm() {
                   <input 
                     type="email" 
                     id="popup-email" 
-                    placeholder="Email Address" 
+                    placeholder="Enter email" 
                     className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
                     required 
                   />
@@ -113,7 +113,7 @@ export default function PopupForm() {
                     htmlFor="popup-email" 
                     className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
                   >
-                    Email Address
+                    Enter email
                   </label>
                 </div>
 
