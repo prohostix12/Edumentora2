@@ -81,13 +81,10 @@ export default function Header() {
             router.push('/admin');
           }}
         >
-          <Image
+          <img
             src="/edumentora_logo.webp"
             alt="eduMentora Logo"
-            width={150}
-            height={40}
-            className="object-contain"
-            priority
+            className="w-auto h-[40px] object-contain"
           />
         </Link>
 

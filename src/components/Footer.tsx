@@ -21,14 +21,12 @@ export default function Footer() {
                 Your trusted partner in education, offering expert guidance and innovative learning resources to empower students and professionals for academic and career success.
               </p>
               <div className="pt-4">
-                <Image 
-                  src="/logo.svg" 
+                <img 
+                  src="/edumentora_logo.webp" 
                   alt="Edumentora Logo" 
-                  width={150} 
-                  height={50}
-                  className="brightness-0 invert opacity-90"
+                  className="h-10 w-auto brightness-0 invert opacity-90"
                   onError={(e) => {
-                    // Fallback if logo.svg is not available in white
+                    // Fallback if logo is not available in white
                     e.currentTarget.style.display = 'none';
                   }}
                 />
