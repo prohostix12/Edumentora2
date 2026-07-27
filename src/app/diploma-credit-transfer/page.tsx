@@ -6,32 +6,49 @@ import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
-export default function BTechCreditTransferPage() {
+export default function DiplomaCreditTransferPage() {
   return (
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#172A53] text-center whitespace-nowrap">
-          B Tech Credit Transfer Pathanamthitta
-        </h1>
+      {/* Premium Hero Section */}
+      <div className="w-full bg-[#172A53] pt-16 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-4xl mx-auto">
+            Diploma Credit Transfer
+          </h1>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid lg:grid-cols-12 gap-10 lg:gap-16">
-        <div className="lg:col-span-7 space-y-5 text-[#3b3226]">
-          <p className="text-base leading-relaxed text-justify">
-            The B Tech Credit Transfer Pathanamthitta program offers engineering students a second chance to continue their education without starting over. It is specially designed for learners who had to discontinue their B.Tech studies due to personal, financial, or academic reasons. This system allows students from Pathanamthitta and nearby regions to transfer their earned academic credits from one university to another recognized under UGC and AICTE regulations. The B Tech Credit Transfer Pathanamthitta process includes a detailed evaluation of transcripts, mark sheets, and completed subjects to match them with the new university’s syllabus. This ensures that students don’t have to repeat previous semesters, saving valuable time and effort. With the flexibility of regular, distance, or online learning modes, students can complete their degree conveniently and at their own pace. The program helps maintain academic continuity and supports students in achieving their engineering qualification efficiently.
+        <div className="lg:col-span-7 space-y-6 text-[#3b3226]">
+          <h2 className="text-2xl font-bold text-[#172A53]">
+            Seamless Diploma Credit Transfer Program
+          </h2>
+          
+          <p className="text-base leading-relaxed text-justify font-medium">
+            Transfer your diploma credits to a new institution and continue your studies without starting over. Keep your progress moving.
           </p>
+
           <p className="text-base leading-relaxed text-justify">
-            Several reputed universities and study centers in Pathanamthitta guide students through the B Tech Credit Transfer Pathanamthitta process with proper counseling and documentation support. They ensure transparency, accuracy, and a smooth transition for every student applying under this program. The system is highly beneficial for those who had to leave college mid-course due to relocation or unforeseen challenges and now want to finish their degree under a recognized university. With the B Tech Credit Transfer Pathanamthitta program, students can continue their studies without losing their hard-earned credits, complete their B.Tech degree faster, and gain recognized qualifications. It’s a cost-effective, time-saving, and flexible way to rebuild one’s academic journey while maintaining full credibility and quality education.
+            EduMentora, offers a comprehensive Diploma Credit Transfer Programme in collaboration with renowned universities, including Glocal University, Radha Govind University, and Arni University. This program is designed to help students seamlessly transfer their existing diploma credits to recognized universities, allowing them to upgrade their qualifications without restarting their education. By leveraging this credit transfer system, students can save time and effort while continuing their academic journey toward higher education and career advancement.
           </p>
+          
+          <p className="text-base leading-relaxed text-justify">
+            Our Diploma Credit Transfer Programme is ideal for students who have completed diploma courses and wish to pursue advanced degrees with recognized accreditation. EduMentora ensures a hassle-free admission process, expert guidance, and flexible learning options to support students at every stage. The program covers a wide range of disciplines, catering to diverse academic interests and professional goals. With a focus on quality education and seamless credit recognition, EduMentora empowers students to achieve their academic aspirations efficiently and cost-effectively.
+          </p>
+
+          <Link href="/about-us" className="mt-4 bg-[#da251d] hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
+            Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+          </Link>
         </div>
 
         <div className="lg:col-span-5">
-          <div className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+          <div className="relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
-              src="/btech_transfer_pathanamthitta.png"
-              alt="Credit Transfer Student"
+              src="/diploma_credit_transfer.png"
+              alt="Diploma Student on Campus"
               fill
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"
@@ -40,10 +57,10 @@ export default function BTechCreditTransferPage() {
         </div>
       </div>
 
-
+      {/* Full Width Enquire Now Form */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
-        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-300 w-full">
-          <h3 className="text-xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
+        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
+          <h3 className="text-2xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-4">
               <input
@@ -84,7 +101,6 @@ export default function BTechCreditTransferPage() {
           </form>
         </div>
       </div>
-
 
       <LocationsSection />
       <Footer />

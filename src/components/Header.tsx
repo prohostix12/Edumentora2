@@ -104,7 +104,11 @@ export default function Header() {
             </Link>
           ))}
           
-          <div className="group relative flex items-center h-full">
+          <div 
+            className="group relative flex items-center h-full"
+            onMouseEnter={() => setOpenDropdown('about')}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
             <button 
               onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === 'about' ? null : 'about'); }}
               className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === 'about' ? 'text-[#da251d]' : 'hover:text-[#da251d] transition-colors duration-200'}`}

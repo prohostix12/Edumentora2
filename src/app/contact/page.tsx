@@ -8,21 +8,25 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24">
-
-        {/* Header */}
-        <div className="relative text-center py-20 mb-16 rounded-3xl overflow-hidden border border-gray-100 bg-gray-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-          <div className="absolute inset-0 opacity-40 bg-repeat bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')", backgroundSize: "150px" }}></div>
-          <div className="relative z-10">
-            <div className="inline-block px-4 py-2 bg-white/80 text-blue-700 font-bold tracking-widest uppercase rounded-full mb-4 text-sm shadow-sm backdrop-blur-sm border border-blue-100">
-              Our Offices
-            </div>
-            <h1 className="text-5xl md:text-6xl font-black text-[#172A53] mb-4 tracking-tight">Contact</h1>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium px-4">
-              Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions.
-            </p>
+      {/* Unified Hero Section */}
+      <div className="w-full bg-[#172A53] relative overflow-hidden">
+        {/* Background Image Overlay matching Programs page */}
+        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
+        
+        <div className="w-full pt-20 pb-24 relative z-10 max-w-7xl mx-auto text-center px-6 md:px-12">
+          <div className="inline-block px-4 py-1.5 bg-white/10 text-red-200 font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-white/20 backdrop-blur-md">
+            Our Offices
           </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight font-[Poppins]">
+            Get In Touch
+          </h1>
+          <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-5xl mx-auto">
+            Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals.
+          </p>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24">
 
         {/* 2-Column Grid */}
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">

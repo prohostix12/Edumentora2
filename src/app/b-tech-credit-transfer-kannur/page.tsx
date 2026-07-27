@@ -17,7 +17,7 @@ export default function BTechCreditTransferPage() {
         </h1>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16 grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 space-y-5 text-[#3b3226]">
           <p className="text-base leading-relaxed text-justify">
             The B Tech Credit Transfer Kannur program offers engineering students a great opportunity to continue their education without restarting their degree from the beginning. It is specially designed for students who had to discontinue their B.Tech studies due to personal, financial, or academic reasons and now wish to resume their course under a recognized university. Students in Kannur can easily transfer their earned academic credits to UGC and AICTE-approved universities that accept credit transfers. The B Tech Credit Transfer Kannur process includes verifying previous mark sheets, transcripts, and course details to ensure accurate subject matching.
@@ -27,8 +27,8 @@ export default function BTechCreditTransferPage() {
           </p>
         </div>
 
-        <div className="lg:col-span-5 space-y-8">
-          <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+        <div className="lg:col-span-5">
+          <div className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
               src="/wilp-hero.png"
               alt="Credit Transfer Student"
@@ -37,52 +37,54 @@ export default function BTechCreditTransferPage() {
               sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
+        </div>
+      </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
-            <h3 className="text-xl font-bold text-[#172A53] mb-5">Enquire Now</h3>
-            <form className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-                />
-              </div>
-              <div>
-                <input
-                  type="tel"
-                  placeholder="Phone number"
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-                />
-              </div>
-              <div>
-                <textarea
-                  placeholder="Message"
-                  rows={4}
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53] resize-none"
-                ></textarea>
-              </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
+        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-300 w-full">
+          <h3 className="text-xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <input
+                type="text"
+                placeholder="Name"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+              />
+              <input
+                type="tel"
+                placeholder="Phone number"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+              />
+            </div>
+            <div className="flex flex-col space-y-4">
+              <textarea
+                placeholder="Message"
+                rows={4}
+                required
+                className="w-full h-full min-h-[140px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53] resize-none"
+              ></textarea>
+            </div>
+            <div className="md:col-span-2 mt-2">
               <button
                 type="submit"
-                className="w-full bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
+                className="w-full md:w-auto md:px-12 mx-auto block bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
               >
                 Send Message
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
+
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
         <form className="w-full flex flex-col md:flex-row gap-3">

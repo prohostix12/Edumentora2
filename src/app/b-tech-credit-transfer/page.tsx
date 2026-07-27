@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
@@ -74,7 +75,7 @@ export default function BTechCreditTransferPage() {
         </div>
       </div>
 
-      <div className="bg-gray-50 pb-20">
+      <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28">
         {/* Elevated Intro Card */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-32 mb-20">
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
@@ -103,9 +104,9 @@ export default function BTechCreditTransferPage() {
                   Instead of starting from the first year, eligible students who have completed at least 50% of their B.Tech coursework can transfer their existing credits to a UGC-approved and AICTE-recognized university.
                 </p>
               </div>
-              <button className="mt-4 bg-[#da251d] hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center">
+              <Link href="#educational-mobility" className="mt-4 bg-[#da251d] hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
                 Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -221,6 +222,51 @@ export default function BTechCreditTransferPage() {
 
           </div>
         </div>
+
+        {/* Enquire Now Form */}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 mt-16 pb-4">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone number"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
+                />
+              </div>
+              <div className="flex flex-col space-y-4">
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  required
+                  className="w-full h-full min-h-[140px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53] resize-none"
+                ></textarea>
+              </div>
+              <div className="md:col-span-2 mt-2">
+                <button
+                  type="submit"
+                  className="w-full md:w-auto md:px-12 mx-auto block bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
 
       {/* Fifth Section: FAQ */}
@@ -269,7 +315,7 @@ export default function BTechCreditTransferPage() {
       </div>
 
       {/* Know more on Credit Transfers Section (Moved from Programs) */}
-      <div className="bg-gray-50 py-24 border-t border-gray-200">
+      <div id="educational-mobility" className="bg-gray-50 py-24 border-t border-gray-200 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8 mb-16 text-center">
           <div className="inline-block px-4 py-1.5 bg-red-100 text-[#da251d] font-bold tracking-widest uppercase rounded-full mb-4 text-sm border border-red-200">
             Educational Mobility

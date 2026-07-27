@@ -14,7 +14,6 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             
-            {/* Column 1: About */}
             <div className="space-y-6">
               <h4 className="text-2xl font-semibold mb-6">About</h4>
               <p className="text-white/80 text-sm leading-relaxed pr-4">
@@ -24,16 +23,8 @@ export default function Footer() {
                 <img 
                   src="/edumentora_logo.webp" 
                   alt="Edumentora Logo" 
-                  className="h-10 w-auto brightness-0 invert opacity-90"
-                  onError={(e) => {
-                    // Fallback if logo is not available in white
-                    e.currentTarget.style.display = 'none';
-                  }}
+                  className="h-14 w-auto bg-white/90 p-1.5 rounded-md shadow-sm"
                 />
-                {/* Fallback textual logo if image fails */}
-                <div className="flex items-center gap-2">
-                   <div className="text-2xl font-bold italic tracking-tighter">edu<span className="text-red-500">Mentora</span></div>
-                </div>
               </div>
             </div>
             
@@ -42,11 +33,11 @@ export default function Footer() {
               <h4 className="text-2xl font-semibold mb-6">Quick Links</h4>
               <ul className="space-y-4">
                 {[
-                  { name: "Home", href: "#" },
-                  { name: "About Us", href: "#" },
-                  { name: "Credit Transfer", href: "#" },
-                  { name: "Universities", href: "#" },
-                  { name: "Contact Us", href: "#" }
+                  { name: "Home", href: "/" },
+                  { name: "About Us", href: "/about-us" },
+                  { name: "Credit Transfer", href: "/b-tech-credit-transfer#know-more" },
+                  { name: "Universities", href: "/universities" },
+                  { name: "Contact Us", href: "/contact" }
                 ].map((link, index) => (
                   <li key={index}>
                     <Link href={link.href} className="group flex items-center text-white/80 hover:text-white text-sm transition-colors">
@@ -63,10 +54,10 @@ export default function Footer() {
               <h4 className="text-2xl font-semibold mb-6">Credit Transfer</h4>
               <ul className="space-y-4">
                 {[
-                  { name: "B.Tech Credit Transfer", href: "#" },
-                  { name: "PG Credit Transfer", href: "#" },
-                  { name: "UG Credit Transfer", href: "#" },
-                  { name: "Diploma Credit Transfer", href: "#" }
+                  { name: "B.Tech Credit Transfer", href: "/b-tech-credit-transfer" },
+                  { name: "PG Credit Transfer", href: "/pg-credit-transfer" },
+                  { name: "UG Credit Transfer", href: "/ug-credit-transfer" },
+                  { name: "Diploma Credit Transfer", href: "/diploma-credit-transfer" }
                 ].map((link, index) => (
                   <li key={index}>
                     <Link href={link.href} className="group flex items-center text-white/80 hover:text-white text-sm transition-colors">
