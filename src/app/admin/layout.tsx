@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, Users, LogOut, Settings, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, Users, LogOut, Settings, MessageSquare, Image } from 'lucide-react';
 import { logoutAdmin } from './actions';
 import { redirect } from 'next/navigation';
 
@@ -26,6 +26,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/contacts" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors">
             <Users className="w-5 h-5" />
             <span className="font-medium">Contacts</span>
+          </Link>
+          <Link href="/admin/gallery" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors">
+            <Image className="w-5 h-5" />
+            <span className="font-medium">Image Gallery</span>
           </Link>
           <Link href="/admin/settings" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors">
             <Settings className="w-5 h-5" />
