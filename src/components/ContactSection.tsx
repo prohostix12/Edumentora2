@@ -1,4 +1,5 @@
 'use client';
+import EnquiryForm from '@/components/EnquiryForm';
 
 import React, { useRef } from 'react';
 import { Clock, CheckCircle2, Phone, MapPin } from 'lucide-react';
@@ -103,41 +104,7 @@ export default function ContactSection() {
 
         {/* Right Side: Form */}
         <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center">
-          <form className="space-y-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full md:w-1/2 bg-[#f4f4f5] text-gray-800 placeholder-gray-500 rounded-md px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 transition-all"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full md:w-1/2 bg-[#f4f4f5] text-gray-800 placeholder-gray-500 rounded-md px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 transition-all"
-              />
-            </div>
-
-            <input
-              type="tel"
-              placeholder="Your Phone Number"
-              className="w-full bg-[#f4f4f5] text-gray-800 placeholder-gray-500 rounded-md px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 transition-all"
-            />
-
-            <textarea
-              placeholder="Your Message"
-              rows={4}
-              className="w-full bg-[#f4f4f5] text-gray-800 placeholder-gray-500 rounded-md px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none"
-            ></textarea>
-
-            <div className="flex justify-end pt-1">
-              <button
-                type="submit"
-                className="text-white font-bold text-base hover:text-white/80 transition-colors"
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
+          <EnquiryForm className="space-y-4" isGrid={false} />
         </div>
 
         </motion.div>

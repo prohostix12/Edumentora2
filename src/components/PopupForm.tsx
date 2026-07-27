@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import EnquiryForm from '@/components/EnquiryForm';
 
 export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,76 +68,7 @@ export default function PopupForm() {
                 <p className="text-gray-600 text-sm">Fill out the form below and our academic advisors will get back to you shortly.</p>
               </div>
               
-              <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsOpen(false); }}>
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div className="relative">
-                    <input 
-                      type="text" 
-                      id="popup-name" 
-                      placeholder="Enter your name" 
-                      className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
-                      required 
-                    />
-                    <label 
-                      htmlFor="popup-name" 
-                      className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
-                    >
-                      Enter your name
-                    </label>
-                  </div>
-                  <div className="relative">
-                    <input 
-                      type="tel" 
-                      id="popup-phone" 
-                      placeholder="Enter phone number" 
-                      className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
-                      required 
-                    />
-                    <label 
-                      htmlFor="popup-phone" 
-                      className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
-                    >
-                      Enter phone number
-                    </label>
-                  </div>
-                </div>
-                
-                <div className="relative">
-                  <input 
-                    type="email" 
-                    id="popup-email" 
-                    placeholder="Enter email" 
-                    className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" 
-                    required 
-                  />
-                  <label 
-                    htmlFor="popup-email" 
-                    className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
-                  >
-                    Enter email
-                  </label>
-                </div>
-
-                <div className="relative">
-                  <textarea 
-                    id="popup-message" 
-                    rows={3} 
-                    placeholder="Message" 
-                    className="peer w-full px-4 pt-6 pb-2 text-sm text-[#172A53] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none placeholder-transparent" 
-                    required
-                  ></textarea>
-                  <label 
-                    htmlFor="popup-message" 
-                    className="absolute left-4 top-2 text-xs font-semibold text-[#172A53] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#172A53] peer-placeholder-shown:top-3.5 peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#172A53] pointer-events-none"
-                  >
-                    Message
-                  </label>
-                </div>
-
-                <button type="submit" className="w-full bg-[#172A53] hover:bg-[#111f3d] text-white font-bold py-3 text-sm rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 mt-2">
-                  Send Message
-                </button>
-              </form>
+              <EnquiryForm className="space-y-5" isGrid={false} onSuccess={() => setIsOpen(false)} />
             </motion.div>
           </motion.div>
         </>

@@ -3,14 +3,17 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
-model ContactSubmission {
-  id        Int      @id @default(autoincrement())
+model EnquiryList {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   phone     String
   email     String
   message   String
   createdAt DateTime @default(now())
+
+  @@map("enquiry_list")
 }

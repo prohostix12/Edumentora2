@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import EnquiryForm from '@/components/EnquiryForm';
 
 export default function BTechCreditTransferPage() {
   return (
@@ -42,46 +43,7 @@ export default function BTechCreditTransferPage() {
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
             <h3 className="text-xl font-bold text-[#172A53] mb-5">Enquire Now</h3>
-            <form className="space-y-4">
-              <div>
-                <input 
-                  type="text" 
-                  placeholder="Name" 
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]" 
-                />
-              </div>
-              <div>
-                <input 
-                  type="email" 
-                  placeholder="Email" 
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]" 
-                />
-              </div>
-              <div>
-                <input 
-                  type="tel" 
-                  placeholder="Phone number" 
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]" 
-                />
-              </div>
-              <div>
-                <textarea 
-                  placeholder="Message" 
-                  rows={4} 
-                  required
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53] resize-none"
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
-              >
-                Send Message
-              </button>
-            </form>
+            <EnquiryForm className="space-y-4" isGrid={false} />
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import EnquiryForm from '@/components/EnquiryForm';
 
 export default function DiplomaCreditTransferPage() {
   return (
@@ -61,44 +62,7 @@ export default function DiplomaCreditTransferPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-              />
-              <input
-                type="tel"
-                placeholder="Phone number"
-                required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53]"
-              />
-            </div>
-            <div className="flex flex-col space-y-4">
-              <textarea
-                placeholder="Message"
-                rows={4}
-                required
-                className="w-full h-full min-h-[140px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all bg-gray-50 text-sm text-[#172A53] placeholder:text-[#172A53] resize-none"
-              ></textarea>
-            </div>
-            <div className="md:col-span-2 mt-2">
-              <button
-                type="submit"
-                className="w-full md:w-auto md:px-12 mx-auto block bg-[#da251d] hover:bg-red-700 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all shadow-sm hover:shadow-md uppercase tracking-wide"
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
+          <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>
       </div>
 

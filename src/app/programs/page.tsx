@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import EnquiryForm from '@/components/EnquiryForm';
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<'apprenticeship' | 'wilp'>('apprenticeship');
@@ -328,48 +329,7 @@ export default function Page() {
           </div>
           
           <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input 
-                    type="text" 
-                    placeholder="Name" 
-                    required
-                    className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
-                  />
-                </div>
-                <div>
-                  <input 
-                    type="email" 
-                    placeholder="Email" 
-                    required
-                    className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
-                  />
-                </div>
-              </div>
-              <div>
-                <input 
-                  type="tel" 
-                  placeholder="Phone number" 
-                  required
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 text-gray-800 placeholder-gray-400" 
-                />
-              </div>
-              <div>
-                <textarea 
-                  placeholder="Message" 
-                  rows={4} 
-                  required
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:border-[#da251d] focus:ring-1 focus:ring-[#da251d] transition-all bg-gray-50 resize-none text-gray-800 placeholder-gray-400"
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-[#da251d] hover:bg-red-700 text-white font-bold text-lg py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 tracking-wide mt-2"
-              >
-                Send Message
-              </button>
-            </form>
+            <EnquiryForm className="space-y-6" isGrid={false} />
           </div>
         </div>
       </div>
