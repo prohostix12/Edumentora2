@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Shield, ArrowRight } from 'lucide-react';
+import heroImage from '../../public/hero-image.png';
 
 export default function Hero() {
   return (
@@ -95,33 +96,14 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Side: Mentor Image with Curved/Circular Styling */}
-        <div className="relative flex justify-center items-center h-[500px] lg:h-[550px] mt-16 md:mt-0 lg:ml-12">
-
-          {/* Large soft circular background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] bg-gradient-to-tr from-white to-red-50 rounded-full shadow-[0_20px_50px_-15px_rgba(218,37,29,0.15)] z-0" />
-
-          {/* Thin outline circle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] md:w-[530px] md:h-[530px] lg:w-[650px] lg:h-[650px] rounded-full border border-red-200/50 z-0" />
-
-          {/* Subtle glow behind image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-yellow-300/20 blur-[60px] rounded-full z-0" />
-
-          {/* Abstract floating ring over image */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[10%] right-[0%] w-20 h-20 rounded-full border-4 border-dashed border-red-300/40 z-20 pointer-events-none"
-          />
-
-          {/* Mentor Image - Balanced size and placed at the bottom */}
-          <div className="absolute bottom-[-50px] lg:bottom-[-80px] w-[120%] lg:w-[140%] left-1/2 -translate-x-1/2 flex justify-center items-end z-10 pointer-events-none">
+        {/* Right Side: Hero Image */}
+        <div className="relative flex justify-center items-end h-[500px] lg:h-[600px] w-full mt-16 md:mt-0 -mb-20 lg:-mb-16 z-30">
+          {/* Hero Image */}
+          <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
             <Image
-              src="/hero-image.png"
-              alt="Mentor"
-              width={1000}
-              height={1000}
-              className="object-contain object-bottom w-full max-h-[600px] lg:max-h-[850px] drop-shadow-2xl"
+              src={heroImage}
+              alt="Hero"
+              className="object-contain object-bottom w-full h-full scale-[1.35] lg:scale-[1.65] origin-bottom drop-shadow-2xl"
               priority
             />
           </div>

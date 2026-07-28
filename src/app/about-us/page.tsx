@@ -4,7 +4,6 @@ import AboutSection from '@/components/AboutSection';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
-import TestimonialSection from '@/components/TestimonialSection';
 
 export default function AboutUsPage() {
   return (
@@ -197,7 +196,6 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      <TestimonialSection />
       <LocationsSection />
       <Footer />
       <FloatingWhatsApp />

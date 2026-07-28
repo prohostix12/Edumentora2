@@ -40,11 +40,11 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="w-full bg-[#172A53] py-12">
+    <section className="w-full bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-16 lg:gap-24 overflow-visible items-center">
         
         {/* Left Content: Text */}
-        <div className="w-full lg:w-1/2 text-white pt-4">
+        <div className="w-full lg:w-1/2 text-[#172A53] pt-4">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -54,20 +54,6 @@ export default function TestimonialSection() {
           >
             What Our Students Say<br />About Us!
           </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white text-base md:text-lg leading-relaxed max-w-lg"
-          >
-            At Edumentora, we're proud to support students in restarting and 
-            completing their education with ease. Through trusted credit transfer 
-            programs, our students achieve academic goals faster, more 
-            affordably, and without unnecessary hurdles. Hear directly from those 
-            who've experienced the journey.
-          </motion.p>
         </div>
 
         {/* Right Content: Testimonial Card */}
@@ -145,7 +131,7 @@ export default function TestimonialSection() {
           
           {/* Rating Info below the card */}
           <div className="mt-8 text-center">
-             <p className="text-white font-semibold text-sm">
+             <p className="text-gray-700 font-semibold text-sm">
                Google rating score: 4.9 of 5, based on 120 reviews
              </p>
           </div>

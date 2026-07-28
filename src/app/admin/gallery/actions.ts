@@ -10,14 +10,13 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 export async function createSection(formData: FormData) {
   const sectionName = formData.get('sectionName') as string;
   if (!sectionName) return;
-
   await prisma.gallery.create({
     data: {
       section: sectionName,
       images: [],
     },
   });
-  
+
   revalidatePath('/admin/gallery');
   revalidatePath('/gallery');
 }
@@ -26,7 +25,7 @@ export async function deleteSection(id: string) {
   await prisma.gallery.delete({
     where: { id },
   });
-  
+
   revalidatePath('/admin/gallery');
   revalidatePath('/gallery');
 }

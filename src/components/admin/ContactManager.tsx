@@ -1,0 +1,130 @@
+'use client';
+
+import React, { useTransition } from 'react';
+import { createContact, deleteContact } from '@/app/admin/contacts/actions';
+import { Plus, Trash2, Building, Phone, Smartphone, Mail } from 'lucide-react';
+
+type Contact = {
+  id: string;
+  department: string;
+  lanphone: string;
+  mob: string;
+  email: string;
+};
+
+export default function ContactManager({ initialContacts }: { initialContacts: Contact[] }) {
+  const [isPending, startTransition] = useTransition();
+
+  const handleCreateContact = (formData: FormData) => {
+    startTransition(() => {
+      createContact(formData);
+      const form = document.getElementById('add-contact-form') as HTMLFormElement;
+      if (form) form.reset();
+    });
+  };
+
+  const handleDeleteContact = (id: string) => {
+    if (confirm('Are you sure you want to delete this contact?')) {
+      startTransition(() => {
+        deleteContact(id);
+      });
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Create Contact Form */}
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <h2 className="text-xl font-semibold text-[#172A53] mb-4">Add New Contact</h2>
+        <form id="add-contact-form" action={handleCreateContact} className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="department"
+              placeholder="Department Name (e.g. Admissions)"
+              required
+              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+            />
+            <input
+              type="text"
+              name="lanphone"
+              placeholder="Landline Phone"
+              required
+              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+            />
+            <input
+              type="text"
+              name="mob"
+              placeholder="Mobile Number"
+              required
+              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              required
+              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+            />
+          </div>
+          
+          <button
+            type="submit"
+            disabled={isPending}
+            className="self-end px-6 py-2 bg-[#172A53] text-white font-medium rounded-xl hover:bg-[#172A53]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
+          >
+            <Plus className="w-5 h-5" />
+            Add Contact
+          </button>
+        </form>
+      </div>
+
+      {/* Existing Contacts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {initialContacts.map((contact) => (
+          <div key={contact.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full relative">
+            <button
+              onClick={() => handleDeleteContact(contact.id)}
+              disabled={isPending}
+              className="absolute top-4 right-4 text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors"
+              title="Delete Contact"
+            >
+              <Trash2 className="w-5 h-5" />
+            </button>
+            
+            <h3 className="text-xl font-bold text-gray-900 mb-4 pr-10">{contact.department}</h3>
+            
+            <div className="space-y-3 mt-auto">
+              <div className="flex items-center gap-3 text-gray-600">
+                <div className="w-8 h-8 rounded-full bg-[#172A53]/5 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-4 h-4 text-[#172A53]" />
+                </div>
+                <span className="text-sm font-medium">{contact.lanphone}</span>
+              </div>
+              
+              <div className="flex items-center gap-3 text-gray-600">
+                <div className="w-8 h-8 rounded-full bg-[#172A53]/5 flex items-center justify-center flex-shrink-0">
+                  <Smartphone className="w-4 h-4 text-[#172A53]" />
+                </div>
+                <span className="text-sm font-medium">{contact.mob}</span>
+              </div>
+              
+              <div className="flex items-center gap-3 text-gray-600">
+                <div className="w-8 h-8 rounded-full bg-[#172A53]/5 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-4 h-4 text-[#172A53]" />
+                </div>
+                <span className="text-sm font-medium truncate" title={contact.email}>{contact.email}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+        
+        {initialContacts.length === 0 && (
+          <div className="col-span-full py-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100 border-dashed">
+            No contacts created yet.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -77,12 +77,13 @@ export default function Footer() {
             
             {/* Column 1: Brand */}
             <div className="flex flex-col items-start space-y-7">
-              <Link href="/">
+              <Link href="/" className="flex flex-col gap-3">
                 <img 
                   src="/edumentora_logo.webp" 
                   alt="Edumentora Logo" 
-                  className="h-14 w-auto object-contain bg-white/5 p-2 rounded border border-white/10"
+                  className="h-14 w-auto object-contain bg-white p-2 rounded border border-gray-200 self-start"
                 />
+                <span className="text-white font-bold text-[17px] tracking-wide">Edumentora Services LLP</span>
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed font-medium">
                 Your trusted partner in education, offering expert guidance and innovative learning resources to empower students and professionals for academic and career success.

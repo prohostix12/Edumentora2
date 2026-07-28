@@ -8,6 +8,8 @@ import ProcessSection from '@/components/ProcessSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import TestimonialSection from '@/components/TestimonialSection';
+import HomeGallerySection from '@/components/HomeGallerySection';
 
 import SeoContentSection from '@/components/SeoContentSection';
 import LocationsSection from '@/components/LocationsSection';
@@ -27,9 +29,13 @@ export default function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
+      <TestimonialSection />
+      <HomeGallerySection />
 
+      {/* 
       <SeoContentSection />
-      <LocationsSection />
+      <LocationsSection /> 
+      */}
       <Footer />
       <FloatingWhatsApp />
     </main>
