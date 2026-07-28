@@ -85,3 +85,17 @@ model Comment {
 
   @@map("comments")
 }
+
+model Program {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  topic       String   @default("General")
+  heroImage   String?
+  heading     String
+  subHeading  String?
+  paragraph   String
+  blocks      Json[]   
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("programs")
+}

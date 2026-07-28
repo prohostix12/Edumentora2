@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Settings, MessageSquare, Image, GraduationCap, FileText } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, MessageSquare, Image, GraduationCap, FileText, BookOpen } from 'lucide-react';
 
 export default function SidebarNav() {
   const pathname = usePathname();
@@ -15,6 +15,7 @@ export default function SidebarNav() {
     { href: '/admin/contacts', label: 'Contacts', icon: Users },
     { href: '/admin/gallery', label: 'Image Gallery', icon: Image },
     { href: '/admin/blogs', label: 'Blogs', icon: FileText },
+    { href: '/admin/programs', label: 'Programs', icon: BookOpen },
     { href: '/admin/settings', label: 'Settings', icon: Settings },
   ];
 
