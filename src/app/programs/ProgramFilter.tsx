@@ -250,22 +250,71 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                 </div>
               </div>
 
-              {/* ── DYNAMIC BLOCKS ─────────────────────────────────── */}
+              {/* ── DYNAMIC CANVAS WIDGETS ─────────────────────────────────── */}
               {program.blocks && program.blocks.length > 0 && (
                 <div className="bg-gray-50 border-t border-gray-100">
-                  <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20 space-y-12 md:space-y-16">
-                    {program.blocks.map((block: any, bIndex: number) => {
-                      if (block.type === 'text') {
-                        return <TextBlock key={bIndex} block={block} bIndex={bIndex} />;
-                      }
-                      if (block.type === 'cards') {
-                        return <CardsBlock key={bIndex} block={block} bIndex={bIndex} />;
-                      }
-                      if (block.type === 'arrows') {
-                        return <ArrowsBlock key={bIndex} block={block} bIndex={bIndex} />;
-                      }
-                      return null;
-                    })}
+                  <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min md:auto-rows-[60px]">
+                      {program.blocks.map((w: Record<string, any>) => (
+                        <div 
+                          key={w.i as string}
+                          className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
+                          style={{
+                            gridColumn: `var(--grid-col, 1 / -1)`,
+                            gridRow: `var(--grid-row, auto)`,
+                            '--grid-col': `${w.x + 1} / span ${w.w}`,
+                            '--grid-row': `${w.y + 1} / span ${w.h}`
+                          } as any}
+                        >
+                          {w.type === 'text' && (
+                            <div>
+                              <h3 className="text-2xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h3>
+                              <div className="w-10 h-1 bg-[#da251d] rounded mb-4" />
+                              <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">{w.data?.paragraph}</p>
+                            </div>
+                          )}
+                          
+                          {w.type === 'card' && (
+                            <div className="flex flex-col h-full relative group">
+                              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#da251d] to-[#172A53] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                              <div className="w-12 h-12 rounded-xl bg-[#172A53]/8 flex items-center justify-center mb-5 mt-2">
+                                <span className="text-[#172A53] font-extrabold text-sm">{String(w.i).slice(0,2).toUpperCase()}</span>
+                              </div>
+                              <h4 className="text-xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h4>
+                              <p className="text-gray-600 leading-relaxed text-sm md:text-base flex-1">{w.data?.paragraph}</p>
+                            </div>
+                          )}
+
+                          {w.type === 'arrow-list' && (
+                            <div className="flex flex-col h-full">
+                              <h3 className="text-xl font-bold text-[#172A53] mb-5 pb-4 border-b border-gray-100">{w.data?.heading}</h3>
+                              <ul className="space-y-3 flex-1">
+                                {w.data?.points?.map((pt: string, idx: number) => (
+                                  <li key={idx} className="flex items-start gap-3 text-gray-600">
+                                    <div className="mt-1 w-5 h-5 rounded bg-[#da251d]/10 flex items-center justify-center flex-shrink-0">
+                                      <span className="text-[#da251d] font-bold text-xs">→</span>
+                                    </div>
+                                    <span className="text-sm md:text-base">{pt}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {w.type === 'image' && (
+                            <div className="w-full h-full rounded-xl overflow-hidden shadow-sm relative group/img -m-6 md:-m-8" style={{ width: 'calc(100% + 3rem)' }}>
+                              {w.data?.url ? (
+                                <img src={w.data.url} alt="Program Image" className="w-full h-full object-cover transform transition-transform duration-700 group-hover/img:scale-105" />
+                              ) : (
+                                <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
+                                  <span className="text-sm font-semibold">Image Placeholder</span>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

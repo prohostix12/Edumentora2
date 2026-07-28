@@ -1,314 +1,713 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
-import { Trash2, Plus, Upload, Type, LayoutGrid, List } from 'lucide-react';
+import React, { useState, useTransition, useRef, useCallback } from 'react';
+import { Reorder, useDragControls, motion } from 'framer-motion';
+import { Trash2, Plus, Upload, Type, LayoutGrid, List, Eye, EyeOff, GripVertical, Maximize2, Minimize2, X } from 'lucide-react';
 import { createProgram, deleteProgram } from '@/app/admin/programs/actions';
 import { compressImage } from '@/utils/imageCompression';
 
-type Program = {
-  id: string;
-  topic: string;
-  heroImage: string | null;
-  heading: string;
-  subHeading: string | null;
-  paragraph: string;
-  blocks: any[];
-  createdAt: Date;
+// ─── LIMITS ──────────────────────────────────────────────────────────────────
+const LIMITS = {
+  topic: 30, heading: 80, subHeading: 70, paragraph: 400,
+  blockHeading: 60, blockParagraph: 200,
+  cardHeading: 50, cardPara: 180,
+  pointHeading: 50, bulletPoint: 120,
+  maxCards: 6, maxPoints: 4, maxBullets: 8, maxBlocks: 8,
 };
 
-type Block = 
-  | { type: 'text', heading: string, paragraph: string }
-  | { type: 'cards', heading: string, paragraph: string, cards: { cardHeading: string, cardPara: string }[] }
-  | { type: 'arrows', heading: string, paragraph: string, points: { pointHeading: string, pointList: string[] }[] };
+// ─── TYPES ────────────────────────────────────────────────────────────────────
+type TextBlock   = { id: string; type: 'text';   heading: string; paragraph: string };
+type CardsBlock  = { id: string; type: 'cards';  heading: string; paragraph: string; cards: { cardHeading: string; cardPara: string }[] };
+type ArrowsBlock = { id: string; type: 'arrows'; heading: string; paragraph: string; points: { pointHeading: string; pointList: string[] }[] };
+type Block = TextBlock | CardsBlock | ArrowsBlock;
 
+type Program = {
+  id: string; topic: string; heroImage: string | null;
+  heading: string; subHeading: string | null; paragraph: string;
+  blocks: any[]; createdAt: Date;
+};
+
+function uid() { return Math.random().toString(36).slice(2); }
+
+// ─── COUNTER ──────────────────────────────────────────────────────────────────
+function Counter({ value, max }: { value: string; max: number }) {
+  const n = value.length;
+  return (
+    <span className={`text-xs font-mono tabular-nums flex-shrink-0 ${n > max ? 'text-red-500 font-bold' : n > max * 0.8 ? 'text-orange-400' : 'text-gray-300'}`}>
+      {n}/{max}
+    </span>
+  );
+}
+
+// ─── FIELD ────────────────────────────────────────────────────────────────────
+function Field({ label, hint, error, children }: { label?: string; hint?: string; error?: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1">
+      {label && <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{label}</label>}
+      {children}
+      {hint && !error && <p className="text-[10px] text-gray-400 italic">{hint}</p>}
+      {error && <p className="text-[10px] text-red-500 font-semibold">{error}</p>}
+    </div>
+  );
+}
+
+const iCls = (err?: string) =>
+  `w-full px-3 py-2 border rounded-lg text-sm text-[#172A53] placeholder:text-[#172A53]/40 focus:outline-none focus:ring-2 focus:ring-[#172A53]/15 transition-all ${err ? 'border-red-400 bg-red-50/50' : 'border-gray-200 bg-white hover:border-gray-300'}`;
+
+// ─── PREVIEW CONTENT (shared inner content) ───────────────────────────────────
+function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, blocks }: {
+  topic: string; heading: string; subHeading: string; paragraph: string;
+  heroImage: string | null; blocks: Block[];
+}) {
+  return (
+    <div className="p-4 space-y-5 overflow-y-auto flex-1">
+      {/* Hero */}
+      <div className="flex flex-col gap-3">
+        {heroImage && (
+          <div className="w-full aspect-[16/7] rounded-xl overflow-hidden relative">
+            <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+            {topic && <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#172A53] text-white text-[10px] font-bold uppercase rounded">{topic}</span>}
+          </div>
+        )}
+        <div className="space-y-1.5">
+          {!heroImage && topic && <span className="inline-block px-2 py-0.5 bg-[#172A53]/10 text-[#172A53] text-[10px] font-bold uppercase rounded-full">{topic}</span>}
+          {subHeading && <p className="text-[#da251d] text-[10px] font-bold uppercase tracking-widest">{subHeading}</p>}
+          <h2 className="text-sm font-extrabold text-[#172A53] leading-tight">{heading || <span className="text-gray-200">Program heading…</span>}</h2>
+          <div className="w-8 h-0.5 bg-[#da251d] rounded" />
+          <p className="text-gray-500 text-[11px] leading-relaxed">{paragraph || <span className="text-gray-200">Description…</span>}</p>
+          <span className="inline-block px-3 py-1 bg-[#da251d] text-white text-[10px] font-bold rounded-lg">Know More →</span>
+        </div>
+      </div>
+      {blocks.length > 0 && <div className="border-t border-gray-100" />}
+      <div className="space-y-4">
+        {blocks.map((block) => (
+          <div key={block.id}>
+            {block.type === 'text' && (
+              <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
+                <h3 className="text-xs font-bold text-[#172A53] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#da251d] rounded mb-2" />
+                <p className="text-gray-500 text-[10px] leading-relaxed">{block.paragraph || <span className="text-gray-200">Paragraph…</span>}</p>
+              </div>
+            )}
+            {block.type === 'cards' && (
+              <div>
+                <h3 className="text-xs font-bold text-[#172A53] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#da251d] rounded mb-2" />
+                <div className={`grid gap-1.5 ${block.cards.length <= 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                  {block.cards.map((card: any, ci: number) => (
+                    <div key={ci} className="bg-white border border-gray-200 rounded-lg p-2">
+                      <div className="w-4 h-4 rounded bg-[#172A53]/10 flex items-center justify-center mb-1">
+                        <span className="text-[#172A53] font-bold text-[8px]">{String(ci+1).padStart(2,'0')}</span>
+                      </div>
+                      <p className="text-[9px] font-bold text-[#172A53] mb-0.5">{card.cardHeading || <span className="text-gray-200">Heading</span>}</p>
+                      <p className="text-[8px] text-gray-400 leading-relaxed">{card.cardPara || <span className="text-gray-200">Content…</span>}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {block.type === 'arrows' && (
+              <div>
+                <h3 className="text-xs font-bold text-[#172A53] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#da251d] rounded mb-2" />
+                <div className="grid grid-cols-2 gap-1.5">
+                  {block.points.map((pt: any, pi: number) => (
+                    <div key={pi} className="bg-white border border-gray-200 rounded-lg p-2">
+                      {pt.pointHeading && (
+                        <div className="flex items-center gap-1 mb-1.5 pb-1 border-b border-gray-100">
+                          <div className="w-3.5 h-3.5 rounded bg-[#da251d] flex items-center justify-center text-white text-[8px] font-bold">{pi+1}</div>
+                          <p className="text-[9px] font-bold text-[#172A53]">{pt.pointHeading}</p>
+                        </div>
+                      )}
+                      <ul className="space-y-0.5">
+                        {pt.pointList.filter((x: string) => x).map((item: string, li: number) => (
+                          <li key={li} className="flex items-start gap-1 text-[8px] text-gray-500">
+                            <span className="text-[#172A53] font-bold">→</span>{item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+        {blocks.length === 0 && (
+          <p className="text-center text-[10px] text-gray-300 py-4">Add content blocks to see preview…</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── FLOATING DRAGGABLE PREVIEW WINDOW ────────────────────────────────────────
+function FloatingPreview({ topic, heading, subHeading, paragraph, heroImage, blocks, onClose }: {
+  topic: string; heading: string; subHeading: string; paragraph: string;
+  heroImage: string | null; blocks: Block[];
+  onClose: () => void;
+}) {
+  const [size, setSize] = useState({ w: 380, h: 560 });
+  const [maximized, setMaximized] = useState(false);
+  const isResizing = useRef(false);
+  const startPos = useRef({ x: 0, y: 0, w: 0, h: 0 });
+
+  const startResize = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isResizing.current = true;
+    startPos.current = { x: e.clientX, y: e.clientY, w: size.w, h: size.h };
+    const onMove = (ev: MouseEvent) => {
+      if (!isResizing.current) return;
+      const dw = ev.clientX - startPos.current.x;
+      const dh = ev.clientY - startPos.current.y;
+      setSize({
+        w: Math.max(280, startPos.current.w + dw),
+        h: Math.max(300, startPos.current.h + dh),
+      });
+    };
+    const onUp = () => { isResizing.current = false; window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp); };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }, [size]);
+
+  return (
+    <motion.div
+      drag={!maximized}
+      dragMomentum={false}
+      dragElastic={0}
+      className="fixed z-[9999] rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/20"
+      style={maximized ? { inset: 16, width: 'auto', height: 'auto' } : { width: size.w, height: size.h, top: 80, right: 24 }}
+      initial={{ opacity: 0, scale: 0.9, y: -20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: -20 }}
+    >
+      {/* Title bar — acts as drag handle */}
+      <div className="flex items-center gap-2 px-3 py-2 bg-[#172A53] cursor-move flex-shrink-0 select-none">
+        <Eye className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
+        <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest flex-1">Live Preview — /programs</span>
+        <div className="flex items-center gap-1">
+          <button onClick={() => setMaximized(v => !v)}
+            className="w-6 h-6 rounded flex items-center justify-center text-white/50 hover:text-white hover:bg-white/15 transition-colors">
+            {maximized ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+          </button>
+          <button onClick={onClose}
+            className="w-6 h-6 rounded flex items-center justify-center text-white/50 hover:text-red-400 hover:bg-red-500/20 transition-colors">
+            <X className="w-3 h-3" />
+          </button>
+        </div>
+      </div>
+
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-hidden bg-white flex flex-col">
+        <PreviewContent
+          topic={topic} heading={heading} subHeading={subHeading}
+          paragraph={paragraph} heroImage={heroImage} blocks={blocks}
+        />
+      </div>
+
+      {/* Resize handle (bottom-right corner) */}
+      {!maximized && (
+        <div
+          onMouseDown={startResize}
+          className="absolute bottom-0 right-0 w-5 h-5 cursor-se-resize flex items-end justify-end pb-1 pr-1"
+          title="Drag to resize"
+        >
+          <svg width="10" height="10" viewBox="0 0 10 10" className="text-gray-400">
+            <path d="M9 1L1 9M9 5L5 9M9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
+// ─── DRAG HANDLE ──────────────────────────────────────────────────────────────
+function DragHandle({ controls }: { controls: ReturnType<typeof useDragControls> }) {
+  return (
+    <div
+      onPointerDown={(e) => controls.start(e)}
+      className="cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 hover:bg-gray-100 rounded-lg transition-colors touch-none select-none"
+      title="Drag to reorder"
+    >
+      <GripVertical className="w-4 h-4" />
+    </div>
+  );
+}
+
+// ─── BLOCK ITEM (draggable) ───────────────────────────────────────────────────
+function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: {
+  block: Block; bIndex: number; blocks: Block[];
+  updateBlock: (id: string, updates: Partial<Block>) => void;
+  removeBlock: (id: string) => void;
+  errors: Record<string, string>;
+}) {
+  const controls = useDragControls();
+
+  return (
+    <Reorder.Item
+      value={block}
+      dragListener={false}
+      dragControls={controls}
+      className="bg-white rounded-xl border border-[#172A53]/10 shadow-sm overflow-hidden"
+      whileDrag={{ scale: 1.01, boxShadow: '0 8px 30px rgba(23,42,83,0.15)', zIndex: 50 }}
+      transition={{ duration: 0.15 }}
+    >
+      {/* Block header bar */}
+      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border-b border-gray-100">
+        <DragHandle controls={controls} />
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-[#172A53]/8 text-[#172A53] text-[10px] font-bold uppercase tracking-widest rounded-lg">
+          {block.type === 'text'   && <><Type className="w-3 h-3" /> Text Block</>}
+          {block.type === 'cards'  && <><LayoutGrid className="w-3 h-3" /> Cards Block</>}
+          {block.type === 'arrows' && <><List className="w-3 h-3" /> Arrow List Block</>}
+          <span className="text-gray-400 font-normal ml-1">#{bIndex + 1}</span>
+        </div>
+        <div className="ml-auto">
+          <button type="button" onClick={() => removeBlock(block.id)}
+            className="text-gray-300 hover:text-red-500 hover:bg-red-50 p-1.5 rounded-lg transition-colors">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Block body */}
+      <div className="p-4 space-y-4">
+        {/* Heading */}
+        <Field label="Block Heading *" error={errors[`block-${bIndex}-heading`]}>
+          <div className="flex items-center gap-2">
+            <input type="text" value={block.heading}
+              onChange={e => { if (e.target.value.length <= LIMITS.blockHeading) updateBlock(block.id, { heading: e.target.value }); }}
+              placeholder="e.g. How It Works, Key Benefits…"
+              className={iCls(errors[`block-${bIndex}-heading`])}
+            />
+            <Counter value={block.heading} max={LIMITS.blockHeading} />
+          </div>
+        </Field>
+
+        {/* Paragraph */}
+        <Field label="Block Intro (optional)">
+          <div className="flex flex-col gap-0.5">
+            <div className="flex justify-end"><Counter value={block.paragraph} max={LIMITS.blockParagraph} /></div>
+            <textarea value={block.paragraph}
+              onChange={e => { if (e.target.value.length <= LIMITS.blockParagraph) updateBlock(block.id, { paragraph: e.target.value }); }}
+              placeholder="A brief introductory line for this section…" rows={2}
+              className={`${iCls(errors[`block-${bIndex}-para`])} resize-none`}
+            />
+          </div>
+        </Field>
+
+        {/* ── CARDS ─────────────────────────────────────────────────── */}
+        {block.type === 'cards' && (
+          <div className="space-y-3 pt-3 border-t border-gray-100">
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Cards ({block.cards.length}/{LIMITS.maxCards})</p>
+              {block.cards.length < LIMITS.maxCards && (
+                <button type="button"
+                  onClick={() => updateBlock(block.id, { cards: [...block.cards, { cardHeading: '', cardPara: '' }] })}
+                  className="text-[11px] text-[#da251d] font-bold flex items-center gap-1 hover:underline">
+                  <Plus className="w-3 h-3" /> Add Card
+                </button>
+              )}
+            </div>
+            <div className="grid grid-cols-1 gap-3">
+              {block.cards.map((card, ci) => (
+                <div key={ci} className="p-3 bg-gray-50 border border-gray-200 rounded-xl space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Card {ci + 1}</span>
+                    {block.cards.length > 1 && (
+                      <button type="button" onClick={() => {
+                        const nc = [...block.cards]; nc.splice(ci, 1); updateBlock(block.id, { cards: nc });
+                      }} className="text-gray-300 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input type="text" placeholder="Card heading (50 chars)"
+                      value={card.cardHeading}
+                      onChange={e => {
+                        if (e.target.value.length > LIMITS.cardHeading) return;
+                        const nc = [...block.cards]; nc[ci].cardHeading = e.target.value; updateBlock(block.id, { cards: nc });
+                      }}
+                      className={`${iCls(errors[`b${bIndex}-c${ci}-ch`])} text-xs font-semibold`}
+                    />
+                    <Counter value={card.cardHeading} max={LIMITS.cardHeading} />
+                  </div>
+                  {errors[`b${bIndex}-c${ci}-ch`] && <p className="text-[10px] text-red-500">{errors[`b${bIndex}-c${ci}-ch`]}</p>}
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex justify-end"><Counter value={card.cardPara} max={LIMITS.cardPara} /></div>
+                    <textarea placeholder="Card content (180 chars)" value={card.cardPara} rows={2}
+                      onChange={e => {
+                        if (e.target.value.length > LIMITS.cardPara) return;
+                        const nc = [...block.cards]; nc[ci].cardPara = e.target.value; updateBlock(block.id, { cards: nc });
+                      }}
+                      className={`${iCls(errors[`b${bIndex}-c${ci}-cp`])} resize-none text-xs`}
+                    />
+                  </div>
+                  {errors[`b${bIndex}-c${ci}-cp`] && <p className="text-[10px] text-red-500">{errors[`b${bIndex}-c${ci}-cp`]}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── ARROWS ────────────────────────────────────────────────── */}
+        {block.type === 'arrows' && (
+          <div className="space-y-3 pt-3 border-t border-gray-100">
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">List Items ({block.points.length}/{LIMITS.maxPoints})</p>
+              {block.points.length < LIMITS.maxPoints && (
+                <button type="button"
+                  onClick={() => updateBlock(block.id, { points: [...block.points, { pointHeading: '', pointList: [''] }] })}
+                  className="text-[11px] text-[#da251d] font-bold flex items-center gap-1 hover:underline">
+                  <Plus className="w-3 h-3" /> Add Item
+                </button>
+              )}
+            </div>
+            {block.points.map((pt, pi) => (
+              <div key={pi} className="p-3 bg-gray-50 border border-gray-200 rounded-xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Item {pi + 1}</span>
+                  {block.points.length > 1 && (
+                    <button type="button" onClick={() => {
+                      const np = [...block.points]; np.splice(pi, 1); updateBlock(block.id, { points: np });
+                    }} className="text-gray-300 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <input type="text" placeholder="Item heading (50 chars)" value={pt.pointHeading}
+                    onChange={e => {
+                      if (e.target.value.length > LIMITS.pointHeading) return;
+                      const np = [...block.points]; np[pi].pointHeading = e.target.value; updateBlock(block.id, { points: np });
+                    }}
+                    className={`${iCls(errors[`b${bIndex}-p${pi}-ph`])} text-xs font-semibold`}
+                  />
+                  <Counter value={pt.pointHeading} max={LIMITS.pointHeading} />
+                </div>
+                {errors[`b${bIndex}-p${pi}-ph`] && <p className="text-[10px] text-red-500">{errors[`b${bIndex}-p${pi}-ph`]}</p>}
+                <div className="pl-3 border-l-2 border-[#172A53]/15 space-y-1.5">
+                  {pt.pointList.map((item, li) => (
+                    <div key={li} className="flex items-center gap-2">
+                      <span className="text-[#da251d] text-xs flex-shrink-0">→</span>
+                      <input type="text" placeholder={`Bullet point`} value={item}
+                        onChange={e => {
+                          if (e.target.value.length > LIMITS.bulletPoint) return;
+                          const np = [...block.points]; np[pi].pointList[li] = e.target.value; updateBlock(block.id, { points: np });
+                        }}
+                        className="flex-1 px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-[#172A53] placeholder:text-[#172A53]/40 focus:outline-none focus:ring-1 focus:ring-[#172A53]/15"
+                      />
+                      {pt.pointList.length > 1 && (
+                        <button type="button" onClick={() => {
+                          const np = [...block.points]; np[pi].pointList.splice(li, 1); updateBlock(block.id, { points: np });
+                        }} className="text-gray-300 hover:text-red-500"><Trash2 className="w-3 h-3" /></button>
+                      )}
+                    </div>
+                  ))}
+                  {pt.pointList.length < LIMITS.maxBullets && (
+                    <button type="button"
+                      onClick={() => { const np = [...block.points]; np[pi].pointList.push(''); updateBlock(block.id, { points: np }); }}
+                      className="text-[11px] text-[#172A53] font-semibold flex items-center gap-1 hover:underline mt-1">
+                      <Plus className="w-3 h-3" /> Add bullet ({pt.pointList.length}/{LIMITS.maxBullets})
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </Reorder.Item>
+  );
+}
+
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function ProgramManager({ initialPrograms }: { initialPrograms: Program[] }) {
   const [isPending, startTransition] = useTransition();
   const [heroImageBase64, setHeroImageBase64] = useState<string | null>(null);
-  
-  // Hero Fields
-  const [topic, setTopic] = useState('');
-  const [heading, setHeading] = useState('');
-  const [subHeading, setSubHeading] = useState('');
-  const [paragraph, setParagraph] = useState('');
+  const [showPreview, setShowPreview] = useState(true);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Dynamic Blocks
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [topic,      setTopic]      = useState('');
+  const [heading,    setHeading]    = useState('');
+  const [subHeading, setSubHeading] = useState('');
+  const [paragraph,  setParagraph]  = useState('');
+  const [blocks,     setBlocks]     = useState<Block[]>([]);
 
   const handleHeroImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (!files || files.length === 0) return;
-    try {
-      const compressedBase64 = await compressImage(files[0]);
-      setHeroImageBase64(compressedBase64);
-    } catch (error) {
-      console.error("Error processing image:", error);
-      alert("Failed to process image.");
-    }
+    if (!files?.length) return;
+    try { setHeroImageBase64(await compressImage(files[0])); }
+    catch { alert('Failed to process image.'); }
   };
 
-  // Block Management Helpers
-  const addTextBlock = () => setBlocks([...blocks, { type: 'text', heading: '', paragraph: '' }]);
-  const addCardsBlock = () => setBlocks([...blocks, { type: 'cards', heading: '', paragraph: '', cards: [{ cardHeading: '', cardPara: '' }] }]);
-  const addArrowsBlock = () => setBlocks([...blocks, { type: 'arrows', heading: '', paragraph: '', points: [{ pointHeading: '', pointList: [''] }] }]);
-  
-  const removeBlock = (index: number) => setBlocks(blocks.filter((_, i) => i !== index));
+  const addBlock = (type: Block['type']) => {
+    if (blocks.length >= LIMITS.maxBlocks) return alert(`Max ${LIMITS.maxBlocks} blocks allowed.`);
+    const base = { id: uid(), heading: '', paragraph: '' };
+    if (type === 'text')   setBlocks(b => [...b, { ...base, type: 'text' }]);
+    if (type === 'cards')  setBlocks(b => [...b, { ...base, type: 'cards',  cards:  [{ cardHeading: '', cardPara: '' }] }]);
+    if (type === 'arrows') setBlocks(b => [...b, { ...base, type: 'arrows', points: [{ pointHeading: '', pointList: [''] }] }]);
+  };
 
-  const updateBlock = (index: number, updates: Partial<Block>) => {
-    const newBlocks = [...blocks];
-    newBlocks[index] = { ...newBlocks[index], ...updates } as Block;
-    setBlocks(newBlocks);
+  const removeBlock = (id: string) => setBlocks(b => b.filter(x => x.id !== id));
+
+  const updateBlock = (id: string, updates: Partial<Block>) => {
+    setBlocks(b => b.map(x => x.id === id ? { ...x, ...updates } as Block : x));
+  };
+
+  const validate = (): boolean => {
+    const e: Record<string, string> = {};
+    if (!topic.trim())     e.topic     = 'Required';
+    if (!heading.trim())   e.heading   = 'Required';
+    if (!paragraph.trim()) e.paragraph = 'Required';
+    blocks.forEach((block, bi) => {
+      if (!block.heading.trim()) e[`block-${bi}-heading`] = 'Block heading required';
+      if (block.type === 'cards') block.cards.forEach((c, ci) => {
+        if (!c.cardHeading.trim()) e[`b${bi}-c${ci}-ch`] = 'Required';
+        if (!c.cardPara.trim())    e[`b${bi}-c${ci}-cp`] = 'Required';
+      });
+      if (block.type === 'arrows') block.points.forEach((p, pi) => {
+        if (!p.pointHeading.trim()) e[`b${bi}-p${pi}-ph`] = 'Required';
+      });
+    });
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
   const handleCreateProgram = (formData: FormData) => {
-    formData.set('blocks', JSON.stringify(blocks));
-
+    if (!validate()) return;
+    // Strip the internal `id` field before saving — only needed for drag-and-drop
+    const cleanBlocks = blocks.map(({ id, ...rest }) => rest);
+    formData.set('blocks', JSON.stringify(cleanBlocks));
     startTransition(async () => {
       try {
         await createProgram(formData);
         const form = document.getElementById('add-program-form') as HTMLFormElement;
         if (form) form.reset();
-        setBlocks([]);
-        setHeroImageBase64(null);
-        setTopic('');
-        setHeading('');
-        setSubHeading('');
-        setParagraph('');
-        alert('Program created successfully!');
-      } catch (error) {
-        console.error(error);
-        alert('Failed to create program! Ensure your server is restarted after DB changes.');
+        setBlocks([]); setHeroImageBase64(null);
+        setTopic(''); setHeading(''); setSubHeading(''); setParagraph('');
+        setErrors({});
+        alert('✅ Program published! Now live on /programs.');
+      } catch {
+        alert('❌ Failed. Please restart the server and try again.');
       }
     });
   };
 
   const handleDeleteProgram = (id: string) => {
-    if (confirm('Are you sure you want to delete this program?')) {
-      startTransition(() => {
-        deleteProgram(id);
-      });
-    }
+    if (confirm('Delete this program?')) startTransition(() => { deleteProgram(id); });
   };
 
   return (
     <div className="space-y-8">
-      {/* Block Builder Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#172A53] mb-4">Build New Program</h2>
-        <form id="add-program-form" action={handleCreateProgram} className="flex flex-col gap-8">
-          
-          {/* HERO SECTION */}
-          <div className="p-6 bg-gray-50 rounded-xl border border-gray-200 space-y-6">
-            <h3 className="font-bold text-[#da251d] uppercase tracking-wider text-sm mb-4">1. Hero Section</h3>
-            <input type="hidden" name="heroImage" value={heroImageBase64 || ''} />
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="w-full md:w-1/3 h-48 flex flex-col items-center justify-center p-2 border-2 border-dashed border-gray-300 rounded-xl bg-white hover:bg-gray-50 transition-colors cursor-pointer relative overflow-hidden">
-                {heroImageBase64 ? (
-                  <>
-                     <img src={heroImageBase64} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
-                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                        <span className="text-white text-xs font-medium">Change Hero Image</span>
-                     </div>
-                  </>
-                ) : (
-                  <div className="flex flex-col items-center text-gray-500">
-                    <Upload className="w-6 h-6 mb-2 text-gray-400" />
-                    <span className="text-sm font-medium">Upload Hero Image</span>
-                  </div>
-                )}
-                <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleHeroImageChange} />
-              </div>
-              
-              <div className="flex-1 space-y-4">
-                <div>
-                  <input type="text" name="topic" value={topic} onChange={e => setTopic(e.target.value)} placeholder="Program Topic (e.g. Apprenticeship, WILP)" required className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 text-[#172A53] placeholder:text-[#172A53]/70 font-semibold" />
-                </div>
-                <div>
-                  <input type="text" name="heading" value={heading} onChange={e => setHeading(e.target.value)} placeholder="Main Heading (e.g. Employee Apprenticeship-Learning Program)" required className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 text-[#172A53] placeholder:text-[#172A53]/70" />
-                </div>
-                <div>
-                  <input type="text" name="subHeading" value={subHeading} onChange={e => setSubHeading(e.target.value)} placeholder="Sub Heading (e.g. Convert Work Experience into Credits)" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 text-[#172A53] placeholder:text-[#172A53]/70" />
-                </div>
-                <div>
-                  <textarea name="paragraph" value={paragraph} onChange={e => setParagraph(e.target.value)} placeholder="Main Paragraph description..." required rows={3} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 resize-none text-[#172A53] placeholder:text-[#172A53]/70"></textarea>
-                </div>
-              </div>
-            </div>
+
+      {/* ── BUILDER ────────────────────────────────────────────────── */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+
+        {/* Top bar */}
+        <div className="px-6 py-4 bg-[#172A53] flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-white">Build New Program</h2>
+            <p className="text-white/50 text-xs mt-0.5">Drag blocks to reorder • Preview updates live</p>
           </div>
-
-          {/* DYNAMIC BLOCKS SECTION */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-[#da251d] uppercase tracking-wider text-sm">2. Page Content Blocks</h3>
-            
-            {blocks.map((block, bIndex) => (
-              <div key={bIndex} className="p-6 bg-white rounded-xl border border-[#172A53]/10 shadow-sm relative group">
-                <button type="button" onClick={() => removeBlock(bIndex)} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors">
-                  <Trash2 className="w-5 h-5" />
-                </button>
-                
-                {/* Block Header Fields (Common to all blocks) */}
-                <div className="pr-12 space-y-4 mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#172A53]/5 text-[#172A53] rounded-lg text-xs font-bold uppercase tracking-wider mb-2">
-                    {block.type === 'text' && <><Type className="w-3 h-3" /> Text Block</>}
-                    {block.type === 'cards' && <><LayoutGrid className="w-3 h-3" /> Cards Block</>}
-                    {block.type === 'arrows' && <><List className="w-3 h-3" /> Arrow List Block</>}
-                  </div>
-                  <input 
-                    type="text" 
-                    placeholder="Block Heading" 
-                    value={block.heading} 
-                    onChange={e => updateBlock(bIndex, { heading: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-200 font-bold text-lg rounded-lg focus:outline-none focus:border-[#172A53] text-[#172A53] placeholder:text-[#172A53]/70"
-                  />
-                  <textarea 
-                    placeholder="Block Paragraph (Optional)" 
-                    value={block.paragraph} 
-                    onChange={e => updateBlock(bIndex, { paragraph: e.target.value })}
-                    rows={2}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#172A53] resize-none text-[#172A53] placeholder:text-[#172A53]/70"
-                  />
-                </div>
-
-                {/* Block Specific Fields */}
-                {block.type === 'cards' && (
-                  <div className="space-y-4 pt-4 border-t border-gray-100">
-                    <h4 className="text-sm font-semibold text-gray-600 mb-2">Cards Content</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {block.cards.map((card, cIndex) => (
-                        <div key={cIndex} className="p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
-                          <button type="button" onClick={() => {
-                            const newCards = [...block.cards];
-                            newCards.splice(cIndex, 1);
-                            updateBlock(bIndex, { cards: newCards });
-                          }} className="absolute top-2 right-2 text-gray-400 hover:text-red-500">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                          <input type="text" placeholder="Card Heading" value={card.cardHeading} onChange={e => {
-                            const newCards = [...block.cards];
-                            newCards[cIndex].cardHeading = e.target.value;
-                            updateBlock(bIndex, { cards: newCards });
-                          }} className="w-full px-3 py-1.5 mb-2 border border-gray-200 rounded text-sm font-semibold text-[#172A53] placeholder:text-[#172A53]/70" />
-                          <textarea placeholder="Card Paragraph" value={card.cardPara} onChange={e => {
-                            const newCards = [...block.cards];
-                            newCards[cIndex].cardPara = e.target.value;
-                            updateBlock(bIndex, { cards: newCards });
-                          }} rows={2} className="w-full px-3 py-1.5 border border-gray-200 rounded text-sm resize-none text-[#172A53] placeholder:text-[#172A53]/70" />
-                        </div>
-                      ))}
-                    </div>
-                    <button type="button" onClick={() => updateBlock(bIndex, { cards: [...block.cards, { cardHeading: '', cardPara: '' }] })} className="text-sm text-[#da251d] font-semibold flex items-center gap-1 hover:underline">
-                      <Plus className="w-4 h-4" /> Add Card
-                    </button>
-                  </div>
-                )}
-
-                {block.type === 'arrows' && (
-                  <div className="space-y-4 pt-4 border-t border-gray-100">
-                    <h4 className="text-sm font-semibold text-gray-600 mb-2">Arrow List Items</h4>
-                    <div className="space-y-4">
-                      {block.points.map((point, pIndex) => (
-                        <div key={pIndex} className="p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
-                          <button type="button" onClick={() => {
-                            const newPoints = [...block.points];
-                            newPoints.splice(pIndex, 1);
-                            updateBlock(bIndex, { points: newPoints });
-                          }} className="absolute top-2 right-2 text-gray-400 hover:text-red-500">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                          
-                          <input type="text" placeholder="Item Heading" value={point.pointHeading} onChange={e => {
-                            const newPoints = [...block.points];
-                            newPoints[pIndex].pointHeading = e.target.value;
-                            updateBlock(bIndex, { points: newPoints });
-                          }} className="w-full px-3 py-1.5 mb-3 border border-gray-200 rounded text-sm font-semibold pr-8 text-[#172A53] placeholder:text-[#172A53]/70" />
-                          
-                          <div className="space-y-2 pl-4 border-l-2 border-[#172A53]/20">
-                            {point.pointList.map((listItem, lIndex) => (
-                              <div key={lIndex} className="flex items-center gap-2">
-                                <span className="text-[#da251d]">→</span>
-                                <input type="text" placeholder="Bullet point text" value={listItem} onChange={e => {
-                                  const newPoints = [...block.points];
-                                  newPoints[pIndex].pointList[lIndex] = e.target.value;
-                                  updateBlock(bIndex, { points: newPoints });
-                                }} className="flex-1 px-3 py-1 border border-gray-200 rounded text-sm text-[#172A53] placeholder:text-[#172A53]/70" />
-                                <button type="button" onClick={() => {
-                                  const newPoints = [...block.points];
-                                  newPoints[pIndex].pointList.splice(lIndex, 1);
-                                  updateBlock(bIndex, { points: newPoints });
-                                }} className="text-gray-400 hover:text-red-500"><Trash2 className="w-3 h-3" /></button>
-                              </div>
-                            ))}
-                            <button type="button" onClick={() => {
-                              const newPoints = [...block.points];
-                              newPoints[pIndex].pointList.push('');
-                              updateBlock(bIndex, { points: newPoints });
-                            }} className="text-xs text-[#172A53] font-semibold flex items-center gap-1 hover:underline mt-2">
-                              <Plus className="w-3 h-3" /> Add bullet point
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <button type="button" onClick={() => updateBlock(bIndex, { points: [...block.points, { pointHeading: '', pointList: [''] }] })} className="text-sm text-[#da251d] font-semibold flex items-center gap-1 hover:underline">
-                      <Plus className="w-4 h-4" /> Add Item List
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Block Addition Controls */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-              <button type="button" onClick={addTextBlock} className="py-4 bg-gray-50 border border-dashed border-gray-300 text-gray-600 font-medium rounded-xl hover:bg-[#172A53] hover:text-white hover:border-[#172A53] transition-colors flex items-center justify-center gap-2">
-                <Type className="w-4 h-4" /> Add Text Block
-              </button>
-              <button type="button" onClick={addCardsBlock} className="py-4 bg-gray-50 border border-dashed border-gray-300 text-gray-600 font-medium rounded-xl hover:bg-[#172A53] hover:text-white hover:border-[#172A53] transition-colors flex items-center justify-center gap-2">
-                <LayoutGrid className="w-4 h-4" /> Add Cards Block
-              </button>
-              <button type="button" onClick={addArrowsBlock} className="py-4 bg-gray-50 border border-dashed border-gray-300 text-gray-600 font-medium rounded-xl hover:bg-[#172A53] hover:text-white hover:border-[#172A53] transition-colors flex items-center justify-center gap-2">
-                <List className="w-4 h-4" /> Add Arrow List
-              </button>
-            </div>
-          </div>
-          
-          <button type="submit" disabled={isPending} className="self-end px-8 py-4 bg-[#da251d] text-white font-bold rounded-xl hover:bg-[#172A53] transition-colors disabled:opacity-70 flex items-center gap-2 shadow-lg">
-            <Plus className="w-5 h-5" /> Publish Program
+          <button type="button" onClick={() => setShowPreview(v => !v)}
+            className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${
+              showPreview
+                ? 'bg-white/20 text-white'
+                : 'bg-white/10 text-white/60 hover:bg-white/20 hover:text-white'
+            }`}>
+            {showPreview ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+            {showPreview ? 'Hide Preview' : 'Open Preview'}
           </button>
-        </form>
+        </div>
+
+        <div className="p-6">
+          <form id="add-program-form" action={handleCreateProgram}>
+            <div className="grid gap-8 grid-cols-1">
+              {/* ── EDITOR ───────────────────────────────────── */}
+              <div className="space-y-6 min-w-0">
+
+                {/* Program Details */}
+                <div className="p-5 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
+                  <p className="text-[10px] font-bold text-[#da251d] uppercase tracking-widest">① Program Overview</p>
+                  <input type="hidden" name="heroImage" value={heroImageBase64 || ''} />
+
+                  {/* Image */}
+                  <div className="w-full h-36 border-2 border-dashed border-gray-200 rounded-xl relative overflow-hidden group cursor-pointer hover:border-[#172A53]/40 transition-colors">
+                    {heroImageBase64 ? (
+                      <>
+                        <img src={heroImageBase64} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="text-white text-xs font-bold">Change Image</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-300 gap-1">
+                        <Upload className="w-5 h-5" />
+                        <span className="text-xs font-semibold">Upload Hero Image (optional)</span>
+                        <span className="text-[10px]">Recommended: 1200×800px</span>
+                      </div>
+                    )}
+                    <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleHeroImageChange} />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Field label={`Topic * (${LIMITS.topic} chars)`} error={errors.topic}>
+                      <div className="flex items-center gap-2">
+                        <input type="text" name="topic" value={topic}
+                          onChange={e => { if (e.target.value.length <= LIMITS.topic) setTopic(e.target.value); }}
+                          placeholder="e.g. Apprenticeship, WILP"
+                          className={iCls(errors.topic)} />
+                        <Counter value={topic} max={LIMITS.topic} />
+                      </div>
+                    </Field>
+                    <Field label={`Sub Heading (${LIMITS.subHeading} chars)`} error={errors.subHeading}>
+                      <div className="flex items-center gap-2">
+                        <input type="text" name="subHeading" value={subHeading}
+                          onChange={e => { if (e.target.value.length <= LIMITS.subHeading) setSubHeading(e.target.value); }}
+                          placeholder="e.g. Convert Experience to Credits"
+                          className={iCls(errors.subHeading)} />
+                        <Counter value={subHeading} max={LIMITS.subHeading} />
+                      </div>
+                    </Field>
+                  </div>
+
+                  <Field label={`Program Heading * (${LIMITS.heading} chars)`} error={errors.heading}>
+                    <div className="flex items-center gap-2">
+                      <input type="text" name="heading" value={heading}
+                        onChange={e => { if (e.target.value.length <= LIMITS.heading) setHeading(e.target.value); }}
+                        placeholder="e.g. Employee Apprenticeship-Learning Program (EALP)"
+                        className={iCls(errors.heading)} />
+                      <Counter value={heading} max={LIMITS.heading} />
+                    </div>
+                  </Field>
+
+                  <Field label={`Main Description * (${LIMITS.paragraph} chars)`} error={errors.paragraph}
+                    hint="Aim for 2–4 clear sentences. Focus on who it's for and the main benefit.">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-end"><Counter value={paragraph} max={LIMITS.paragraph} /></div>
+                      <textarea name="paragraph" value={paragraph}
+                        onChange={e => { if (e.target.value.length <= LIMITS.paragraph) setParagraph(e.target.value); }}
+                        placeholder="Describe this program in 2–4 sentences…"
+                        rows={3} className={`${iCls(errors.paragraph)} resize-none`} />
+                    </div>
+                  </Field>
+                </div>
+
+                {/* Blocks Section */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] font-bold text-[#da251d] uppercase tracking-widest">② Content Blocks (drag to reorder)</p>
+                    <span className="text-[10px] text-gray-400 font-mono">{blocks.length}/{LIMITS.maxBlocks}</span>
+                  </div>
+
+                  {/* Drag hint */}
+                  {blocks.length > 1 && (
+                    <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-100 rounded-lg">
+                      <GripVertical className="w-4 h-4 text-blue-400" />
+                      <p className="text-[11px] text-blue-600 font-medium">Grab the <strong>grip handle</strong> on any block to drag and reorder it</p>
+                    </div>
+                  )}
+
+                  {/* Reorderable block list */}
+                  <Reorder.Group axis="y" values={blocks} onReorder={setBlocks} className="space-y-3">
+                    {blocks.map((block, bIndex) => (
+                      <BlockItem
+                        key={block.id}
+                        block={block}
+                        bIndex={bIndex}
+                        blocks={blocks}
+                        updateBlock={updateBlock}
+                        removeBlock={removeBlock}
+                        errors={errors}
+                      />
+                    ))}
+                  </Reorder.Group>
+
+                  {/* Add block buttons */}
+                  {blocks.length < LIMITS.maxBlocks && (
+                    <div className="grid grid-cols-3 gap-3 pt-1">
+                      {[
+                        { label: 'Text Block',   icon: Type,       type: 'text'   as const },
+                        { label: 'Cards Block',  icon: LayoutGrid, type: 'cards'  as const },
+                        { label: 'Arrow List',   icon: List,       type: 'arrows' as const },
+                      ].map(({ label, icon: Icon, type }) => (
+                        <button key={label} type="button" onClick={() => addBlock(type)}
+                          className="py-3 bg-gray-50 border border-dashed border-gray-200 text-gray-400 text-xs font-semibold rounded-xl hover:bg-[#172A53] hover:text-white hover:border-[#172A53] transition-all flex items-center justify-center gap-1.5">
+                          <Icon className="w-4 h-4" /> {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Errors summary */}
+                {Object.keys(errors).length > 0 && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-semibold">
+                    ⚠️ Please fix the highlighted errors before publishing.
+                  </div>
+                )}
+
+                {/* Submit */}
+                <button type="submit" disabled={isPending}
+                  className="w-full py-4 bg-[#da251d] hover:bg-[#172A53] text-white font-bold rounded-xl transition-all disabled:opacity-60 flex items-center justify-center gap-2 shadow-lg text-base">
+                  <Plus className="w-5 h-5" />
+                  {isPending ? 'Publishing…' : 'Publish Program'}
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
       </div>
 
-      {/* Existing Programs */}
-      <div className="space-y-6">
-        {initialPrograms.map((program) => (
-          <div key={program.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-6 relative">
-            <button onClick={() => handleDeleteProgram(program.id)} disabled={isPending} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors">
-              <Trash2 className="w-5 h-5" />
-            </button>
-            
-            {program.heroImage && (
-              <div className="w-full md:w-48 h-32 rounded-xl overflow-hidden border border-gray-200 flex-shrink-0">
-                <img src={program.heroImage} alt="" className="w-full h-full object-cover" />
-              </div>
-            )}
-            <div className="flex-1 pr-12">
-              <span className="inline-block px-3 py-1 bg-[#172A53]/10 text-[#172A53] rounded-lg text-xs font-bold uppercase tracking-wider mb-2">
-                {program.topic}
-              </span>
-              <h3 className="text-xl font-bold text-[#172A53] mb-1">{program.heading}</h3>
-              {program.subHeading && <p className="text-[#da251d] font-semibold text-sm mb-2">{program.subHeading}</p>}
-              <p className="text-sm text-gray-500 line-clamp-2 mb-4">{program.paragraph}</p>
-              
-              <div className="flex items-center gap-4 text-xs font-medium text-gray-500">
-                <span className="bg-gray-100 px-3 py-1 rounded-full">{program.blocks.length} Content Blocks</span>
-                <span>Created {new Date(program.createdAt).toLocaleDateString()}</span>
+      {/* ── FLOATING PREVIEW WINDOW ─────────────────────────────── */}
+      {showPreview && (
+        <FloatingPreview
+          topic={topic} heading={heading} subHeading={subHeading}
+          paragraph={paragraph} heroImage={heroImageBase64} blocks={blocks}
+          onClose={() => setShowPreview(false)}
+        />
+      )}
+
+      {/* ── PUBLISHED PROGRAMS ─────────────────────────────────────── */}
+      <div className="space-y-4">
+        <h3 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest px-1">
+          Published Programs ({initialPrograms.length})
+        </h3>
+        {initialPrograms.length === 0 ? (
+          <div className="text-center py-16 text-gray-400 bg-white rounded-2xl border border-dashed border-gray-200 text-sm">
+            No programs yet — use the builder above to create one.
+          </div>
+        ) : (
+          initialPrograms.map((program) => (
+            <div key={program.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col sm:flex-row">
+              {program.heroImage && (
+                <div className="w-full sm:w-36 h-28 sm:h-auto relative flex-shrink-0">
+                  <img src={program.heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                </div>
+              )}
+              <div className="flex-1 p-5 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <div>
+                      <span className="inline-block px-2.5 py-0.5 bg-[#172A53]/8 text-[#172A53] text-[10px] font-bold uppercase tracking-wider rounded-md mb-1">
+                        {program.topic}
+                      </span>
+                      <h3 className="text-base font-bold text-[#172A53] leading-snug">{program.heading}</h3>
+                      {program.subHeading && <p className="text-[#da251d] text-xs font-semibold mt-0.5">{program.subHeading}</p>}
+                    </div>
+                    <button onClick={() => handleDeleteProgram(program.id)} disabled={isPending}
+                      className="text-gray-300 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors flex-shrink-0">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <p className="text-gray-400 text-xs leading-relaxed line-clamp-2">{program.paragraph}</p>
+                </div>
+                <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-400 font-mono">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">{program.blocks.length} blocks</span>
+                  <span>{new Date(program.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        {initialPrograms.length === 0 && (
-          <div className="text-center py-16 text-gray-500 bg-white rounded-2xl border border-gray-200 border-dashed">
-            No programs built yet. Use the builder above to create one!
-          </div>
+          ))
         )}
       </div>
     </div>
