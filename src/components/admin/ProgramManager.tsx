@@ -553,7 +553,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                       <div className="flex items-center gap-2">
                         <input type="text" name="topic" value={topic}
                           onChange={e => { if (e.target.value.length <= LIMITS.topic) setTopic(e.target.value); }}
-                          placeholder="e.g. Apprenticeship, WILP"
+                          placeholder="e.g. Technology"
                           className={iCls(errors.topic)} />
                         <Counter value={topic} max={LIMITS.topic} />
                       </div>
@@ -562,7 +562,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                       <div className="flex items-center gap-2">
                         <input type="text" name="subHeading" value={subHeading}
                           onChange={e => { if (e.target.value.length <= LIMITS.subHeading) setSubHeading(e.target.value); }}
-                          placeholder="e.g. Convert Experience to Credits"
+                          placeholder="e.g. Fast Track Your Career"
                           className={iCls(errors.subHeading)} />
                         <Counter value={subHeading} max={LIMITS.subHeading} />
                       </div>
@@ -573,7 +573,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                     <div className="flex items-center gap-2">
                       <input type="text" name="heading" value={heading}
                         onChange={e => { if (e.target.value.length <= LIMITS.heading) setHeading(e.target.value); }}
-                        placeholder="e.g. Employee Apprenticeship-Learning Program (EALP)"
+                        placeholder="e.g. Master of Science in Engineering"
                         className={iCls(errors.heading)} />
                       <Counter value={heading} max={LIMITS.heading} />
                     </div>

@@ -61,84 +61,32 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     ]
   };
 
-  const fallbackData = {
-    topic: 'Apprenticeship',
-    heroHeading: 'Apprenticeship program at Edumentora',
-    heroParagraph: 'Edumentora’s apprenticeship credit transfer lets you carry your earned experience to new opportunities. Stay on track, keep learning, and grow without interruption.',
-    
-    overviewHeading: 'Employee Apprenticeship-Learning Program (EALP)',
-    overviewSubHeading: 'Earn a Recognized Degree Faster by Converting Your Work Experience into Academic Credits',
-    overviewParagraph: 'The Employee Apprenticeship-Based Learning Program (EALP) is a unique opportunity for working professionals to complete their degree without restarting from the beginning. This program recognizes your work experience and converts it into academic credits, allowing you to earn a UG or PG degree in a shorter time while continuing your job.',
-
-    howItWorksSectionTitle: 'How it Works',
-    howItWorks: [
-      { heading: 'Work Experience as Academic Credits', description: 'If you have 2+ years of work experience, it will be evaluated and counted as part of your degree. You don’t need to study subjects where you already have practical knowledge.' },
-      { heading: 'Reduced Study Duration', description: 'Instead of the traditional 3–4-year degree, your work experience helps you complete the course faster. The exact duration depends on your experience and the course requirements.' },
-      { heading: 'Flexible Learning Options', description: 'Study through online classes, weekend sessions, or a hybrid model while continuing your job. Course content is industry-relevant, ensuring practical learning.' },
-    ],
-
-    programsSectionTitle: 'Available Degree Programs',
-    ugPrograms: [
-      'BBA (Bachelor of Business Administration) – Ideal for business professionals',
-      'B.Com (Bachelor of Commerce) – Perfect for accountants and finance experts',
-      'BCA (Bachelor of Computer Applications) – Best for IT professionals',
-      'B.Sc IT (Bachelor of Science in Information Technology) – For software and tech experts',
-      'B.Tech (Bachelor of Technology) – Suitable for engineering professionals in various fields',
-      'BA (Bachelor of Arts) – Various specializations in humanities and social sciences'
-    ],
-    pgPrograms: [
-      'MBA (Master of Business Administration) – For career growth in management',
-      'M.Com (Master of Commerce) – Advanced knowledge for commerce and finance professionals',
-      'MCA (Master of Computer Applications) – Higher studies in IT and computer applications',
-      'M.Tech (Master of Technology) – For engineers looking for specialization and advanced knowledge'
-    ],
-    whoCanApply: [
-      'Working professionals who discontinued their studies and want to complete their degree.',
-      'Employees with 2+ years of industry experience who want an academic qualification.',
-      'People seeking career growth and better job opportunities.',
-      'Corporate professionals who want to upskill and move up the career ladder.'
-    ],
-
-    whyChooseSectionTitle: 'Why Choose EALP?',
-    whyChoosePoints: [
-      'Complete Your Degree Faster – Work experience reduces study time.',
-      'Work & Study Together – No need to quit your job.',
-      'Flexible Learning – Online, weekend, or hybrid classes available.',
-      'Recognized Degree – Accepted for jobs, promotions, and further studies.',
-      'Industry-Relevant Curriculum – Courses designed to match your field of work.'
-    ],
-    whyChooseConclusion: 'This program helps you achieve your educational goals while leveraging your professional experience. Your hard work and skills deserve academic recognition—now you can earn your degree without starting from scratch!'
-  };
-
   const [formData, setFormData] = useState(defaultFormData);
 
   const handleEdit = (program: Program) => {
     const block = program.blocks.find(b => b.type === 'apprenticeship-layout');
-    const isLegacy = !block;
     const data = block?.data || {};
 
     // OVERVIEWS
     let overviews = [];
-    if (isLegacy) {
-      overviews = [{ heading: fallbackData.overviewHeading, subHeading: fallbackData.overviewSubHeading, paragraph: fallbackData.overviewParagraph }];
-    } else if (data.overviews && Array.isArray(data.overviews)) {
-      overviews = data.overviews.length > 0 ? data.overviews : [...defaultFormData.overviews];
-    } else {
+    if (data.overviews && Array.isArray(data.overviews) && data.overviews.length > 0) {
+      overviews = data.overviews;
+    } else if (data.overview) {
       // Legacy single object migration
       overviews = [{
-        heading: data.overview?.heading || '',
-        subHeading: data.overview?.subHeading || '',
-        paragraph: data.overview?.paragraph || ''
+        heading: data.overview.heading || '',
+        subHeading: data.overview.subHeading || '',
+        paragraph: data.overview.paragraph || ''
       }];
+    } else {
+      overviews = [...defaultFormData.overviews];
     }
 
     // HOW IT WORKS
     let howItWorksBlocks = [];
-    if (isLegacy) {
-      howItWorksBlocks = [{ sectionTitle: fallbackData.howItWorksSectionTitle, steps: fallbackData.howItWorks }];
-    } else if (data.howItWorksBlocks && Array.isArray(data.howItWorksBlocks)) {
-      howItWorksBlocks = data.howItWorksBlocks.length > 0 ? data.howItWorksBlocks : [...defaultFormData.howItWorksBlocks];
-    } else {
+    if (data.howItWorksBlocks && Array.isArray(data.howItWorksBlocks) && data.howItWorksBlocks.length > 0) {
+      howItWorksBlocks = data.howItWorksBlocks;
+    } else if (data.howItWorks) {
       // Legacy single array migration
       let steps = data.howItWorks && data.howItWorks.length > 0 ? data.howItWorks : [...defaultFormData.howItWorksBlocks[0].steps];
       while (steps.length < 3) steps.push({ heading: '', description: '' });
@@ -146,54 +94,46 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
         sectionTitle: data.howItWorksSectionTitle || 'How it Works',
         steps: steps
       }];
+    } else {
+      howItWorksBlocks = [...defaultFormData.howItWorksBlocks];
     }
 
     // PROGRAMS
     let programsBlocks = [];
-    if (isLegacy) {
-      programsBlocks = [{
-        sectionTitle: fallbackData.programsSectionTitle,
-        ugPrograms: fallbackData.ugPrograms,
-        pgPrograms: fallbackData.pgPrograms,
-        whoCanApply: fallbackData.whoCanApply,
-        image: ''
-      }];
-    } else if (data.programsBlocks && Array.isArray(data.programsBlocks)) {
-      programsBlocks = data.programsBlocks.length > 0 ? data.programsBlocks : [...defaultFormData.programsBlocks];
-    } else {
+    if (data.programsBlocks && Array.isArray(data.programsBlocks) && data.programsBlocks.length > 0) {
+      programsBlocks = data.programsBlocks;
+    } else if (data.programsAndEligibility) {
       // Legacy single object migration
       programsBlocks = [{
-        sectionTitle: data.programsAndEligibility?.title || 'Available Degree Programs',
-        ugPrograms: data.programsAndEligibility?.ugPrograms?.length ? data.programsAndEligibility.ugPrograms : [''],
-        pgPrograms: data.programsAndEligibility?.pgPrograms?.length ? data.programsAndEligibility.pgPrograms : [''],
-        whoCanApply: data.programsAndEligibility?.whoCanApply?.length ? data.programsAndEligibility.whoCanApply : [''],
-        image: data.programsAndEligibility?.image || ''
+        sectionTitle: data.programsAndEligibility.title || 'Available Degree Programs',
+        ugPrograms: data.programsAndEligibility.ugPrograms?.length ? data.programsAndEligibility.ugPrograms : [''],
+        pgPrograms: data.programsAndEligibility.pgPrograms?.length ? data.programsAndEligibility.pgPrograms : [''],
+        whoCanApply: data.programsAndEligibility.whoCanApply?.length ? data.programsAndEligibility.whoCanApply : [''],
+        image: data.programsAndEligibility.image || ''
       }];
+    } else {
+      programsBlocks = [...defaultFormData.programsBlocks];
     }
 
     // WHY CHOOSE
     let whyChooseBlocks = [];
-    if (isLegacy) {
-      whyChooseBlocks = [{
-        sectionTitle: fallbackData.whyChooseSectionTitle,
-        points: fallbackData.whyChoosePoints,
-        conclusion: fallbackData.whyChooseConclusion
-      }];
-    } else if (data.whyChooseBlocks && Array.isArray(data.whyChooseBlocks)) {
-      whyChooseBlocks = data.whyChooseBlocks.length > 0 ? data.whyChooseBlocks : [...defaultFormData.whyChooseBlocks];
-    } else {
+    if (data.whyChooseBlocks && Array.isArray(data.whyChooseBlocks) && data.whyChooseBlocks.length > 0) {
+      whyChooseBlocks = data.whyChooseBlocks;
+    } else if (data.whyChoose) {
       // Legacy single object migration
       whyChooseBlocks = [{
-        sectionTitle: data.whyChoose?.title || 'Why Choose?',
-        points: data.whyChoose?.points?.length ? data.whyChoose.points : [''],
-        conclusion: data.whyChoose?.conclusion || ''
+        sectionTitle: data.whyChoose.title || 'Why Choose?',
+        points: data.whyChoose.points?.length ? data.whyChoose.points : [''],
+        conclusion: data.whyChoose.conclusion || ''
       }];
+    } else {
+      whyChooseBlocks = [...defaultFormData.whyChooseBlocks];
     }
 
     setFormData({
-      topic: program.topic || (isLegacy ? fallbackData.topic : ''),
-      heroHeading: program.heading || (isLegacy ? fallbackData.heroHeading : ''),
-      heroParagraph: program.paragraph || (isLegacy ? fallbackData.heroParagraph : ''),
+      topic: program.topic || '',
+      heroHeading: program.heading || '',
+      heroParagraph: program.paragraph || '',
       heroImage: program.heroImage || '',
       overviews,
       howItWorksBlocks,
