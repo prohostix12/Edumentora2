@@ -1,11 +1,38 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
+const faqs = [
+  {
+    q: 'What is academic credit transfer?',
+    a: 'Academic credit transfer allows students to transfer previously earned credits from one institution to another, enabling them to continue their education without starting over.'
+  },
+  {
+    q: 'Who can apply for a credit transfer?',
+    a: 'Students who have discontinued their education or faced academic setbacks can apply for a credit transfer to resume their studies.'
+  },
+  {
+    q: 'Which universities does Edumentora partner with?',
+    a: 'We have partnered with Glocal University and IEC University to provide recognized and accredited degrees.'
+  },
+  {
+    q: 'How does the credit transfer process work?',
+    a: 'Our team evaluates your existing credits, matches them with a suitable university, and facilitates a smooth transfer process.'
+  },
+  {
+    q: 'Will my transferred credits be recognized by the new university?',
+    a: 'Yes, we work with accredited universities that recognize and accept transferred credits.'
+  }
+];
+
 export default function AboutUsPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
     <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
@@ -56,95 +83,29 @@ export default function AboutUsPage() {
           </h2>
           <div className="space-y-6">
             
-            <div className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-[#172A53] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
-              <div className="p-6 flex justify-between items-center bg-gray-50 group-hover:bg-[#172A53] transition-colors duration-300">
-                <h3 className="font-bold text-lg text-[#172A53] group-hover:text-white transition-colors pr-4">
-                  What is academic credit transfer?
-                </h3>
-                <span className="text-[#da251d] group-hover:text-white transform group-hover:rotate-180 transition-all duration-300 flex-shrink-0">
-                  ▼
-                </span>
-              </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                <div className="overflow-hidden">
-                  <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                    Academic credit transfer allows students to transfer previously earned credits from one institution to another, enabling them to continue their education without starting over.
-                  </p>
+            {faqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+              >
+                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#172A53]' : 'bg-gray-50 hover:bg-[#172A53]'}`}>
+                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#172A53] group-hover:text-white'}`}>
+                    {faq.q}
+                  </h3>
+                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#da251d] group-hover:text-white'}`}>
+                    ▼
+                  </span>
+                </div>
+                <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
+                      {faq.a}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-[#172A53] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
-              <div className="p-6 flex justify-between items-center bg-gray-50 group-hover:bg-[#172A53] transition-colors duration-300">
-                <h3 className="font-bold text-lg text-[#172A53] group-hover:text-white transition-colors pr-4">
-                  Who can apply for a credit transfer?
-                </h3>
-                <span className="text-[#da251d] group-hover:text-white transform group-hover:rotate-180 transition-all duration-300 flex-shrink-0">
-                  ▼
-                </span>
-              </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                <div className="overflow-hidden">
-                  <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                    Students who have discontinued their education or faced academic setbacks can apply for a credit transfer to resume their studies.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-[#172A53] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
-              <div className="p-6 flex justify-between items-center bg-gray-50 group-hover:bg-[#172A53] transition-colors duration-300">
-                <h3 className="font-bold text-lg text-[#172A53] group-hover:text-white transition-colors pr-4">
-                  Which universities does Edumentora partner with?
-                </h3>
-                <span className="text-[#da251d] group-hover:text-white transform group-hover:rotate-180 transition-all duration-300 flex-shrink-0">
-                  ▼
-                </span>
-              </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                <div className="overflow-hidden">
-                  <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                    We have partnered with Glocal University and IEC University to provide recognized and accredited degrees.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-[#172A53] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
-              <div className="p-6 flex justify-between items-center bg-gray-50 group-hover:bg-[#172A53] transition-colors duration-300">
-                <h3 className="font-bold text-lg text-[#172A53] group-hover:text-white transition-colors pr-4">
-                  How does the credit transfer process work?
-                </h3>
-                <span className="text-[#da251d] group-hover:text-white transform group-hover:rotate-180 transition-all duration-300 flex-shrink-0">
-                  ▼
-                </span>
-              </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                <div className="overflow-hidden">
-                  <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                    Our team evaluates your existing credits, matches them with a suitable university, and facilitates a smooth transfer process.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-[#172A53] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
-              <div className="p-6 flex justify-between items-center bg-gray-50 group-hover:bg-[#172A53] transition-colors duration-300">
-                <h3 className="font-bold text-lg text-[#172A53] group-hover:text-white transition-colors pr-4">
-                  Will my transferred credits be recognized by the new university?
-                </h3>
-                <span className="text-[#da251d] group-hover:text-white transform group-hover:rotate-180 transition-all duration-300 flex-shrink-0">
-                  ▼
-                </span>
-              </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-                <div className="overflow-hidden">
-                  <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                    Yes, we work with accredited universities that recognize and accept transferred credits.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
 
           </div>
         </div>
