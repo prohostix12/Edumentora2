@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismaClient } from '@prisma/client';
-import CanvasBuilder from '@/components/admin/CanvasBuilder';
+import ApprenticeshipProgramManager from '@/components/admin/ApprenticeshipProgramManager';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -16,8 +16,8 @@ export default async function AdminProgramsPage() {
   });
 
   return (
-    <div className="p-6">
-      <CanvasBuilder initialPrograms={programs} />
+    <div className="p-6 bg-gray-50 min-h-[calc(100vh-80px)]">
+      <ApprenticeshipProgramManager initialPrograms={programs} />
     </div>
   );
 }

@@ -126,6 +126,134 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
   );
 }
 
+function ApprenticeshipBlock({ block }: { block: any }) {
+  const data = block.data;
+  
+  const overviews = data.overviews || (data.overview ? [data.overview] : []);
+  const howItWorksBlocks = data.howItWorksBlocks || (data.howItWorks ? [{ sectionTitle: data.howItWorksSectionTitle, steps: data.howItWorks }] : []);
+  const programsBlocks = data.programsBlocks || (data.programsAndEligibility ? [data.programsAndEligibility] : []);
+  const whyChooseBlocks = data.whyChooseBlocks || (data.whyChoose ? [data.whyChoose] : []);
+
+  return (
+    <div className="w-full">
+      {/* OVERVIEW SECTIONS */}
+      {overviews.map((overview: any, idx: number) => (
+        <div key={idx} className={`bg-gray-50 ${idx !== overviews.length - 1 ? 'border-b border-gray-200' : ''}`}>
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#172A53]">{overview.heading}</h2>
+            <h3 className="text-xl md:text-2xl font-semibold text-[#da251d] leading-relaxed">{overview.subHeading}</h3>
+            <p className="text-lg text-gray-700 leading-relaxed text-justify md:text-center mt-6 whitespace-pre-line">{overview.paragraph}</p>
+          </div>
+        </div>
+      ))}
+
+      {/* HOW IT WORKS SECTIONS */}
+      {howItWorksBlocks.map((block: any, idx: number) => {
+        const steps = block.steps || block.howItWorks || [];
+        if (steps.length === 0) return null;
+        return (
+          <div key={idx} className={`max-w-7xl mx-auto px-4 md:px-8 py-20 ${idx !== howItWorksBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {steps.map((item: any, i: number) => (
+                <div key={i} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div className="w-14 h-14 bg-red-50 text-[#da251d] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-red-100">{i + 1}</div>
+                  <h3 className="text-xl font-bold text-[#172A53] mb-4">{item.heading}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* PROGRAMS AND ELIGIBILITY SECTIONS */}
+      {programsBlocks.map((block: any, idx: number) => {
+        const title = block.sectionTitle || block.title || 'Available Degree Programs';
+        return (
+          <div key={idx} className={`bg-[#172A53] text-white py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#1f376a]' : ''}`}>
+            <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="space-y-16">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
+                  
+                  {block.ugPrograms?.length > 0 && (
+                    <>
+                      <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Undergraduate Programs</h3>
+                      <ul className="space-y-4 text-lg text-gray-200 mb-10">
+                        {block.ugPrograms.map((p: string, i: number) => (
+                          <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+
+                  {block.pgPrograms?.length > 0 && (
+                    <>
+                      <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Postgraduate Programs</h3>
+                      <ul className="space-y-4 text-lg text-gray-200">
+                        {block.pgPrograms.map((p: string, i: number) => (
+                          <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+
+                {block.whoCanApply?.length > 0 && (
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-8">Who Can Apply?</h2>
+                    <ul className="space-y-4 text-lg text-gray-200">
+                      {block.whoCanApply.map((p: string, i: number) => (
+                        <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative h-[400px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#1f376a]">
+                {block.image ? (
+                  <img src={block.image} alt="Programs" className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700 ease-in-out" />
+                ) : (
+                  <div className="w-full h-full bg-[#0d1830] flex items-center justify-center text-[#1f376a]">Image Placeholder</div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+
+      {/* WHY CHOOSE SECTIONS */}
+      {whyChooseBlocks.map((block: any, idx: number) => {
+        const title = block.sectionTitle || block.title || 'Why Choose?';
+        return (
+          <div key={idx} className={`bg-white py-20 ${idx !== whyChooseBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
+            <div className="max-w-4xl mx-auto px-4 md:px-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-10">{title}</h2>
+              <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
+                <ul className="space-y-5 text-lg text-gray-700 mb-10">
+                  {block.points?.map((pt: string, i: number) => (
+                    <li key={i} className="flex items-start">
+                      <span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> 
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+                {block.conclusion && (
+                  <p className="text-lg text-gray-800 leading-relaxed text-center font-medium border-t border-gray-200 pt-8 whitespace-pre-line">
+                    {block.conclusion}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export default function ProgramFilter({ programs }: { programs: Program[] }) {
@@ -255,85 +383,96 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
 
             {/* ── DYNAMIC CANVAS WIDGETS ─────────────────────────────────── */}
               {program.blocks && program.blocks.length > 0 && (
-                <div className="bg-gray-50 border-t border-gray-100">
-                  <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min md:auto-rows-[60px]">
-                      {program.blocks.map((w: Record<string, any>, bIndex: number) => {
-                        // Legacy Block Support (blocks created before canvas builder)
-                        if (!w.i) {
-                          return (
-                            <div key={bIndex} className="col-span-1 md:col-span-12 space-y-6 mb-6">
-                              {w.type === 'text' && <TextBlock block={w} bIndex={bIndex} />}
-                              {w.type === 'cards' && <CardsBlock block={w} bIndex={bIndex} />}
-                              {w.type === 'arrows' && <ArrowsBlock block={w} bIndex={bIndex} />}
-                            </div>
-                          );
-                        }
+                <>
+                  {program.blocks.map((w: Record<string, any>, bIndex: number) => {
+                    if (w.type === 'apprenticeship-layout') {
+                      return <ApprenticeshipBlock key={bIndex} block={w} />;
+                    }
+                    return null;
+                  })}
 
-                        // New Canvas Widget
-                        return (
-                          <div 
-                            key={w.i as string}
-                            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
-                            style={{
-                              gridColumn: `var(--grid-col, 1 / -1)`,
-                              gridRow: `var(--grid-row, auto)`,
-                              '--grid-col': `${w.x + 1} / span ${w.w}`,
-                              '--grid-row': `${w.y + 1} / span ${w.h}`
-                            } as any}
-                          >
-                          {w.type === 'text' && (
-                            <div>
-                              <h3 className="text-2xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h3>
-                              <div className="w-10 h-1 bg-[#da251d] rounded mb-4" />
-                              <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">{w.data?.paragraph}</p>
-                            </div>
-                          )}
-                          
-                          {w.type === 'card' && (
-                            <div className="flex flex-col h-full relative group">
-                              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#da251d] to-[#172A53] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                              <div className="w-12 h-12 rounded-xl bg-[#172A53]/8 flex items-center justify-center mb-5 mt-2">
-                                <span className="text-[#172A53] font-extrabold text-sm">{String(w.i).slice(0,2).toUpperCase()}</span>
-                              </div>
-                              <h4 className="text-xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h4>
-                              <p className="text-gray-600 leading-relaxed text-sm md:text-base flex-1">{w.data?.paragraph}</p>
-                            </div>
-                          )}
+                  {program.blocks.some((w: any) => w.type !== 'apprenticeship-layout') && (
+                    <div className="bg-gray-50 border-t border-gray-100">
+                      <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min md:auto-rows-[60px]">
+                          {program.blocks.filter((w: any) => w.type !== 'apprenticeship-layout').map((w: Record<string, any>, bIndex: number) => {
+                            // Legacy Block Support (blocks created before canvas builder)
+                            if (!w.i) {
+                              return (
+                                <div key={bIndex} className="col-span-1 md:col-span-12 space-y-6 mb-6">
+                                  {w.type === 'text' && <TextBlock block={w} bIndex={bIndex} />}
+                                  {w.type === 'cards' && <CardsBlock block={w} bIndex={bIndex} />}
+                                  {w.type === 'arrows' && <ArrowsBlock block={w} bIndex={bIndex} />}
+                                </div>
+                              );
+                            }
 
-                          {w.type === 'arrow-list' && (
-                            <div className="flex flex-col h-full">
-                              <h3 className="text-xl font-bold text-[#172A53] mb-5 pb-4 border-b border-gray-100">{w.data?.heading}</h3>
-                              <ul className="space-y-3 flex-1">
-                                {w.data?.points?.map((pt: string, idx: number) => (
-                                  <li key={idx} className="flex items-start gap-3 text-gray-600">
-                                    <div className="mt-1 w-5 h-5 rounded bg-[#da251d]/10 flex items-center justify-center flex-shrink-0">
-                                      <span className="text-[#da251d] font-bold text-xs">→</span>
+                            // New Canvas Widget
+                            return (
+                              <div 
+                                key={w.i as string}
+                                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
+                                style={{
+                                  gridColumn: `var(--grid-col, 1 / -1)`,
+                                  gridRow: `var(--grid-row, auto)`,
+                                  '--grid-col': `${w.x + 1} / span ${w.w}`,
+                                  '--grid-row': `${w.y + 1} / span ${w.h}`
+                                } as any}
+                              >
+                              {w.type === 'text' && (
+                                <div>
+                                  <h3 className="text-2xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h3>
+                                  <div className="w-10 h-1 bg-[#da251d] rounded mb-4" />
+                                  <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">{w.data?.paragraph}</p>
+                                </div>
+                              )}
+                              
+                              {w.type === 'card' && (
+                                <div className="flex flex-col h-full relative group">
+                                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#da251d] to-[#172A53] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                                  <div className="w-12 h-12 rounded-xl bg-[#172A53]/8 flex items-center justify-center mb-5 mt-2">
+                                    <span className="text-[#172A53] font-extrabold text-sm">{String(w.i).slice(0,2).toUpperCase()}</span>
+                                  </div>
+                                  <h4 className="text-xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h4>
+                                  <p className="text-gray-600 leading-relaxed text-sm md:text-base flex-1">{w.data?.paragraph}</p>
+                                </div>
+                              )}
+
+                              {w.type === 'arrow-list' && (
+                                <div className="flex flex-col h-full">
+                                  <h3 className="text-xl font-bold text-[#172A53] mb-5 pb-4 border-b border-gray-100">{w.data?.heading}</h3>
+                                  <ul className="space-y-3 flex-1">
+                                    {w.data?.points?.map((pt: string, idx: number) => (
+                                      <li key={idx} className="flex items-start gap-3 text-gray-600">
+                                        <div className="mt-1 w-5 h-5 rounded bg-[#da251d]/10 flex items-center justify-center flex-shrink-0">
+                                          <span className="text-[#da251d] font-bold text-xs">→</span>
+                                        </div>
+                                        <span className="text-sm md:text-base">{pt}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {w.type === 'image' && (
+                                <div className="w-full h-full rounded-xl overflow-hidden shadow-sm relative group/img -m-6 md:-m-8" style={{ width: 'calc(100% + 3rem)' }}>
+                                  {w.data?.url ? (
+                                    <img src={w.data.url} alt="Program Image" className="w-full h-full object-cover transform transition-transform duration-700 group-hover/img:scale-105" />
+                                  ) : (
+                                    <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
+                                      <span className="text-sm font-semibold">Image Placeholder</span>
                                     </div>
-                                    <span className="text-sm md:text-base">{pt}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {w.type === 'image' && (
-                            <div className="w-full h-full rounded-xl overflow-hidden shadow-sm relative group/img -m-6 md:-m-8" style={{ width: 'calc(100% + 3rem)' }}>
-                              {w.data?.url ? (
-                                <img src={w.data.url} alt="Program Image" className="w-full h-full object-cover transform transition-transform duration-700 group-hover/img:scale-105" />
-                              ) : (
-                                <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
-                                  <span className="text-sm font-semibold">Image Placeholder</span>
+                                  )}
                                 </div>
                               )}
                             </div>
-                          )}
+                            );
+                          })}
                         </div>
-                        );
-                      })}
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  )}
+                </>
               )}
 
             </div>

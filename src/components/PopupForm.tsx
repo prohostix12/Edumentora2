@@ -11,14 +11,9 @@ export default function PopupForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
 
-  // Do not show popup on admin routes
-  if (pathname?.startsWith('/admin')) {
-    return null;
-  }
-
   useEffect(() => {
-    // Only open if it hasn't been opened before in this session
-    if (hasOpened) return;
+    // Only open if it hasn't been opened before in this session or on admin routes
+    if (hasOpened || pathname?.startsWith('/admin')) return;
 
     const timer = setTimeout(() => {
       setIsOpen(true);
@@ -26,7 +21,7 @@ export default function PopupForm() {
     }, 10000);
 
     return () => clearTimeout(timer);
-  }, [hasOpened]);
+  }, [hasOpened, pathname]);
 
   // Prevent scroll when modal is open
   useEffect(() => {
@@ -39,6 +34,11 @@ export default function PopupForm() {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
+
+  // Do not show popup on admin routes
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <AnimatePresence>
