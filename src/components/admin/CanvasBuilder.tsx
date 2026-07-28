@@ -4,9 +4,9 @@ import React, { useState, useTransition, useEffect, useRef } from 'react';
 import GridLayout, { Layout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { Trash2, Plus, Type, LayoutGrid, List, Save, Upload, Image as ImageIcon } from 'lucide-react';
+import { Trash2, Plus, Type, LayoutGrid, List, Save, Upload, Image as ImageIcon, FolderOpen } from 'lucide-react';
 import { compressImage } from '@/utils/imageCompression';
-import { createProgram } from '@/app/admin/programs/actions';
+import { createProgram, updateProgram } from '@/app/admin/programs/actions';
 
 type WidgetType = 'text' | 'card' | 'arrow-list' | 'image';
 
@@ -27,14 +27,76 @@ const DEFAULT_WIDGET_DATA: Record<WidgetType, any> = {
   image: { url: '' }
 };
 
-export default function CanvasBuilder({ initialPrograms }: { initialPrograms: any[] }) {
+type ProgramType = {
+  id: string;
+  topic: string;
+  heading: string;
+  subHeading: string | null;
+  paragraph: string;
+  heroImage: string | null;
+  blocks: any[];
+};
+
+export default function CanvasBuilder({ initialPrograms }: { initialPrograms: ProgramType[] }) {
   const [isPending, startTransition] = useTransition();
   const [widgets, setWidgets] = useState<CanvasWidget[]>([]);
   const [hero, setHero] = useState({ topic: '', heading: '', subHeading: '', paragraph: '', heroImage: '' as string | null });
   const [editingWidgetId, setEditingWidgetId] = useState<string | null>(null);
+  const [editingProgramId, setEditingProgramId] = useState<string | null>(null);
   
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+
+  const loadProgram = (program: ProgramType) => {
+    setEditingProgramId(program.id);
+    setHero({
+      topic: program.topic || '',
+      heading: program.heading || '',
+      subHeading: program.subHeading || '',
+      paragraph: program.paragraph || '',
+      heroImage: program.heroImage || null
+    });
+
+    const newWidgets: CanvasWidget[] = [];
+    let yOffset = 0;
+    const rand = () => Math.random().toString(36).slice(2);
+
+    program.blocks.forEach((b: Record<string, any>) => {
+      // If it's already a CanvasWidget
+      if (b.i) {
+        newWidgets.push(b);
+        yOffset = Math.max(yOffset, b.y + b.h);
+        return;
+      }
+
+      // Legacy auto-conversion
+      if (b.type === 'text') {
+        newWidgets.push({ i: rand(), type: 'text', x: 0, y: yOffset, w: 12, h: 2, data: { heading: b.heading, paragraph: b.paragraph || '' } });
+        yOffset += 2;
+      } else if (b.type === 'cards') {
+        if (b.heading) {
+          newWidgets.push({ i: rand(), type: 'text', x: 0, y: yOffset, w: 12, h: 2, data: { heading: b.heading, paragraph: b.paragraph || '' } });
+          yOffset += 2;
+        }
+        b.cards?.forEach((c: any, idx: number) => {
+          newWidgets.push({ i: rand(), type: 'card', x: (idx % 3) * 4, y: yOffset, w: 4, h: 3, data: { heading: c.cardHeading, paragraph: c.cardPara } });
+          if (idx % 3 === 2) yOffset += 3;
+        });
+        if (b.cards?.length % 3 !== 0) yOffset += 3;
+      } else if (b.type === 'arrows') {
+        if (b.heading) {
+          newWidgets.push({ i: rand(), type: 'text', x: 0, y: yOffset, w: 12, h: 2, data: { heading: b.heading, paragraph: b.paragraph || '' } });
+          yOffset += 2;
+        }
+        b.points?.forEach((p: any, idx: number) => {
+          newWidgets.push({ i: rand(), type: 'arrow-list', x: (idx % 2) * 6, y: yOffset, w: 6, h: 4, data: { heading: p.pointHeading || 'List', points: p.pointList || [] } });
+          if (idx % 2 === 1) yOffset += 4;
+        });
+        if (b.points?.length % 2 !== 0) yOffset += 4;
+      }
+    });
+    setWidgets(newWidgets);
+  };
 
   const addWidget = (type: WidgetType) => {
     const newWidget: CanvasWidget = {
@@ -86,10 +148,16 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: an
     formData.set('heroImage', hero.heroImage || '');
     startTransition(async () => {
       try {
-        await createProgram(formData);
-        alert('Program Saved!');
+        if (editingProgramId) {
+          await updateProgram(editingProgramId, formData);
+          alert('Program Updated!');
+        } else {
+          await createProgram(formData);
+          alert('Program Saved!');
+        }
         setWidgets([]);
         setHero({ topic: '', heading: '', subHeading: '', paragraph: '', heroImage: null });
+        setEditingProgramId(null);
         setEditingWidgetId(null);
         (document.getElementById('canvas-form') as HTMLFormElement).reset();
       } catch (err) {
@@ -167,11 +235,47 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: an
       `}} />
       
       {/* ── LEFT SIDEBAR (Palette) ── */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col z-10 shadow-sm flex-shrink-0">
+      <div className="w-64 bg-white border-r border-gray-200 flex flex-col z-10 shadow-sm flex-shrink-0 max-h-screen">
+        
+        {/* Saved Programs List */}
+        <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
+          <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1">
+            <FolderOpen className="w-4 h-4 text-[#da251d]" /> Saved Programs
+          </h3>
+          {editingProgramId && (
+            <button onClick={() => {
+              setEditingProgramId(null);
+              setWidgets([]);
+              setHero({ topic: '', heading: '', subHeading: '', paragraph: '', heroImage: null });
+            }} className="text-[10px] bg-white border border-gray-200 px-2 py-1 rounded hover:bg-gray-100 font-bold">New</button>
+          )}
+        </div>
+        <div className="p-2 overflow-y-auto max-h-[30vh] border-b border-gray-100 bg-gray-50/50">
+          {initialPrograms.length === 0 ? (
+            <p className="text-xs text-gray-400 p-2 text-center">No programs saved yet.</p>
+          ) : (
+            <div className="space-y-1">
+              {initialPrograms.map(p => (
+                <button 
+                  key={p.id} 
+                  onClick={() => loadProgram(p)}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-semibold transition-all truncate ${
+                    editingProgramId === p.id 
+                      ? 'bg-[#172A53] text-white' 
+                      : 'hover:bg-white text-gray-600 border border-transparent hover:border-gray-200'
+                  }`}
+                >
+                  {p.topic}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="p-4 border-b border-gray-100 bg-gray-50">
           <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Widgets</h3>
         </div>
-        <div className="p-4 space-y-3">
+        <div className="p-4 space-y-3 overflow-y-auto flex-1">
           <button type="button" onClick={() => addWidget('text')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#172A53]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#172A53]">
             <Type className="w-4 h-4 text-blue-500" /> Text Block
           </button>

@@ -1,13 +1,20 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import EnquiryForm from '@/components/EnquiryForm';
 
 export default function PopupForm() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+
+  // Do not show popup on admin routes
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   useEffect(() => {
     // Only open if it hasn't been opened before in this session

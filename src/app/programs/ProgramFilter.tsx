@@ -129,18 +129,21 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export default function ProgramFilter({ programs }: { programs: Program[] }) {
-  const [activeTopic, setActiveTopic] = useState<string>('All');
-
   const topics = useMemo(() => {
     const uniqueTopics = new Set<string>();
     programs.forEach((p) => uniqueTopics.add(p.topic));
-    return ['All', ...Array.from(uniqueTopics)];
+    return Array.from(uniqueTopics);
   }, [programs]);
 
+  const [activeTopic, setActiveTopic] = useState<string>('');
+  
+  // Default to the first topic if none is selected
+  const currentTopic = activeTopic || (topics.length > 0 ? topics[0] : '');
+
   const filteredPrograms = useMemo(() => {
-    if (activeTopic === 'All') return programs;
-    return programs.filter((p) => p.topic === activeTopic);
-  }, [programs, activeTopic]);
+    if (!currentTopic) return [];
+    return programs.filter((p) => p.topic === currentTopic);
+  }, [programs, currentTopic]);
 
   if (programs.length === 0) {
     return (
@@ -168,7 +171,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                 key={topic}
                 onClick={() => setActiveTopic(topic)}
                 className={`px-5 md:px-7 py-2 md:py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
-                  activeTopic === topic
+                  currentTopic === topic
                     ? 'bg-[#172A53] text-white shadow-md shadow-[#172A53]/20 scale-105'
                     : 'bg-gray-100 text-gray-600 hover:bg-[#172A53]/10 hover:text-[#172A53]'
                 }`}
@@ -250,22 +253,35 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                 </div>
               </div>
 
-              {/* ── DYNAMIC CANVAS WIDGETS ─────────────────────────────────── */}
+            {/* ── DYNAMIC CANVAS WIDGETS ─────────────────────────────────── */}
               {program.blocks && program.blocks.length > 0 && (
                 <div className="bg-gray-50 border-t border-gray-100">
                   <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min md:auto-rows-[60px]">
-                      {program.blocks.map((w: Record<string, any>) => (
-                        <div 
-                          key={w.i as string}
-                          className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
-                          style={{
-                            gridColumn: `var(--grid-col, 1 / -1)`,
-                            gridRow: `var(--grid-row, auto)`,
-                            '--grid-col': `${w.x + 1} / span ${w.w}`,
-                            '--grid-row': `${w.y + 1} / span ${w.h}`
-                          } as any}
-                        >
+                      {program.blocks.map((w: Record<string, any>, bIndex: number) => {
+                        // Legacy Block Support (blocks created before canvas builder)
+                        if (!w.i) {
+                          return (
+                            <div key={bIndex} className="col-span-1 md:col-span-12 space-y-6 mb-6">
+                              {w.type === 'text' && <TextBlock block={w} bIndex={bIndex} />}
+                              {w.type === 'cards' && <CardsBlock block={w} bIndex={bIndex} />}
+                              {w.type === 'arrows' && <ArrowsBlock block={w} bIndex={bIndex} />}
+                            </div>
+                          );
+                        }
+
+                        // New Canvas Widget
+                        return (
+                          <div 
+                            key={w.i as string}
+                            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
+                            style={{
+                              gridColumn: `var(--grid-col, 1 / -1)`,
+                              gridRow: `var(--grid-row, auto)`,
+                              '--grid-col': `${w.x + 1} / span ${w.w}`,
+                              '--grid-row': `${w.y + 1} / span ${w.h}`
+                            } as any}
+                          >
                           {w.type === 'text' && (
                             <div>
                               <h3 className="text-2xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h3>
@@ -313,7 +329,8 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                             </div>
                           )}
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

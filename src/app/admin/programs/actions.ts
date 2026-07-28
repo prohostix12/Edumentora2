@@ -42,3 +42,31 @@ export async function deleteProgram(id: string) {
   revalidatePath('/admin/programs');
   revalidatePath('/programs');
 }
+
+export async function updateProgram(id: string, formData: FormData) {
+  const topic = formData.get('topic') as string;
+  const heading = formData.get('heading') as string;
+  const subHeading = formData.get('subHeading') as string | null;
+  const paragraph = formData.get('paragraph') as string;
+  const heroImage = formData.get('heroImage') as string | null;
+  const blocksJson = formData.get('blocks') as string;
+
+  if (!topic || !heading || !paragraph || !blocksJson) return;
+
+  const blocks = JSON.parse(blocksJson);
+
+  await prisma.program.update({
+    where: { id },
+    data: {
+      topic,
+      heading,
+      subHeading,
+      paragraph,
+      heroImage: heroImage || null,
+      blocks,
+    },
+  });
+
+  revalidatePath('/admin/programs');
+  revalidatePath('/programs');
+}
