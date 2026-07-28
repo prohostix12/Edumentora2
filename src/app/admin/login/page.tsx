@@ -3,10 +3,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { authenticateAdmin } from '../actions';
-import { Lock, ArrowRight } from 'lucide-react';
+import { Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -43,15 +44,23 @@ export default function AdminLogin() {
         <p className="text-center text-gray-500 mb-8">Enter your secure password to continue.</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
+          <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#da251d]/20 focus:border-[#da251d] transition-colors"
+              className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 text-[#172A53] placeholder-[#172A53] focus:outline-none focus:ring-2 focus:ring-[#da251d]/20 focus:border-[#da251d] transition-colors"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#172A53] transition-colors focus:outline-none"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
           </div>
 
           {error && (

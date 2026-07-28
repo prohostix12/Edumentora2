@@ -138,14 +138,14 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               name="name"
               placeholder="University Name (e.g. Glocal University)"
               required
-              className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
             />
             <input
               type="text"
               name="location"
               placeholder="Location (e.g. Saharanpur, UP)"
               required
-              className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
             />
           </div>
           <div className="flex flex-col md:flex-row gap-4 h-32">
@@ -153,7 +153,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               name="description"
               placeholder="Brief description about the university..."
               required
-              className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none h-full"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none h-full"
             />
             <div className="w-full md:w-1/4 h-full flex flex-col items-center justify-center p-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative overflow-hidden">
               {mainImageBase64 ? (
@@ -188,7 +188,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                     setTextCertificates(newCerts);
                   }}
                   placeholder="e.g. UGC Approved, NAAC A+"
-                  className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                  className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
                 />
                 {index === textCertificates.length - 1 && (
                   <button

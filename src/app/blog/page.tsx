@@ -3,19 +3,110 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import { PrismaClient } from '@prisma/client';
+import Link from 'next/link';
+import { Calendar, ArrowRight } from 'lucide-react';
 
-export default function Page() {
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+const prisma = globalForPrisma.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+export const dynamic = 'force-dynamic';
+
+export default async function BlogPage() {
+  const blogs = await prisma.blog.findMany({
+    orderBy: {
+      date: 'desc',
+    },
+  });
+
   return (
-    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-[40vh] px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#172A53] mb-4">
-          Blog
-        </h1>
-        <p className="text-lg text-gray-600">
-          This is the Blog page.
-        </p>
+      
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-[#0B1733] via-[#172A53] to-[#254175] overflow-hidden py-20 px-4 text-center">
+        {/* Main Background Image */}
+        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
+        
+        {/* Subtle Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-500 blur-[100px]"></div>
+          <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-red-500 blur-[120px]"></div>
+          {/* Dotted Pattern */}
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+        </div>
+
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Our Latest <span className="text-[#da251d]">Insights</span>
+          </h1>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Discover the latest news, educational updates, and expert insights from Edumentora to help you make informed career choices.
+          </p>
+        </div>
       </div>
+
+      {/* Blogs Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {blogs.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-[#172A53] mb-2">No blogs found</h2>
+            <p className="text-gray-500">Check back later for new articles and insights.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.map((blog) => (
+              <div key={blog.id} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div className="relative h-64 overflow-hidden bg-gray-100">
+                  {blog.mainImage ? (
+                    <img 
+                      src={blog.mainImage} 
+                      alt={blog.category} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[#172A53]/5 text-[#172A53]/30">
+                      <span className="font-medium text-lg">Edumentora Blog</span>
+                    </div>
+                  )}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-4 py-1.5 bg-[#da251d] text-white text-sm font-semibold rounded-full shadow-lg">
+                      {blog.category}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-2 text-gray-500 text-sm font-medium mb-4">
+                    <Calendar className="w-4 h-4 text-[#da251d]" />
+                    {new Date(blog.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-[#172A53] mb-4 line-clamp-2 leading-tight">
+                    {blog.sectionDis}
+                  </h3>
+                  
+                  <div className="mt-auto pt-6">
+                    <Link 
+                      href={`/blog/${blog.id}`}
+                      className="inline-flex items-center gap-2 text-[#da251d] font-bold hover:text-[#172A53] transition-colors group/link"
+                    >
+                      Read Full Article 
+                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
