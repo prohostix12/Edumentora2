@@ -43,10 +43,10 @@ export default function Hero() {
         <div className="absolute top-20 left-10 w-40 h-40 opacity-30" style={{ backgroundImage: 'radial-gradient(#da251d 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       </div>
 
-      <div className="relative lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-end z-10 flex-grow">
+      <div className="relative lg:max-w-5xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-end z-10 flex-grow">
 
         {/* Left Side: Text Content */}
-        <div className="flex flex-col items-start justify-center text-left max-w-xl lg:max-w-2xl pb-10 lg:pb-20 xl:pb-32 pt-10">
+        <div className="flex flex-col items-start justify-center text-left max-w-xl lg:max-w-2xl pb-10 lg:pb-20 xl:pb-26 pt-10">
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-black leading-[1.1] mb-3 xl:mb-6 tracking-tight font-[Poppins]"
+            className="text-4xl md:text-5xl xl:text-[54px] font-extrabold text-black leading-[1.1] mb-3 xl:mb-5 tracking-tight font-[Poppins]"
           >
             Empowering Students<br />Through Academic<br />
             <span className="text-[#da251d]">Credit </span>
@@ -73,7 +73,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-10"
+            className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-6"
           >
             Transfer your academic credits seamlessly through Kerala's trusted education partner. Achieve your educational goals with recognized institutions and expert guidance.
           </motion.p>
