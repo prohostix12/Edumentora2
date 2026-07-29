@@ -40,7 +40,7 @@ export default function StatsSection() {
       {/* Minimal decorative dots behind the connector */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#162B63_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none"></div>
 
-      <div className="max-w-[1400px] mx-auto py-10 md:py-[60px] px-4 md:px-8">
+      <div className="max-w-[1400px] mx-auto py-[60px] px-4 md:px-8">
         {/* Heading Area */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
