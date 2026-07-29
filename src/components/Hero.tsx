@@ -8,27 +8,20 @@ import heroImage from '../../public/hero-image.png';
 
 export default function Hero() {
   return (
-    <section className="relative w-full lg:h-[800px] bg-white overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]">
+    <section 
+      className="relative w-full lg:h-[800px] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
+      style={{
+        background: 'linear-gradient(110deg, #ffe0e0 0%, #ffffff 25%, #ffffff 60%, #b2ceff 75%, #4a80f6 100%)'
+      }}
+    >
 
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Soft blurred blobs */}
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-red-100/40 blur-[100px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-yellow-100/30 blur-[120px]"
-        />
-
         {/* Floating circles */}
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[25%] left-[10%] w-6 h-6 border-2 border-red-200 rounded-full"
+          className="absolute top-[25%] left-[10%] w-8 h-8 border-[2px] border-red-300 rounded-full"
         />
         <motion.div
           animate={{ y: [0, 30, 0] }}
@@ -38,11 +31,16 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, -25, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-[15%] right-[25%] w-8 h-8 border-[3px] border-gray-200 rounded-full"
+          className="absolute top-[20%] right-[15%] w-10 h-10 border-[2px] border-blue-400 rounded-full"
+        />
+        <motion.div
+          animate={{ y: [0, 20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute top-[60%] right-[5%] w-8 h-8 border-[2px] border-blue-300 rounded-full"
         />
 
         {/* Dotted grid */}
-        <div className="absolute top-20 left-10 w-32 h-32 opacity-20" style={{ backgroundImage: 'radial-gradient(#da251d 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
+        <div className="absolute top-20 left-10 w-40 h-40 opacity-30" style={{ backgroundImage: 'radial-gradient(#da251d 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center z-10 pb-20 lg:pb-16 lg:-mt-10">
