@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
@@ -60,25 +61,15 @@ export default function BTechCreditTransferPage() {
   return (
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
-      {/* Premium Hero Section */}
-      <div className="w-full bg-[#172A53] pt-16 pb-48 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
-          <div className="inline-block px-5 py-2 bg-white/10 text-red-200 font-bold tracking-wider uppercase rounded-full mb-6 text-sm border border-white/20 backdrop-blur-md">
-            Engineering Career
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
-            Take the Next Step in your Engineering Career
-          </h1>
-          <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Don’t let an incomplete B.Tech stop you from achieving your dreams. With Edumentora’s B.Tech Credit Transfer Program, you can resume your studies, complete your degree, and build a successful future.
-          </p>
-        </div>
-      </div>
+      <PageBanner 
+        badge="Engineering Career" 
+        title="Take the Next Step in your Engineering Career" 
+        subtitle="Don’t let an incomplete B.Tech stop you from achieving your dreams. With Edumentora’s B.Tech Credit Transfer Program, you can resume your studies, complete your degree, and build a successful future."
+      />
 
-      <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28">
+      <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28 pt-8">
         {/* Elevated Intro Card */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-32 mb-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 mb-20 mt-12">
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
             <div className="relative w-full lg:w-5/12 h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-xl group">
               <Image

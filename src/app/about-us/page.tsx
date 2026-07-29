@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
 import LocationsSection from '@/components/LocationsSection';
@@ -38,11 +39,8 @@ export default function AboutUsPage() {
       <Header />
       
       {/* Hero Section */}
-      <div className="bg-[#172A53] py-20 lg:py-32 relative overflow-hidden">
-        {/* Subtle background overlay */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+      <PageBanner>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 pt-8">
           
           {/* Text Content */}
           <div className="md:w-1/2 space-y-6 text-white text-center md:text-left">
@@ -62,7 +60,7 @@ export default function AboutUsPage() {
           </div>
 
         </div>
-      </div>
+      </PageBanner>
 
       <AboutSection />
 

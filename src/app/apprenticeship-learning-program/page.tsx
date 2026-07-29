@@ -4,21 +4,21 @@ import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import PageBanner from '@/components/PageBanner';
 
 export default function ApprenticeshipLearningProgram() {
   return (
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
       
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <PageBanner>
+        <div className="grid md:grid-cols-2 gap-12 items-center pt-8">
           {/* Left: Text */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#172A53] leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Apprenticeship program at Edumentora
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify">
+            <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-justify">
               Edumentora’s apprenticeship credit transfer lets you carry your earned experience to new opportunities. Stay on track, keep learning, and grow without interruption.
             </p>
             <button className="bg-[#da251d] hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg w-max mt-4">
@@ -27,7 +27,7 @@ export default function ApprenticeshipLearningProgram() {
           </div>
           
           {/* Right: Image */}
-          <div className="relative h-[400px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+          <div className="relative h-[300px] md:h-[400px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
             <img 
               src="/apprenticeship-hero.png" 
               alt="Apprenticeship program at Edumentora" 
@@ -35,7 +35,7 @@ export default function ApprenticeshipLearningProgram() {
             />
           </div>
         </div>
-      </div>
+      </PageBanner>
 
       {/* EALP Overview Section */}
       <div className="bg-gray-50">

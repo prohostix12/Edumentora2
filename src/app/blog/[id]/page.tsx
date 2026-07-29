@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import PageBanner from '@/components/PageBanner';
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
 import { Calendar, ArrowLeft, Send } from 'lucide-react';
@@ -46,9 +47,8 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
       
-      {/* Article Hero */}
-      <div className="bg-[#172A53] py-16 px-4">
-        <div className="max-w-7xl mx-auto">
+      <PageBanner badge={blog.category} title={blog.sectionDis}>
+        <div className="pt-8">
           <Link 
             href="/blog" 
             className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 font-medium"
@@ -56,8 +56,8 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             <ArrowLeft className="w-4 h-4" /> Back to all blogs
           </Link>
           
-          <div className="flex flex-wrap items-center gap-4 mb-6">
-            <span className="px-4 py-1.5 bg-[#da251d] text-white text-sm font-semibold rounded-full shadow-md">
+          <div className="flex flex-wrap items-center gap-4 mb-4">
+            <span className="px-4 py-1.5 bg-white/10 text-red-200 text-sm font-semibold rounded-full border border-white/20 backdrop-blur-md">
               {blog.category}
             </span>
             <div className="flex items-center gap-2 text-white/70 text-sm font-medium">
@@ -70,15 +70,15 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             </div>
           </div>
           
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-8 max-w-4xl">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 max-w-4xl tracking-tight font-[Poppins]">
             {blog.sectionDis}
           </h1>
         </div>
-      </div>
+      </PageBanner>
 
       {/* Main Content & Sidebar */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start -mt-24 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative z-10">
           
           {/* Left Column: Blog Content */}
           <div className="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">

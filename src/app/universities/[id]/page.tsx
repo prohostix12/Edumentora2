@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LocationsSection from '@/components/LocationsSection';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import PageBanner from '@/components/PageBanner';
 import { PrismaClient } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import { MapPin, Award, ArrowLeft } from 'lucide-react';
@@ -35,9 +36,8 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
     <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
       
-      {/* Hero Section */}
-      <div className="bg-[#172A53] py-16 px-4">
-        <div className="max-w-5xl mx-auto">
+      <PageBanner title={university.name}>
+        <div className="pt-8">
           <Link 
             href="/universities" 
             className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 font-medium"
@@ -45,7 +45,7 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             <ArrowLeft className="w-4 h-4" /> Back to Universities
           </Link>
           
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 tracking-tight font-[Poppins]">
             {university.name}
           </h1>
           
@@ -56,7 +56,7 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             </div>
           )}
         </div>
-      </div>
+      </PageBanner>
 
       {/* Content Section */}
       <div className="max-w-5xl mx-auto px-4 py-12">

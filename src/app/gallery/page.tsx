@@ -1,4 +1,5 @@
 import React from 'react';
+import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';

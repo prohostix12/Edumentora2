@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import PageBanner from '@/components/PageBanner';
 import { submitEnquiry } from './actions';
 
 type Contact = {
@@ -37,23 +38,11 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
   return (
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
-      {/* Unified Hero Section */}
-      <div className="w-full bg-[#172A53] relative overflow-hidden">
-        {/* Background Image Overlay matching Programs page */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
-        <div className="w-full pt-20 pb-24 relative z-10 max-w-7xl mx-auto text-center px-6 md:px-12">
-          <div className="inline-block px-4 py-1.5 bg-white/10 text-red-200 font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-white/20 backdrop-blur-md">
-            Our Offices
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight font-[Poppins]">
-            Get In Touch
-          </h1>
-          <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-5xl mx-auto">
-            Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals.
-          </p>
-        </div>
-      </div>
+      <PageBanner 
+        badge="Our Offices" 
+        title="Get In Touch" 
+        subtitle="Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals."
+      />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24">
 

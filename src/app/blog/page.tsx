@@ -1,4 +1,5 @@
 import React from 'react';
+import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
@@ -24,28 +25,11 @@ export default async function BlogPage() {
     <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
       
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-[#0B1733] via-[#172A53] to-[#254175] overflow-hidden py-20 px-4 text-center">
-        {/* Main Background Image */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
-        {/* Subtle Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-500 blur-[100px]"></div>
-          <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-red-500 blur-[120px]"></div>
-          {/* Dotted Pattern */}
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-        </div>
-
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our Latest <span className="text-[#da251d]">Insights</span>
-          </h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Discover the latest news, educational updates, and expert insights from Edumentora to help you make informed career choices.
-          </p>
-        </div>
-      </div>
+      <PageBanner 
+        badge="Latest Insights" 
+        title="Our Blog" 
+        subtitle="Stay updated with the latest news, guides, and insights about education and career."
+      />
 
       {/* Blogs Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
