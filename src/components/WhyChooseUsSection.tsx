@@ -16,95 +16,101 @@ export default function WhyChooseUsSection() {
     {
       title: "Expert guidance",
       desc: "Our dedicated team offers tailored guidance, ensuring a seamless and successful academic credit transfer experience for each student.",
-      icon: <ClipboardCheck className="w-8 h-8 text-blue-600" />,
-      bgColor: "bg-blue-50"
+      icon: <ClipboardCheck className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     },
     {
       title: "Flexible learning paths",
       desc: "We offer tailored programs that allow you to balance education with personal and professional commitments effectively.",
-      icon: <Lightbulb className="w-8 h-8 text-yellow-500" />,
-      bgColor: "bg-yellow-50"
+      icon: <Lightbulb className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     },
     {
       title: "Personalized support",
       desc: "Our experienced team offers personalized support, guaranteeing a seamless and hassle-free academic credit transfer experience.",
-      icon: <HeartHandshake className="w-8 h-8 text-red-500" />,
-      bgColor: "bg-red-50"
+      icon: <HeartHandshake className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     },
     {
       title: "Effortless credit transfer",
       desc: "Seamlessly transfer your earned credits to resume your education without losing progress or starting from scratch.",
-      icon: <MousePointerClick className="w-8 h-8 text-teal-600" />,
-      bgColor: "bg-teal-50"
+      icon: <MousePointerClick className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     },
     {
       title: "Trusted university",
       desc: "Collaborations with Glocal University, Radha Govind University, and Arni University ensure globally recognized and accredited degrees.",
-      icon: <ShieldCheck className="w-8 h-8 text-blue-800" />,
-      bgColor: "bg-blue-100"
+      icon: <ShieldCheck className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     },
     {
       title: "Save time and money",
       desc: "Resume your education from where you paused, saving valuable time and reducing overall financial expenses efficiently.",
-      icon: <Clock className="w-8 h-8 text-orange-500" />,
-      bgColor: "bg-orange-50"
+      icon: <Clock className="w-6 h-6 text-[#172A53] group-hover:text-[#da251d] transition-colors duration-300" />,
+      glowColor: "bg-[#172A53]/5 group-hover:bg-[#da251d]/10"
     }
   ];
 
   return (
-    <section className="w-full bg-[#172A53] py-24">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="mb-12 text-center lg:text-left">
+    <section className="relative w-full py-16 overflow-hidden bg-[rgb(240,240,228)]">
+      {/* Subtle Grid Pattern overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDQwIEwgNDAgNDAgTCA0MCAwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjMsNDIsODMsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-60 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        <div className="mb-10 text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-50 border border-red-100 text-[#da251d] font-semibold text-[10px] tracking-widest uppercase mb-4 shadow-sm"
+          >
+            <ShieldCheck className="w-3 h-3" />
+            Our Advantage
+          </motion.div>
+          
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white leading-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl md:text-4xl lg:text-4xl font-extrabold text-[#172A53] leading-tight"
           >
-            Why We are the Right Choice
+            Why We are the <br className="hidden md:block" />
+            <span className="text-[#da251d]">Right Choice</span>
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {reasons.map((reason, index) => (
-            <div key={index} className="relative w-full h-[280px]">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="absolute inset-0 group [perspective:1000px]"
-              >
-                <div className="absolute inset-0 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-hover:-top-[15px] group-hover:-bottom-[15px] group-hover:-left-[10px] group-hover:-right-[10px] group-hover:z-10 group-hover:shadow-2xl group-hover:shadow-blue-900/50 cursor-pointer rounded-2xl">
-                  
-                  {/* Default State (Front) */}
-                  <div className="flex flex-col justify-between h-full absolute inset-0 p-6 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] bg-[#172A53] rounded-2xl border border-white/10 transition-opacity duration-300 group-hover:opacity-0">
-                    {/* Optional subtle background tint */}
-                    <div className="absolute inset-0 bg-white/5 pointer-events-none rounded-2xl"></div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white leading-tight">
-                        {reason.title}
-                      </h3>
-                    </div>
-                    <div className={`w-14 h-14 rounded-xl ${reason.bgColor} flex items-center justify-center mt-auto`}>
-                      {reason.icon}
-                    </div>
-                  </div>
-
-                  {/* Hover State (Back) */}
-                  <div className="flex flex-col justify-center h-full absolute inset-0 p-6 bg-[#25417e] [transform:rotateY(180deg)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] rounded-2xl border border-blue-400/50 shadow-inner opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <h3 className="text-lg font-bold text-white mb-3">
-                      {reason.title}
-                    </h3>
-                    <p className="text-white/80 text-sm leading-relaxed pr-1">
-                      {reason.desc}
-                    </p>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="group relative h-full"
+            >
+              <div className="relative h-full bg-white border-2 border-gray-100 rounded-[1.5rem] p-5 lg:p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-[#da251d] group-hover:shadow-[0_20px_40px_-15px_rgba(218,37,29,0.25)] overflow-hidden flex flex-col z-10">
+                
+                {/* Decorative corner gradient */}
+                <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gray-50 rounded-full group-hover:bg-red-50 transition-colors duration-500 ease-out`} />
+                
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-500 relative overflow-hidden shrink-0 ${reason.glowColor}`}>
+                    {reason.icon}
                   </div>
                   
+                  <h3 className="text-lg font-bold text-[#172A53] mb-2 group-hover:text-[#da251d] transition-colors duration-300">
+                    {reason.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-snug text-[13px] md:text-sm flex-grow">
+                    {reason.desc}
+                  </p>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
