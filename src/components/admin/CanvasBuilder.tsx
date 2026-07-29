@@ -340,7 +340,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
               <GridLayout
                 className="layout"
                 layout={widgets}
-                cols={12}
+                {...{cols: 12} as any}
                 rowHeight={60}
                 width={1000}
                 onLayoutChange={onLayoutChange}
