@@ -12,6 +12,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
       date: "1 year ago",
       text: "I had a great experience with edumentora",
       rating: 5,
+      image: null
     },
     {
       id: "2",
@@ -19,6 +20,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
       date: "2 months ago",
       text: "The best credit transfer agency in Kerala. The team is very supportive and helpful throughout the entire process.",
       rating: 5,
+      image: null
     },
     {
       id: "3",
@@ -26,6 +28,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
       date: "6 months ago",
       text: "Highly recommended! They made my B.Tech credit transfer process incredibly smooth and tension-free.",
       rating: 5,
+      image: null
     }
   ];
 
@@ -35,7 +38,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
     date: new Date(r.postedDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }),
     text: r.comment,
     rating: r.rating,
-    image: r.image
+    image: r.image || null
   })) : staticTestimonials;
 
   const [currentIndex, setCurrentIndex] = useState(0);
