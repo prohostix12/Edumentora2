@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 export const dynamic = 'force-dynamic';
 
 export default async function ProgramsPage() {
-  let programs = [];
+  let programs: any[] = [];
   try {
     programs = await prisma.program.findMany({
       orderBy: { createdAt: 'asc' }

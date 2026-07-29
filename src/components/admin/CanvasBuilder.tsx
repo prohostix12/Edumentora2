@@ -64,7 +64,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
     program.blocks.forEach((b: Record<string, any>) => {
       // If it's already a CanvasWidget
       if (b.i) {
-        newWidgets.push(b);
+        newWidgets.push(b as CanvasWidget);
         yOffset = Math.max(yOffset, b.y + b.h);
         return;
       }
