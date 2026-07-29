@@ -8,8 +8,8 @@ import heroImage from '../../public/hero-image.png';
 
 export default function Hero() {
   return (
-    <section 
-      className="relative w-full lg:h-[800px] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
+    <section
+      className="relative w-full lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
       style={{
         background: 'linear-gradient(110deg, #ffe0e0 0%, #ffffff 25%, #ffffff 60%, #b2ceff 75%, #4a80f6 100%)'
       }}
@@ -43,18 +43,18 @@ export default function Hero() {
         <div className="absolute top-20 left-10 w-40 h-40 opacity-30" style={{ backgroundImage: 'radial-gradient(#da251d 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center z-10 pb-20 lg:pb-16 lg:-mt-10">
+      <div className="relative lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-end z-10 flex-grow">
 
         {/* Left Side: Text Content */}
-        <div className="flex flex-col items-start justify-center text-left max-w-xl xl:max-w-2xl">
+        <div className="flex flex-col items-start justify-center text-left max-w-xl lg:max-w-2xl pb-10 lg:pb-20 xl:pb-32 pt-10">
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex items-center gap-2 bg-red-50 text-[#da251d] px-4 py-2 rounded-full font-semibold text-sm shadow-sm border border-red-100 mb-8"
+            className="flex items-center gap-1.5 xl:gap-2 bg-red-50 text-[#da251d] px-3 py-1.5 md:px-3.5 md:py-1.5 xl:px-4 xl:py-2 rounded-full font-semibold text-xs md:text-[13px] xl:text-sm shadow-sm border border-red-100 mb-5 xl:mb-8"
           >
-            <Shield className="w-4 h-4" />
+            <Shield className="w-3 h-3 md:w-3.5 md:h-3.5 xl:w-4 xl:h-4" />
             <span>Trusted Education Partner</span>
           </motion.div>
 
@@ -62,7 +62,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black leading-[1.1] mb-6 tracking-tight font-[Poppins]"
+            className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-black leading-[1.1] mb-3 xl:mb-6 tracking-tight font-[Poppins]"
           >
             Empowering Students<br />Through Academic<br />
             <span className="text-[#da251d]">Credit </span>
@@ -73,7 +73,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-10"
+            className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-10"
           >
             Transfer your academic credits seamlessly through Kerala's trusted education partner. Achieve your educational goals with recognized institutions and expert guidance.
           </motion.p>
@@ -82,26 +82,26 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-3 md:gap-4"
           >
-            <button className="group flex items-center justify-center gap-2 bg-[#da251d] text-white px-8 py-4 rounded-full font-bold shadow-[0_8px_25px_-5px_rgba(218,37,29,0.5)] hover:bg-red-700 hover:-translate-y-1 transition-all duration-300">
+            <button className="group flex items-center justify-center gap-2 bg-[#da251d] text-white px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-[0_8px_25px_-5px_rgba(218,37,29,0.5)] hover:bg-red-700 hover:-translate-y-1 transition-all duration-300">
               Apply Now
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-8 py-4 rounded-full font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
+            <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
               Know More
             </button>
           </motion.div>
         </div>
 
         {/* Right Side: Hero Image */}
-        <div className="relative flex justify-center items-end h-[500px] lg:h-[600px] w-full mt-16 md:mt-0 -mb-20 lg:-mb-16 z-30">
+        <div className="relative flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full mt-10 md:mt-0 z-10">
           {/* Hero Image */}
           <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
             <Image
               src={heroImage}
               alt="Hero"
-              className="object-contain object-bottom w-full h-full scale-[1.35] lg:scale-[1.65] origin-bottom drop-shadow-2xl"
+              className="object-contain object-bottom w-full h-full scale-[1.35] lg:scale-[1.55] origin-bottom drop-shadow-2xl"
               priority
             />
           </div>
