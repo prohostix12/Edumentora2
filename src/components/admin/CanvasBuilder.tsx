@@ -116,11 +116,12 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
     if (editingWidgetId === i) setEditingWidgetId(null);
   };
 
-  const onLayoutChange = (layout: Layout[]) => {
+  const onLayoutChange = (layout: any) => {
     setWidgets(prev => prev.map(w => {
-      const updated = layout.find(l => l.i === w.i);
+      const updated = layout.find((l: any) => l.i === w.i);
       if (updated) {
-        return { ...w, x: updated.x, y: updated.y, w: updated.w, h: updated.h };
+        const u: any = updated;
+        return { ...w, x: u.x, y: u.y, w: u.w, h: u.h };
       }
       return w;
     }));
