@@ -26,7 +26,7 @@ export default function AboutSection() {
       >
 
         {/* Left Side: Overlapping Images */}
-        <div className="w-full lg:w-1/2 relative h-[350px] sm:h-[450px] md:h-[600px] flex items-center justify-center mt-5">
+        <div className="w-full lg:w-1/2 relative h-[500px] md:h-[600px] flex items-center justify-center mt-5">
           {/* Background Image (larger, bottom-left) */}
           <motion.div
             style={{ x: imageX, rotateY: imageRotateY, transformStyle: 'preserve-3d' }}

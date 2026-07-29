@@ -22,7 +22,7 @@ export default function PGCreditTransferPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 mt-8 md:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 space-y-6 text-[#3b3226]">
           <h2 className="text-2xl font-bold text-[#172A53]">
             Complete Your Postgraduate Degree with Ease

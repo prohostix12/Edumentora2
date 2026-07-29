@@ -95,7 +95,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Hero Image */}
-        <div className="relative flex justify-center items-end h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full mt-8 md:mt-0 -mb-10 md:-mb-20 lg:-mb-16 z-30">
+        <div className="relative flex justify-center items-end h-[500px] lg:h-[600px] w-full mt-16 md:mt-0 -mb-20 lg:-mb-16 z-30">
           {/* Hero Image */}
           <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
             <Image

@@ -61,7 +61,7 @@ export default function BTechCreditTransferPage() {
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
       {/* Premium Hero Section */}
-      <div className="w-full bg-[#172A53] pt-12 md:pt-16 pb-32 md:pb-48 relative overflow-hidden">
+      <div className="w-full bg-[#172A53] pt-16 pb-48 relative overflow-hidden">
         <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 text-center">
           <div className="inline-block px-5 py-2 bg-white/10 text-red-200 font-bold tracking-wider uppercase rounded-full mb-6 text-sm border border-white/20 backdrop-blur-md">
@@ -78,9 +78,9 @@ export default function BTechCreditTransferPage() {
 
       <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28">
         {/* Elevated Intro Card */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-16 md:-mt-32 mb-10 md:mb-20">
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-12 flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
-            <div className="relative w-full lg:w-5/12 h-[250px] sm:h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-xl group">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 -mt-32 mb-20">
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
+            <div className="relative w-full lg:w-5/12 h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-xl group">
               <Image
                 src="/btech-credit-transfer.png"
                 alt="Engineering Career"
@@ -318,17 +318,17 @@ export default function BTechCreditTransferPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
               
               {/* Card 1: UG */}
-              <div className="relative bg-gradient-to-br from-[#0B1733] to-[#1e3a7a] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(11,23,51,0.15)] hover:shadow-[0_20px_60px_rgba(11,23,51,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-6 md:p-8 pt-28 md:pt-8 md:pl-36 min-h-[380px] md:min-h-[420px]">
+              <div className="relative bg-gradient-to-br from-[#0B1733] to-[#1e3a7a] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(11,23,51,0.15)] hover:shadow-[0_20px_60px_rgba(11,23,51,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
                 {/* Background Decoration */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><path d="M21.42 10.922a2 2 0 0 1-.019 3.07l-9.28 8.07a2 2 0 0 1-2.234 0l-9.28-8.07a2 2 0 0 1-.019-3.07l9.28-8.07a2 2 0 0 1 2.234 0l9.28 8.07z" /><path d="M12 2v20" /></svg>
                 
                 {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-6 md:left-36 text-5xl md:text-7xl font-black text-white/10 pointer-events-none select-none">01</div>
+                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">01</div>
                 
-                {/* Top/Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 w-full h-20 md:h-full md:w-28 bg-white rounded-b-[30px] md:rounded-b-none md:rounded-r-[50px] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] md:shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 origin-top md:origin-left group-hover:scale-y-105 md:group-hover:scale-y-100 md:group-hover:scale-x-105">
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f0f4ff] flex items-center justify-center group-hover:bg-[#1e3a7a] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#1e3a7a] md:w-8 md:h-8 group-hover:text-white transition-colors duration-500"><path d="M21.42 10.922a2 2 0 0 1-.019 3.07l-9.28 8.07a2 2 0 0 1-2.234 0l-9.28-8.07a2 2 0 0 1-.019-3.07l9.28-8.07a2 2 0 0 1 2.234 0l9.28 8.07z" /><path d="M12 2v20" /></svg>
+                {/* Left Curved Accent Panel */}
+                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
+                  <div className="w-16 h-16 rounded-full bg-[#f0f4ff] flex items-center justify-center group-hover:bg-[#1e3a7a] transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#1e3a7a] group-hover:text-white transition-colors duration-500"><path d="M21.42 10.922a2 2 0 0 1-.019 3.07l-9.28 8.07a2 2 0 0 1-2.234 0l-9.28-8.07a2 2 0 0 1-.019-3.07l9.28-8.07a2 2 0 0 1 2.234 0l9.28 8.07z" /><path d="M12 2v20" /></svg>
                   </div>
                 </div>
 
@@ -347,17 +347,17 @@ export default function BTechCreditTransferPage() {
               </div>
 
               {/* Card 2: PG */}
-              <div className="relative bg-gradient-to-br from-[#991b1b] to-[#E53935] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(229,57,53,0.15)] hover:shadow-[0_20px_60px_rgba(229,57,53,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-6 md:p-8 pt-28 md:pt-8 md:pl-36 min-h-[380px] md:min-h-[420px]">
+              <div className="relative bg-gradient-to-br from-[#991b1b] to-[#E53935] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(229,57,53,0.15)] hover:shadow-[0_20px_60px_rgba(229,57,53,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
                 {/* Background Decoration */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
                 
                 {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-6 md:left-36 text-5xl md:text-7xl font-black text-white/10 pointer-events-none select-none">02</div>
+                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">02</div>
                 
-                {/* Top/Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 w-full h-20 md:h-full md:w-28 bg-white rounded-b-[30px] md:rounded-b-none md:rounded-r-[50px] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] md:shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 origin-top md:origin-left group-hover:scale-y-105 md:group-hover:scale-y-100 md:group-hover:scale-x-105">
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#fff0f0] flex items-center justify-center group-hover:bg-[#E53935] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#E53935] md:w-8 md:h-8 group-hover:text-white transition-colors duration-500"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+                {/* Left Curved Accent Panel */}
+                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
+                  <div className="w-16 h-16 rounded-full bg-[#fff0f0] flex items-center justify-center group-hover:bg-[#E53935] transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#E53935] group-hover:text-white transition-colors duration-500"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
                   </div>
                 </div>
 
@@ -376,17 +376,17 @@ export default function BTechCreditTransferPage() {
               </div>
 
               {/* Card 3: Diploma */}
-              <div className="relative bg-gradient-to-br from-[#4c1d95] to-[#7c3aed] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(124,58,237,0.15)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-6 md:p-8 pt-28 md:pt-8 md:pl-36 min-h-[380px] md:min-h-[420px]">
+              <div className="relative bg-gradient-to-br from-[#4c1d95] to-[#7c3aed] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(124,58,237,0.15)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
                 {/* Background Decoration */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
                 
                 {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-6 md:left-36 text-5xl md:text-7xl font-black text-white/10 pointer-events-none select-none">03</div>
+                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">03</div>
                 
-                {/* Top/Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 w-full h-20 md:h-full md:w-28 bg-white rounded-b-[30px] md:rounded-b-none md:rounded-r-[50px] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] md:shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 origin-top md:origin-left group-hover:scale-y-105 md:group-hover:scale-y-100 md:group-hover:scale-x-105">
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f3edff] flex items-center justify-center group-hover:bg-[#7c3aed] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#7c3aed] md:w-8 md:h-8 group-hover:text-white transition-colors duration-500"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
+                {/* Left Curved Accent Panel */}
+                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
+                  <div className="w-16 h-16 rounded-full bg-[#f3edff] flex items-center justify-center group-hover:bg-[#7c3aed] transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#7c3aed] group-hover:text-white transition-colors duration-500"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
                   </div>
                 </div>
 
