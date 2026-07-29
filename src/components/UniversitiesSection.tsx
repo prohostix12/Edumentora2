@@ -38,7 +38,7 @@ export default function UniversitiesSection() {
         transition={{ duration: 0.8 }}
         className="mb-16 text-center"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight whitespace-nowrap">
+        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
           Our Most Trusted Universities
         </h2>
       </motion.div>

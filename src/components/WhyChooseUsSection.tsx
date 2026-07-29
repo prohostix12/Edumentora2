@@ -66,7 +66,7 @@ export default function WhyChooseUsSection() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6">
           {reasons.map((reason, index) => (
             <div key={index} className="relative w-full h-[280px]">
               <motion.div
