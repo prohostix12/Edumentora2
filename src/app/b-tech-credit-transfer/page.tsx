@@ -340,9 +340,9 @@ export default function BTechCreditTransferPage() {
                   <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
                     Transfer your earned UG credits to top universities, saving time and costs while completing your degree efficiently.
                   </p>
-                  <button className="bg-white text-[#1e3a7a] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
+                  <Link href="/ug-credit-transfer" className="bg-white text-[#1e3a7a] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
                     Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -369,9 +369,9 @@ export default function BTechCreditTransferPage() {
                   <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
                     Transfer your PG credits to leading universities, saving time and money while completing your postgraduate degree smoothly and efficiently.
                   </p>
-                  <button className="bg-white text-[#E53935] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
+                  <Link href="/pg-credit-transfer" className="bg-white text-[#E53935] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
                     Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -398,9 +398,9 @@ export default function BTechCreditTransferPage() {
                   <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
                     Transfer your Diploma credits to leading universities, saving time and money while completing your postgraduate degree smoothly and efficiently.
                   </p>
-                  <button className="bg-white text-[#7c3aed] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
+                  <Link href="/diploma-credit-transfer" className="bg-white text-[#7c3aed] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
                     Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

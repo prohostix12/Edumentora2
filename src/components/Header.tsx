@@ -142,7 +142,7 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <Link href="/contact" className="hidden lg:flex shrink-0 items-center justify-center px-6 py-2.5 bg-[#da251d] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(218,37,29,0.39)] hover:shadow-[0_6px_20px_rgba(218,37,29,0.23)] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-200">
+        <Link href="/contact#contacts-section" className="hidden lg:flex shrink-0 items-center justify-center px-6 py-2.5 bg-[#da251d] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(218,37,29,0.39)] hover:shadow-[0_6px_20px_rgba(218,37,29,0.23)] hover:bg-red-700 hover:-translate-y-0.5 transition-all duration-200">
           Enquire Now
         </Link>
 
@@ -200,7 +200,7 @@ export default function Header() {
                 Contact
               </Link>
               
-              <Link href="/contact" onClick={closeMobileMenu} className="flex items-center justify-center mt-4 w-full px-6 py-3 bg-[#da251d] text-white font-medium rounded-xl shadow-md hover:bg-red-700 transition-colors">
+              <Link href="/contact#contacts-section" onClick={closeMobileMenu} className="flex items-center justify-center mt-4 w-full px-6 py-3 bg-[#da251d] text-white font-medium rounded-xl shadow-md hover:bg-red-700 transition-colors">
                 Enquire Now
               </Link>
             </div>

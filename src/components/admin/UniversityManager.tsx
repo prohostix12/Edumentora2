@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useTransition, useState } from 'react';
-import { createUniversity, deleteUniversity, addCertificates, removeCertificate } from '@/app/admin/university/actions';
-import { Trash2, Plus, Upload, Loader2, MapPin } from 'lucide-react';
+import { createUniversity, deleteUniversity, addCertificates, removeCertificate, updateUniversity } from '@/app/admin/university/actions';
+import { Trash2, Plus, Upload, Loader2, MapPin, Edit } from 'lucide-react';
 
 type University = {
   id: string;
@@ -11,6 +11,16 @@ type University = {
   description: string;
   mainImage?: string | null;
   certificates: string[];
+  visionHeading?: string | null;
+  visionPara?: string | null;
+  facilitiesHeading?: string | null;
+  facilitiesPara?: string | null;
+  featuresHeading?: string | null;
+  featuresPara?: string | null;
+  whyChooseHeading?: string | null;
+  whyChoosePara?: string | null;
+  btechProgramsHeading?: string | null;
+  btechProgramsPara?: string | null;
 };
 
 export default function UniversityManager({ initialUniversities }: { initialUniversities: University[] }) {
@@ -18,15 +28,37 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   const [uploadingId, setUploadingId] = useState<string | null>(null);
   const [mainImageBase64, setMainImageBase64] = useState<string | null>(null);
   const [textCertificates, setTextCertificates] = useState<string[]>(['']);
+  const [editingUniversity, setEditingUniversity] = useState<University | null>(null);
 
-  const handleCreateUniversity = (formData: FormData) => {
+  const handleCreateOrUpdateUniversity = (formData: FormData) => {
     startTransition(() => {
-      createUniversity(formData);
-      const form = document.getElementById('add-university-form') as HTMLFormElement;
-      if (form) form.reset();
-      setMainImageBase64(null);
-      setTextCertificates(['']);
+      if (editingUniversity) {
+        updateUniversity(editingUniversity.id, formData).then(() => {
+          setEditingUniversity(null);
+          setMainImageBase64(null);
+          setTextCertificates(['']);
+        });
+      } else {
+        createUniversity(formData);
+        const form = document.getElementById('add-university-form') as HTMLFormElement;
+        if (form) form.reset();
+        setMainImageBase64(null);
+        setTextCertificates(['']);
+      }
     });
+  };
+
+  const handleEditClick = (uni: University) => {
+    setEditingUniversity(uni);
+    setMainImageBase64(uni.mainImage || null);
+    setTextCertificates(uni.certificates.length > 0 ? [...uni.certificates, ''] : ['']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingUniversity(null);
+    setMainImageBase64(null);
+    setTextCertificates(['']);
   };
 
   const handleDeleteUniversity = (id: string) => {
@@ -129,21 +161,33 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     <div className="space-y-8">
       {/* Create University Form */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#172A53] mb-4">Add New University</h2>
-        <form id="add-university-form" action={handleCreateUniversity} className="flex flex-col gap-4">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-[#172A53]">
+            {editingUniversity ? `Update University: ${editingUniversity.name}` : 'Add New University'}
+          </h2>
+          {editingUniversity && (
+            <button onClick={handleCancelEdit} className="text-sm text-red-500 hover:text-red-600 font-medium">
+              Cancel Edit
+            </button>
+          )}
+        </div>
+        
+        <form key={editingUniversity ? editingUniversity.id : 'new'} id="add-university-form" action={handleCreateOrUpdateUniversity} className="flex flex-col gap-4">
           <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
           <div className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
               name="name"
-              placeholder="University Name (e.g. Glocal University)"
+              defaultValue={editingUniversity?.name || ''}
+              
               required
               className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
             />
             <input
               type="text"
               name="location"
-              placeholder="Location (e.g. Saharanpur, UP)"
+              defaultValue={editingUniversity?.location || ''}
+              
               required
               className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
             />
@@ -151,7 +195,8 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
           <div className="flex flex-col md:flex-row gap-4 h-32">
             <textarea
               name="description"
-              placeholder="Brief description about the university..."
+              defaultValue={editingUniversity?.description || ''}
+              
               required
               className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none h-full"
             />
@@ -187,7 +232,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                     newCerts[index] = e.target.value;
                     setTextCertificates(newCerts);
                   }}
-                  placeholder="e.g. UGC Approved, NAAC A+"
+                  
                   className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
                 />
                 {index === textCertificates.length - 1 && (
@@ -203,13 +248,52 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
             ))}
           </div>
 
+          {/* Extra Details Sections */}
+          <div className="pt-4 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            
+            {/* Vision */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-700">University Vision</label>
+              <input type="text" name="visionHeading" defaultValue={editingUniversity?.visionHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#172A53] placeholder-[#172A53]" />
+              <textarea name="visionPara" defaultValue={editingUniversity?.visionPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#172A53] placeholder-[#172A53]" />
+            </div>
+
+            {/* Facilities */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-700">Our Facilities</label>
+              <input type="text" name="facilitiesHeading" defaultValue={editingUniversity?.facilitiesHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#172A53] placeholder-[#172A53]" />
+              <textarea name="facilitiesPara" defaultValue={editingUniversity?.facilitiesPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#172A53] placeholder-[#172A53]" />
+            </div>
+
+            {/* Features */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-700">Our Features</label>
+              <input type="text" name="featuresHeading" defaultValue={editingUniversity?.featuresHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#172A53] placeholder-[#172A53]" />
+              <textarea name="featuresPara" defaultValue={editingUniversity?.featuresPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#172A53] placeholder-[#172A53]" />
+            </div>
+
+            {/* Why Choose */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-700">Why Choose University?</label>
+              <input type="text" name="whyChooseHeading" defaultValue={editingUniversity?.whyChooseHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#172A53] placeholder-[#172A53]" />
+              <textarea name="whyChoosePara" defaultValue={editingUniversity?.whyChoosePara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#172A53] placeholder-[#172A53]" />
+            </div>
+
+            {/* B.Tech Programs */}
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <label className="text-sm font-semibold text-gray-700">B.Tech Programs</label>
+              <input type="text" name="btechProgramsHeading" defaultValue={editingUniversity?.btechProgramsHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#172A53] placeholder-[#172A53]" />
+              <textarea name="btechProgramsPara" defaultValue={editingUniversity?.btechProgramsPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#172A53] placeholder-[#172A53]" />
+            </div>
+          </div>
+
           <button
             type="submit"
             disabled={isPending}
             className="self-end px-6 py-2 bg-[#172A53] text-white font-medium rounded-xl hover:bg-[#172A53]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
           >
             <Plus className="w-5 h-5" />
-            Add University
+            {editingUniversity ? 'Update University' : 'Add University'}
           </button>
         </form>
       </div>
@@ -234,14 +318,24 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                   <p className="text-sm text-gray-700 max-w-3xl">{uni.description}</p>
                 </div>
               </div>
-              <button
-                onClick={() => handleDeleteUniversity(uni.id)}
-                disabled={isPending || uploadingId === uni.id}
-                className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors flex-shrink-0"
-                title="Delete University"
-              >
-                <Trash2 className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleEditClick(uni)}
+                  disabled={isPending}
+                  className="text-blue-500 hover:text-blue-600 hover:bg-blue-50 p-2 rounded-lg transition-colors flex-shrink-0"
+                  title="Edit University"
+                >
+                  <Edit className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => handleDeleteUniversity(uni.id)}
+                  disabled={isPending || uploadingId === uni.id}
+                  className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors flex-shrink-0"
+                  title="Delete University"
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* Certificates Text List */}

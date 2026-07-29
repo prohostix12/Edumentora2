@@ -35,6 +35,18 @@ model University {
   description  String
   mainImage    String?
   certificates String[]
+
+  visionHeading        String?
+  visionPara           String?
+  facilitiesHeading    String?
+  facilitiesPara       String?
+  featuresHeading      String?
+  featuresPara         String?
+  whyChooseHeading     String?
+  whyChoosePara        String?
+  btechProgramsHeading String?
+  btechProgramsPara    String?
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -98,4 +110,16 @@ model Program {
   updatedAt   DateTime @updatedAt
 
   @@map("programs")
+}
+
+model Review {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String
+  postedDate DateTime
+  rating     Int
+  comment    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("reviews")
 }

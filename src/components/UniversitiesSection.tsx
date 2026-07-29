@@ -65,6 +65,16 @@ export default function UniversitiesSection() {
           ))}
         </motion.div>
       </div>
+
+      <div className="mt-12 pb-12 flex justify-center">
+        <a 
+          href="/universities" 
+          className="bg-white text-[#da251d] font-bold py-3.5 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2"
+        >
+          Show all universities
+          <span className="text-xl">→</span>
+        </a>
+      </div>
       </div>
     </section>
   );

@@ -73,30 +73,9 @@ export default function Footer() {
 
         {/* LEFT SIDE (72%) - FOUR COLUMNS */}
         <div className="w-full lg:w-[72%] relative z-10 py-20 px-8 lg:px-12 xl:px-16 flex flex-col justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-8 xl:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 xl:gap-6">
             
-            {/* Column 1: Brand */}
-            <div className="flex flex-col items-start space-y-7">
-              <Link href="/" className="flex flex-col gap-3">
-                <img 
-                  src="/edumentora_logo.webp" 
-                  alt="Edumentora Logo" 
-                  className="h-14 w-auto object-contain bg-white p-2 rounded border border-gray-200 self-start"
-                />
-                <span className="text-white font-bold text-[17px] tracking-wide">Edumentora Services LLP</span>
-              </Link>
-              <p className="text-gray-400 text-sm leading-relaxed font-medium">
-                Your trusted partner in education, offering expert guidance and innovative learning resources to empower students and professionals for academic and career success.
-              </p>
-              <Link 
-                href="/contact" 
-                className="inline-block border-2 border-[#da251d] text-[#da251d] px-8 py-3 hover:bg-[#da251d] hover:text-white transition-colors duration-300 rounded font-bold text-sm tracking-wide uppercase"
-              >
-                Contact Us
-              </Link>
-            </div>
-
-            {/* Column 2: Quick Links */}
+            {/* Column 1: Quick Links */}
             <div className="lg:pl-4">
               <h4 className="text-white font-bold text-xl mb-8 relative inline-block pb-3">
                 Quick Links
@@ -229,22 +208,29 @@ export default function Footer() {
           {/* Content Container */}
           <div className="relative z-10 w-full h-full flex flex-col justify-center py-20 px-10 xl:px-14 lg:pl-20 xl:pl-24">
             
-            {/* Newsletter Section */}
-            <div>
-              <h4 className="text-white font-bold text-2xl mb-3 leading-tight">Subscribe to Newsletter</h4>
-              <p className="text-red-100/90 text-sm mb-6 leading-relaxed font-medium">Stay updated with our latest news and educational insights.</p>
-              
-              <form className="flex w-full bg-white/10 p-1 rounded backdrop-blur-md border border-white/20" onSubmit={(e) => e.preventDefault()}>
-                <input 
-                  type="email" 
-                  placeholder="Email address" 
-                  className="w-full bg-transparent text-white placeholder-white/70 text-sm px-4 py-3 focus:outline-none"
-                  required
+            {/* Brand Logo, Text, and Contact Section */}
+            <div className="flex flex-col items-start space-y-6 pl-4 max-w-sm">
+              <Link href="/" className="bg-white p-3 rounded-xl shadow-xl inline-block transform hover:scale-105 transition-transform duration-300">
+                <img 
+                  src="/edumentora_logo.webp" 
+                  alt="Edumentora Logo" 
+                  className="h-16 w-auto object-contain"
                 />
-                <button type="submit" className="bg-[#111318] text-white px-5 py-3 rounded hover:bg-black transition-colors flex items-center justify-center group shadow-md">
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </form>
+              </Link>
+              
+              <div className="space-y-3">
+                <h3 className="text-white font-bold text-xl tracking-wide">Edumentora Services LLP</h3>
+                <p className="text-red-100/90 text-sm leading-relaxed font-medium">
+                  Your trusted partner in education, offering expert guidance and innovative learning resources to empower students and professionals for academic and career success.
+                </p>
+              </div>
+
+              <Link 
+                href="/contact" 
+                className="inline-block bg-[#111318] text-white px-8 py-3.5 hover:bg-black transition-colors duration-300 rounded font-bold text-sm tracking-wide uppercase shadow-lg border border-white/10 mt-2"
+              >
+                Contact Us
+              </Link>
             </div>
 
           </div>
