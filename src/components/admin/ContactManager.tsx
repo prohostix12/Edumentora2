@@ -37,35 +37,46 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <h2 className="text-xl font-semibold text-[#172A53] mb-4">Add New Contact</h2>
         <form id="add-contact-form" action={handleCreateContact} className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="department"
-              placeholder="Department Name (e.g. Admissions)"
-              required
-              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
-            />
-            <input
-              type="text"
-              name="lanphone"
-              placeholder="Landline Phone"
-              required
-              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
-            />
-            <input
-              type="text"
-              name="mob"
-              placeholder="Mobile Number"
-              required
-              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              required
-              className="px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-gray-700">Department Name</label>
+              <input
+                type="text"
+                name="department"
+                required
+                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              />
+            </div>
+            
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-gray-700">Landline Phone</label>
+              <input
+                type="text"
+                name="lanphone"
+                required
+                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              />
+            </div>
+            
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-gray-700">Mobile Number</label>
+              <input
+                type="text"
+                name="mob"
+                required
+                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              />
+            </div>
+            
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-gray-700">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+              />
+            </div>
           </div>
           
           <button

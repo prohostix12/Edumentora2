@@ -115,9 +115,8 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
           <input
             type="text"
             name="sectionName"
-            placeholder="e.g. Convocation 2026, Campus Tour..."
             required
-            className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+            className="flex-1 px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
           />
           <button
             type="submit"
