@@ -24,7 +24,7 @@ const programs = [
 
 export default function ProgramsSection() {
   return (
-    <section className="bg-white py-[120px] overflow-hidden">
+    <section className="bg-white py-16 md:py-24 lg:py-[120px] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 lg:px-[80px] flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
         
         {/* LEFT SIDE: Title Area */}
