@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 
 export async function authenticateAdmin(password: string) {
-  if (password === 'Abhy@123') {
+  if (password === 'edumentora123') {
     const cookieStore = await cookies();
     cookieStore.set('admin_auth_token', 'authenticated', { secure: true, httpOnly: true, path: '/' });
     return { success: true };
