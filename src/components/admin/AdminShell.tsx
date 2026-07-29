@@ -15,11 +15,11 @@ export default function AdminShell({
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-50 font-[Poppins] overflow-hidden">
+    <div className="flex min-h-screen bg-gray-50 font-[Poppins]">
 
       {/* ── SIDEBAR ────────────────────────────────────────────────── */}
       <aside
-        className={`relative bg-[#172A53] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 h-screen bg-[#172A53] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
           collapsed ? 'w-16' : 'w-64'
         }`}
       >
@@ -69,7 +69,7 @@ export default function AdminShell({
       </aside>
 
       {/* ── MAIN CONTENT ───────────────────────────────────────────── */}
-      <main className="flex-1 overflow-y-auto min-w-0">
+      <main className="flex-1 min-w-0">
         {children}
       </main>
     </div>
