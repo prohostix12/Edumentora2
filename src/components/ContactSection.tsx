@@ -52,7 +52,7 @@ export default function ContactSection() {
 
           {/* Left Side: Information */}
         <div className="relative z-10 w-full lg:w-1/2 flex flex-col space-y-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight">
+          <h2 className="text-xl md:text-3xl font-bold leading-tight whitespace-nowrap">
             Ready To Grow with Edumentora
           </h2>
 

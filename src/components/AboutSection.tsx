@@ -22,15 +22,15 @@ export default function AboutSection() {
     <section ref={sectionRef} className="w-full bg-[#172A53] overflow-hidden mb-[10px] -mt-[60px] relative z-10">
       <motion.div
         style={{ opacity: sectionOpacity }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-16 pb-16 md:pb-24 flex flex-col lg:flex-row gap-12 lg:gap-24 items-center [perspective:1500px]"
+        className="max-w-7xl mx-auto px-8 pt-16 pb-24 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center [perspective:1500px]"
       >
 
         {/* Left Side: Overlapping Images */}
-        <div className="w-full lg:w-1/2 relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] flex items-center justify-center mt-5">
+        <div className="w-full lg:w-1/2 relative h-[500px] md:h-[600px] flex items-center justify-center mt-5">
           {/* Background Image (larger, bottom-left) */}
           <motion.div
             style={{ x: imageX, rotateY: imageRotateY, transformStyle: 'preserve-3d' }}
-            className="absolute bottom-0 left-0 w-[80%] md:w-[70%] h-[75%] rounded-[20px] md:rounded-[40px] overflow-hidden shadow-xl"
+            className="absolute bottom-0 left-0 w-[80%] md:w-[70%] h-[75%] rounded-[40px] overflow-hidden shadow-xl"
           >
             <Image
               src="/about-bg.png"
@@ -43,7 +43,7 @@ export default function AboutSection() {
           {/* Foreground Image (smaller, top-right, with white border) */}
           <motion.div
             style={{ x: imageX, rotateY: imageRotateY, transformStyle: 'preserve-3d' }}
-            className="absolute top-0 right-0 md:right-10 w-[60%] md:w-[55%] h-[55%] rounded-[20px] md:rounded-[40px] border-4 md:border-8 border-white overflow-hidden shadow-2xl z-10"
+            className="absolute top-0 right-0 md:right-10 w-[60%] md:w-[55%] h-[55%] rounded-[40px] border-8 border-white overflow-hidden shadow-2xl z-10"
           >
             <Image
               src="/about-fg.png"
@@ -57,9 +57,9 @@ export default function AboutSection() {
         {/* Right Side: Content */}
         <motion.div
           style={{ x: contentX, rotateY: contentRotateY, transformStyle: 'preserve-3d' }}
-          className="w-full lg:w-1/2 flex flex-col justify-center space-y-6 md:space-y-8"
+          className="w-full lg:w-1/2 flex flex-col justify-center space-y-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white my-3 md:my-5">
+          <h2 className="text-4xl md:text-5xl font-bold text-white my-5">
             About Edumentora
           </h2>
 

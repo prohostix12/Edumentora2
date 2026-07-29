@@ -12,7 +12,7 @@ export default function BTechCreditTransferPage() {
       <Header />
       
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#172A53] text-center">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#172A53] text-center whitespace-nowrap">
           B Tech Credit Transfer Alappuzha
         </h1>
       </div>

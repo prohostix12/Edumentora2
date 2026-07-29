@@ -38,7 +38,7 @@ export default function ProgramsSection() {
             <div className="text-[#E53935] font-bold tracking-widest text-sm uppercase mb-4">
               Our Programs
             </div>
-            <h2 className="text-[32px] sm:text-[40px] lg:text-[52px] font-bold text-[#122B63] leading-tight mb-6">
+            <h2 className="text-[40px] lg:text-[52px] font-bold text-[#122B63] leading-tight mb-6">
               Our Credit Transfer Programs
             </h2>
             <p className="text-gray-500 text-[16px] leading-relaxed mb-8">

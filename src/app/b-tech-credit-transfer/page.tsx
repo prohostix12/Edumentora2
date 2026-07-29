@@ -210,14 +210,14 @@ export default function BTechCreditTransferPage() {
                 Specializations Available
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[rgb(49,45,69)] text-base flex-grow">
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Civil Engineering</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Mechanical Eng</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Computer Science</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Electronics (ECE)</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Electrical Eng</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Information Tech</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Automobile Eng</li>
-                <li className="flex items-center"><span className="text-purple-500 mr-2">▪</span> Chemical Eng</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Civil Engineering</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Mechanical Eng</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Computer Science</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Electronics (ECE)</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Electrical Eng</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Information Tech</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Automobile Eng</li>
+                <li className="flex items-center whitespace-nowrap"><span className="text-purple-500 mr-2">▪</span> Chemical Eng</li>
               </ul>
             </div>
 

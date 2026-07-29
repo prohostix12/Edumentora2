@@ -56,25 +56,25 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-16 lg:gap-24 overflow-visible items-center">
 
         {/* Left Content: Text */}
-        <div className="w-full lg:w-1/2 text-[#172A53] pt-4 text-center lg:text-left">
+        <div className="w-full lg:w-1/2 text-[#172A53] pt-4">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold leading-tight mb-8"
+            className="text-4xl md:text-5xl font-bold leading-tight mb-8"
           >
-            What Our Students Say<br className="hidden md:block" /> About Us!
+            What Our Students Say<br />About Us!
           </motion.h2>
         </div>
 
         {/* Right Content: Testimonial Card */}
-        <div className="w-full lg:w-1/2 relative flex flex-col items-center justify-center pt-8 lg:pt-0 px-2 sm:px-0">
+        <div className="w-full lg:w-1/2 relative flex flex-col items-center justify-center pt-8 lg:pt-0">
 
           <div className="relative w-full max-w-lg">
 
             {/* The white card */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 text-center shadow-xl relative">
+            <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
 
               {/* Avatar overlapping top edge */}
               <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
@@ -108,7 +108,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
                 </div>
               </div>
 
-              <div className="mt-6 min-h-[160px] flex flex-col justify-center pb-2">
+              <div className="mt-6 h-40 flex flex-col justify-center">
                 <AnimatePresence mode='wait'>
                   <motion.div
                     key={currentIndex}
@@ -145,13 +145,13 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
             {/* Navigation Arrows */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
