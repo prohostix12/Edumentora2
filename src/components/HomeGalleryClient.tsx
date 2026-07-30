@@ -59,18 +59,18 @@ export default function HomeGalleryClient({ images }: { images: string[] }) {
   const sliceAngle = imageAngle / SLICES_PER_IMAGE;
   
   // Base item width
-  const itemWidth = 320;
+  const itemWidth = 240;
   const sliceWidth = itemWidth / SLICES_PER_IMAGE;
   
   // Calculate the radius so that slices form a perfect smooth curve for their angle
   const radius = Math.round((sliceWidth / 2) / Math.tan((sliceAngle * Math.PI / 180) / 2));
 
   return (
-    <div className="relative w-full h-[60vh] bg-transparent flex flex-col items-center justify-center overflow-hidden [perspective:1200px]">
+    <div className="relative w-full h-[250px] md:h-[300px] bg-transparent flex flex-col items-center justify-center overflow-hidden [perspective:800px]">
       
       {/* 3D Cylinder Container */}
       <div
-        className="relative w-[32px] h-[60%] min-h-[300px] [transform-style:preserve-3d]"
+        className="relative w-[32px] h-[180px] md:h-[220px] [transform-style:preserve-3d]"
         style={{ transform: `rotateY(${rotation}deg)` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

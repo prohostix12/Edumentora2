@@ -33,7 +33,7 @@ export default async function HomeGallerySection() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-4 md:py-6 bg-white relative overflow-hidden">
       <div className="w-full">
         
         {/* Section Header */}
