@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { PrismaClient } from '@prisma/client';
 import { ArrowRight } from 'lucide-react';
+import HomeGalleryClient from './HomeGalleryClient';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -22,12 +23,21 @@ export default async function HomeGallerySection() {
     return null; // Don't show the section if no images exist
   }
 
+  // If there are not enough images to form a cylinder (e.g. less than 4),
+  // we could duplicate them to ensure the cylinder looks right.
+  let displayImages = allImages;
+  if (displayImages.length > 0 && displayImages.length < 5) {
+    while (displayImages.length < 5) {
+      displayImages = [...displayImages, ...allImages].slice(0, 8);
+    }
+  }
+
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="w-full">
         
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-8 px-4 md:px-8">
           <div className="inline-flex items-center justify-center space-x-2 bg-gray-50 px-4 py-2 rounded-full mb-4 border border-gray-100">
             <span className="w-2 h-2 rounded-full bg-[#da251d] animate-pulse"></span>
             <span className="text-[#172A53] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
@@ -41,26 +51,13 @@ export default async function HomeGallerySection() {
           </p>
         </div>
 
-        {/* Gallery Grid: 2 Rows, 4 Columns on md/lg */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
-          {allImages.map((image, index) => (
-            <div 
-              key={index} 
-              className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300"
-            >
-              <img
-                src={image}
-                alt={`Gallery image ${index + 1}`}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          ))}
+        {/* 3D Cylinder Gallery */}
+        <div className="w-full mb-12">
+           <HomeGalleryClient images={displayImages} />
         </div>
 
         {/* Explore More Button */}
-        <div className="text-center">
+        <div className="text-center px-4 md:px-8">
           <Link 
             href="/gallery" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#172A53] text-white font-bold rounded-xl hover:bg-[#111f3d] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"

@@ -19,7 +19,7 @@ export default function AboutSection() {
   const contentRotateY = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [90, 0, 0, 90]);
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#172A53] overflow-hidden mb-[10px] -mt-[60px] relative z-10">
+    <section ref={sectionRef} className="w-full bg-white overflow-hidden mb-[10px] -mt-[60px] relative z-10">
       <motion.div
         style={{ opacity: sectionOpacity }}
         className="max-w-7xl mx-auto px-8 pt-16 pb-24 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center [perspective:1500px]"
@@ -59,32 +59,32 @@ export default function AboutSection() {
           style={{ x: contentX, rotateY: contentRotateY, transformStyle: 'preserve-3d' }}
           className="w-full lg:w-1/2 flex flex-col justify-center space-y-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white my-5">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#172A53] my-5">
             About Edumentora
           </h2>
 
-          <div className="border-l-4 border-white/30 pl-6">
-            <p className="text-white/90 text-lg md:text-xl leading-relaxed">
+          <div className="border-l-4 border-[#da251d] pl-6">
+            <p className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium">
               Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
             </p>
           </div>
 
-          <p className="text-white/70 text-lg leading-relaxed">
+          <p className="text-gray-700 text-lg leading-relaxed text-justify">
             Resume your graduation or postgraduate education through Edumentora, a leading academic credit transfer institution. Transfer earned credits for B. Tech, engineering, and other programs to recognized universities, saving time and costs while achieving academic success.
           </p>
 
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md">
-              <Phone className="w-6 h-6 text-[#172A53]" />
+            <div className="w-12 h-12 bg-[#da251d]/10 rounded-xl flex items-center justify-center shadow-sm">
+              <Phone className="w-6 h-6 text-[#da251d]" />
             </div>
             <div>
-              <p className="text-white/70 text-sm font-medium">Call Us Anytime</p>
-              <p className="text-white font-bold text-lg">+91 974458 7777</p>
+              <p className="text-gray-500 text-sm font-medium">Call Us Anytime</p>
+              <p className="text-[#172A53] font-bold text-lg">+91 974458 7777</p>
             </div>
           </div>
 
           <div>
-            <button className="bg-white text-[#172A53] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
+            <button className="bg-[#172A53] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#172A53]/90 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
               About Us
             </button>
           </div>

@@ -10,9 +10,6 @@ export default function Hero() {
   return (
     <section
       className="relative w-full lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
-      style={{
-        background: 'linear-gradient(110deg, #ffe0e0 0%, #ffffff 25%, #ffffff 60%, #b2ceff 75%, #4a80f6 100%)'
-      }}
     >
 
       {/* Background Decorative Elements */}
