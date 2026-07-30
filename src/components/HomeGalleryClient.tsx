@@ -38,7 +38,7 @@ export default function HomeGalleryClient({ images }: { images: string[] }) {
   }, [isClient, isHovered]);
 
   if (!isClient) {
-    return <div className="w-full h-[80vh] bg-gray-50 flex items-center justify-center">Loading Gallery...</div>;
+    return <div className="w-full h-[80vh] bg-transparent flex items-center justify-center">Loading Gallery...</div>;
   }
 
   // Ensure we have at least a few images to make a decent cylinder.
@@ -66,7 +66,7 @@ export default function HomeGalleryClient({ images }: { images: string[] }) {
   const radius = Math.round((sliceWidth / 2) / Math.tan((sliceAngle * Math.PI / 180) / 2));
 
   return (
-    <div className="relative w-full h-[60vh] bg-gray-50 flex flex-col items-center justify-center overflow-hidden [perspective:1200px]">
+    <div className="relative w-full h-[60vh] bg-transparent flex flex-col items-center justify-center overflow-hidden [perspective:1200px]">
       
       {/* 3D Cylinder Container */}
       <div

@@ -57,8 +57,8 @@ export default async function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
-      <TestimonialSection reviews={reviews} />
       <HomeGallerySection />
+      <TestimonialSection reviews={reviews} />
       <Footer />
       <FloatingWhatsApp />
     </main>
