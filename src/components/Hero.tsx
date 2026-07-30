@@ -9,7 +9,7 @@ import heroImage from '../../public/hero-image.png';
 export default function Hero() {
   return (
     <section
-      className="relative w-full lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
+      className="relative w-full h-[90dvh] lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
     >
 
       {/* Background Decorative Elements */}
@@ -92,7 +92,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Hero Image */}
-        <div className="relative flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full mt-10 md:mt-0 z-10">
+        <div className="relative hidden md:flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full mt-10 md:mt-0 z-10">
           {/* Hero Image */}
           <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
             <Image
