@@ -68,36 +68,72 @@ export default function BTechCreditTransferPage() {
       />
 
       <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28 pt-8">
-        {/* Elevated Intro Card */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 mb-20 mt-12">
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
-            <div className="relative w-full lg:w-5/12 h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-xl group">
-              <Image
-                src="/btech-credit-transfer.png"
-                alt="Engineering Career"
-                fill
-                className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+        {/* Elevated Intro Card Redesigned */}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 mb-24 mt-16">
+          <div className="relative bg-white rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden">
+            
+            {/* Background Decorative Blob */}
+            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-br from-red-50 to-blue-50 blur-[80px] -z-10 pointer-events-none"></div>
+
+            {/* Left Side: Image with modern offset styling */}
+            <div className="relative w-full lg:w-5/12 flex justify-center group">
+              {/* Decorative background shape */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#172A53] to-blue-800 rounded-[2.5rem] transform -rotate-3 scale-[0.95] translate-x-4 translate-y-4 shadow-xl transition-transform duration-700 group-hover:rotate-0 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+              
+              <div className="relative w-full h-[400px] md:h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white z-10">
+                <Image
+                  src="/btech-credit-transfer.png"
+                  alt="Engineering Career"
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                
+                {/* Floating badge */}
+                <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="w-10 h-10 bg-red-100 text-[#da251d] rounded-full flex items-center justify-center font-bold text-lg">
+                    🎓
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#172A53] text-xs uppercase tracking-wider">Fast Track</div>
+                    <div className="text-gray-500 text-[10px] font-bold uppercase">Your Degree</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="lg:w-7/12 space-y-6">
-              <h2 className="text-3xl font-bold text-[#172A53] leading-tight">
-                Complete your B.Tech Without Starting Over!
-              </h2>
-              <div className="text-[rgb(49,45,69)] text-lg leading-relaxed text-justify space-y-4">
-                <p>
-                  At Edumentora, our B.Tech Credit Transfer Program is designed to help engineering students who have discontinued their studies due to academic, personal, or financial challenges. This program allows you to transfer your previously earned credits to our partner universities and continue your B.Tech degree without starting over.
-                </p>
-                <p>
-                  We collaborate with reputed institutions like Glocal University, Radha Govind University, and Arni University, ensuring that your academic efforts are recognized and credited toward your degree. Our expert team evaluates your existing credits and facilitates a smooth transfer process.
-                </p>
-                <p>
-                  Instead of starting from the first year, eligible students who have completed at least 50% of their B.Tech coursework can transfer their existing credits to a UGC-approved and AICTE-recognized university.
-                </p>
+            {/* Right Side: Content */}
+            <div className="w-full lg:w-7/12 space-y-8 relative z-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100">
+                <span className="w-2 h-2 rounded-full bg-[#da251d] animate-pulse"></span>
+                <span className="text-[#172A53] font-bold text-xs uppercase tracking-widest">Resume Your Journey</span>
               </div>
-              <Link href="#educational-mobility" className="mt-4 bg-[#da251d] hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
-                Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+              
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] leading-tight tracking-tight">
+                Complete your B.Tech <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-red-500">Without Starting Over!</span>
+              </h2>
+              
+              <div className="relative">
+                <div className="absolute left-0 top-2 bottom-2 w-1.5 bg-gradient-to-b from-[#da251d] to-red-200 rounded-full"></div>
+                <div className="pl-7 space-y-5 text-gray-600 text-lg leading-relaxed text-justify font-medium">
+                  <p>
+                    At Edumentora, our B.Tech Credit Transfer Program is designed to help engineering students who have discontinued their studies due to academic, personal, or financial challenges. This program allows you to transfer your previously earned credits to our partner universities and continue your B.Tech degree without starting over.
+                  </p>
+                  <p>
+                    We collaborate with reputed institutions like Glocal University, Radha Govind University, and Arni University, ensuring that your academic efforts are recognized and credited toward your degree. Our expert team evaluates your existing credits and facilitates a smooth transfer process.
+                  </p>
+                  <p>
+                    Instead of starting from the first year, eligible students who have completed at least 50% of their B.Tech coursework can transfer their existing credits to a UGC-approved and AICTE-recognized university.
+                  </p>
+                </div>
+              </div>
+              
+              <Link href="#educational-mobility" className="mt-8 relative inline-flex items-center justify-center px-8 py-4 font-bold text-[#172A53] transition-all duration-300 bg-white rounded-full hover:bg-[#172A53] hover:text-white border-2 border-[#172A53] overflow-hidden group w-fit shadow-md hover:shadow-xl">
+                <span className="relative flex items-center gap-2">
+                  Know More 
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
               </Link>
             </div>
           </div>
@@ -106,7 +142,6 @@ export default function BTechCreditTransferPage() {
         {/* 4 Information Grids */}
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-
             {/* Eligibility Box */}
             <div className="bg-white p-8 md:p-10 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col h-full group">
               <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-6 text-[#da251d] font-bold text-2xl group-hover:bg-[#da251d] group-hover:text-white transition-colors duration-300">
