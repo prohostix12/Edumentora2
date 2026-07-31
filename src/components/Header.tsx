@@ -89,7 +89,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-medium text-gray-800">
+        <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#172A53]">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
@@ -165,7 +165,7 @@ export default function Header() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="lg:hidden pointer-events-auto absolute top-24 left-4 right-4 bg-white shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-[20px] border border-gray-100 flex flex-col z-50 overflow-hidden"
           >
-            <div className="flex flex-col py-4 px-6 space-y-2 text-base font-medium text-gray-800 h-max max-h-[80vh] overflow-y-auto">
+            <div className="flex flex-col py-4 px-6 space-y-2 text-base font-bold text-[#172A53] h-max max-h-[80vh] overflow-y-auto">
               {navLinks.map((link) => (
                 <Link key={link.name} href={link.href} onClick={closeMobileMenu} className={`py-3 transition-colors border-b border-gray-50 ${isActive(link.href) ? 'text-[#da251d]' : 'hover:text-[#da251d]'}`}>
                   {link.name}

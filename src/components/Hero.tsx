@@ -1,15 +1,153 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Shield, ArrowRight } from 'lucide-react';
 import heroImage from '../../public/hero-image.png';
 
+const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: {text: string, className?: string}[], speed?: number, delay?: number }) => {
+  const [charIndex, setCharIndex] = useState(0);
+  const [started, setStarted] = useState(false);
+  const fullText = segments.map(s => s.text).join("");
+
+  useEffect(() => {
+    const t = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  useEffect(() => {
+    if (started && charIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setCharIndex(charIndex + 1);
+      }, speed);
+      return () => clearTimeout(timeout);
+    }
+  }, [charIndex, started, fullText, speed]);
+
+  let currentIndex = 0;
+  return (
+    <>
+      {segments.map((seg, i) => {
+        const segStart = currentIndex;
+        currentIndex += seg.text.length;
+
+        if (charIndex <= segStart) return null;
+        
+        const displayedText = seg.text.slice(0, charIndex - segStart);
+        
+        return (
+          <span key={i} className={seg.className}>
+            {displayedText.split('\n').map((line, j, arr) => (
+              <React.Fragment key={j}>
+                {line}
+                {j < arr.length - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </span>
+        );
+      })}
+      {/* Blinking cursor */}
+      <style>{`
+        @keyframes typeBlink {
+          0%, 49% { opacity: 1; }
+          50%, 99% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+      `}</style>
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#da251d] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+    </>
+  );
+};
+
+const LoopingTypewriterText = ({ 
+  baseSegments, 
+  loopSegments, 
+  speed = 40,
+  deleteSpeed = 20,
+  delay = 500,
+  pause = 5000
+}: { 
+  baseSegments: {text: string, className?: string}[], 
+  loopSegments: {text: string, className?: string}[][], 
+  speed?: number,
+  deleteSpeed?: number,
+  delay?: number,
+  pause?: number
+}) => {
+  const [charIndex, setCharIndex] = useState(0);
+  const [started, setStarted] = useState(false);
+  const [loopIndex, setLoopIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const currentLoopSegs = loopSegments[loopIndex];
+  const fullBaseText = baseSegments.map(s => s.text).join("");
+  const fullLoopText = currentLoopSegs.map(s => s.text).join("");
+  const totalLength = fullBaseText.length + fullLoopText.length;
+
+  useEffect(() => {
+    const t = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    if (!isDeleting && charIndex < totalLength) {
+      const t = setTimeout(() => setCharIndex(c => c + 1), speed);
+      return () => clearTimeout(t);
+    } 
+    
+    if (!isDeleting && charIndex === totalLength) {
+      const t = setTimeout(() => setIsDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+
+    if (isDeleting && charIndex > fullBaseText.length) {
+      const t = setTimeout(() => setCharIndex(c => c - 1), deleteSpeed);
+      return () => clearTimeout(t);
+    }
+
+    if (isDeleting && charIndex === fullBaseText.length) {
+      setIsDeleting(false);
+      setLoopIndex((prev) => (prev + 1) % loopSegments.length);
+    }
+  }, [charIndex, started, isDeleting, totalLength, fullBaseText.length, loopSegments.length, speed, deleteSpeed, pause]);
+
+  const combinedSegments = [...baseSegments, ...currentLoopSegs];
+
+  let currentIndex = 0;
+  return (
+    <>
+      {combinedSegments.map((seg, i) => {
+        const segStart = currentIndex;
+        currentIndex += seg.text.length;
+
+        if (charIndex <= segStart) return null;
+        
+        const displayedText = seg.text.slice(0, charIndex - segStart);
+        
+        return (
+          <span key={i} className={seg.className}>
+            {displayedText.split('\n').map((line, j, arr) => (
+              <React.Fragment key={j}>
+                {line}
+                {j < arr.length - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </span>
+        );
+      })}
+      {/* Blinking cursor */}
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#da251d] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+    </>
+  );
+};
+
 export default function Hero() {
   return (
     <section
-      className="relative w-full h-[90dvh] lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px]"
+      className="relative w-full h-[90dvh] lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px] bg-gradient-to-r from-red-100 via-blue-100 to-white"
     >
 
       {/* Background Decorative Elements */}
@@ -56,23 +194,44 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="text-4xl md:text-5xl xl:text-[54px] font-extrabold text-black leading-[1.1] mb-3 xl:mb-5 tracking-tight font-[Poppins]"
           >
-            Empowering Students<br />Through Academic<br />
-            <span className="text-[#da251d]">Credit </span>
-            <span className="text-[#172A53]">Transfer</span>
+            <LoopingTypewriterText
+              speed={40} 
+              delay={500}
+              pause={5000}
+              baseSegments={[
+                { text: "Continue Your Education\nBuild On Your\n" }
+              ]}
+              loopSegments={[
+                [
+                  { text: "Academic ", className: "text-[#da251d]" },
+                  { text: "Credits", className: "text-yellow-500" }
+                ],
+                [
+                  { text: "Educational ", className: "text-[#da251d]" },
+                  { text: "Journey", className: "text-yellow-500" }
+                ]
+              ]} 
+            />
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-6 min-h-[100px]"
           >
-            Transfer your academic credits seamlessly through Kerala's trusted education partner. Achieve your educational goals with recognized institutions and expert guidance.
+            <TypewriterText 
+              speed={20} 
+              delay={500}
+              segments={[
+                { text: "Continue your B.Tech journey by building on the academic credits you’ve already earned. Get the right guidance and support to transfer your credits and move closer to completing your degree." }
+              ]} 
+            />
           </motion.p>
 
           <motion.div
@@ -81,46 +240,55 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className="flex flex-wrap gap-3 md:gap-4"
           >
-            <button className="group flex items-center justify-center gap-2 bg-[#da251d] text-white px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-[0_8px_25px_-5px_rgba(218,37,29,0.5)] hover:bg-red-700 hover:-translate-y-1 transition-all duration-300">
-              Apply Now
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
-              Know More
-            </button>
+            <a href="/contact">
+              <button className="group flex items-center justify-center gap-2 bg-[#da251d] text-white px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-[0_8px_25px_-5px_rgba(218,37,29,0.5)] hover:bg-red-700 hover:-translate-y-1 transition-all duration-300">
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />Applay Now
+              </button>
+            </a>
+            <a href="#">
+              <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
+                Know More
+              </button>
+            </a>
           </motion.div>
         </div>
 
-        {/* Right Side: Hero Image */}
-        <div className="relative hidden md:flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full mt-10 md:mt-0 z-10">
-          {/* Hero Image */}
-          <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
-            <Image
-              src={heroImage}
-              alt="Hero"
-              className="object-contain object-bottom w-full h-full scale-[1.35] lg:scale-[1.55] origin-bottom drop-shadow-2xl"
-              priority
-            />
-          </div>
+        {/* Right Side: Hero Video */}
+        <div className="relative hidden md:flex justify-center items-center h-[450px] lg:h-[550px] xl:h-[600px] w-full z-10 md:-translate-y-[10%]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            className="relative w-[95%] xl:w-[110%] max-w-[650px] aspect-video bg-[#172A53] rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-[3%] group"
+          >
+            {/* Top Left Badge */}
+            <div className="absolute -top-5 -left-5 md:-top-6 md:-left-6 bg-white text-[#da251d] border-2 border-[#da251d] px-4 py-2 md:px-5 md:py-2.5 rounded-xl font-extrabold text-xs md:text-sm shadow-xl z-20 flex items-center gap-2">
+               <span className="w-2 h-2 bg-[#da251d] rounded-full animate-pulse"></span>
+               Credit Transfer Your b-tech
+            </div>
+
+            {/* Bottom Right Badge */}
+            <div className="absolute -bottom-5 -right-5 md:-bottom-6 md:-right-6 bg-yellow-400 text-[#172A53] border-2 border-yellow-400 px-4 py-2 md:px-5 md:py-2.5 rounded-xl font-extrabold text-xs md:text-sm shadow-xl z-20">
+               Get Started Today
+            </div>
+
+            {/* YouTube Iframe */}
+            <div className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black shadow-inner">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=0&modestbranding=1"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="w-full h-full object-cover relative z-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></iframe>
+            </div>
+          </motion.div>
         </div>
       </div>
-
-      {/* Smooth Curved Wave at the Bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
-        <svg
-          className="relative block w-full h-[60px] md:h-[100px] lg:h-[120px]"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-            fill="#da251d"
-          ></path>
-        </svg>
-      </div>
-
     </section>
   );
 }

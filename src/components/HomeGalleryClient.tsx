@@ -1,148 +1,80 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 export default function HomeGalleryClient({ images }: { images: string[] }) {
-  const [isClient, setIsClient] = useState(false);
-  const [rotation, setRotation] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const rotationRef = useRef(rotation);
+  if (!images || images.length === 0) return null;
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    let animationFrameId: number;
-    let lastTime = performance.now();
-
-    const animate = (time: number) => {
-      const deltaTime = time - lastTime;
-      lastTime = time;
-
-      if (!isHovered) {
-        // Rotate continuously (e.g., slower speed)
-        rotationRef.current -= 5 * (deltaTime / 1000);
-        setRotation(rotationRef.current);
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isClient, isHovered]);
-
-  if (!isClient) {
-    return <div className="w-full h-[80vh] bg-transparent flex items-center justify-center">Loading Gallery...</div>;
+  // Ensure we have enough images for a dense loop (at least 6-8)
+  let displayImages = [...images];
+  while (displayImages.length < 8) {
+    displayImages = [...displayImages, ...images];
   }
-
-  // Ensure we have at least a few images to make a decent cylinder.
-  // If fewer than 4, we could duplicate, but let's assume we have up to 8.
-  const displayImages = images.length > 0 ? images : [];
-  
-  if (displayImages.length === 0) return null;
+  // Cap at 12 to avoid too many DOM nodes if the array was large
+  displayImages = displayImages.slice(0, 12);
 
   const numImages = displayImages.length;
-  const SLICES_PER_IMAGE = 10;
-  
-  // Angle allocated for each image + its gap
-  const segmentAngle = 360 / numImages;
-  
-  // 5% of the segment is gap, 95% is the image
-  const gapPercentage = 0.05;
-  const imageAngle = segmentAngle * (1 - gapPercentage);
-  const sliceAngle = imageAngle / SLICES_PER_IMAGE;
-  
-  // Base item width
-  const itemWidth = 240;
-  const sliceWidth = itemWidth / SLICES_PER_IMAGE;
-  
-  // Calculate the radius so that slices form a perfect smooth curve for their angle
-  const radius = Math.round((sliceWidth / 2) / Math.tan((sliceAngle * Math.PI / 180) / 2));
+  const totalDuration = 24; // 24 seconds for a full cycle
+  const delayPerImage = totalDuration / numImages;
 
   return (
-    <div className="relative w-full h-[250px] md:h-[300px] bg-transparent flex flex-col items-center justify-center overflow-hidden [perspective:800px]">
+    <div className="relative w-full h-[300px] md:h-[400px] bg-transparent flex items-center justify-center overflow-hidden">
       
-      {/* 3D Cylinder Container */}
-      <div
-        className="relative w-[32px] h-[180px] md:h-[220px] [transform-style:preserve-3d]"
-        style={{ transform: `rotateY(${rotation}deg)` }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {displayImages.map((img, imgIndex) => {
-          return Array.from({ length: SLICES_PER_IMAGE }).map((_, sliceIndex) => {
-            
-            // Center the slices around the main angle for this image
-            const offsetAngle = (sliceIndex - (SLICES_PER_IMAGE - 1) / 2) * sliceAngle;
-            const angle = (imgIndex * segmentAngle) + offsetAngle;
-            
-            // Calculate background position so the image spans across its slices
-            const bgPos = `${(sliceIndex / (SLICES_PER_IMAGE - 1)) * 100}% center`;
-            
-            // We only show the border on the first and last slices to emulate the card edges
-            const isFirst = sliceIndex === 0;
-            const isLast = sliceIndex === SLICES_PER_IMAGE - 1;
+      <style>{`
+        @keyframes swingAndSlide {
+          0% {
+            transform: perspective(1200px) translate3d(300px, 0, -400px) rotateY(-65deg);
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          20% { /* Arrive at the front */
+            transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg);
+            opacity: 1;
+          }
+          95% { /* Slide smoothly to the left */
+            transform: perspective(1200px) translate3d(-1500px, 0, 0) rotateY(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: perspective(1200px) translate3d(-1600px, 0, 0) rotateY(0deg);
+            opacity: 0;
+          }
+        }
+        
+        .gallery-card {
+          animation: swingAndSlide ${totalDuration}s linear infinite;
+        }
+      `}</style>
 
-            return (
-              <React.Fragment key={`${imgIndex}-${sliceIndex}`}>
-                {/* Front face with image */}
-                <div
-                  className="absolute top-0 left-0 h-full overflow-hidden"
-                  style={{
-                    width: `${sliceWidth}px`,
-                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                    backfaceVisibility: 'hidden',
-                    backgroundImage: `url(${img})`,
-                    backgroundSize: `${itemWidth}px 100%`,
-                    backgroundPosition: bgPos,
-                    // Add border to emulate card thickness on edges
-                    borderLeft: isFirst ? '4px solid white' : 'none',
-                    borderRight: isLast ? '4px solid white' : 'none',
-                    borderTop: '4px solid white',
-                    borderBottom: '4px solid white',
-                    // Small border radius on corners
-                    borderTopLeftRadius: isFirst ? '1rem' : '0',
-                    borderBottomLeftRadius: isFirst ? '1rem' : '0',
-                    borderTopRightRadius: isLast ? '1rem' : '0',
-                    borderBottomRightRadius: isLast ? '1rem' : '0',
-                    // Eliminate tiny gaps between slices
-                    marginLeft: '-0.5px',
-                    marginRight: '-0.5px'
-                  }}
-                />
-                {/* Back face with light gray color */}
-                <div
-                  className="absolute top-0 left-0 h-full overflow-hidden bg-gray-200"
-                  style={{
-                    width: `${sliceWidth}px`,
-                    transform: `rotateY(${angle}deg) translateZ(${radius}px) rotateY(180deg)`,
-                    backfaceVisibility: 'hidden',
-                    // Reversing borders because of 180deg rotation
-                    borderRight: isFirst ? '4px solid white' : 'none',
-                    borderLeft: isLast ? '4px solid white' : 'none',
-                    borderTop: '4px solid white',
-                    borderBottom: '4px solid white',
-                    // Small border radius on corners (reversed left/right)
-                    borderTopRightRadius: isFirst ? '1rem' : '0',
-                    borderBottomRightRadius: isFirst ? '1rem' : '0',
-                    borderTopLeftRadius: isLast ? '1rem' : '0',
-                    borderBottomLeftRadius: isLast ? '1rem' : '0',
-                    // Eliminate tiny gaps between slices
-                    marginLeft: '-0.5px',
-                    marginRight: '-0.5px'
-                  }}
-                />
-              </React.Fragment>
-            );
-          });
+      {/* Container for the cards */}
+      <div className="relative w-[280px] h-[180px] md:w-[360px] md:h-[240px]">
+        {displayImages.map((img, i) => {
+          // Negative delay ensures all cards are pre-distributed along the animation path instantly
+          const delay = -(numImages - i) * delayPerImage;
+          
+          return (
+            <div
+              key={i}
+              className="gallery-card absolute top-0 left-0 w-full h-full rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-[4px] border-white cursor-pointer group"
+              style={{
+                animationDelay: `${delay}s`
+              }}
+            >
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+              <img 
+                src={img} 
+                alt={`Gallery image ${i}`}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+            </div>
+          );
         })}
       </div>
+      
+      {/* Optional fade mask on the left side to hide cards smoothly as they exit */}
+      <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-20"></div>
 
     </div>
   );
