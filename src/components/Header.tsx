@@ -18,10 +18,12 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -35,11 +37,22 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 150) {
+        setIsHidden(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsHidden(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -65,9 +78,9 @@ export default function Header() {
     <div className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 w-full flex justify-center pointer-events-none font-[Poppins]">
       <motion.header
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`pointer-events-auto w-full max-w-7xl h-[82px] flex items-center justify-between px-6 md:px-8 transition-all duration-300 rounded-[18px] ${
+        animate={{ y: isHidden ? -120 : 0, opacity: 1 }}
+        transition={{ duration: 0.4, ease: 'easeInOut' }}
+        className={`pointer-events-auto w-full max-w-7xl h-[82px] flex items-center justify-between px-6 md:px-8 transition-colors duration-300 rounded-[18px] ${
           isScrolled 
             ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100' 
             : 'bg-white shadow-sm border border-transparent'
