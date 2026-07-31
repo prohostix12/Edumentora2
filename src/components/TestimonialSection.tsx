@@ -77,7 +77,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
   }
 
   return (
-    <section className="w-full bg-gray-50 py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-gray-50 py-10 md:py-12 overflow-hidden">
       <style>{`
         @keyframes scrollDown {
           0% { transform: translateY(-50%); }
@@ -102,7 +102,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start pt-4">
         
         {/* Left Column: Both Gallery and Testimonial text/cards */}
-        <div className="w-full flex flex-col items-start text-left gap-20">
+        <div className="w-full flex flex-col items-start text-left gap-6">
            
           {/* 1. Gallery Content */}
           <div className="flex flex-col items-start w-full">
@@ -148,7 +148,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
             </ScrollReveal>
           </div>
 
-          <div className="w-full h-px bg-gray-200"></div>
+          <div className="w-full h-px bg-gray-200 my-2"></div>
 
           {/* 2. What Our Students Say About Us! */}
           <div className="w-full flex flex-col items-start">
@@ -157,7 +157,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-extrabold leading-tight mb-12 text-[#172A53] text-left"
+              className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-[#172A53] text-left"
             >
               What Our Students Say<br />About Us!
             </motion.h2>
@@ -252,10 +252,10 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
         </div>
 
         {/* Right Column: Watch Our Students Videos (Dual Tracks) */}
-        <div className="w-full h-full min-h-[1200px] flex justify-center lg:justify-end gap-4 md:gap-6 pt-10">
+        <div className="w-full h-full min-h-[1000px] flex justify-center lg:justify-end gap-4 md:gap-6 pt-10">
           
           {/* Track 1: Edumentora Videos (Scrolls Up) */}
-          <div className="relative h-[1100px] md:h-[1270px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
+          <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
             <div className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]">
               {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
                 <div 
@@ -269,7 +269,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
           </div>
 
           {/* Track 2: Video Testimonials (Scrolls Down) */}
-          <div className="relative h-[1100px] md:h-[1270px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
+          <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
             <div className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]">
               {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
                 <div 

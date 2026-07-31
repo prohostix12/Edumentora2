@@ -12,7 +12,7 @@ export default function BTechCreditTransferPage() {
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
 
-      <PageBanner title="B Tech Credit Transfer Thiruvananthapuram" badge="Engineering Career" />
+      <PageBanner title="B Tech Credit Transfer Thiruvananthapuram" badge="Engineering Career" bgImage="/b-tech_bg_img.jpg" isGradientText={true} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 space-y-5 text-[#3b3226]">

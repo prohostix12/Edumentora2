@@ -65,6 +65,8 @@ export default function BTechCreditTransferPage() {
         badge="Engineering Career" 
         title="Take the Next Step in your Engineering Career" 
         subtitle="Don’t let an incomplete B.Tech stop you from achieving your dreams. With Edumentora’s B.Tech Credit Transfer Program, you can resume your studies, complete your degree, and build a successful future."
+        bgImage="/b-tech_bg_img.jpg"
+        isGradientText={true}
       />
 
       <div id="know-more" className="bg-gray-50 pb-20 scroll-mt-28 pt-8">

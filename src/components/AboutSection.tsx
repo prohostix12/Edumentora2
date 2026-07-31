@@ -25,32 +25,26 @@ export default function AboutSection() {
         className="max-w-7xl mx-auto px-8 pt-16 pb-24 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center [perspective:1500px]"
       >
 
-        {/* Left Side: Overlapping Images */}
-        <div className="w-full lg:w-1/2 relative h-[500px] md:h-[600px] flex items-center justify-center mt-5">
-          {/* Background Image (larger, bottom-left) */}
-          <motion.div
+        {/* Left Side: Video */}
+        <div className="w-full lg:w-1/2 relative h-auto flex flex-col items-center justify-center mt-5 mb-10 lg:mb-0">
+          <motion.div 
             style={{ x: imageX, rotateY: imageRotateY, transformStyle: 'preserve-3d' }}
-            className="absolute bottom-0 left-0 w-[80%] md:w-[70%] h-[75%] rounded-[40px] overflow-hidden shadow-xl"
+            className="relative w-full max-w-[800px] aspect-video rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] group"
           >
-            <Image
-              src="/about-bg.png"
-              alt="Students studying"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-
-          {/* Foreground Image (smaller, top-right, with white border) */}
-          <motion.div
-            style={{ x: imageX, rotateY: imageRotateY, transformStyle: 'preserve-3d' }}
-            className="absolute top-0 right-0 md:right-10 w-[60%] md:w-[55%] h-[55%] rounded-[40px] border-8 border-white overflow-hidden shadow-2xl z-10"
-          >
-            <Image
-              src="/about-fg.png"
-              alt="Classroom scene"
-              fill
-              className="object-cover"
-            />
+            {/* YouTube Iframe */}
+            <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-black shadow-inner">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=1&modestbranding=1&rel=0"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="w-full h-full object-cover relative z-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></iframe>
+            </div>
           </motion.div>
         </div>
 
