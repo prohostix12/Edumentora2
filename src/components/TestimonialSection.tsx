@@ -57,6 +57,15 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
     "/videos/AQNpbY6wsmlrIYsrakwMbQbdsUruf5ouV6QV8vdYssaYGubvcnQOrRcfINTg-pZdYzJvXOYkF1aGQ1-VfAmDV1WcnrNTeiOgQRtrA9o.mp4"
   ];
 
+  const edumentoraVideos = [
+    "/videos/edu_vdo_002/AQMVj3lkTOBgMHTnLZTC2J4kfHstGPCf2q03YmOLyyo6c3tT2MXe3fa_KOV7ZqW3-y1_BPFhshr8BcJg6LBF95WvJxk_iXMkDgXHsjc.mp4",
+    "/videos/edu_vdo_002/AQNSavI6FlYWDwT6h6LLNyQGF24TQPZIX7g3EmKsBpaVn-4mDMUz6b9w6tPS6ZIoNI3D0kjp_c6AY6fLRWMBvP46xqd9EI7K7U5p968.mp4",
+    "/videos/edu_vdo_002/AQONsMIdVI0-4Qh0PeZPNOd1hLNrEpXKKLKPMB_ZsQEkISLYbqILCZoYfj1n8DF7RqGaFcE_AX8gRyc8Kzq6Q8udqWFdJbIyDnCKwss.mp4",
+    "/videos/edu_vdo_002/AQOYIuE_RxbeMs5toV-jgVMPka2Pu5oupIwX-iXJjtkCWkgKCP4SEiS9l1vdvKPRE-QwXre_oEaORvYnmFj8ZYSfTMt1m5rMKNTko7U.mp4",
+    "/videos/edu_vdo_002/AQOxffHXxWVuQqOy-5bt_MkuHMZoeQmlQ1bD6oIQVsNkclT8_43QjykbdsS9hZV8neWXGIzzL8Yp4gIGqBG5caMUgj_NOSvC9CPrFSM.mp4",
+    "/videos/edu_vdo_002/AQP1bJu-J18cIMOjllZW30S4EEX6dVbCNZLW-5lBxYrHhjm6kaf2q0ZwJQTDOElKNjaXQQ6SoLckr3FxCRVtElzBHwrhOfdLrUKFxYE.mp4"
+  ];
+
   return (
     <section className="w-full bg-gray-50 py-16 overflow-hidden">
       <style>{`
@@ -64,10 +73,17 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
           0% { transform: translateY(-50%); }
           100% { transform: translateY(0); }
         }
+        @keyframes scrollUp {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
         .animate-scroll-down {
           animation: scrollDown 20s linear infinite;
         }
-        .animate-scroll-down:hover {
+        .animate-scroll-up {
+          animation: scrollUp 40s linear infinite;
+        }
+        .animate-scroll-down:hover, .animate-scroll-up:hover {
           animation-play-state: paused;
         }
         .fade-edges {
@@ -76,28 +92,57 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
         }
       `}</style>
 
-      {/* Top Section: Watch Our Students Videos */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center mb-24 pt-4">
-        <h3 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-8 text-center w-full">Watch Our Students</h3>
+      {/* Video Sections Row */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row gap-12 lg:gap-24 justify-center items-center md:items-start mb-24 pt-4">
         
-        <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges mx-auto">
-          <div className="flex flex-col gap-5 animate-scroll-down pb-5">
-            {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
-              <div 
-                key={idx} 
-                className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
-              >
-                <video 
-                  src={src}
-                  className="w-full h-full object-cover"
-                  controls
-                  playsInline
-                  preload="metadata"
-                />
-              </div>
-            ))}
+        {/* Left Column: Watch Our Students */}
+        <div className="w-full md:w-1/2 flex flex-col items-center">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-8 text-center w-full">Watch Our Students</h3>
+          
+          <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges mx-auto">
+            <div className="flex flex-col gap-5 animate-scroll-down pb-5">
+              {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
+                <div 
+                  key={idx} 
+                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
+                >
+                  <video 
+                    src={src}
+                    className="w-full h-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Right Column: In edumentora */}
+        <div className="w-full md:w-1/2 flex flex-col items-center">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-8 text-center w-full">In edumentora</h3>
+          
+          <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges mx-auto">
+            <div className="flex flex-col gap-5 animate-scroll-up pb-5">
+              {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
+                <div 
+                  key={idx} 
+                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
+                >
+                  <video 
+                    src={src}
+                    className="w-full h-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* Bottom Section: What Our Students Say About Us! (Text + Review Card) */}
