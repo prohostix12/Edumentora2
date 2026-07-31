@@ -12,7 +12,6 @@ import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialSection from '@/components/TestimonialSection';
 import SeoContentSection from '@/components/SeoContentSection';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
@@ -33,8 +32,7 @@ export default function Page() {
       <WhyChooseUsSection />
       <TestimonialSection />
       <SeoContentSection />
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );

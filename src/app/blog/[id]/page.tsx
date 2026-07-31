@@ -202,7 +202,6 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
         </div>
       </div>
 
-      <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
     </main>

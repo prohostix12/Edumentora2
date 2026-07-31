@@ -1,7 +1,6 @@
 import React from 'react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
@@ -47,9 +46,7 @@ export default async function ProgramsPage() {
       
       {/* INTERACTIVE FILTER & PROGRAMS LIST */}
       <ProgramFilter programs={programs} />
-
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
@@ -105,8 +104,7 @@ export default async function Page() {
           )}
         </div>
       </div>
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );

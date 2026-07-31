@@ -104,7 +104,6 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
         </div>
       </div>
 
-      <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
     </main>

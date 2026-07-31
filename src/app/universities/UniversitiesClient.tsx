@@ -4,7 +4,6 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { Building2, Award, GraduationCap, MapPin, CheckCircle2, ChevronRight, BookOpen } from 'lucide-react';
@@ -181,9 +180,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
           </p>
         </div>
       </div>
-
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );

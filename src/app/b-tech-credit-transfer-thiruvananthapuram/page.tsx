@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
@@ -44,10 +43,7 @@ export default function BTechCreditTransferPage() {
           <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>
       </div>
-
-
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );

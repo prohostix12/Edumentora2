@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
@@ -154,9 +153,7 @@ export default function AboutUsPage() {
           </p>
         </div>
       </div>
-
-      <LocationsSection />
-      <Footer />
+<Footer />
       <FloatingWhatsApp />
     </main>
   );
