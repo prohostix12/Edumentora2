@@ -2,9 +2,12 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, User, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import ScrollReveal from './ScrollReveal';
+import HomeGalleryClient from './HomeGalleryClient';
 
-export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }) {
+export default function TestimonialSection({ reviews = [], galleryImages = [] }: { reviews?: any[], galleryImages?: string[] }) {
   const staticTestimonials = [
     {
       id: "1",
@@ -66,8 +69,15 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
     "/videos/edu_vdo_002/AQP1bJu-J18cIMOjllZW30S4EEX6dVbCNZLW-5lBxYrHhjm6kaf2q0ZwJQTDOElKNjaXQQ6SoLckr3FxCRVtElzBHwrhOfdLrUKFxYE.mp4"
   ];
 
+  let displayImages = galleryImages;
+  if (displayImages.length > 0 && displayImages.length < 5) {
+    while (displayImages.length < 5) {
+      displayImages = [...displayImages, ...galleryImages].slice(0, 8);
+    }
+  }
+
   return (
-    <section className="w-full bg-gray-50 py-16 overflow-hidden">
+    <section className="w-full bg-gray-50 py-16 md:py-24 overflow-hidden">
       <style>{`
         @keyframes scrollDown {
           0% { transform: translateY(-50%); }
@@ -81,10 +91,7 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
           animation: scrollDown 20s linear infinite;
         }
         .animate-scroll-up {
-          animation: scrollUp 40s linear infinite;
-        }
-        .animate-scroll-down:hover, .animate-scroll-up:hover {
-          animation-play-state: paused;
+          animation: scrollUp 25s linear infinite;
         }
         .fade-edges {
           mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
@@ -92,156 +99,191 @@ export default function TestimonialSection({ reviews = [] }: { reviews?: any[] }
         }
       `}</style>
 
-      {/* Video Sections Row */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row gap-12 lg:gap-24 justify-center items-center md:items-start mb-24 pt-4">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start pt-4">
         
-        {/* Left Column: Watch Our Students */}
-        <div className="w-full md:w-1/2 flex flex-col items-center">
-          <h3 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-8 text-center w-full">Watch Our Students</h3>
-          
-          <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges mx-auto">
-            <div className="flex flex-col gap-5 animate-scroll-down pb-5">
-              {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
-                <div 
-                  key={idx} 
-                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
-                >
-                  <video 
-                    src={src}
-                    className="w-full h-full object-cover"
-                    controls
-                    playsInline
-                    preload="metadata"
-                  />
+        {/* Left Column: Both Gallery and Testimonial text/cards */}
+        <div className="w-full flex flex-col items-start text-left gap-20">
+           
+          {/* 1. Gallery Content */}
+          <div className="flex flex-col items-start w-full">
+            <ScrollReveal delay={0.1}>
+              <div className="inline-flex items-center justify-center space-x-2 bg-white px-4 py-2 rounded-full mb-4 border border-gray-100 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#da251d] animate-pulse"></span>
+                <span className="text-[#172A53] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.2}>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#172A53] tracking-tight mb-4">
+                Our Gallery
+              </h2>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.3}>
+              <div className="w-24 h-1.5 bg-[#da251d] rounded-full mb-6"></div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <p className="text-gray-600 text-lg md:text-xl max-w-xl mb-4">
+                Discover the vibrant moments and memories captured at Edumentora.
+              </p>
+            </ScrollReveal>
+
+            {/* Render the 3D Gallery Client if we have images */}
+            {displayImages.length > 0 && (
+              <ScrollReveal delay={0.5} className="w-full flex justify-start -ml-4 mb-4 transform scale-75 origin-left">
+                <HomeGalleryClient images={displayImages} />
+              </ScrollReveal>
+            )}
+
+            {/* Explore More Button */}
+            <ScrollReveal delay={0.6}>
+              <Link 
+                href="/gallery" 
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#172A53] text-white font-bold rounded-xl hover:bg-[#111f3d] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
+              >
+                <span>Explore More</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </ScrollReveal>
+          </div>
+
+          <div className="w-full h-px bg-gray-200"></div>
+
+          {/* 2. What Our Students Say About Us! */}
+          <div className="w-full flex flex-col items-start">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-extrabold leading-tight mb-12 text-[#172A53] text-left"
+            >
+              What Our Students Say<br />About Us!
+            </motion.h2>
+
+            <div className="relative w-full max-w-lg">
+              {/* The white card */}
+              <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
+
+                {/* Avatar overlapping top edge */}
+                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                  <div className="relative">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentIndex}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center border-4 border-white shadow-sm overflow-hidden"
+                      >
+                        {displayTestimonials[currentIndex].image ? (
+                          <img 
+                            src={displayTestimonials[currentIndex].image} 
+                            alt={displayTestimonials[currentIndex].name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <User className="w-8 h-8 text-gray-400" />
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                    {/* Small Google 'G' icon badge */}
+                    <div className="absolute bottom-0 -right-1 bg-white rounded-full p-0.5 shadow-sm z-10">
+                      <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center border border-gray-100 font-bold text-[10px]">
+                        <span className="text-blue-500">G</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+
+                <div className="mt-6 h-40 flex flex-col justify-center">
+                  <AnimatePresence mode='wait'>
+                    <motion.div
+                      key={currentIndex}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h3 className="font-bold text-black text-lg">
+                        {displayTestimonials[currentIndex].name}
+                      </h3>
+                      <p className="text-gray-500 text-sm mb-3">
+                        {displayTestimonials[currentIndex].date}
+                      </p>
+
+                      <div className="flex justify-center items-center gap-1 mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className={`w-5 h-5 ${i < displayTestimonials[currentIndex].rating ? 'fill-yellow-400 text-yellow-400' : 'fill-white text-gray-300'}`} />
+                        ))}
+                        <div className="ml-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-[10px]">✓</span>
+                        </div>
+                      </div>
+
+                      <p className="text-black text-base font-medium">
+                        "{displayTestimonials[currentIndex].text}"
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevTestimonial}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
             </div>
           </div>
+
         </div>
 
-        {/* Right Column: In edumentora */}
-        <div className="w-full md:w-1/2 flex flex-col items-center">
-          <h3 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-8 text-center w-full">In edumentora</h3>
+        {/* Right Column: Watch Our Students Videos (Dual Tracks) */}
+        <div className="w-full h-full min-h-[1200px] flex justify-center lg:justify-end gap-4 md:gap-6 pt-10">
           
-          <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges mx-auto">
-            <div className="flex flex-col gap-5 animate-scroll-up pb-5">
+          {/* Track 1: Edumentora Videos (Scrolls Up) */}
+          <div className="relative h-[1100px] md:h-[1270px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
+            <div className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]">
               {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
                 <div 
                   key={idx} 
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <video 
-                    src={src}
-                    className="w-full h-full object-cover"
-                    controls
-                    playsInline
-                    preload="metadata"
-                  />
+                  <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-      </div>
-
-      {/* Bottom Section: What Our Students Say About Us! (Text + Review Card) */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-start pt-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold leading-tight mb-16 text-[#172A53] text-left"
-        >
-          What Our Students Say<br />About Us!
-        </motion.h2>
-
-        <div className="relative w-full max-w-lg mt-8 lg:mt-0">
-          {/* The white card */}
-          <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
-
-            {/* Avatar overlapping top edge */}
-            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-              <div className="relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center border-4 border-white shadow-sm overflow-hidden"
-                  >
-                    {displayTestimonials[currentIndex].image ? (
-                      <img 
-                        src={displayTestimonials[currentIndex].image} 
-                        alt={displayTestimonials[currentIndex].name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <User className="w-8 h-8 text-gray-400" />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-                {/* Small Google 'G' icon badge */}
-                <div className="absolute bottom-0 -right-1 bg-white rounded-full p-0.5 shadow-sm z-10">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center border border-gray-100 font-bold text-[10px]">
-                    <span className="text-blue-500">G</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 h-40 flex flex-col justify-center">
-              <AnimatePresence mode='wait'>
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
+          {/* Track 2: Video Testimonials (Scrolls Down) */}
+          <div className="relative h-[1100px] md:h-[1270px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
+            <div className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]">
+              {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
+                <div 
+                  key={idx} 
+                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <h3 className="font-bold text-black text-lg">
-                    {displayTestimonials[currentIndex].name}
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-3">
-                    {displayTestimonials[currentIndex].date}
-                  </p>
-
-                  <div className="flex justify-center items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`w-5 h-5 ${i < displayTestimonials[currentIndex].rating ? 'fill-yellow-400 text-yellow-400' : 'fill-white text-gray-300'}`} />
-                    ))}
-                    <div className="ml-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-[10px]">✓</span>
-                    </div>
-                  </div>
-
-                  <p className="text-black text-base font-medium">
-                    "{displayTestimonials[currentIndex].text}"
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+                  <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
+                </div>
+              ))}
             </div>
-
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100 text-gray-600 hover:text-blue-600 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
         </div>
+
       </div>
     </section>
   );

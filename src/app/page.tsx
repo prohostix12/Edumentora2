@@ -9,7 +9,6 @@ import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialSection from '@/components/TestimonialSection';
-import HomeGallerySection from '@/components/HomeGallerySection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
@@ -45,6 +44,16 @@ export default async function Home() {
     console.error("Failed to fetch reviews:", error);
   }
 
+  let galleryImages: string[] = [];
+  try {
+    const galleries = await prisma.gallery.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+    galleryImages = galleries.flatMap(g => g.images).slice(0, 8);
+  } catch (error) {
+    console.error("Failed to fetch galleries:", error);
+  }
+
   return (
     <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
@@ -57,8 +66,7 @@ export default async function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
-      <HomeGallerySection />
-      <TestimonialSection reviews={reviews} />
+      <TestimonialSection reviews={reviews} galleryImages={galleryImages} />
       <Footer />
       <FloatingWhatsApp />
     </main>
