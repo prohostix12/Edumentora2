@@ -294,9 +294,9 @@ export default function Hero() {
         {/* Right Side: Hero Image (Student) */}
         <div className="relative hidden md:flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full z-10 pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: "100%" }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute bottom-0 right-[40%] w-[70%] h-[70%] flex items-end justify-center"
           >
             <Image
@@ -309,42 +309,44 @@ export default function Hero() {
           </motion.div>
 
           {/* YouTube Video */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            className="absolute top-[10%] right-[-5%] w-[65%] max-w-[460px] aspect-video bg-white rounded-[1.5rem] shadow-2xl p-1 pointer-events-auto"
-          >
-            <div 
-              className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black group cursor-pointer"
-              onClick={() => window.open("https://www.youtube.com/watch?v=bjIA16xIvHg", "_blank")}
+          {false && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+              className="absolute top-[10%] right-[-5%] w-[65%] max-w-[460px] aspect-video bg-white rounded-[1.5rem] shadow-2xl p-1 pointer-events-auto"
             >
-              <iframe
-                ref={iframeRef}
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=0&modestbranding=1&rel=0&enablejsapi=1&disablekb=1"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="w-full h-full object-cover pointer-events-none"
-              ></iframe>
-              
-              {/* Custom Overlay for Mute */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleMute();
-                }}
-                className="absolute bottom-3 right-3 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition-all z-20 cursor-pointer"
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              <div 
+                className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black group cursor-pointer"
+                onClick={() => window.open("https://www.youtube.com/watch?v=bjIA16xIvHg", "_blank")}
               >
-                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-              </button>
-            </div>
-          </motion.div>
+                <iframe
+                  ref={iframeRef}
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=0&modestbranding=1&rel=0&enablejsapi=1&disablekb=1"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="w-full h-full object-cover pointer-events-none"
+                ></iframe>
+                
+                {/* Custom Overlay for Mute */}
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute();
+                  }}
+                  className="absolute bottom-3 right-3 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition-all z-20 cursor-pointer"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                </button>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

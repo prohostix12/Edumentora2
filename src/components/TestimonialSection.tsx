@@ -90,8 +90,14 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
         .animate-scroll-down {
           animation: scrollDown 20s linear infinite;
         }
+        .animate-scroll-down:hover {
+          animation-play-state: paused;
+        }
         .animate-scroll-up {
           animation: scrollUp 25s linear infinite;
+        }
+        .animate-scroll-up:hover {
+          animation-play-state: paused;
         }
         .fade-edges {
           mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);

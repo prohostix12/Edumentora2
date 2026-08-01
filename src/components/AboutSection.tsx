@@ -1,12 +1,23 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { Phone } from 'lucide-react';
+import { Phone, Volume2, VolumeX } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const action = isMuted ? 'unMute' : 'mute';
+      iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: action, args: [] }), '*');
+      setIsMuted(!isMuted);
+    }
+  };
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -32,18 +43,34 @@ export default function AboutSection() {
             className="relative w-full max-w-[800px] aspect-video rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] group"
           >
             {/* YouTube Iframe */}
-            <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-black shadow-inner">
+            <div 
+              className="relative w-full h-full rounded-[2rem] overflow-hidden bg-black shadow-inner cursor-pointer"
+              onClick={() => window.open("https://www.youtube.com/watch?v=bjIA16xIvHg", "_blank")}
+            >
               <iframe
+                ref={iframeRef}
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=1&modestbranding=1&rel=0"
+                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=0&modestbranding=1&rel=0&enablejsapi=1&disablekb=1"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="w-full h-full object-cover relative z-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-full h-full object-cover relative z-0 pointer-events-none"
               ></iframe>
+              
+              {/* Custom Overlay for Mute */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all z-20 cursor-pointer"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+              </button>
             </div>
           </motion.div>
         </div>

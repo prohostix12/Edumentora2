@@ -23,6 +23,9 @@ export default function HomeGallerySection() {
         .animate-scroll-up-gallery {
           animation: scrollUpGallery 25s linear infinite;
         }
+        .animate-scroll-up-gallery:hover {
+          animation-play-state: paused;
+        }
         .fade-edges-gallery {
           mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
           -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
