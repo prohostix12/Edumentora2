@@ -271,23 +271,20 @@ export default function BTechCreditTransferPage() {
             {faqs.map((faq, index) => (
               <div 
                 key={index} 
-                className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-[rgb(49,45,69)] flex items-start m-0 pr-4">
-                    <span className="text-[#da251d] mr-3 font-black">Q.</span>
+                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#172A53]' : 'bg-gray-50 hover:bg-[#172A53]'}`}>
+                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#172A53] group-hover:text-white'}`}>
                     {faq.q}
                   </h3>
-                  <span className={`text-gray-400 text-sm transform transition-transform duration-300 flex-shrink-0 ${openFaq === index ? 'rotate-180' : ''}`}>
+                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#da251d] group-hover:text-white'}`}>
                     ▼
                   </span>
                 </div>
-
-                <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <div className="flex items-start pt-4 mt-4 border-t border-gray-100">
-                      <span className="text-gray-400 mr-3 font-bold">A.</span>
+                    <div className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
                       {faq.a}
                     </div>
                   </div>
@@ -306,25 +303,60 @@ export default function BTechCreditTransferPage() {
       </div>
 
       {/* Know more on Credit Transfers Section (Moved from Programs) */}
-      <div id="educational-mobility" className="bg-gray-50 py-24 border-t border-gray-200 scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 mb-16 text-center">
-          <div className="inline-block px-4 py-1.5 bg-red-100 text-[#da251d] font-bold tracking-widest uppercase rounded-full mb-4 text-sm border border-red-200">
-            Educational Mobility
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] leading-tight mb-6">
-            Know more on Credit Transfers
-          </h2>
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
-            Seamlessly continue your academic journey by leveraging your prior learning across top institutions.
-          </p>
-        </div>
+      <div id="educational-mobility" className="bg-gray-50 py-0 border-t border-gray-200 scroll-mt-24">
+        <div className="max-w-[1300px] mx-auto px-4 md:px-8 mb-0">
+          
+          <div className="flex flex-col md:flex-row bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-2 border-[#da251d] overflow-hidden relative">
+            
+            {/* Left Navy Panel */}
+            <div className="w-full md:w-[250px] lg:w-[300px] bg-[#172A53] relative flex flex-col items-center justify-center p-8 min-h-[120px] shrink-0 z-10">
+              {/* Angled Edge (Desktop) */}
+              <div className="hidden md:block absolute top-0 -right-6 w-12 h-full bg-[#172A53] -skew-x-[12deg] -z-10 border-r-2 border-[#da251d] shadow-lg"></div>
+              
+              {/* Icon & Decorative Dots */}
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-5 backdrop-blur-sm border border-white/10">
+                  <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  </svg>
+                </div>
+                <div className="flex gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#da251d]"></div>
+                  <div className="w-2 h-2 rounded-full bg-white/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-white/30"></div>
+                </div>
+              </div>
+            </div>
 
-        {/* Elevated Intro Card */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 mb-20">
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify font-medium">
-              Credit transfer is a process that allows students to apply academic credits earned from one institution toward a degree or program at another. This system facilitates educational mobility, enabling learners to continue their studies without repeating equivalent coursework. By recognizing prior learning, credit transfers can reduce the time and cost required to complete a degree. However, acceptance of transfer credits depends on factors such as course equivalency, accreditation, and institutional policies. It’s essential for students to consult with academic advisors to understand the transferability of their credits and ensure a smooth transition between educational institutions.
-            </p>
+            {/* Right Content Area */}
+            <div className="w-full p-8 md:p-12 lg:p-16 relative bg-white z-0">
+              {/* Oversized Quote Decor */}
+              <div className="absolute -top-4 right-8 text-[12rem] lg:text-[16rem] text-gray-50 leading-none font-serif opacity-80 pointer-events-none select-none">
+                &quot;
+              </div>
+
+              <div className="relative z-10">
+                <div className="inline-block px-4 py-1.5 bg-red-50 text-[#da251d] font-bold tracking-widest uppercase rounded-full mb-6 text-xs md:text-sm border border-red-100">
+                  Educational Mobility
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] leading-tight mb-5">
+                  Know more on Credit Transfers
+                </h2>
+                
+                {/* Underline */}
+                <div className="flex mb-8">
+                  <div className="w-16 h-1.5 bg-[#172A53] rounded-l-full"></div>
+                  <div className="w-8 h-1.5 bg-[#da251d] rounded-r-full"></div>
+                </div>
+
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify font-medium">
+                  Credit transfer is a process that allows students to apply academic credits earned from one institution toward a degree or program at another. This system facilitates educational mobility, enabling learners to continue their studies without repeating equivalent coursework. By recognizing prior learning, credit transfers can reduce the time and cost required to complete a degree. However, acceptance of transfer credits depends on factors such as course equivalency, accreditation, and institutional policies. It’s essential for students to consult with academic advisors to understand the transferability of their credits and ensure a smooth transition between educational institutions.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
 

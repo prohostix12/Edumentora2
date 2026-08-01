@@ -100,10 +100,10 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start pt-4">
-        
+
         {/* Left Column: Both Gallery and Testimonial text/cards */}
         <div className="w-full flex flex-col items-start text-left gap-6">
-           
+
           {/* 1. Gallery Content */}
           <div className="flex flex-col items-start w-full">
             <ScrollReveal delay={0.1}>
@@ -112,13 +112,13 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
                 <span className="text-[#172A53] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={0.2}>
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#172A53] tracking-tight mb-4">
                 Our Gallery
               </h2>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={0.3}>
               <div className="w-24 h-1.5 bg-[#da251d] rounded-full mb-6"></div>
             </ScrollReveal>
@@ -138,8 +138,8 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
 
             {/* Explore More Button */}
             <ScrollReveal delay={0.6}>
-              <Link 
-                href="/gallery" 
+              <Link
+                href="/gallery"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#172A53] text-white font-bold rounded-xl hover:bg-[#111f3d] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
               >
                 <span>Explore More</span>
@@ -179,8 +179,8 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
                         className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center border-4 border-white shadow-sm overflow-hidden"
                       >
                         {displayTestimonials[currentIndex].image ? (
-                          <img 
-                            src={displayTestimonials[currentIndex].image} 
+                          <img
+                            src={displayTestimonials[currentIndex].image}
                             alt={displayTestimonials[currentIndex].name}
                             className="w-full h-full object-cover"
                           />
@@ -253,13 +253,13 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
 
         {/* Right Column: Watch Our Students Videos (Dual Tracks) */}
         <div className="w-full h-full min-h-[1000px] flex justify-center lg:justify-end gap-4 md:gap-6 pt-10">
-          
+
           {/* Track 1: Edumentora Videos (Scrolls Up) */}
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
             <div className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]">
               {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
                   <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
@@ -272,8 +272,8 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
             <div className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]">
               {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
                   <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />

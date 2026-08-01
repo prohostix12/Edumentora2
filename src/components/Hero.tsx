@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Shield, ArrowRight } from 'lucide-react';
+import { Shield, ArrowRight, Volume2, VolumeX } from 'lucide-react';
 import heroImage from '../../public/hero-image.png';
 
-const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: {text: string, className?: string}[], speed?: number, delay?: number }) => {
+const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: { text: string, className?: string }[], speed?: number, delay?: number }) => {
   const [charIndex, setCharIndex] = useState(0);
   const [started, setStarted] = useState(false);
   const fullText = segments.map(s => s.text).join("");
@@ -33,9 +33,9 @@ const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: {text: 
         currentIndex += seg.text.length;
 
         if (charIndex <= segStart) return null;
-        
+
         const displayedText = seg.text.slice(0, charIndex - segStart);
-        
+
         return (
           <span key={i} className={seg.className}>
             {displayedText.split('\n').map((line, j, arr) => (
@@ -60,16 +60,16 @@ const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: {text: 
   );
 };
 
-const LoopingTypewriterText = ({ 
-  baseSegments, 
-  loopSegments, 
+const LoopingTypewriterText = ({
+  baseSegments,
+  loopSegments,
   speed = 40,
   deleteSpeed = 20,
   delay = 500,
   pause = 5000
-}: { 
-  baseSegments: {text: string, className?: string}[], 
-  loopSegments: {text: string, className?: string}[][], 
+}: {
+  baseSegments: { text: string, className?: string }[],
+  loopSegments: { text: string, className?: string }[][],
   speed?: number,
   deleteSpeed?: number,
   delay?: number,
@@ -96,8 +96,8 @@ const LoopingTypewriterText = ({
     if (!isDeleting && charIndex < totalLength) {
       const t = setTimeout(() => setCharIndex(c => c + 1), speed);
       return () => clearTimeout(t);
-    } 
-    
+    }
+
     if (!isDeleting && charIndex === totalLength) {
       const t = setTimeout(() => setIsDeleting(true), pause);
       return () => clearTimeout(t);
@@ -124,9 +124,9 @@ const LoopingTypewriterText = ({
         currentIndex += seg.text.length;
 
         if (charIndex <= segStart) return null;
-        
+
         const displayedText = seg.text.slice(0, charIndex - segStart);
-        
+
         return (
           <span key={i} className={seg.className}>
             {displayedText.split('\n').map((line, j, arr) => (
@@ -145,10 +145,50 @@ const LoopingTypewriterText = ({
 };
 
 export default function Hero() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const action = isMuted ? 'unMute' : 'mute';
+      iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: action, args: [] }), '*');
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <section
-      className="relative w-full h-[90dvh] lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px] bg-gradient-to-r from-red-100 via-blue-100 to-white"
+      className="relative w-full h-[90dvh] lg:h-[100dvh] overflow-hidden flex flex-col justify-center lg:justify-end pt-32 lg:pt-[40px] bg-gradient-to-br from-gray-50 via-slate-50 to-blue-50"
     >
+      {/* SVG Clip Path for Background */}
+      <svg width="0" height="0" className="absolute pointer-events-none">
+        <defs>
+          <clipPath id="curve-clip" clipPathUnits="objectBoundingBox">
+            <path d="M 0.6,0 C 0.6,0.5 0.4,0.5 0.4,1 L 1,1 L 1,0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* College Background Image (Mobile: full width, Desktop: curved clip) */}
+      <div className="absolute top-0 right-0 w-full h-full z-0 pointer-events-none md:hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80" style={{ backgroundImage: "url('/college-bg.png')" }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-white/80 to-white/40" />
+      </div>
+      <div className="hidden md:block absolute top-0 right-0 w-full h-full z-0 pointer-events-none" style={{ clipPath: 'url(#curve-clip)' }}>
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80" style={{ backgroundImage: "url('/college-bg.png')" }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-white/80 to-white/40" />
+      </div>
+
+      {/* Center Curved Divider with 20% Gap */}
+      <svg className="hidden md:block absolute inset-0 w-full h-full z-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
+         <defs>
+           <linearGradient id="line-grad" x1="0" y1="0" x2="0" y2="1">
+             <stop offset="0%" stopColor="#ef4444" />
+             <stop offset="100%" stopColor="#3b82f6" />
+           </linearGradient>
+         </defs>
+         <path d="M 60,0 C 60,50 40,50 40,100" fill="none" stroke="url(#line-grad)" strokeWidth="0.15" className="opacity-80" strokeDasharray="40 20 40" pathLength="100" />
+      </svg>
 
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -156,7 +196,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[25%] left-[10%] w-8 h-8 border-[2px] border-red-300 rounded-full"
+          className="absolute top-[25%] left-[10%] w-8 h-8 border-[2px] border-blue-200 rounded-full"
         />
         <motion.div
           animate={{ y: [0, 30, 0] }}
@@ -175,7 +215,7 @@ export default function Hero() {
         />
 
         {/* Dotted grid */}
-        <div className="absolute top-20 left-10 w-40 h-40 opacity-30" style={{ backgroundImage: 'radial-gradient(#da251d 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
+        <div className="absolute top-20 left-10 w-40 h-40 opacity-30" style={{ backgroundImage: 'radial-gradient(#60a5fa 2px, transparent 2px)', backgroundSize: '16px 16px' }} />
       </div>
 
       <div className="relative lg:max-w-5xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 grid md:grid-cols-2 gap-12 items-end z-10 flex-grow">
@@ -197,10 +237,10 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl xl:text-[54px] font-extrabold text-black leading-[1.1] mb-3 xl:mb-5 tracking-tight font-[Poppins]"
+            className="text-3xl md:text-4xl xl:text-5xl font-normal text-black leading-[1.2] mb-3 xl:mb-5 tracking-tight font-[Poppins]"
           >
             <LoopingTypewriterText
-              speed={40} 
+              speed={40}
               delay={500}
               pause={5000}
               baseSegments={[
@@ -208,14 +248,12 @@ export default function Hero() {
               ]}
               loopSegments={[
                 [
-                  { text: "Academic ", className: "text-[#da251d]" },
-                  { text: "Credits", className: "text-yellow-500" }
+                  { text: "Academic Credits", className: "text-blue-900 font-normal relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-1/2 after:bg-gradient-to-r after:from-red-600 after:to-transparent" }
                 ],
                 [
-                  { text: "Educational ", className: "text-[#da251d]" },
-                  { text: "Journey", className: "text-yellow-500" }
+                  { text: "Educational Journey", className: "text-blue-900 font-normal relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-1/2 after:bg-gradient-to-r after:from-red-600 after:to-transparent" }
                 ]
-              ]} 
+              ]}
             />
           </motion.h1>
 
@@ -225,12 +263,12 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="text-[17.5px] xl:text-[18px] text-gray-600 max-w-[560px] leading-[1.8] mb-5 xl:mb-6 min-h-[100px]"
           >
-            <TypewriterText 
-              speed={20} 
+            <TypewriterText
+              speed={20}
               delay={500}
               segments={[
                 { text: "Continue your B.Tech journey by building on the academic credits you’ve already earned. Get the right guidance and support to transfer your credits and move closer to completing your degree." }
-              ]} 
+              ]}
             />
           </motion.p>
 
@@ -241,50 +279,70 @@ export default function Hero() {
             className="flex flex-wrap gap-3 md:gap-4"
           >
             <a href="/contact">
-              <button className="group flex items-center justify-center gap-2 bg-[#da251d] text-white px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-[0_8px_25px_-5px_rgba(218,37,29,0.5)] hover:bg-red-700 hover:-translate-y-1 transition-all duration-300">
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />Applay Now
+              <button className="group flex items-center justify-center gap-2 bg-[#172A53] text-white px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-lg font-bold shadow-[0_8px_25px_-5px_rgba(23,42,83,0.5)] hover:bg-[#0c1833] hover:-translate-y-1 transition-all duration-300">
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />Apply Now
               </button>
             </a>
             <a href="#">
-              <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-full font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
+              <button className="flex items-center justify-center bg-white text-[#172A53] border-2 border-[#172A53] px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base xl:px-8 xl:py-4 rounded-lg font-bold shadow-md hover:bg-slate-50 hover:-translate-y-1 transition-all duration-300">
                 Know More
               </button>
             </a>
           </motion.div>
         </div>
 
-        {/* Right Side: Hero Video */}
-        <div className="relative hidden md:flex justify-center items-center h-[450px] lg:h-[550px] xl:h-[600px] w-full z-10 md:-translate-y-[10%]">
-          <motion.div 
+        {/* Right Side: Hero Image (Student) */}
+        <div className="relative hidden md:flex justify-center items-end h-[450px] lg:h-[550px] xl:h-[600px] w-full z-10 pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="absolute bottom-0 right-[40%] w-[70%] h-[70%] flex items-end justify-center"
+          >
+            <Image
+              src="/hero-image.png"
+              alt="Edumentora Hero"
+              fill
+              className="object-contain object-bottom transform -translate-x-[25%]"
+              priority
+            />
+          </motion.div>
+
+          {/* YouTube Video */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="relative w-[95%] xl:w-[110%] max-w-[650px] aspect-video bg-[#172A53] rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-[3%] group"
+            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            className="absolute top-[10%] right-[-5%] w-[65%] max-w-[460px] aspect-video bg-white rounded-[1.5rem] shadow-2xl p-1 pointer-events-auto"
           >
-            {/* Top Left Badge */}
-            <div className="absolute -top-5 -left-5 md:-top-6 md:-left-6 bg-white text-[#da251d] border-2 border-[#da251d] px-4 py-2 md:px-5 md:py-2.5 rounded-xl font-extrabold text-xs md:text-sm shadow-xl z-20 flex items-center gap-2">
-               <span className="w-2 h-2 bg-[#da251d] rounded-full animate-pulse"></span>
-               Credit Transfer Your b-tech
-            </div>
-
-            {/* Bottom Right Badge */}
-            <div className="absolute -bottom-5 -right-5 md:-bottom-6 md:-right-6 bg-yellow-400 text-[#172A53] border-2 border-yellow-400 px-4 py-2 md:px-5 md:py-2.5 rounded-xl font-extrabold text-xs md:text-sm shadow-xl z-20">
-               Get Started Today
-            </div>
-
-            {/* YouTube Iframe */}
-            <div className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black shadow-inner">
+            <div 
+              className="relative w-full h-full rounded-[1rem] overflow-hidden bg-black group cursor-pointer"
+              onClick={() => window.open("https://www.youtube.com/watch?v=bjIA16xIvHg", "_blank")}
+            >
               <iframe
+                ref={iframeRef}
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=1&modestbranding=1"
+                src="https://www.youtube.com/embed/bjIA16xIvHg?autoplay=1&mute=1&loop=1&playlist=bjIA16xIvHg&controls=0&modestbranding=1&rel=0&enablejsapi=1&disablekb=1"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="w-full h-full object-cover relative z-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-full h-full object-cover pointer-events-none"
               ></iframe>
+              
+              {/* Custom Overlay for Mute */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className="absolute bottom-3 right-3 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-sm transition-all z-20 cursor-pointer"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+              </button>
             </div>
           </motion.div>
         </div>
