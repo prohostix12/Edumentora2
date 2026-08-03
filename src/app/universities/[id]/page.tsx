@@ -45,12 +45,12 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             <ArrowLeft className="w-4 h-4" /> Back to Universities
           </Link>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 tracking-tight font-[Poppins]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0B1727] leading-tight mb-4 tracking-tight font-[Poppins]">
             {university.name}
           </h1>
           
           {university.location && (
-            <div className="flex items-center text-gray-300 text-lg">
+            <div className="flex items-center text-[#172A53]/90 text-lg">
               <MapPin className="w-5 h-5 mr-2 text-[#da251d]" />
               {university.location}
             </div>

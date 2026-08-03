@@ -70,7 +70,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             </div>
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 max-w-4xl tracking-tight font-[Poppins]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#0B1727] leading-tight mb-8 max-w-4xl tracking-tight font-[Poppins]">
             {blog.sectionDis}
           </h1>
         </div>

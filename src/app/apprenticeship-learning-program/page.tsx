@@ -14,10 +14,10 @@ export default function ApprenticeshipLearningProgram() {
         <div className="grid md:grid-cols-2 gap-12 items-center pt-8">
           {/* Left: Text */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1727] leading-tight">
               Apprenticeship program at Edumentora
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-justify">
+            <p className="text-lg md:text-xl text-[#172A53]/90 leading-relaxed text-justify">
               Edumentora’s apprenticeship credit transfer lets you carry your earned experience to new opportunities. Stay on track, keep learning, and grow without interruption.
             </p>
             <button className="bg-[#da251d] hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg w-max mt-4">

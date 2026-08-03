@@ -42,11 +42,11 @@ export default function AboutUsPage() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 pt-8">
           
           {/* Text Content */}
-          <div className="md:w-1/2 space-y-6 text-white text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <div className="md:w-1/2 space-y-6 text-[#0B1727] text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#0B1727]">
               Transform Past Efforts into Future Success
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl mx-auto md:mx-0">
+            <p className="text-lg md:text-xl text-[#172A53]/90 leading-relaxed max-w-xl mx-auto md:mx-0">
               Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
             </p>
           </div>

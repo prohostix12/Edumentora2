@@ -23,20 +23,12 @@ export default async function Page() {
     <main className="min-h-screen bg-white pt-24 font-[Poppins]">
       <Header />
       
-      {/* Unified Hero Section */}
-      <div className="w-full bg-[#F9F9F9] relative overflow-hidden">
-        <div className="w-full pt-24 pb-24 relative z-10 max-w-7xl mx-auto text-center px-6 md:px-12">
-          <div className="inline-block px-4 py-1.5 bg-red-50/90 text-[#da251d] font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-red-100 backdrop-blur-md">
-            Moments & Memories
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1727] leading-[1.1] mb-6 tracking-tight font-[Poppins]">
-            Gallery
-          </h1>
-          <p className="text-[#172A53]/90 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-            Explore beautiful moments, events, and milestones from our vibrant community.
-          </p>
-        </div>
-      </div>
+      <PageBanner
+        badge="Moments & Memories"
+        title="Gallery"
+        subtitle="Explore beautiful moments, events, and milestones from our vibrant community."
+        isGradientText={true}
+      />
 
       <div className="py-12 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

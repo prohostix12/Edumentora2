@@ -9,16 +9,18 @@ interface PageBannerProps {
   children?: React.ReactNode;
 }
 
-export default function PageBanner({ title, badge, subtitle, bgImage = '/edumentora%20bg%20image.png', isGradientText = false, children }: PageBannerProps) {
+export default function PageBanner({ title, badge, subtitle, bgImage: _bgImage, isGradientText = false, children }: PageBannerProps) {
   return (
-    <div className="w-full bg-[#F9F9F9] min-h-[300px] md:min-h-[400px] relative overflow-hidden flex items-center justify-center">
+    <div className="w-full min-h-[300px] md:min-h-[400px] relative overflow-hidden flex items-center justify-center border-b border-[#E8EDF7] bg-[#F9F9F9]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-12 md:py-20">
         {children ? (
-          children
+          <div className="[&_h1]:text-[#0B1727] [&_h1]:font-bold [&_p]:text-[#172A53]/90 [&_p]:leading-relaxed [&_p]:font-medium">
+            {children}
+          </div>
         ) : (
           <div className="text-center">
             {badge && (
-              <div className="inline-block px-4 py-1.5 bg-red-50/90 font-bold tracking-wider uppercase rounded-full mb-4 md:mb-6 text-xs md:text-sm border border-red-100 backdrop-blur-md shadow-sm">
+              <div className="inline-block px-4 py-1.5 bg-white/80 font-bold tracking-wider uppercase rounded-full mb-4 md:mb-6 text-xs md:text-sm border border-white/70 backdrop-blur-md shadow-sm">
                 <span className={isGradientText ? "text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-blue-600" : "text-[#da251d]"}>{badge}</span>
               </div>
             )}
@@ -28,7 +30,7 @@ export default function PageBanner({ title, badge, subtitle, bgImage = '/edument
               </h1>
             )}
             {subtitle && (
-              <p className="text-[#172A53]/90 text-base md:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
+              <p className="text-base md:text-xl max-w-3xl mx-auto leading-relaxed font-medium text-[#172A53]/90">
                 {subtitle}
               </p>
             )}
