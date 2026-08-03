@@ -36,7 +36,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
   };
 
   return (
-    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-[#F9F9F9] pt-24 font-[Poppins]">
       <Header />
       <PageBanner 
         badge="Our Offices" 
@@ -50,7 +50,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
 
           {/* Calicut Section */}
-          <div className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[#E8EDF7] flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
             <h2 className="text-2xl font-bold text-[#172A53] mb-4 flex items-center gap-3">
               <span className="w-8 h-1.5 bg-[#da251d] rounded-full inline-block"></span>
               CALICUT
@@ -75,7 +75,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
           </div>
 
           {/* Kochi Section */}
-          <div className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[#E8EDF7] flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
             <h2 className="text-2xl font-bold text-[#172A53] mb-4 flex items-center gap-3">
               <span className="w-8 h-1.5 bg-[#da251d] rounded-full inline-block"></span>
               KOCHI
@@ -146,9 +146,9 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
       )}
 
       {/* Contact Form Section */}
-      <div className="bg-gray-50 py-16 lg:py-24 border-t border-gray-100">
+      <div className="bg-[#F9F9F9] py-16 lg:py-24 border-t border-[#E8EDF7]">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-50">
+          <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[#E8EDF7]">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] mb-4">Start Your Journey with Edumentora</h2>
               <div className="w-24 h-1.5 bg-[#da251d] rounded-full mx-auto mb-4"></div>
@@ -257,7 +257,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
       </div>
 
       {/* Director's Message Mini Section */}
-      <div className="py-12 lg:py-16 bg-white border-t border-gray-100">
+      <div className="py-12 lg:py-16 bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] border-t border-[#E8EDF7]">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 bg-gray-50 p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>

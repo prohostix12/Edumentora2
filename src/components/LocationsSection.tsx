@@ -30,7 +30,7 @@ export default function LocationsSection() {
   ];
 
   return (
-    <section className="w-full bg-gray-100 py-16">
+    <section className="w-full bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-16 border-t border-[#E8EDF7]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export default function LocationsSection() {
                 <li key={index}>
                   <Link 
                     href={location.url} 
-                    className="text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
+                    className="text-[#172A53]/90 hover:text-[#da251d] hover:underline text-sm md:text-base transition-colors font-medium"
                   >
                     {location.name}
                   </Link>

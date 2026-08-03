@@ -34,7 +34,7 @@ export default function AboutUsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-[#F9F9F9] pt-24 font-[Poppins]">
       <Header />
       
       {/* Hero Section */}
@@ -64,16 +64,16 @@ export default function AboutUsPage() {
       <AboutSection />
 
       {/* Overview Section */}
-      <div className="bg-white py-24">
+      <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-24 border-y border-[#E8EDF7]">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify md:text-center font-medium">
+          <p className="text-lg md:text-xl text-[#172A53]/90 leading-relaxed text-justify md:text-center font-medium">
             Edumentora is an innovative education service provider that specializes in academic credit transfer solutions, helping students across India restart and complete their discontinued degree programs. Whether due to financial hardship, personal setbacks, academic difficulties, or institutional issues, many students pause their education, but with Edumentora, they don’t have to start over. We make it possible to transfer previously earned college or university credits to UGC-recognized institutions, allowing students to pick up where they left off. Our goal is to ensure that prior academic efforts are not wasted and that every learner gets a second chance to earn a respected qualification. At Edumentora, we’re committed to turning past progress into future success through reliable, student-focused credit transfer services.
           </p>
         </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-gray-50 py-24 border-t border-gray-100">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#E8EDF7]">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-12">
             Frequently Asked Questions
@@ -109,7 +109,7 @@ export default function AboutUsPage() {
       </div>
 
       {/* TIMS Partnership Section */}
-      <div className="bg-white py-24">
+      <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-24 border-y border-[#E8EDF7]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-16">
           
           {/* Image Space */}
@@ -125,7 +125,7 @@ export default function AboutUsPage() {
               Tirur Institute of Management Studies (TIMS)
             </h2>
             <div className="w-20 h-1.5 bg-[#da251d] rounded-full"></div>
-            <p className="text-lg text-gray-700 leading-relaxed text-justify mt-6">
+            <p className="text-lg text-[#172A53]/90 leading-relaxed text-justify mt-6">
               EduMentora proudly partners with Tirur Institute of Management Studies (TIMS), a leading institution with 16 years of expertise in distance education, attestation, and credit transfer services. With branches in Tirur and Edappal, TIMS offers diverse programs, including SSLC, Plus Two, Online Degrees, Postgraduate Courses, BTech/MTech, and Diplomas, ensuring flexible learning opportunities for students.
             </p>
           </div>
@@ -134,7 +134,7 @@ export default function AboutUsPage() {
       </div>
 
       {/* Best Credit Transfer Institute Section */}
-      <div className="bg-gray-50 py-24 border-t border-gray-100">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#E8EDF7]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-lg text-gray-700 leading-relaxed text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-10">
             The Best Credit Transfer Institute

@@ -21,7 +21,7 @@ export default async function BlogPage() {
   });
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-[#F9F9F9] pt-24 font-[Poppins]">
       <Header />
       
       <PageBanner 
@@ -40,7 +40,7 @@ export default async function BlogPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogs.map((blog) => (
-              <div key={blog.id} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+              <div key={blog.id} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-[#E8EDF7] flex flex-col group">
                 <div className="relative h-64 overflow-hidden bg-gray-100">
                   {blog.mainImage ? (
                     <img 

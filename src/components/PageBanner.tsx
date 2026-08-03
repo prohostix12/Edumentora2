@@ -14,7 +14,7 @@ export default function PageBanner({ title, badge, subtitle, bgImage: _bgImage, 
     <div className="w-full min-h-[300px] md:min-h-[400px] relative overflow-hidden flex items-center justify-center border-b border-[#E8EDF7] bg-[#F9F9F9]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-12 md:py-20">
         {children ? (
-          <div className="[&_h1]:text-[#0B1727] [&_h1]:font-bold [&_p]:text-[#172A53]/90 [&_p]:leading-relaxed [&_p]:font-medium">
+          <div className="[&_h1]:text-[#0B1727] [&_h1]:font-bold [&_h2]:text-[#0B1727] [&_p]:text-[#172A53]/90 [&_p]:leading-relaxed [&_p]:font-medium [&_span]:text-[#172A53]/90">
             {children}
           </div>
         ) : (
