@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { GraduationCap, Briefcase, Award, ArrowRight } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -260,47 +262,7 @@ export default function BTechCreditTransferPage() {
         </div>
       </div>
 
-      {/* Fifth Section: FAQ */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(49,45,69)] text-center mb-12">
-            Frequently Asked Questions on B.Tech Credit Transfers
-          </h2>
 
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <div 
-                key={index} 
-                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
-                onClick={() => setOpenFaq(openFaq === index ? null : index)}
-              >
-                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#172A53]' : 'bg-gray-50 hover:bg-[#172A53]'}`}>
-                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#172A53] group-hover:text-white'}`}>
-                    {faq.q}
-                  </h3>
-                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#da251d] group-hover:text-white'}`}>
-                    ▼
-                  </span>
-                </div>
-                <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                  <div className="overflow-hidden">
-                    <div className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
-                      {faq.a}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Note Paragraph */}
-          <div className="mt-10 p-5 bg-red-50 rounded-2xl border border-red-100 text-center shadow-sm">
-            <p className="text-[rgb(49,45,69)] text-sm md:text-base italic font-medium leading-relaxed">
-              *To complete your B.Tech degree through credit transfer, you must visit the university and write the failed subjects directly in offline mode. Universities do not allow online exams for credit transfer programs, as per UGC guidelines.
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Know more on Credit Transfers Section (Moved from Programs) */}
       <div id="educational-mobility" className="bg-gray-50 py-0 border-t border-gray-200 scroll-mt-24">
@@ -369,100 +331,164 @@ export default function BTechCreditTransferPage() {
           </div>
 
           <div className="max-w-[1400px] mx-auto px-4 md:px-8 relative z-10 flex flex-col items-center">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] mb-4">Our Transfer Programs</h2>
+            {/* Animated Heading */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16 flex flex-col items-center"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#da251d] animate-pulse"></span>
+                <span className="text-[#172A53] font-bold text-xs uppercase tracking-widest">Choose Your Path</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#172A53] mb-4 tracking-tight">
+                Our Transfer <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-red-500">Programs</span>
+              </h2>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-[#172A53] to-[#da251d] rounded-full mb-6"></div>
               <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">Select the program that fits your educational background</p>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+            {/* Animated Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
               
               {/* Card 1: UG */}
-              <div className="relative bg-gradient-to-br from-[#0B1733] to-[#1e3a7a] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(11,23,51,0.15)] hover:shadow-[0_20px_60px_rgba(11,23,51,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
-                {/* Background Decoration */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><path d="M21.42 10.922a2 2 0 0 1-.019 3.07l-9.28 8.07a2 2 0 0 1-2.234 0l-9.28-8.07a2 2 0 0 1-.019-3.07l9.28-8.07a2 2 0 0 1 2.234 0l9.28 8.07z" /><path d="M12 2v20" /></svg>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-white/40 shadow-[0_20px_40px_-15px_rgba(23,42,83,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(23,42,83,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+              >
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#172A53] to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                 
-                {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">01</div>
-                
-                {/* Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
-                  <div className="w-16 h-16 rounded-full bg-[#f0f4ff] flex items-center justify-center group-hover:bg-[#1e3a7a] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#1e3a7a] group-hover:text-white transition-colors duration-500"><path d="M21.42 10.922a2 2 0 0 1-.019 3.07l-9.28 8.07a2 2 0 0 1-2.234 0l-9.28-8.07a2 2 0 0 1-.019-3.07l9.28-8.07a2 2 0 0 1 2.234 0l9.28 8.07z" /><path d="M12 2v20" /></svg>
-                  </div>
+                <div className="w-16 h-16 bg-[#f0f4ff] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#172A53] transition-colors duration-500 shadow-inner">
+                  <GraduationCap className="w-8 h-8 text-[#172A53] group-hover:text-white transition-colors duration-500" />
                 </div>
-
-                {/* Content */}
+                
                 <div className="relative z-20 flex-grow flex flex-col">
-                  <h3 className="text-[28px] font-bold text-white mb-4 leading-tight">
-                    UG Credit Transfer
-                  </h3>
-                  <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
+                  <h3 className="text-3xl font-bold text-[#172A53] mb-4">UG Transfer</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium flex-grow">
                     Transfer your earned UG credits to top universities, saving time and costs while completing your degree efficiently.
                   </p>
-                  <Link href="/ug-credit-transfer" className="bg-white text-[#1e3a7a] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
-                    Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
+                  
+                  <Link href="/ug-credit-transfer" className="inline-flex items-center text-[#172A53] font-bold text-lg group/link mt-auto w-max">
+                    Know More 
+                    <span className="ml-2 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover/link:bg-[#da251d] group-hover/link:text-white transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
+                    </span>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card 2: PG */}
-              <div className="relative bg-gradient-to-br from-[#991b1b] to-[#E53935] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(229,57,53,0.15)] hover:shadow-[0_20px_60px_rgba(229,57,53,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
-                {/* Background Decoration */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-white/40 shadow-[0_20px_40px_-15px_rgba(218,37,29,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(218,37,29,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+              >
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-red-100/50 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#da251d] to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                 
-                {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">02</div>
-                
-                {/* Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
-                  <div className="w-16 h-16 rounded-full bg-[#fff0f0] flex items-center justify-center group-hover:bg-[#E53935] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#E53935] group-hover:text-white transition-colors duration-500"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
-                  </div>
+                <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#da251d] transition-colors duration-500 shadow-inner">
+                  <Briefcase className="w-8 h-8 text-[#da251d] group-hover:text-white transition-colors duration-500" />
                 </div>
-
-                {/* Content */}
+                
                 <div className="relative z-20 flex-grow flex flex-col">
-                  <h3 className="text-[28px] font-bold text-white mb-4 leading-tight">
-                    PG Credit Transfer
-                  </h3>
-                  <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
-                    Transfer your PG credits to leading universities, saving time and money while completing your postgraduate degree smoothly and efficiently.
+                  <h3 className="text-3xl font-bold text-[#172A53] mb-4">PG Transfer</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium flex-grow">
+                    Transfer your PG credits to leading universities, saving time and money while completing your postgraduate degree smoothly.
                   </p>
-                  <Link href="/pg-credit-transfer" className="bg-white text-[#E53935] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
-                    Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
+                  
+                  <Link href="/pg-credit-transfer" className="inline-flex items-center text-[#da251d] font-bold text-lg group/link mt-auto w-max">
+                    Know More 
+                    <span className="ml-2 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover/link:bg-[#da251d] group-hover/link:text-white transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
+                    </span>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card 3: Diploma */}
-              <div className="relative bg-gradient-to-br from-[#4c1d95] to-[#7c3aed] rounded-[28px] overflow-hidden shadow-[0_12px_40px_rgba(124,58,237,0.15)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.3)] transition-all duration-500 transform hover:-translate-y-2 group flex flex-col justify-between p-8 pl-36 min-h-[420px]">
-                {/* Background Decoration */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -right-8 -bottom-8 text-white opacity-5 group-hover:scale-110 transition-transform duration-700 pointer-events-none"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-white/40 shadow-[0_20px_40px_-15px_rgba(124,58,237,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(124,58,237,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+              >
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-100/50 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-purple-600 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                 
-                {/* Large Decorative Number */}
-                <div className="absolute bottom-6 left-36 text-7xl font-black text-white/10 pointer-events-none select-none">03</div>
-                
-                {/* Left Curved Accent Panel */}
-                <div className="absolute top-0 left-0 h-full w-28 bg-white rounded-r-[50px] flex items-center justify-center shadow-[4px_0_24px_rgba(0,0,0,0.15)] z-10 transition-transform duration-500 group-hover:scale-x-105 origin-left">
-                  <div className="w-16 h-16 rounded-full bg-[#f3edff] flex items-center justify-center group-hover:bg-[#7c3aed] transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#7c3aed] group-hover:text-white transition-colors duration-500"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
-                  </div>
+                <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-purple-600 transition-colors duration-500 shadow-inner">
+                  <Award className="w-8 h-8 text-purple-600 group-hover:text-white transition-colors duration-500" />
                 </div>
-
-                {/* Content */}
+                
                 <div className="relative z-20 flex-grow flex flex-col">
-                  <h3 className="text-[28px] font-bold text-white mb-4 leading-tight">
-                    Diploma Credit Transfer
-                  </h3>
-                  <p className="text-[16px] text-white/85 leading-[1.7] mb-8 flex-grow">
-                    Transfer your Diploma credits to leading universities, saving time and money while completing your postgraduate degree smoothly and efficiently.
+                  <h3 className="text-3xl font-bold text-[#172A53] mb-4">Diploma Transfer</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium flex-grow">
+                    Transfer your Diploma credits to leading universities to fast-track your educational progression effortlessly.
                   </p>
-                  <Link href="/diploma-credit-transfer" className="bg-white text-[#7c3aed] font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center mt-auto w-max group/btn">
-                    Know More <span className="ml-2 transform group-hover/btn:translate-x-1 transition-transform">→</span>
+                  
+                  <Link href="/diploma-credit-transfer" className="inline-flex items-center text-purple-600 font-bold text-lg group/link mt-auto w-max">
+                    Know More 
+                    <span className="ml-2 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover/link:bg-purple-600 group-hover/link:text-white transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
+                    </span>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
+
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(49,45,69)] text-center mb-12">
+            Frequently Asked Questions on B.Tech Credit Transfers
+          </h2>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+              >
+                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#172A53]' : 'bg-gray-50 hover:bg-[#172A53]'}`}>
+                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#172A53] group-hover:text-white'}`}>
+                    {faq.q}
+                  </h3>
+                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#da251d] group-hover:text-white'}`}>
+                    ▼
+                  </span>
+                </div>
+                <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <div className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Note Paragraph */}
+          <div className="mt-10 p-5 bg-red-50 rounded-2xl border border-red-100 text-center shadow-sm">
+            <p className="text-[rgb(49,45,69)] text-sm md:text-base italic font-medium leading-relaxed">
+              *To complete your B.Tech degree through credit transfer, you must visit the university and write the failed subjects directly in offline mode. Universities do not allow online exams for credit transfer programs, as per UGC guidelines.
+            </p>
           </div>
         </div>
       </div>
