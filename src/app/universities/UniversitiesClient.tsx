@@ -44,26 +44,21 @@ export default function UniversitiesClient({ universities }: { universities: Uni
       <Header />
       
       {/* Modern Premium Hero Section */}
-      <div className="relative bg-gradient-to-br from-[#0B1733] via-[#172A53] to-[#254175] overflow-hidden">
-        {/* Main Background Image */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
+      <div className="relative bg-[#F9F9F9] overflow-hidden">
         {/* Subtle Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-500 blur-[100px]"></div>
-          <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-red-500 blur-[120px]"></div>
-          <div className="absolute top-[20%] right-[15%] opacity-30">
-            <GraduationCap size={180} className="text-white" strokeWidth={0.5} />
+          <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-200 blur-[100px]"></div>
+          <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-red-200 blur-[120px]"></div>
+          <div className="absolute top-[20%] right-[15%] opacity-20">
+            <GraduationCap size={180} className="text-[#172A53]" strokeWidth={0.5} />
           </div>
-          {/* Dotted Pattern */}
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
         </div>
 
         <div className="relative max-w-[1400px] mx-auto px-4 md:px-8 py-20 md:py-24 text-center z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-[64px] font-extrabold text-white leading-tight tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-[64px] font-extrabold text-[#0B1727] leading-tight tracking-tight mb-6">
             Partner Universities
           </h1>
-          <p className="text-[18px] md:text-[20px] text-gray-200 leading-relaxed max-w-2xl mx-auto font-light">
+          <p className="text-[18px] md:text-[20px] text-[#172A53]/90 leading-relaxed max-w-2xl mx-auto font-light">
             Explore our globally recognized partner institutions and discover the perfect program for your academic journey and credit transfer.
           </p>
         </div>

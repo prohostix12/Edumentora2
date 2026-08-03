@@ -24,18 +24,15 @@ export default async function Page() {
       <Header />
       
       {/* Unified Hero Section */}
-      <div className="w-full bg-[#172A53] relative overflow-hidden">
-        {/* Background Image Overlay matching B-Tech/Programs page */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
+      <div className="w-full bg-[#F9F9F9] relative overflow-hidden">
         <div className="w-full pt-24 pb-24 relative z-10 max-w-7xl mx-auto text-center px-6 md:px-12">
-          <div className="inline-block px-4 py-1.5 bg-white/10 text-[#F9B03C] font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-white/20 backdrop-blur-md">
+          <div className="inline-block px-4 py-1.5 bg-red-50/90 text-[#da251d] font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-red-100 backdrop-blur-md">
             Moments & Memories
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight font-[Poppins]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1727] leading-[1.1] mb-6 tracking-tight font-[Poppins]">
             Gallery
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+          <p className="text-[#172A53]/90 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
             Explore beautiful moments, events, and milestones from our vibrant community.
           </p>
         </div>

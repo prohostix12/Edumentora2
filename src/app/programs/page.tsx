@@ -27,18 +27,15 @@ export default async function ProgramsPage() {
       <Header />
       
       {/* PAGE HEADING HERO */}
-      <div className="w-full bg-[#172A53] relative overflow-hidden">
-        {/* Background Image Overlay */}
-        <div className="absolute inset-0 opacity-40 bg-cover bg-center" style={{ backgroundImage: "url('/edumentora%20bg%20image.png')" }}></div>
-        
+      <div className="w-full bg-[#F9F9F9] relative overflow-hidden">
         <div className="w-full pt-20 pb-24 relative z-10 max-w-7xl mx-auto text-center px-6 md:px-12">
-          <div className="inline-block px-4 py-1.5 bg-white/10 text-red-200 font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-white/20 backdrop-blur-md">
+          <div className="inline-block px-4 py-1.5 bg-red-50/90 text-[#da251d] font-bold tracking-wider uppercase rounded-full mb-6 text-xs border border-red-100 backdrop-blur-md">
             Professional & Career Advancement
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight font-[Poppins]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1727] leading-[1.1] mb-6 tracking-tight font-[Poppins]">
             Empower Your Future with Flexible Learning Programs
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-5xl mx-auto">
+          <p className="text-[#172A53]/90 text-lg md:text-xl leading-relaxed max-w-5xl mx-auto">
             Discover our comprehensive programs designed to help working professionals convert their valuable experience into academic credits and achieve their career goals.
           </p>
         </div>
