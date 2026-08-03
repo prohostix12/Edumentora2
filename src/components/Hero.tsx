@@ -2,63 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Shield, ArrowRight, Volume2, VolumeX, CheckCircle2 } from 'lucide-react';
-import heroImage from '../../public/hero-image.png';
-
-const TypewriterText = ({ segments, speed = 40, delay = 0 }: { segments: { text: string, className?: string }[], speed?: number, delay?: number }) => {
-  const [charIndex, setCharIndex] = useState(0);
-  const [started, setStarted] = useState(false);
-  const fullText = segments.map(s => s.text).join("");
-
-  useEffect(() => {
-    const t = setTimeout(() => setStarted(true), delay);
-    return () => clearTimeout(t);
-  }, [delay]);
-
-  useEffect(() => {
-    if (started && charIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setCharIndex(charIndex + 1);
-      }, speed);
-      return () => clearTimeout(timeout);
-    }
-  }, [charIndex, started, fullText, speed]);
-
-  let currentIndex = 0;
-  return (
-    <>
-      {segments.map((seg, i) => {
-        const segStart = currentIndex;
-        currentIndex += seg.text.length;
-
-        if (charIndex <= segStart) return null;
-
-        const displayedText = seg.text.slice(0, charIndex - segStart);
-
-        return (
-          <span key={i} className={seg.className}>
-            {displayedText.split('\n').map((line, j, arr) => (
-              <React.Fragment key={j}>
-                {line}
-                {j < arr.length - 1 && <br />}
-              </React.Fragment>
-            ))}
-          </span>
-        );
-      })}
-      {/* Blinking cursor */}
-      <style>{`
-        @keyframes typeBlink {
-          0%, 49% { opacity: 1; }
-          50%, 99% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-      `}</style>
-      <span className="inline-block w-[5px] h-[0.9em] bg-[#da251d] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
-    </>
-  );
-};
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, ClipboardCheck, ShieldCheck, GraduationCap } from 'lucide-react';
+import EligibilityForm from '@/components/EligibilityForm';
 
 const LoopingTypewriterText = ({
   baseSegments,
@@ -139,63 +85,92 @@ const LoopingTypewriterText = ({
         );
       })}
       {/* Blinking cursor */}
-      <span className="inline-block w-[5px] h-[0.9em] bg-[#da251d] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+      <style>{`
+        @keyframes typeBlink {
+          0%, 49% { opacity: 1; }
+          50%, 99% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+      `}</style>
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#60A5FA] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
     </>
   );
 };
 
-import EnquiryForm from '@/components/EnquiryForm';
-
 export default function Hero() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
 
-  const toggleMute = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      const action = isMuted ? 'unMute' : 'mute';
-      iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: action, args: [] }), '*');
-      setIsMuted(!isMuted);
-    }
-  };
+  // The scroll-driven centering only applies on the split desktop layout (lg+); on mobile the
+  // form stays in normal document flow, so its positioning style is left untouched there.
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(min-width: 1024px)');
+    const update = () => setIsDesktop(mql.matches);
+    update();
+    mql.addEventListener('change', update);
+    return () => mql.removeEventListener('change', update);
+  }, []);
+
+  // On load the form sits in the right portion. Scrolling: the navy panel's text content
+  // slides up and out (not sideways) and fades, the form travels from the right portion over
+  // to the left side (into the space the content vacates), and the image animates into the
+  // centre of the right portion behind it. `left` is in vw so it's measured against the
+  // viewport, not whichever panel the element happens to sit in. Ranges are stretched to
+  // finish close to progress 1 so there's no dead scroll zone once everything is in place —
+  // the page continues scrolling right after the pieces land.
+  // Starts at the existing "20% down" resting offset, then continues up and off-screen.
+  const leftContentY = useTransform(scrollYProgress, [0, 0.35], ['20%', '-140%']);
+  const leftContentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  // Centred ('-50%') while sitting in the right portion; '-25%' = centre shifted 25% down,
+  // once it settles on the left.
+  const formLeft = useTransform(scrollYProgress, [0.05, 0.85], ['75vw', '30vw']);
+  const formY = useTransform(scrollYProgress, [0.05, 0.85], ['-50%', '-25%']);
+  const formStyle = isDesktop ? { left: formLeft, x: '-50%', y: formY } : undefined;
+
+  // Image starts tucked under the left (navy) portion — low and hidden — then rises up and
+  // slides over to rest at the centre of the right portion (roughly the midpoint of the
+  // ~54vw-100vw span the right panel occupies).
+  const imageOpacity = useTransform(scrollYProgress, [0.3, 0.7], [0, 1]);
+  const imageLeft = useTransform(scrollYProgress, [0.3, 0.8], ['35vw', '76vw']);
+  // '20%' while under the left portion (20% lower than centre); '-60%' at rest in the right
+  // portion (centre '-50%' shifted a further 20% up, toward the top).
+  const imageY = useTransform(scrollYProgress, [0.3, 0.8], ['20%', '-60%']);
+
+  // Once the headline has exited, fill the space it leaves behind with supporting content
+  // on both sides so the settled layout (form left, image right) doesn't look empty.
+  const revealOpacity = useTransform(scrollYProgress, [0.4, 0.65], [0, 1]);
 
   return (
-    <section
-      className="relative w-full h-auto min-h-[90dvh] lg:min-h-[100dvh] flex flex-col justify-center pt-32 lg:pt-[80px] pb-16 bg-[#F9F9F9]"
-    >
-      {/* Background Decorative Image (Transparent PNG) */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-[25%] w-[90%] max-w-[320px] lg:max-w-[500px] h-[45%] lg:h-[65%] z-0 pointer-events-none opacity-80 md:opacity-100">
-        <Image
-          src="/hero-image.png"
-          alt="Successful College Student"
-          fill
-          className="object-contain object-bottom drop-shadow-2xl"
-          priority
+    <section ref={sectionRef} className="relative w-full lg:h-[170dvh]">
+    <div className="relative w-full min-h-[100dvh] lg:h-[100dvh] lg:sticky lg:top-0 flex flex-col lg:flex-row bg-[#f7f9fc] overflow-hidden">
+
+      {/* Left: Navy content panel */}
+      <div className="relative w-full lg:w-[54%] xl:w-[52%] bg-gradient-to-br from-[#0d1b3d] via-[#132a5c] to-[#172A53] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-32 pb-16 lg:py-24 lg:rounded-r-[3.5rem] xl:rounded-r-[5rem] overflow-hidden">
+
+        {/* Decorative texture on navy panel */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)', backgroundSize: '28px 28px' }}
         />
-      </div>
+        <div className="absolute top-[-15%] right-[-10%] w-[420px] h-[420px] rounded-full bg-blue-500/20 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-15%] left-[-10%] w-[320px] h-[320px] rounded-full bg-[#da251d]/10 blur-[110px] pointer-events-none" />
 
-      {/* Content Container */}
-      <div className="relative lg:max-w-5xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 z-10 flex-grow flex flex-col justify-center h-full pointer-events-none">
-
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center pointer-events-auto">
-
-          {/* Left Column: Text */}
-          <div className="flex flex-col items-start justify-center text-left max-w-xl lg:max-w-2xl bg-white/40 md:bg-transparent p-6 md:p-0 rounded-2xl md:rounded-none backdrop-blur-md md:backdrop-blur-none border border-white/50 md:border-none shadow-sm md:shadow-none">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex items-center gap-1.5 xl:gap-2 bg-red-50/90 text-[#da251d] px-3 py-1.5 md:px-3.5 md:py-1.5 xl:px-4 xl:py-2 rounded-full font-semibold text-xs md:text-[13px] xl:text-sm shadow-sm border border-red-100 mb-5 xl:mb-8 backdrop-blur-sm"
-            >
-              <Shield className="w-3 h-3 md:w-3.5 md:h-3.5 xl:w-4 xl:h-4" />
-              <span>Trusted Education Partner</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl xl:text-5xl font-bold text-[#0B1727] leading-snug mb-10 md:mb-12 tracking-tight font-serif h-[160px] sm:h-[130px] md:h-[140px] xl:h-[160px]"
-            >
+        <motion.div
+          style={isDesktop ? { y: leftContentY, opacity: leftContentOpacity } : undefined}
+          className="relative z-10 max-w-xl lg:will-change-transform"
+        >
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col justify-end text-3xl md:text-4xl xl:text-[3.25rem] font-bold text-white leading-snug mb-6 tracking-tight font-serif h-[170px] sm:h-[140px] md:h-[150px] xl:h-[170px]"
+          >
+            <div>
               <LoopingTypewriterText
                 speed={40}
                 deleteSpeed={30}
@@ -205,71 +180,119 @@ export default function Hero() {
                   { text: "Through " }
                 ]}
                 loopSegments={[
-                  [{ text: "Credit Transfer", className: "text-[#da251d] font-bold" }]
-                ]}
+                  [{ text: "Credit Transfer", className: "text-[#60A5FA] font-bold" }]
+                  ]}
               />
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base md:text-lg text-[#172A53]/90 max-w-[540px] leading-relaxed mb-6 font-medium font-serif"
-            >
-              Continue your B.Tech journey by building on the academic credits you’ve already earned. Get the right guidance and support to transfer your credits and move closer to completing your degree.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-wrap gap-3 md:gap-4 mb-10"
-            >
-              {['UGC Approved', 'BCI', 'AICTE', 'PCI'].map((badge, idx) => (
-                <div key={idx} className="bg-white/90 backdrop-blur-md border border-white shadow-md px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold text-[#172A53] flex items-center justify-center gap-2 transition-transform hover:-translate-y-1 duration-300">
-                  <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  {badge}
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="flex flex-wrap gap-8 items-center"
-            >
-              <a href="/contact">
-                <button className="group relative flex items-center justify-center gap-2 text-[#172A53] bg-transparent py-2 text-lg md:text-xl font-bold transition-all duration-300">
-                  Apply Now
-                  <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300" />
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[110%] h-[2px] bg-[#da251d] transition-transform duration-300 origin-left"></span>
-                </button>
-              </a>
-              <a href="#">
-                <button className="flex items-center justify-center text-[#172A53]/70 hover:text-[#172A53] py-2 text-lg md:text-xl font-semibold transition-all duration-300">
-                  Know More
-                </button>
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Right Column: Enquiry Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="w-full max-w-[340px] mx-auto md:ml-auto md:mr-0 z-20"
-          >
-            <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[1.5rem] p-5 shadow-2xl md:translate-x-[10%] md:translate-y-[10%]">
-              <h3 className="text-xl font-bold text-[#172A53] mb-1.5 font-sans">Enquire Now</h3>
-              <p className="text-gray-600 mb-5 font-medium text-xs leading-relaxed">Fill out the form below and we will get back to you shortly.</p>
-              <EnquiryForm className="space-y-3" isGrid={true} />
             </div>
-          </motion.div>
+          </motion.h1>
 
-        </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-base md:text-lg text-slate-300 max-w-[520px] leading-relaxed mb-9 font-medium font-serif"
+          >
+            Continue your B.Tech journey by building on the academic credits you&rsquo;ve already earned. Get the right guidance and support to transfer your credits and move closer to completing your degree.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="flex flex-wrap gap-4 items-center"
+          >
+            <a href="/contact">
+              <button className="group relative flex items-center justify-center gap-2 text-[#172A53] bg-white hover:bg-slate-100 px-7 py-3.5 rounded-full text-base md:text-lg font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                Apply Now
+                <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300" />
+              </button>
+            </a>
+            <a href="#eligibility-form">
+              <button className="flex items-center justify-center text-white border-2 border-white/70 hover:bg-white hover:text-[#172A53] px-7 py-3.5 rounded-full text-base md:text-lg font-bold transition-all duration-300">
+                Book a Free Consultation
+              </button>
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Fills the space the headline leaves once it scrolls out, so the panel doesn't
+            look empty once the form has settled here on the left. */}
+        <motion.div
+          style={{ opacity: revealOpacity }}
+          className="hidden lg:block absolute inset-x-0 top-[14%] px-6 sm:px-10 lg:px-16 xl:px-20 z-10 pointer-events-none"
+        >
+          <h2 className="text-white text-xl xl:text-2xl font-bold mb-5 font-serif max-w-sm">A Trusted Path to Your Degree</h2>
+          <ul className="space-y-3.5">
+            <li className="flex items-center gap-3 text-slate-200 text-sm font-medium">
+              <ShieldCheck className="w-4 h-4 text-[#60A5FA] flex-shrink-0" />
+              UGC-Approved, AICTE-Recognized Universities
+            </li>
+            <li className="flex items-center gap-3 text-slate-200 text-sm font-medium">
+              <ClipboardCheck className="w-4 h-4 text-[#60A5FA] flex-shrink-0" />
+              Free, Fast Eligibility Assessment
+            </li>
+            <li className="flex items-center gap-3 text-slate-200 text-sm font-medium">
+              <GraduationCap className="w-4 h-4 text-[#60A5FA] flex-shrink-0" />
+              Guided Support Until You Graduate
+            </li>
+          </ul>
+        </motion.div>
       </div>
+
+      {/* Right: ambient decoration only — the hero image is now a sibling below, so it can
+          be positioned in vw against the full viewport and rest right on the panel seam */}
+      <div className="hidden lg:flex relative lg:w-[46%] xl:w-[48%] flex-col items-center justify-center px-6 py-16 lg:py-24">
+        <div className="absolute top-[30%] right-[-10%] w-[300px] h-[300px] rounded-full bg-blue-200/40 blur-[100px] pointer-events-none" />
+
+        {/* Fills the space beneath where the image settles, so the right side doesn't look empty. */}
+        <motion.div
+          style={{ opacity: revealOpacity }}
+          className="hidden lg:block absolute inset-x-0 bottom-[14%] px-10 xl:px-14 z-10 text-center pointer-events-none"
+        >
+          <p className="text-[#172A53] text-base xl:text-lg font-bold font-serif mb-2">&ldquo;Every credit you&rsquo;ve earned still counts.&rdquo;</p>
+          <p className="text-slate-500 text-xs font-semibold uppercase tracking-[0.15em]">Dedicated Academic Advisors</p>
+        </motion.div>
+      </div>
+
+      {/* Hero image: hidden until scrolled, desktop only. Starts tucked under the left portion,
+          rises and slides over to rest at the centre of the right portion. */}
+      <motion.div
+        style={{ opacity: imageOpacity, left: imageLeft, x: '-50%', y: imageY }}
+        className="hidden lg:block absolute z-20 top-1/2 w-[300px] xl:w-[340px] aspect-[4/5] pointer-events-none"
+      >
+        <div className="absolute inset-x-6 bottom-0 h-[70%] bg-gradient-to-t from-blue-200/50 to-transparent rounded-full blur-2xl" />
+        <Image
+          src="/hero-image.png"
+          alt="Student who completed their degree through credit transfer"
+          fill
+          sizes="340px"
+          className="object-contain object-bottom drop-shadow-2xl"
+        />
+      </motion.div>
+
+      {/* Check Eligibility Form: sibling of both panels so its containing block spans the
+          full viewport width — required for `left` in vw to land on true screen-center rather
+          than being measured from the right panel's own edge. Starts in the right panel's spot
+          (20% down), scroll carries it to dead-center, straddling both halves. */}
+      <motion.div
+        id="eligibility-form"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        style={formStyle}
+        className="relative z-10 w-full max-w-[400px] mx-auto -mt-8 mb-16 px-6 lg:px-0 lg:mt-0 lg:mb-0 scroll-mt-32 lg:absolute lg:top-1/2 lg:w-[400px] lg:max-w-none lg:z-30 lg:will-change-transform"
+      >
+        <div className="bg-white border border-slate-100 rounded-[1.5rem] p-4 shadow-[0_20px_60px_-25px_rgba(15,111,255,0.35)]">
+          <div className="flex items-center gap-2 mb-1.5 rounded-full bg-blue-50 w-fit px-2.5 py-1">
+            <ClipboardCheck className="w-3.5 h-3.5 text-[#0f6fff]" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0f6fff]">Fast assessment</span>
+          </div>
+          <h3 className="text-lg font-bold text-[#172A53] mb-0.5">Check Eligibility Now</h3>
+          <p className="text-xs text-slate-600 mb-2.5 leading-5">Get a quick review of your credit transfer eligibility in just a few steps.</p>
+          <EligibilityForm className="space-y-2.5" />
+        </div>
+      </motion.div>
+    </div>
     </section>
   );
 }

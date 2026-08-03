@@ -28,6 +28,7 @@ export default async function BlogPage() {
         badge="Latest Insights" 
         title="Our Blog" 
         subtitle="Stay updated with the latest news, guides, and insights about education and career."
+        isGradientText={true}
       />
 
       {/* Blogs Grid */}

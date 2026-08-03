@@ -18,6 +18,19 @@ model EnquiryList {
   @@map("enquiry_list")
 }
 
+model EligibilityRequest {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+  place                 String
+  course                String
+  previousUniversity    String
+  courseCompletedYear   String
+  contactNumber         String
+  createdAt             DateTime @default(now())
+
+  @@map("eligibility_request")
+}
+
 model Gallery {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   section   String

@@ -47,7 +47,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     <main className="min-h-screen bg-gray-50 pt-24 font-[Poppins]">
       <Header />
       
-      <PageBanner badge={blog.category} title={blog.sectionDis}>
+      <PageBanner badge={blog.category} title={blog.sectionDis} isGradientText={true}>
         <div className="pt-8">
           <Link 
             href="/blog" 

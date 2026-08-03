@@ -38,28 +38,12 @@ export default function AboutUsPage() {
       <Header />
       
       {/* Hero Section */}
-      <PageBanner>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 pt-8">
-          
-          {/* Text Content */}
-          <div className="md:w-1/2 space-y-6 text-[#0B1727] text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#0B1727]">
-              Transform Past Efforts into Future Success
-            </h1>
-            <p className="text-lg md:text-xl text-[#172A53]/90 leading-relaxed max-w-xl mx-auto md:mx-0">
-              Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
-            </p>
-          </div>
-
-          {/* Image Content */}
-          <div className="md:w-1/2 relative flex justify-center">
-             <div className="absolute inset-0 bg-gradient-to-r from-[#da251d] to-orange-500 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
-             {/* We use about-us-hero.png as the main visual. The rounded-2xl handles it gracefully if it's a solid photo, or it will just be a transparent PNG. */}
-             <img src="/about-us-hero.png" alt="About Edumentora" className="relative z-10 w-full max-w-md drop-shadow-2xl rounded-2xl transform hover:scale-105 transition-transform duration-700" />
-          </div>
-
-        </div>
-      </PageBanner>
+      <PageBanner
+        badge="About Edumentora"
+        title="Transform Past Efforts into Future Success"
+        subtitle="Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money."
+        isGradientText={true}
+      />
 
       <AboutSection />
 

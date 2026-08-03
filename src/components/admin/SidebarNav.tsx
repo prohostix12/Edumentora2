@@ -3,18 +3,19 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Settings, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, ClipboardList } from 'lucide-react';
 
 const links = [
-  { href: '/admin',           label: 'Dashboard',    icon: LayoutDashboard, exact: true },
-  { href: '/admin/enquiries', label: 'Your Enquiry', icon: MessageSquare },
-  { href: '/admin/university',label: 'University',   icon: GraduationCap },
-  { href: '/admin/contacts',  label: 'Contacts',     icon: Users },
-  { href: '/admin/reviews',   label: 'Reviews',      icon: Star },
-  { href: '/admin/gallery',   label: 'Image Gallery',icon: Image },
-  { href: '/admin/blogs',     label: 'Blogs',        icon: FileText },
-  { href: '/admin/programs',  label: 'Programs',     icon: BookOpen },
-  { href: '/admin/settings',  label: 'Settings',     icon: Settings },
+  { href: '/admin',                   label: 'Dashboard',        icon: LayoutDashboard, exact: true },
+  { href: '/admin/enquiries',         label: 'Your Enquiry',     icon: MessageSquare },
+  { href: '/admin/eligibility-request', label: 'Eligibility Request', icon: ClipboardList },
+  { href: '/admin/university',        label: 'University',        icon: GraduationCap },
+  { href: '/admin/contacts',          label: 'Contacts',          icon: Users },
+  { href: '/admin/reviews',           label: 'Reviews',           icon: Star },
+  { href: '/admin/gallery',           label: 'Image Gallery',     icon: Image },
+  { href: '/admin/blogs',             label: 'Blogs',             icon: FileText },
+  { href: '/admin/programs',          label: 'Programs',          icon: BookOpen },
+  { href: '/admin/settings',          label: 'Settings',          icon: Settings },
 ];
 
 export default function SidebarNav({ collapsed = false }: { collapsed?: boolean }) {

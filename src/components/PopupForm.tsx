@@ -71,7 +71,7 @@ export default function PopupForm() {
 
               <div className="text-center mb-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-[#172A53] mb-3">Start Your Journey</h2>
-                <div className="w-16 h-1 bg-[#da251d] rounded-full mx-auto mb-3"></div>
+                <div className="w-16 h-1 bg-[#0f6fff] rounded-full mx-auto mb-3"></div>
                 <p className="text-gray-600 text-sm">Fill out the form below and our academic advisors will get back to you shortly.</p>
               </div>
               
