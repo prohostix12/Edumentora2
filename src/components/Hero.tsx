@@ -256,7 +256,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="w-full max-w-[340px] mx-auto md:ml-auto md:mr-0 z-20"
           >
-            <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[1.5rem] p-5 shadow-2xl md:translate-x-[20%] md:translate-y-[10%]">
+            <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[1.5rem] p-5 shadow-2xl md:translate-x-[10%] md:translate-y-[10%]">
               <h3 className="text-xl font-bold text-[#172A53] mb-1.5 font-sans">Enquire Now</h3>
               <p className="text-gray-600 mb-5 font-medium text-xs leading-relaxed">Fill out the form below and we will get back to you shortly.</p>
               <EnquiryForm className="space-y-3" isGrid={true} />
