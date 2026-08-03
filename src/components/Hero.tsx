@@ -194,13 +194,18 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl xl:text-6xl font-bold text-[#0B1727] leading-[1.1] mb-6 tracking-tight font-serif min-h-[96px] md:min-h-[120px] xl:min-h-[144px]"
+              className="text-3xl md:text-4xl xl:text-5xl font-bold text-[#0B1727] leading-snug mb-10 md:mb-12 tracking-tight font-serif h-[160px] sm:h-[130px] md:h-[140px] xl:h-[160px]"
             >
-              <TypewriterText
-                speed={30}
-                segments={[
+              <LoopingTypewriterText
+                speed={40}
+                deleteSpeed={30}
+                pause={3000}
+                baseSegments={[
                   { text: "Unlock New Academic\nOpportunities " },
-                  { text: "Through Credit Transfer", className: "text-[#da251d] font-bold" }
+                  { text: "Through " }
+                ]}
+                loopSegments={[
+                  [{ text: "Credit Transfer", className: "text-[#da251d] font-bold" }]
                 ]}
               />
             </motion.h1>
