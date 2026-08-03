@@ -40,12 +40,12 @@ export default function LocationsSection() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {locations.map((col, colIndex) => (
-            <ul key={colIndex} className="space-y-3">
+            <ul key={colIndex} className="space-y-3 rounded-[1.5rem] border border-[#E8EDF7] bg-white/70 p-4 md:p-6 shadow-sm">
               {col.map((location, index) => (
                 <li key={index}>
                   <Link 
                     href={location.url} 
-                    className="text-[#172A53]/90 hover:text-[#da251d] hover:underline text-sm md:text-base transition-colors font-medium"
+                    className="block rounded-xl border border-transparent px-3 py-3 text-[15px] md:text-base font-semibold leading-relaxed text-[#172A53] transition-all duration-300 hover:border-[#E8EDF7] hover:bg-[#f8fbff] hover:text-[#da251d]"
                   >
                     {location.name}
                   </Link>

@@ -42,6 +42,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
         badge="Our Offices" 
         title="Get In Touch" 
         subtitle="Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals."
+        isGradientText={true}
       />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24">
