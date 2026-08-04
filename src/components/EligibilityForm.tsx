@@ -50,7 +50,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="name"
               name="name"
               placeholder="Name"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -67,7 +67,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="phone"
               name="phone"
               placeholder="Phone"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -84,7 +84,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="place"
               name="place"
               placeholder="Place"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -101,7 +101,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="course"
               name="course"
               placeholder="Course"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -118,7 +118,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="previousUniversity"
               name="previousUniversity"
               placeholder="Previous University"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -135,7 +135,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
               id="courseCompletedYear"
               name="courseCompletedYear"
               placeholder="Course Completed Year"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#0f6fff]/40 focus:outline-none focus:ring-2 focus:ring-[#0f6fff]/15 focus:border-[#0f6fff] transition-all placeholder-transparent"
+              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#172A53] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#da251d]/40 focus:outline-none focus:ring-2 focus:ring-[#da251d]/15 focus:border-[#da251d] transition-all placeholder-transparent"
               required
             />
             <label
@@ -150,7 +150,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-gradient-to-r from-[#0f6fff] to-[#0d5ae1] hover:from-[#0d5ae1] hover:to-[#0a4dbb] text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-500/25 hover:shadow-xl hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-[#da251d] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991616] text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-red-500/25 hover:shadow-xl hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {status === 'loading' ? 'Checking...' : 'Check Eligibility Now'}
         </button>
@@ -165,7 +165,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
                   <h3 className="text-2xl font-bold text-[#172A53]">Checking Eligibility</h3>
                   <p className="text-gray-600">We are checking your details now. Please wait a moment.</p>
                   <div className="h-2 w-full rounded-full bg-gray-200 overflow-hidden">
-                    <div className="h-full w-3/4 bg-[#0f6fff] animate-pulse" />
+                    <div className="h-full w-3/4 bg-[#da251d] animate-pulse" />
                   </div>
                 </>
               )}
@@ -193,7 +193,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
                     setShowPopup(false);
                   }
                 }}
-                className="mt-4 w-full bg-[#0f6fff] hover:bg-[#0d5ae1] text-white font-semibold py-3 rounded-xl transition-colors"
+                className="mt-4 w-full bg-[#da251d] hover:bg-[#b91c1c] text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 {popupState === 'checking' ? 'Close' : 'Close'}
               </button>

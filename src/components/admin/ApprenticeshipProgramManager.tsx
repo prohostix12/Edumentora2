@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useTransition, useEffect } from 'react';
 import { Trash2, Plus, Upload, X, Save, Edit2 } from 'lucide-react';
 import { createProgram, deleteProgram, updateProgram } from '@/app/admin/programs/actions';
 import { compressImage } from '@/utils/imageCompression';
@@ -20,6 +20,35 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
   const [isPending, startTransition] = useTransition();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProgramId, setEditingProgramId] = useState<string | null>(null);
+
+  // Lock body scroll when modal is open to prevent scroll interference/lag
+  useEffect(() => {
+    if (isModalOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflow = 'hidden';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
 
   const defaultFormData = {
     topic: '',
@@ -331,17 +360,21 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
 
       {/* ── CREATE/EDIT MODAL ── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-[2px]"
+          style={{ overscrollBehavior: 'contain' }}
+        >
+          <div className="flex items-start justify-center min-h-full p-4 py-8">
+          <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl" onClick={e => e.stopPropagation()}>
             
-            <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#172A53] shrink-0">
+            <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#172A53] rounded-t-3xl">
               <h2 className="text-xl font-bold text-white">{editingProgramId ? 'Edit Apprenticeship Program' : 'Create New Program'}</h2>
               <button type="button" onClick={() => { setIsModalOpen(false); setEditingProgramId(null); }} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 md:p-8 min-h-0">
+            <div className="p-6 md:p-8">
               <form id="apprenticeship-form" onSubmit={handleCreateProgram} className="space-y-12">
                 
                 {/* 1. HERO SECTION */}
@@ -620,7 +653,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
               </form>
             </div>
 
-            <div className="p-6 border-t border-gray-100 bg-gray-50 rounded-b-3xl flex justify-end shrink-0">
+            <div className="p-6 border-t border-gray-100 bg-gray-50 rounded-b-3xl flex justify-end">
               <button 
                 type="submit" 
                 form="apprenticeship-form"
@@ -632,6 +665,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
               </button>
             </div>
 
+          </div>
           </div>
         </div>
       )}

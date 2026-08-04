@@ -81,13 +81,13 @@ export default function Header() {
         animate={{ y: isHidden ? -120 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
         className={`pointer-events-auto w-full max-w-7xl h-[82px] flex items-center justify-between px-6 md:px-8 transition-colors duration-300 rounded-[18px] ${
-          isScrolled 
-            ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100' 
+          isScrolled
+            ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100'
             : 'bg-white shadow-sm border border-transparent'
         }`}
       >
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="flex shrink-0 items-center"
           onDoubleClick={(e) => {
             e.preventDefault();
@@ -104,9 +104,9 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#172A53]">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
+            <Link
+              key={link.name}
+              href={link.href}
               className="relative py-2 group"
             >
               <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#da251d]' : 'hover:text-[#da251d]'}`}>
@@ -116,13 +116,13 @@ export default function Header() {
               <span className={`absolute left-0 bottom-0 h-[2px] bg-[#da251d] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
           ))}
-          
-          <div 
+
+          <div
             className="group relative flex items-center h-full"
             onMouseEnter={() => setOpenDropdown('about')}
             onMouseLeave={() => setOpenDropdown(null)}
           >
-            <button 
+            <button
               onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === 'about' ? null : 'about'); }}
               className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === 'about' ? 'text-[#da251d]' : 'hover:text-[#da251d] transition-colors duration-200'}`}
             >
@@ -130,7 +130,7 @@ export default function Header() {
             </button>
             <AnimatePresence>
               {(openDropdown === 'about' || false) && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -145,7 +145,7 @@ export default function Header() {
               )}
             </AnimatePresence>
           </div>
-          
+
           <Link href="/contact" className="relative py-2 group">
             <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#da251d]' : 'hover:text-[#da251d]'}`}>
               Contact
@@ -160,7 +160,7 @@ export default function Header() {
         </Link>
 
         {/* Mobile Hamburger Button */}
-        <button 
+        <button
           className="lg:hidden flex items-center justify-center p-2 text-gray-700 hover:text-[#da251d] transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -171,7 +171,7 @@ export default function Header() {
       {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -184,9 +184,9 @@ export default function Header() {
                   {link.name}
                 </Link>
               ))}
-              
+
               <div className="py-2 border-b border-gray-50">
-                <button 
+                <button
                   onClick={() => setMobileOpenDropdown(mobileOpenDropdown === 'about' ? null : 'about')}
                   className="flex items-center justify-between w-full py-2 hover:text-[#da251d] transition-colors"
                 >
@@ -194,7 +194,7 @@ export default function Header() {
                 </button>
                 <AnimatePresence>
                   {mobileOpenDropdown === 'about' && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
@@ -208,11 +208,11 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-              
+
               <Link href="/contact" onClick={closeMobileMenu} className={`py-3 transition-colors ${isActive('/contact') ? 'text-[#da251d]' : 'hover:text-[#da251d]'}`}>
                 Contact
               </Link>
-              
+
               <Link href="/contact#contacts-section" onClick={closeMobileMenu} className="flex items-center justify-center mt-4 w-full px-6 py-3 bg-[#da251d] text-white font-medium rounded-xl shadow-md hover:bg-red-700 transition-colors">
                 Enquire Now
               </Link>
