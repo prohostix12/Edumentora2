@@ -24,7 +24,7 @@ function AnimatedValue({ value, start }: { value: string; start: boolean }) {
   }, [start, target]);
 
   return (
-    <h3 className="text-4xl md:text-5xl font-bold text-[#172A53] mb-2">
+    <h3 className="text-4xl md:text-5xl font-bold text-[#1B4B43] mb-2">
       {display.toLocaleString()}{suffix}
     </h3>
   );
@@ -63,7 +63,7 @@ export default function AchievementsSection() {
         transition={{ duration: 0.8 }}
         className="mb-16 text-center"
       >
-        <h2 className="text-2xl md:text-4xl font-bold text-[#172A53] leading-tight whitespace-nowrap">
+        <h2 className="text-2xl md:text-4xl font-bold text-[#1B4B43] leading-tight whitespace-nowrap">
           Our Great Achievements
         </h2>
       </motion.div>
@@ -82,7 +82,7 @@ export default function AchievementsSection() {
                   className="flex flex-col items-center justify-center text-center p-4 w-[180px] shrink-0 hover:scale-105 transition-transform duration-300 cursor-pointer"
                 >
                   <AnimatedValue value={item.value} start={startCount} />
-                  <p className="text-[#172A53]/80 text-xs font-medium leading-snug">
+                  <p className="text-[#1B4B43]/80 text-xs font-medium leading-snug">
                     {item.title}
                   </p>
                 </div>

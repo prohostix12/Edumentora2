@@ -7,22 +7,22 @@ import { motion } from 'framer-motion';
 export default function ProcessSection() {
   const features = [
     {
-      icon: <ArrowRightLeft className="w-8 h-8 text-[#172A53]" />,
+      icon: <ArrowRightLeft className="w-8 h-8 text-[#1B4B43]" />,
       title: "Seamless Credit Transfer",
       description: "Effortlessly transfer earned credits to resume your education without starting over or losing progress.",
-      bgColor: "bg-blue-50"
+      bgColor: "bg-[#DCEEE8]"
     },
     {
-      icon: <Clock className="w-8 h-8 text-[#E53935]" />,
+      icon: <Clock className="w-8 h-8 text-[#8A6D3B]" />,
       title: "Time and Cost Savings",
       description: "Save time and reduce costs by continuing your studies efficiently, maximizing academic success and value.",
-      bgColor: "bg-red-50"
+      bgColor: "bg-[#F1E1C3]/60"
     },
     {
-      icon: <Building2 className="w-8 h-8 text-[#F4B400]" />,
+      icon: <Building2 className="w-8 h-8 text-[#2F6F63]" />,
       title: "Recognized Universities",
       description: "Partnered with Glocal University, Radha Govind University, and IEC University to provide accredited and respected degrees.",
-      bgColor: "bg-yellow-50"
+      bgColor: "bg-[#DCEEE8]"
     },
   ];
 
@@ -45,7 +45,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="relative w-full py-16 overflow-hidden bg-gray-50">
+    <section className="relative w-full py-16 overflow-hidden bg-[#FBF3E7]">
       <div className="max-w-[1400px] mx-auto px-4 lg:px-[80px] relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
         
         {/* LEFT COLUMN: Features */}
@@ -56,10 +56,10 @@ export default function ProcessSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#172A53] leading-tight mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1B4B43] leading-tight mb-4">
               Ready To Grow with EduMentora
             </h2>
-            <div className="w-16 h-1.5 bg-[#E53935] rounded-full mb-12"></div>
+            <div className="w-16 h-1.5 bg-[#C9A66B] rounded-full mb-12"></div>
           </motion.div>
 
           <div className="flex flex-col gap-6">
@@ -76,7 +76,7 @@ export default function ProcessSection() {
                    {feature.icon}
                  </div>
                  <div>
-                   <h3 className="text-xl font-bold text-[#172A53] mb-2">
+                   <h3 className="text-xl font-bold text-[#1B4B43] mb-2">
                      {feature.title}
                    </h3>
                    <p className="text-gray-600 text-[15px] leading-relaxed">
@@ -97,7 +97,7 @@ export default function ProcessSection() {
             transition={{ duration: 0.6 }}
             className="mb-12 text-center lg:text-left"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#172A53] leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1B4B43] leading-tight">
               Know about Our Process
             </h2>
           </motion.div>
@@ -122,16 +122,16 @@ export default function ProcessSection() {
                   {/* Left or Right Content Card */}
                   <div className={`w-full md:w-[45%] flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
                     <div className="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300 w-full group cursor-pointer relative overflow-hidden border border-gray-50">
-                      <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-[#E53935]">
+                      <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-[#C9A66B]">
                         <ArrowRight size={20} />
                       </div>
-                      <h4 className="text-lg font-bold text-[#172A53] mb-1 pr-6">{process.title}</h4>
+                      <h4 className="text-lg font-bold text-[#1B4B43] mb-1 pr-6">{process.title}</h4>
                       <p className="text-gray-500 text-sm">{process.desc}</p>
                     </div>
                   </div>
 
                   {/* Center Dot */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md border-4 border-gray-50 items-center justify-center z-10 text-[#172A53] font-bold">
+                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md border-4 border-gray-50 items-center justify-center z-10 text-[#1B4B43] font-bold">
                     {process.num}
                   </div>
 

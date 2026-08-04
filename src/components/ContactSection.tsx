@@ -20,18 +20,18 @@ export default function ContactSection() {
   const rodWidth = useTransform(revealPercent, (v) => 22 + (v / 100) * 70);
   const rodWidthPx = useTransform(rodWidth, (w) => `${w}px`);
   const rodMarginLeftPx = useTransform(rodWidth, (w) => `${-w / 2}px`);
-  const rodColor = '#da251d';
+  const rodColor = '#C9A66B';
 
   return (
     <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 md:px-8 pb-0">
       <div className="relative max-w-5xl mx-auto">
         <motion.div
           style={{ clipPath }}
-          className="relative bg-gradient-to-br from-[#ea3a30] via-[#da251d] to-[#a01912] rounded-t-[40px] rounded-b-[40px] md:rounded-b-none p-6 md:p-10 flex flex-col lg:flex-row gap-8 text-white overflow-hidden shadow-2xl shadow-black/50"
+          className="relative bg-gradient-to-br from-[#E6D3B0] via-[#C9A66B] to-[#8A6D3B] rounded-t-[40px] rounded-b-[40px] md:rounded-b-none p-6 md:p-10 flex flex-col lg:flex-row gap-8 text-white overflow-hidden shadow-2xl shadow-black/50"
         >
           {/* decorative glow accents */}
           <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-          <div aria-hidden className="pointer-events-none absolute -bottom-32 -left-16 w-80 h-80 bg-[#172A53]/30 rounded-full blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -bottom-32 -left-16 w-80 h-80 bg-[#1B4B43]/30 rounded-full blur-3xl" />
 
           {/* subtle dot-grid texture */}
           <div
@@ -64,13 +64,13 @@ export default function ContactSection() {
 
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="bg-[#172A53] p-1.5 rounded-full shadow-lg shadow-black/40">
+              <div className="bg-[#1B4B43] p-1.5 rounded-full shadow-lg shadow-black/40">
                 <Clock className="w-4 h-4 text-white" />
               </div>
               <span className="text-sm font-medium">Fast Application Processing</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="bg-[#172A53] p-1.5 rounded-full shadow-lg shadow-black/40">
+              <div className="bg-[#1B4B43] p-1.5 rounded-full shadow-lg shadow-black/40">
                 <CheckCircle2 className="w-4 h-4 text-white" />
               </div>
               <span className="text-sm font-medium">Successful Transfers</span>
@@ -80,7 +80,7 @@ export default function ContactSection() {
           <div className="space-y-4 pt-2">
             {/* Phone */}
             <div className="flex items-center gap-4">
-              <div className="bg-[#172A53] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
+              <div className="bg-[#1B4B43] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
                 <Phone className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -91,7 +91,7 @@ export default function ContactSection() {
 
             {/* Location */}
             <div className="flex items-center gap-4">
-              <div className="bg-[#172A53] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
+              <div className="bg-[#1B4B43] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
                 <MapPin className="w-5 h-5 text-white" />
               </div>
               <div>

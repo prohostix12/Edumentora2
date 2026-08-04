@@ -34,7 +34,7 @@ export default function AboutUsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="min-h-screen bg-[#F9F9F9] pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-[#F9F9F9] font-[Poppins]">
       <Header />
       
       {/* Hero Section */}
@@ -48,18 +48,18 @@ export default function AboutUsPage() {
       <AboutSection />
 
       {/* Overview Section */}
-      <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-24 border-y border-[#E8EDF7]">
+      <div className="bg-[linear-gradient(135deg,_#FBF3E7_0%,_#F5E9D6_50%,_#F1E1C3_100%)] py-24 border-y border-[#E6D3B0]">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <p className="text-lg md:text-xl text-[#172A53]/90 leading-relaxed text-justify md:text-center font-medium">
+          <p className="text-lg md:text-xl text-[#1B4B43]/90 leading-relaxed text-justify md:text-center font-medium">
             Edumentora is an innovative education service provider that specializes in academic credit transfer solutions, helping students across India restart and complete their discontinued degree programs. Whether due to financial hardship, personal setbacks, academic difficulties, or institutional issues, many students pause their education, but with Edumentora, they don’t have to start over. We make it possible to transfer previously earned college or university credits to UGC-recognized institutions, allowing students to pick up where they left off. Our goal is to ensure that prior academic efforts are not wasted and that every learner gets a second chance to earn a respected qualification. At Edumentora, we’re committed to turning past progress into future success through reliable, student-focused credit transfer services.
           </p>
         </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-[#F9F9F9] py-24 border-t border-[#E8EDF7]">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#E6D3B0]">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43] text-center mb-12">
             Frequently Asked Questions
           </h2>
           <div className="space-y-6">
@@ -70,11 +70,11 @@ export default function AboutUsPage() {
                 className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
-                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#172A53]' : 'bg-gray-50 hover:bg-[#172A53]'}`}>
-                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#172A53] group-hover:text-white'}`}>
+                <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#1B4B43]' : 'bg-gray-50 hover:bg-[#1B4B43]'}`}>
+                  <h3 className={`font-bold text-lg transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-[#1B4B43] group-hover:text-white'}`}>
                     {faq.q}
                   </h3>
-                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#da251d] group-hover:text-white'}`}>
+                  <span className={`transform transition-all duration-300 flex-shrink-0 ${openFaq === index ? 'text-white rotate-180' : 'text-[#C9A66B] group-hover:text-white'}`}>
                     ▼
                   </span>
                 </div>
@@ -93,7 +93,7 @@ export default function AboutUsPage() {
       </div>
 
       {/* TIMS Partnership Section */}
-      <div className="bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-24 border-y border-[#E8EDF7]">
+      <div className="bg-[linear-gradient(135deg,_#FBF3E7_0%,_#F5E9D6_50%,_#F1E1C3_100%)] py-24 border-y border-[#E6D3B0]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-16">
           
           {/* Image Space */}
@@ -105,11 +105,11 @@ export default function AboutUsPage() {
 
           {/* Text Content */}
           <div className="md:w-1/2 space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43] leading-tight">
               Tirur Institute of Management Studies (TIMS)
             </h2>
-            <div className="w-20 h-1.5 bg-[#da251d] rounded-full"></div>
-            <p className="text-lg text-[#172A53]/90 leading-relaxed text-justify mt-6">
+            <div className="w-20 h-1.5 bg-[#C9A66B] rounded-full"></div>
+            <p className="text-lg text-[#1B4B43]/90 leading-relaxed text-justify mt-6">
               EduMentora proudly partners with Tirur Institute of Management Studies (TIMS), a leading institution with 16 years of expertise in distance education, attestation, and credit transfer services. With branches in Tirur and Edappal, TIMS offers diverse programs, including SSLC, Plus Two, Online Degrees, Postgraduate Courses, BTech/MTech, and Diplomas, ensuring flexible learning opportunities for students.
             </p>
           </div>
@@ -118,9 +118,9 @@ export default function AboutUsPage() {
       </div>
 
       {/* Best Credit Transfer Institute Section */}
-      <div className="bg-[#F9F9F9] py-24 border-t border-[#E8EDF7]">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#E6D3B0]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-lg text-gray-700 leading-relaxed text-justify">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43] text-center mb-10">
             The Best Credit Transfer Institute
           </h2>
           <p>

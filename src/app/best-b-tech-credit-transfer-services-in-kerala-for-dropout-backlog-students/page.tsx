@@ -11,7 +11,7 @@ export default function BestBTechCreditTransferServicesPage() {
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#172A53] text-center">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1B4B43] text-center">
           Best B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
         </h1>
       </div>
@@ -41,7 +41,7 @@ export default function BestBTechCreditTransferServicesPage() {
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
-            <h3 className="text-xl font-bold text-[#172A53] mb-5">Enquire Now</h3>
+            <h3 className="text-xl font-bold text-[#1B4B43] mb-5">Enquire Now</h3>
             <EnquiryForm className="space-y-4" isGrid={false} />
           </div>
         </div>

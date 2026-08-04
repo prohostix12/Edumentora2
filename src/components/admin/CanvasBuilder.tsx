@@ -215,23 +215,23 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
         /* Specific corner borders and positioning */
         .react-grid-item > .react-resizable-handle-se::after {
           bottom: 4px; right: 4px;
-          border-right: 2px solid #da251d;
-          border-bottom: 2px solid #da251d;
+          border-right: 2px solid #C9A66B;
+          border-bottom: 2px solid #C9A66B;
         }
         .react-grid-item > .react-resizable-handle-sw::after {
           bottom: 4px; left: 4px;
-          border-left: 2px solid #da251d;
-          border-bottom: 2px solid #da251d;
+          border-left: 2px solid #C9A66B;
+          border-bottom: 2px solid #C9A66B;
         }
         .react-grid-item > .react-resizable-handle-ne::after {
           top: 4px; right: 4px;
-          border-right: 2px solid #da251d;
-          border-top: 2px solid #da251d;
+          border-right: 2px solid #C9A66B;
+          border-top: 2px solid #C9A66B;
         }
         .react-grid-item > .react-resizable-handle-nw::after {
           top: 4px; left: 4px;
-          border-left: 2px solid #da251d;
-          border-top: 2px solid #da251d;
+          border-left: 2px solid #C9A66B;
+          border-top: 2px solid #C9A66B;
         }
       `}} />
       
@@ -241,7 +241,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
         {/* Saved Programs List */}
         <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
           <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1">
-            <FolderOpen className="w-4 h-4 text-[#da251d]" /> Saved Programs
+            <FolderOpen className="w-4 h-4 text-[#C9A66B]" /> Saved Programs
           </h3>
           {editingProgramId && (
             <button onClick={() => {
@@ -262,7 +262,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                   onClick={() => loadProgram(p)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-xs font-semibold transition-all truncate ${
                     editingProgramId === p.id 
-                      ? 'bg-[#172A53] text-white' 
+                      ? 'bg-[#1B4B43] text-white' 
                       : 'hover:bg-white text-gray-600 border border-transparent hover:border-gray-200'
                   }`}
                 >
@@ -277,16 +277,16 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
           <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Widgets</h3>
         </div>
         <div className="p-4 space-y-3 overflow-y-auto flex-1">
-          <button type="button" onClick={() => addWidget('text')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#172A53]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#172A53]">
+          <button type="button" onClick={() => addWidget('text')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#1B4B43]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#1B4B43]">
             <Type className="w-4 h-4 text-blue-500" /> Text Block
           </button>
-          <button type="button" onClick={() => addWidget('card')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#172A53]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#172A53]">
+          <button type="button" onClick={() => addWidget('card')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#1B4B43]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#1B4B43]">
             <LayoutGrid className="w-4 h-4 text-purple-500" /> Feature Card
           </button>
-          <button type="button" onClick={() => addWidget('arrow-list')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#172A53]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#172A53]">
+          <button type="button" onClick={() => addWidget('arrow-list')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#1B4B43]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#1B4B43]">
             <List className="w-4 h-4 text-green-500" /> Arrow List
           </button>
-          <button type="button" onClick={() => addWidget('image')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#172A53]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#172A53]">
+          <button type="button" onClick={() => addWidget('image')} className="w-full flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:border-[#1B4B43]/50 hover:bg-blue-50 transition-all text-sm font-semibold text-[#1B4B43]">
             <ImageIcon className="w-4 h-4 text-orange-500" /> Image
           </button>
         </div>
@@ -320,12 +320,12 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
       <div className="flex-1 overflow-y-auto p-8 relative">
         <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl min-h-[800px] ring-1 ring-gray-200 overflow-hidden relative">
           
-          <div className="bg-[#172A53] p-8 text-white relative">
+          <div className="bg-[#1B4B43] p-8 text-white relative">
             {hero.heroImage && <img src={hero.heroImage} className="absolute inset-0 w-full h-full object-cover opacity-20" />}
             <div className="relative z-10 max-w-3xl">
               <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-xs font-bold uppercase tracking-widest mb-4">{hero.topic || 'Program Topic'}</span>
               <h1 className="text-3xl font-bold mb-4 leading-tight">{hero.heading || 'Program Main Heading...'}</h1>
-              <div className="w-12 h-1 bg-[#da251d] rounded mb-4" />
+              <div className="w-12 h-1 bg-[#C9A66B] rounded mb-4" />
               <p className="text-white/70 text-sm leading-relaxed">{hero.paragraph || 'Description goes here...'}</p>
             </div>
             <label className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 p-2 rounded-xl cursor-pointer text-white flex items-center gap-2 text-xs font-semibold backdrop-blur-sm transition-all">
@@ -360,7 +360,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                         setEditingWidgetId(w.i);
                       }}
                       className={`group bg-white rounded-xl border-2 transition-all cursor-move overflow-hidden widget-content ${
-                        isEditing ? 'border-[#da251d] shadow-lg ring-4 ring-red-50 z-50 cursor-default' : 'border-gray-200 shadow-sm hover:border-[#172A53]/50'
+                        isEditing ? 'border-[#C9A66B] shadow-lg ring-4 ring-red-50 z-50 cursor-default' : 'border-gray-200 shadow-sm hover:border-[#1B4B43]/50'
                       }`}
                     >
                       <button onClick={(e) => { e.stopPropagation(); removeWidget(w.i); }} className="absolute top-2 right-2 bg-red-100 text-red-500 p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500 hover:text-white transition-all z-10">
@@ -374,18 +374,18 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                               <input 
                                 value={w.data.heading} 
                                 onChange={e => updateWidgetData(w.i, { heading: e.target.value })}
-                                className="text-xl font-bold text-[#172A53] mb-2 w-full border-b border-gray-200 outline-none focus:border-[#da251d] bg-gray-50 px-2 py-1"
+                                className="text-xl font-bold text-[#1B4B43] mb-2 w-full border-b border-gray-200 outline-none focus:border-[#C9A66B] bg-gray-50 px-2 py-1"
                                 placeholder="Heading"
                               />
                             ) : (
-                              <h3 className="text-xl font-bold text-[#172A53] mb-2">{w.data.heading}</h3>
+                              <h3 className="text-xl font-bold text-[#1B4B43] mb-2">{w.data.heading}</h3>
                             )}
-                            <div className="w-8 h-1 bg-[#da251d] rounded mb-3" />
+                            <div className="w-8 h-1 bg-[#C9A66B] rounded mb-3" />
                             {isEditing ? (
                               <textarea 
                                 value={w.data.paragraph}
                                 onChange={e => updateWidgetData(w.i, { paragraph: e.target.value })}
-                                className="text-gray-500 text-sm w-full h-full flex-1 border border-gray-200 rounded p-2 outline-none focus:border-[#da251d] bg-gray-50 resize-none"
+                                className="text-gray-500 text-sm w-full h-full flex-1 border border-gray-200 rounded p-2 outline-none focus:border-[#C9A66B] bg-gray-50 resize-none"
                                 placeholder="Paragraph"
                               />
                             ) : (
@@ -396,21 +396,21 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
 
                         {w.type === 'card' && (
                           <div className="flex flex-col h-full">
-                            <div className="w-10 h-10 rounded-xl bg-[#172A53]/10 flex items-center justify-center mb-3 text-[#172A53] font-bold">{w.i.slice(0,2)}</div>
+                            <div className="w-10 h-10 rounded-xl bg-[#1B4B43]/10 flex items-center justify-center mb-3 text-[#1B4B43] font-bold">{w.i.slice(0,2)}</div>
                             {isEditing ? (
                               <input 
                                 value={w.data.heading} 
                                 onChange={e => updateWidgetData(w.i, { heading: e.target.value })}
-                                className="font-bold text-[#172A53] mb-2 w-full border-b border-gray-200 outline-none focus:border-[#da251d] bg-gray-50 px-2 py-1"
+                                className="font-bold text-[#1B4B43] mb-2 w-full border-b border-gray-200 outline-none focus:border-[#C9A66B] bg-gray-50 px-2 py-1"
                               />
                             ) : (
-                              <h4 className="font-bold text-[#172A53] mb-2">{w.data.heading}</h4>
+                              <h4 className="font-bold text-[#1B4B43] mb-2">{w.data.heading}</h4>
                             )}
                             {isEditing ? (
                               <textarea 
                                 value={w.data.paragraph}
                                 onChange={e => updateWidgetData(w.i, { paragraph: e.target.value })}
-                                className="text-gray-500 text-xs flex-1 w-full border border-gray-200 rounded p-2 outline-none focus:border-[#da251d] bg-gray-50 resize-none"
+                                className="text-gray-500 text-xs flex-1 w-full border border-gray-200 rounded p-2 outline-none focus:border-[#C9A66B] bg-gray-50 resize-none"
                               />
                             ) : (
                               <p className="text-gray-500 text-xs flex-1 whitespace-pre-wrap">{w.data.paragraph}</p>
@@ -424,15 +424,15 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                               <input 
                                 value={w.data.heading} 
                                 onChange={e => updateWidgetData(w.i, { heading: e.target.value })}
-                                className="font-bold text-[#172A53] mb-3 w-full border-b border-gray-200 outline-none focus:border-[#da251d] bg-gray-50 px-2 py-1"
+                                className="font-bold text-[#1B4B43] mb-3 w-full border-b border-gray-200 outline-none focus:border-[#C9A66B] bg-gray-50 px-2 py-1"
                               />
                             ) : (
-                              <h4 className="font-bold text-[#172A53] mb-3">{w.data.heading}</h4>
+                              <h4 className="font-bold text-[#1B4B43] mb-3">{w.data.heading}</h4>
                             )}
                             <div className="overflow-y-auto pr-2 flex-1 space-y-2">
                               {w.data.points.map((pt: string, i: number) => (
                                 <div key={i} className="flex gap-2 items-start">
-                                  <span className="text-[#da251d] font-bold mt-0.5">→</span>
+                                  <span className="text-[#C9A66B] font-bold mt-0.5">→</span>
                                   {isEditing ? (
                                     <input 
                                       value={pt}
@@ -441,7 +441,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                                         newPoints[i] = e.target.value;
                                         updateWidgetData(w.i, { points: newPoints });
                                       }}
-                                      className="flex-1 text-xs text-gray-600 border-b border-gray-200 outline-none focus:border-[#da251d] bg-gray-50 px-1"
+                                      className="flex-1 text-xs text-gray-600 border-b border-gray-200 outline-none focus:border-[#C9A66B] bg-gray-50 px-1"
                                     />
                                   ) : (
                                     <span className="text-xs text-gray-600 break-words flex-1">{pt}</span>
@@ -457,7 +457,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                                 </div>
                               ))}
                               {isEditing && (
-                                <button onClick={() => updateWidgetData(w.i, { points: [...w.data.points, 'New Point'] })} className="text-xs text-[#da251d] font-bold flex items-center gap-1 hover:underline mt-2">
+                                <button onClick={() => updateWidgetData(w.i, { points: [...w.data.points, 'New Point'] })} className="text-xs text-[#C9A66B] font-bold flex items-center gap-1 hover:underline mt-2">
                                   <Plus className="w-3 h-3" /> Add Point
                                 </button>
                               )}
@@ -477,7 +477,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                             )}
                             {(isEditing || !w.data.url) && (
                               <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${w.data.url ? 'opacity-0 group-hover/img:opacity-100' : 'opacity-100'}`}>
-                                <label className="bg-white text-[#172A53] px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2 text-xs font-bold hover:scale-105 transition-transform shadow-lg">
+                                <label className="bg-white text-[#1B4B43] px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2 text-xs font-bold hover:scale-105 transition-transform shadow-lg">
                                   <Upload className="w-4 h-4" /> Upload
                                   <input type="file" accept="image/*" onChange={(e) => handleWidgetImage(w.i, e)} className="hidden" />
                                 </label>

@@ -20,7 +20,7 @@ export default async function Page() {
   });
 
   return (
-    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
       
       <PageBanner
@@ -43,11 +43,11 @@ export default async function Page() {
               {galleries.map((gallery) => (
                 <section key={gallery.id} className="scroll-mt-24">
                   <div className="flex items-center justify-between mb-10">
-                    <h2 className="text-3xl font-bold text-[#172A53] relative inline-block">
+                    <h2 className="text-3xl font-bold text-[#1B4B43] relative inline-block">
                       {gallery.section}
-                      <span className="absolute -bottom-2 left-0 w-1/3 h-1.5 bg-[#F9B03C] rounded-full"></span>
+                      <span className="absolute -bottom-2 left-0 w-1/3 h-1.5 bg-[#C9A66B] rounded-full"></span>
                     </h2>
-                    <span className="text-sm font-semibold text-[#172A53] bg-[#F9B03C]/20 px-4 py-1.5 rounded-full">
+                    <span className="text-sm font-semibold text-[#1B4B43] bg-[#C9A66B]/20 px-4 py-1.5 rounded-full">
                       {gallery.images.length} Photos
                     </span>
                   </div>
@@ -81,8 +81,8 @@ export default async function Page() {
                           <div className="absolute inset-3 md:inset-4 border-2 border-white/80 opacity-0 scale-105 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 ease-out rounded-xl md:rounded-2xl pointer-events-none z-10"></div>
                           
                           {/* Corner Accents on Hover */}
-                          <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#F9B03C] opacity-0 -translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-20 pointer-events-none rounded-tl-3xl"></div>
-                          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-[#F9B03C] opacity-0 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-20 pointer-events-none rounded-br-3xl"></div>
+                          <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#C9A66B] opacity-0 -translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-20 pointer-events-none rounded-tl-3xl"></div>
+                          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-[#C9A66B] opacity-0 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-20 pointer-events-none rounded-br-3xl"></div>
                         </div>
                       );
                     })}

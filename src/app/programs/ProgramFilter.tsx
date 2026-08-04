@@ -18,8 +18,8 @@ type Program = {
 function SectionDivider() {
   return (
     <div className="flex items-center gap-3 my-2">
-      <div className="w-10 h-1 bg-[#da251d] rounded-full" />
-      <div className="w-4 h-1 bg-[#da251d]/40 rounded-full" />
+      <div className="w-10 h-1 bg-[#C9A66B] rounded-full" />
+      <div className="w-4 h-1 bg-[#C9A66B]/40 rounded-full" />
     </div>
   );
 }
@@ -27,7 +27,7 @@ function SectionDivider() {
 function TextBlock({ block, bIndex }: { block: any; bIndex: number }) {
   return (
     <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
-      <h3 className="text-2xl md:text-3xl font-bold text-[#172A53] mb-2">{block.heading}</h3>
+      <h3 className="text-2xl md:text-3xl font-bold text-[#1B4B43] mb-2">{block.heading}</h3>
       <SectionDivider />
       {block.paragraph && (
         <p className="text-gray-600 text-base md:text-lg leading-relaxed mt-4 whitespace-pre-line">
@@ -52,7 +52,7 @@ function CardsBlock({ block, bIndex }: { block: any; bIndex: number }) {
   return (
     <div>
       <div className="mb-8">
-        <h3 className="text-2xl md:text-3xl font-bold text-[#172A53] mb-2">{block.heading}</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-[#1B4B43] mb-2">{block.heading}</h3>
         <SectionDivider />
         {block.paragraph && (
           <p className="text-gray-600 text-base md:text-lg leading-relaxed mt-4">
@@ -65,15 +65,15 @@ function CardsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.cards.map((card: any, cIndex: number) => (
           <div
             key={cIndex}
-            className="group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#172A53] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+            className="group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#1B4B43] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
           >
             {/* Top accent bar */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#da251d] to-[#172A53] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C9A66B] to-[#1B4B43] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             {/* Card number */}
-            <div className="w-10 h-10 rounded-xl bg-[#172A53]/8 flex items-center justify-center mb-4">
-              <span className="text-[#172A53] font-extrabold text-sm">{String(cIndex + 1).padStart(2, '0')}</span>
+            <div className="w-10 h-10 rounded-xl bg-[#1B4B43]/8 flex items-center justify-center mb-4">
+              <span className="text-[#1B4B43] font-extrabold text-sm">{String(cIndex + 1).padStart(2, '0')}</span>
             </div>
-            <h4 className="text-lg md:text-xl font-bold text-[#172A53] mb-3">{card.cardHeading}</h4>
+            <h4 className="text-lg md:text-xl font-bold text-[#1B4B43] mb-3">{card.cardHeading}</h4>
             <p className="text-gray-600 leading-relaxed text-sm md:text-base">{card.cardPara}</p>
           </div>
         ))}
@@ -86,7 +86,7 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
   return (
     <div>
       <div className="mb-8">
-        <h3 className="text-2xl md:text-3xl font-bold text-[#172A53] mb-2">{block.heading}</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-[#1B4B43] mb-2">{block.heading}</h3>
         <SectionDivider />
         {block.paragraph && (
           <p className="text-gray-600 text-base md:text-lg leading-relaxed mt-4">
@@ -99,21 +99,21 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.points.map((point: any, pIndex: number) => (
           <div
             key={pIndex}
-            className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#172A53]/40 hover:shadow-md transition-all duration-300"
+            className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#1B4B43]/40 hover:shadow-md transition-all duration-300"
           >
             {point.pointHeading && (
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                <div className="w-8 h-8 rounded-lg bg-[#da251d] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#C9A66B] flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-xs">{pIndex + 1}</span>
                 </div>
-                <h4 className="text-lg font-bold text-[#172A53]">{point.pointHeading}</h4>
+                <h4 className="text-lg font-bold text-[#1B4B43]">{point.pointHeading}</h4>
               </div>
             )}
             <ul className="space-y-3">
               {point.pointList.map((item: string, lIndex: number) => (
                 <li key={lIndex} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#172A53]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-[#172A53] font-bold" style={{ fontSize: '10px' }}>→</span>
+                  <div className="w-5 h-5 rounded-full bg-[#1B4B43]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-[#1B4B43] font-bold" style={{ fontSize: '10px' }}>→</span>
                   </div>
                   <span className="text-gray-700 leading-relaxed text-sm md:text-base">{item}</span>
                 </li>
@@ -140,8 +140,8 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {overviews.map((overview: any, idx: number) => (
         <div key={idx} className={`bg-gray-50 ${idx !== overviews.length - 1 ? 'border-b border-gray-200' : ''}`}>
           <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#172A53]">{overview.heading}</h2>
-            <h3 className="text-xl md:text-2xl font-semibold text-[#da251d] leading-relaxed">{overview.subHeading}</h3>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43]">{overview.heading}</h2>
+            <h3 className="text-xl md:text-2xl font-semibold text-[#C9A66B] leading-relaxed">{overview.subHeading}</h3>
             <p className="text-lg text-gray-700 leading-relaxed text-justify md:text-center mt-6 whitespace-pre-line">{overview.paragraph}</p>
           </div>
         </div>
@@ -153,12 +153,12 @@ function ApprenticeshipBlock({ block }: { block: any }) {
         if (steps.length === 0) return null;
         return (
           <div key={idx} className={`max-w-7xl mx-auto px-4 md:px-8 py-20 ${idx !== howItWorksBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {steps.map((item: any, i: number) => (
                 <div key={i} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                  <div className="w-14 h-14 bg-red-50 text-[#da251d] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-red-100">{i + 1}</div>
-                  <h3 className="text-xl font-bold text-[#172A53] mb-4">{item.heading}</h3>
+                  <div className="w-14 h-14 bg-[#C9A66B]/10 text-[#C9A66B] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#C9A66B]/25">{i + 1}</div>
+                  <h3 className="text-xl font-bold text-[#1B4B43] mb-4">{item.heading}</h3>
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -171,17 +171,17 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {programsBlocks.map((block: any, idx: number) => {
         const title = block.sectionTitle || block.title || 'Available Degree Programs';
         return (
-          <div key={idx} className={`bg-[#f8f3e6] text-[#172A53] py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#172A53]/10' : ''}`}>
+          <div key={idx} className={`bg-[#FBF3E7] text-[#1B4B43] py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#1B4B43]/10' : ''}`}>
             <div className="max-w-5xl mx-auto px-4 md:px-8 space-y-16">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
 
                 {block.ugPrograms?.length > 0 && (
                   <>
-                    <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold text-[#C9A66B] mb-6 border-b border-[#1B4B43]/15 pb-4">Undergraduate Programs</h3>
                     <ul className="space-y-4 text-lg text-gray-600 mb-10">
                       {block.ugPrograms.map((p: string, i: number) => (
-                        <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                        <li key={i} className="flex items-start"><span className="text-[#C9A66B] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
                       ))}
                     </ul>
                   </>
@@ -189,10 +189,10 @@ function ApprenticeshipBlock({ block }: { block: any }) {
 
                 {block.pgPrograms?.length > 0 && (
                   <>
-                    <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Postgraduate Programs</h3>
+                    <h3 className="text-xl font-semibold text-[#C9A66B] mb-6 border-b border-[#1B4B43]/15 pb-4">Postgraduate Programs</h3>
                     <ul className="space-y-4 text-lg text-gray-600">
                       {block.pgPrograms.map((p: string, i: number) => (
-                        <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                        <li key={i} className="flex items-start"><span className="text-[#C9A66B] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
                       ))}
                     </ul>
                   </>
@@ -204,7 +204,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
                   <h2 className="text-3xl md:text-4xl font-bold mb-8">Who Can Apply?</h2>
                   <ul className="space-y-4 text-lg text-gray-600">
                     {block.whoCanApply.map((p: string, i: number) => (
-                      <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                      <li key={i} className="flex items-start"><span className="text-[#C9A66B] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
                     ))}
                   </ul>
                 </div>
@@ -220,12 +220,12 @@ function ApprenticeshipBlock({ block }: { block: any }) {
         return (
           <div key={idx} className={`bg-white py-20 ${idx !== whyChooseBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
             <div className="max-w-4xl mx-auto px-4 md:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#172A53] text-center mb-10">{title}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1B4B43] text-center mb-10">{title}</h2>
               <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
                 <ul className="space-y-5 text-lg text-gray-700 mb-10">
                   {block.points?.map((pt: string, i: number) => (
                     <li key={i} className="flex items-start">
-                      <span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> 
+                      <span className="text-[#C9A66B] mr-3 font-bold text-xl">➤</span> 
                       <span>{pt}</span>
                     </li>
                   ))}
@@ -271,7 +271,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
             <span className="text-3xl">📚</span>
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-[#172A53] mb-3">No Programs Available</h2>
+        <h2 className="text-2xl font-bold text-[#1B4B43] mb-3">No Programs Available</h2>
         <p className="text-gray-500">Please add programs from the Admin Panel.</p>
       </div>
     );
@@ -290,8 +290,8 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                 onClick={() => setActiveTopic(topic)}
                 className={`px-5 md:px-7 py-2 md:py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                   currentTopic === topic
-                    ? 'bg-[#172A53] text-white shadow-md shadow-[#172A53]/20 scale-105'
-                    : 'bg-gray-100 text-gray-600 hover:bg-[#172A53]/10 hover:text-[#172A53]'
+                    ? 'bg-[#1B4B43] text-white shadow-md shadow-[#1B4B43]/20 scale-105'
+                    : 'bg-gray-100 text-gray-600 hover:bg-[#1B4B43]/10 hover:text-[#1B4B43]'
                 }`}
               >
                 {topic}
@@ -328,7 +328,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                       />
                       {/* Topic badge on image */}
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-[#172A53] text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-lg backdrop-blur-sm">
+                        <span className="px-3 py-1.5 bg-[#1B4B43] text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-lg backdrop-blur-sm">
                           {program.topic}
                         </span>
                       </div>
@@ -340,22 +340,22 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                 <div className={`w-full ${program.heroImage ? 'lg:w-7/12' : 'lg:w-full max-w-4xl mx-auto'}`}>
                   {/* Topic pill (shown when no image) */}
                   {!program.heroImage && (
-                    <span className="inline-block px-4 py-1.5 bg-[#172A53]/8 text-[#172A53] font-bold text-xs uppercase tracking-wider rounded-full mb-4">
+                    <span className="inline-block px-4 py-1.5 bg-[#1B4B43]/8 text-[#1B4B43] font-bold text-xs uppercase tracking-wider rounded-full mb-4">
                       {program.topic}
                     </span>
                   )}
 
                   {program.subHeading && (
-                    <p className="text-[#da251d] font-bold text-sm md:text-base uppercase tracking-widest mb-3">
+                    <p className="text-[#C9A66B] font-bold text-sm md:text-base uppercase tracking-widest mb-3">
                       {program.subHeading}
                     </p>
                   )}
 
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] leading-tight mb-4">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1B4B43] leading-tight mb-4">
                     {program.heading}
                   </h2>
 
-                  <div className="w-12 h-1 bg-[#da251d] rounded-full mb-6" />
+                  <div className="w-12 h-1 bg-[#C9A66B] rounded-full mb-6" />
 
                   <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
                     {program.paragraph}
@@ -363,7 +363,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
 
                   <Link
                     href="/about-us"
-                    className="inline-flex items-center gap-2 bg-[#da251d] hover:bg-[#172A53] text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group text-base"
+                    className="inline-flex items-center gap-2 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group text-base"
                   >
                     Know More
                     <span className="transform transition-transform group-hover:translate-x-1">→</span>
@@ -401,7 +401,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                             return (
                               <div 
                                 key={w.i as string}
-                                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#172A53]/30 transition-all overflow-hidden flex flex-col"
+                                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#1B4B43]/30 transition-all overflow-hidden flex flex-col"
                                 style={{
                                   gridColumn: `var(--grid-col, 1 / -1)`,
                                   gridRow: `var(--grid-row, auto)`,
@@ -411,31 +411,31 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                               >
                               {w.type === 'text' && (
                                 <div>
-                                  <h3 className="text-2xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h3>
-                                  <div className="w-10 h-1 bg-[#da251d] rounded mb-4" />
+                                  <h3 className="text-2xl font-bold text-[#1B4B43] mb-3">{w.data?.heading}</h3>
+                                  <div className="w-10 h-1 bg-[#C9A66B] rounded mb-4" />
                                   <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">{w.data?.paragraph}</p>
                                 </div>
                               )}
                               
                               {w.type === 'card' && (
                                 <div className="flex flex-col h-full relative group">
-                                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#da251d] to-[#172A53] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                                  <div className="w-12 h-12 rounded-xl bg-[#172A53]/8 flex items-center justify-center mb-5 mt-2">
-                                    <span className="text-[#172A53] font-extrabold text-sm">{String(w.i).slice(0,2).toUpperCase()}</span>
+                                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C9A66B] to-[#1B4B43] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                                  <div className="w-12 h-12 rounded-xl bg-[#1B4B43]/8 flex items-center justify-center mb-5 mt-2">
+                                    <span className="text-[#1B4B43] font-extrabold text-sm">{String(w.i).slice(0,2).toUpperCase()}</span>
                                   </div>
-                                  <h4 className="text-xl font-bold text-[#172A53] mb-3">{w.data?.heading}</h4>
+                                  <h4 className="text-xl font-bold text-[#1B4B43] mb-3">{w.data?.heading}</h4>
                                   <p className="text-gray-600 leading-relaxed text-sm md:text-base flex-1">{w.data?.paragraph}</p>
                                 </div>
                               )}
 
                               {w.type === 'arrow-list' && (
                                 <div className="flex flex-col h-full">
-                                  <h3 className="text-xl font-bold text-[#172A53] mb-5 pb-4 border-b border-gray-100">{w.data?.heading}</h3>
+                                  <h3 className="text-xl font-bold text-[#1B4B43] mb-5 pb-4 border-b border-gray-100">{w.data?.heading}</h3>
                                   <ul className="space-y-3 flex-1">
                                     {w.data?.points?.map((pt: string, idx: number) => (
                                       <li key={idx} className="flex items-start gap-3 text-gray-600">
-                                        <div className="mt-1 w-5 h-5 rounded bg-[#da251d]/10 flex items-center justify-center flex-shrink-0">
-                                          <span className="text-[#da251d] font-bold text-xs">→</span>
+                                        <div className="mt-1 w-5 h-5 rounded bg-[#C9A66B]/10 flex items-center justify-center flex-shrink-0">
+                                          <span className="text-[#C9A66B] font-bold text-xs">→</span>
                                         </div>
                                         <span className="text-sm md:text-base">{pt}</span>
                                       </li>

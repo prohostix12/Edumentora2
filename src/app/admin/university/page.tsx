@@ -18,7 +18,7 @@ export default async function AdminUniversityPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#172A53] mb-2">University Management</h1>
+        <h1 className="text-3xl font-bold text-[#1B4B43] mb-2">University Management</h1>
         <p className="text-gray-600">Add universities and manage their certificates and approvals.</p>
       </div>
 

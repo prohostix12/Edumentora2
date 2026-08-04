@@ -171,8 +171,8 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
       {/* Create / Edit Review Form */}
       <div className={`bg-white p-6 rounded-2xl shadow-sm border transition-colors ${editingId ? 'border-yellow-400/50' : 'border-gray-100'}`}>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-[#172A53] flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-[#da251d]" />
+          <h2 className="text-xl font-semibold text-[#1B4B43] flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-[#C9A66B]" />
             {editingId ? 'Edit Review' : 'Add New Review'}
           </h2>
           
@@ -199,7 +199,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
               />
             </div>
 
@@ -214,7 +214,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
                 value={postedDate}
                 onChange={(e) => setPostedDate(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
               />
             </div>
           </div>
@@ -299,7 +299,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
               onChange={(e) => setComment(e.target.value)}
               required
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none"
+              className="w-full px-4 py-3 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] resize-none"
             ></textarea>
           </div>
 
@@ -307,7 +307,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
             type="submit"
             disabled={isPending || isUploading}
             className={`w-full sm:w-auto px-8 py-3 text-white font-medium rounded-xl transition-colors disabled:opacity-70 ${
-              editingId ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-[#172A53] hover:bg-[#172A53]/90'
+              editingId ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-[#1B4B43] hover:bg-[#1B4B43]/90'
             }`}
           >
             {isPending ? 'Saving...' : editingId ? 'Update Review' : 'Add Review'}
@@ -317,7 +317,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
 
       {/* Reviews List */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#172A53] mb-6">All Reviews</h2>
+        <h2 className="text-xl font-semibold text-[#1B4B43] mb-6">All Reviews</h2>
         
         {reviews.length === 0 ? (
           <div className="text-center py-10 text-gray-500 bg-gray-50 rounded-xl border border-dashed border-gray-200">
@@ -366,7 +366,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
                 <p className="text-gray-700 italic text-sm mb-4 line-clamp-4">"{review.comment}"</p>
                 
                 <div className="mt-auto pt-4 border-t border-gray-50 flex flex-col">
-                  <span className="font-semibold text-[#172A53]">{review.username}</span>
+                  <span className="font-semibold text-[#1B4B43]">{review.username}</span>
                   <span className="text-xs text-gray-500 mt-0.5">
                     {review.postedDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
                   </span>

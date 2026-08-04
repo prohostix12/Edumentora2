@@ -122,7 +122,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
     <div className="space-y-8">
       {/* Create Blog Form */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#172A53] mb-4">Add New Blog</h2>
+        <h2 className="text-xl font-semibold text-[#1B4B43] mb-4">Add New Blog</h2>
         <form id="add-blog-form" action={handleCreateBlog} className="flex flex-col gap-6">
           <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -132,7 +132,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                 type="date"
                 name="date"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
               />
             </div>
             <div className="space-y-2">
@@ -142,7 +142,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                 name="category"
                 placeholder="e.g. Technology, Education"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
               />
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                 name="sectionDis"
                 placeholder="Short description or intro paragraph..."
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none h-[calc(100%-28px)]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] resize-none h-[calc(100%-28px)]"
               />
             </div>
             <div className="w-full md:w-1/4 h-full flex flex-col items-center justify-center p-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative overflow-hidden mt-7 md:mt-0">
@@ -189,14 +189,14 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                       placeholder="Sub Heading"
                       value={section.subHeading}
                       onChange={(e) => updateMainDisSection(index, 'subHeading', e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53]/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53]"
+                      className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43]/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
                     />
                     <textarea
                       placeholder="Sub Paragraph"
                       value={section.subPara}
                       onChange={(e) => updateMainDisSection(index, 'subPara', e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-200 text-[#172A53] placeholder-[#172A53]/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] resize-none"
+                      className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43]/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] resize-none"
                     />
                   </div>
                   
@@ -227,7 +227,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
           <button
             type="submit"
             disabled={isPending}
-            className="self-end px-8 py-3 bg-[#172A53] text-white font-medium rounded-xl hover:bg-[#172A53]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
+            className="self-end px-8 py-3 bg-[#da251d] text-white font-medium rounded-xl hover:bg-[#da251d]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
           >
             <Plus className="w-5 h-5" />
             Publish Blog
@@ -260,7 +260,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                 </div>
               )}
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-[#172A53] pr-12 mb-2">{blog.sectionDis}</h3>
+                <h3 className="text-xl font-bold text-[#1B4B43] pr-12 mb-2">{blog.sectionDis}</h3>
               </div>
             </div>
             
@@ -270,7 +270,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
               <div className="grid grid-cols-1 gap-4">
                 {blog.mainDis.map((block, index) => (
                   <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                    {block.subHeading && <h5 className="font-bold text-[#172A53] mb-1">{block.subHeading}</h5>}
+                    {block.subHeading && <h5 className="font-bold text-[#1B4B43] mb-1">{block.subHeading}</h5>}
                     {block.subPara && <p className="text-sm text-gray-600 leading-relaxed">{block.subPara}</p>}
                   </div>
                 ))}

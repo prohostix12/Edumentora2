@@ -30,7 +30,7 @@ export default function LocationsSection() {
   ];
 
   return (
-    <section className="w-full bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef4ff_50%,_#fef6f2_100%)] py-16 border-t border-[#E8EDF7]">
+    <section className="w-full bg-[linear-gradient(135deg,_#FBF3E7_0%,_#F5E9D6_50%,_#F1E1C3_100%)] py-16 border-t border-[#E6D3B0]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -40,12 +40,12 @@ export default function LocationsSection() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {locations.map((col, colIndex) => (
-            <ul key={colIndex} className="space-y-3 rounded-[1.5rem] border border-[#E8EDF7] bg-white/70 p-4 md:p-6 shadow-sm">
+            <ul key={colIndex} className="space-y-3 rounded-[1.5rem] border border-[#E6D3B0] bg-white/70 p-4 md:p-6 shadow-sm">
               {col.map((location, index) => (
                 <li key={index}>
                   <Link 
                     href={location.url} 
-                    className="block rounded-xl border border-transparent px-3 py-3 text-[15px] md:text-base font-semibold leading-relaxed text-[#172A53] transition-all duration-300 hover:border-[#E8EDF7] hover:bg-[#f8fbff] hover:text-[#da251d]"
+                    className="block rounded-xl border border-transparent px-3 py-3 text-[15px] md:text-base font-semibold leading-relaxed text-[#1B4B43] transition-all duration-300 hover:border-[#E6D3B0] hover:bg-[#FBF3E7] hover:text-[#C9A66B]"
                   >
                     {location.name}
                   </Link>

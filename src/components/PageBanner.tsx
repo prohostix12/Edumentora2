@@ -27,24 +27,25 @@ export default function PageBanner({
   subtitle,
   bgImage: _bgImage,
   isGradientText: _isGradientText,
-  bgClassName = 'bg-[#f8f3e6]',
-  badgeClassName = 'text-[#da251d]',
-  titleClassName = 'text-[#123F4A]',
+  bgClassName = 'bg-[#FBF3E7]',
+  badgeClassName = 'text-[#C9A66B]',
+  titleClassName = 'text-[#1B4B43]',
   subtitleClassName = 'text-gray-600',
-  borderClassName = 'border-[#172A53]/10',
-  badgePillClassName = 'bg-white border-[#172A53]/10 shadow-sm',
+  borderClassName = 'border-[#1B4B43]/10',
+  badgePillClassName = 'bg-white border-[#1B4B43]/10 shadow-sm',
   children,
 }: PageBannerProps) {
   return (
-    <div className={`w-full min-h-[300px] md:min-h-[400px] relative overflow-hidden flex items-center justify-center border-b ${borderClassName} ${bgClassName}`}>
+    <div className={`w-full min-h-[300px] md:min-h-[400px] relative overflow-hidden border-b ${borderClassName} ${bgClassName}`}>
       {/* Dot-grid background texture — matches the Home page Hero section exactly */}
       <div
         className="absolute inset-0 opacity-[0.08] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #172A53 1.5px, transparent 0)', backgroundSize: '26px 26px' }}
+        style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #1B4B43 1.5px, transparent 0)', backgroundSize: '26px 26px' }}
       />
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-12 md:py-20">
+      {/* Background fills all the way to the top, behind the fixed header; this padding clears the header for the content itself */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full pt-32 pb-12 md:pt-40 md:pb-20">
         {children ? (
-          <div className="[&_h1]:text-[#123F4A] [&_h1]:font-bold [&_h2]:text-[#123F4A] [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:font-medium [&_span]:text-gray-600">
+          <div className="[&_h1]:text-[#1B4B43] [&_h1]:font-bold [&_h2]:text-[#1B4B43] [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:font-medium [&_span]:text-gray-600">
             {children}
           </div>
         ) : (

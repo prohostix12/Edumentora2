@@ -8,7 +8,7 @@ import EnquiryForm from '@/components/EnquiryForm';
 
 export default function BTechCreditTransferPage() {
   return (
-    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
 
       <PageBanner 
@@ -44,7 +44,7 @@ export default function BTechCreditTransferPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-300 w-full">
-          <h3 className="text-xl font-bold text-[#172A53] mb-6 text-center">Enquire Now</h3>
+          <h3 className="text-xl font-bold text-[#1B4B43] mb-6 text-center">Enquire Now</h3>
           <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>
       </div>

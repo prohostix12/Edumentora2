@@ -10,7 +10,7 @@ export default function AdminSidebar({ onLogout }: { onLogout: () => void }) {
 
   return (
     <aside
-      className={`relative bg-[#172A53] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
+      className={`relative bg-[#1B4B43] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
         collapsed ? 'w-16' : 'w-64'
       }`}
       style={{ height: '100vh' }}
@@ -18,7 +18,7 @@ export default function AdminSidebar({ onLogout }: { onLogout: () => void }) {
       {/* Toggle Button */}
       <button
         onClick={() => setCollapsed(v => !v)}
-        className="absolute -right-3.5 top-6 z-50 w-7 h-7 bg-[#172A53] border-2 border-white/20 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#da251d] hover:border-[#da251d] transition-all"
+        className="absolute -right-3.5 top-6 z-50 w-7 h-7 bg-[#1B4B43] border-2 border-white/20 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#C9A66B] hover:border-[#C9A66B] transition-all"
         title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
       >
         {collapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
@@ -33,7 +33,7 @@ export default function AdminSidebar({ onLogout }: { onLogout: () => void }) {
         ) : (
           <>
             <h2 className="text-xl font-bold text-white mb-1 whitespace-nowrap">Edumentora</h2>
-            <p className="text-[#da251d] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Admin Panel</p>
+            <p className="text-[#C9A66B] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Admin Panel</p>
           </>
         )}
       </div>

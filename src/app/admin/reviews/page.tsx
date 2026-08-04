@@ -36,7 +36,7 @@ export default async function AdminReviewsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-[#172A53] tracking-tight">Reviews</h1>
+        <h1 className="text-3xl font-bold text-[#1B4B43] tracking-tight">Reviews</h1>
         <p className="text-gray-500 mt-1">Manage all user reviews and testimonials here.</p>
       </div>
 

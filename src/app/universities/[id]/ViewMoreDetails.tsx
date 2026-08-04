@@ -34,7 +34,7 @@ export default function AdditionalUniversityDetails({ university }: { university
         {(university.visionHeading || university.visionPara) && (
           <div>
             {university.visionHeading && (
-              <h3 className="text-2xl font-bold text-[#172A53] mb-4">{university.visionHeading}</h3>
+              <h3 className="text-2xl font-bold text-[#1B4B43] mb-4">{university.visionHeading}</h3>
             )}
             {university.visionPara && (
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -48,7 +48,7 @@ export default function AdditionalUniversityDetails({ university }: { university
         {(university.facilitiesHeading || university.facilitiesPara) && (
           <div>
             {university.facilitiesHeading && (
-              <h3 className="text-2xl font-bold text-[#172A53] mb-4">{university.facilitiesHeading}</h3>
+              <h3 className="text-2xl font-bold text-[#1B4B43] mb-4">{university.facilitiesHeading}</h3>
             )}
             {university.facilitiesPara && (
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -62,7 +62,7 @@ export default function AdditionalUniversityDetails({ university }: { university
         {(university.featuresHeading || university.featuresPara) && (
           <div>
             {university.featuresHeading && (
-              <h3 className="text-2xl font-bold text-[#172A53] mb-4">{university.featuresHeading}</h3>
+              <h3 className="text-2xl font-bold text-[#1B4B43] mb-4">{university.featuresHeading}</h3>
             )}
             {university.featuresPara && (
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -76,7 +76,7 @@ export default function AdditionalUniversityDetails({ university }: { university
         {(university.whyChooseHeading || university.whyChoosePara) && (
           <div>
             {university.whyChooseHeading && (
-              <h3 className="text-2xl font-bold text-[#172A53] mb-4">{university.whyChooseHeading}</h3>
+              <h3 className="text-2xl font-bold text-[#1B4B43] mb-4">{university.whyChooseHeading}</h3>
             )}
             {university.whyChoosePara && (
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -90,7 +90,7 @@ export default function AdditionalUniversityDetails({ university }: { university
         {(university.btechProgramsHeading || university.btechProgramsPara) && (
           <div>
             {university.btechProgramsHeading && (
-              <h3 className="text-2xl font-bold text-[#172A53] mb-4">{university.btechProgramsHeading}</h3>
+              <h3 className="text-2xl font-bold text-[#1B4B43] mb-4">{university.btechProgramsHeading}</h3>
             )}
             {university.btechProgramsPara && (
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">

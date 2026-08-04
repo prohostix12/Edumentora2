@@ -38,7 +38,7 @@ export default function StatsSection() {
   return (
     <section className="relative z-20 w-full bg-[#FAF7F0] overflow-hidden">
       {/* Minimal decorative dots behind the connector */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#162B63_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#1B4B43_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none"></div>
 
       <div className="max-w-[1400px] mx-auto py-[60px] px-4 md:px-8">
         {/* Heading Area */}
@@ -49,16 +49,16 @@ export default function StatsSection() {
         viewport={{ once: true }}
         className="relative z-10 flex flex-col items-center text-center mb-10"
       >
-        <span className="text-[#E53935] text-[13px] md:text-sm font-bold tracking-[0.2em] mb-3 uppercase font-[Poppins]">
+        <span className="text-[#C9A66B] text-[13px] md:text-sm font-bold tracking-[0.2em] mb-3 uppercase font-[Poppins]">
           OUR IMPACT
         </span>
-        <h2 className="text-[36px] md:text-[48px] font-bold text-[#162B63] font-[Playfair_Display] leading-[1.15] mb-5 max-w-4xl">
+        <h2 className="text-[36px] md:text-[48px] font-bold text-[#1B4B43] font-[Playfair_Display] leading-[1.15] mb-5 max-w-4xl">
           Edumentora Makes<br />
-          <span className="text-[#E53935]">Restarting</span> your Education Easier
+          <span className="text-[#C9A66B]">Restarting</span> your Education Easier
         </h2>
-        <div className="w-20 h-[2px] bg-[#E53935] rounded-full mb-8"></div>
+        <div className="w-20 h-[2px] bg-[#C9A66B] rounded-full mb-8"></div>
         
-        <h3 className="text-[20px] md:text-[24px] font-semibold text-[#162B63] font-[Poppins]">
+        <h3 className="text-[20px] md:text-[24px] font-semibold text-[#1B4B43] font-[Poppins]">
           Our Trusted Universities
         </h3>
       </motion.div>
@@ -72,19 +72,19 @@ export default function StatsSection() {
             {/* Smooth flowing sine-wave style path connecting the centers */}
             <path 
               d="M 130,100 C 300,50 400,160 600,100 C 800,40 900,150 1070,100" 
-              stroke="#E53935" 
+              stroke="#C9A66B" 
               strokeWidth="2" 
               strokeDasharray="6 6"
               fill="none"
               className="opacity-40"
             />
             {/* Connection nodes under each card (approximate positions corresponding to the offsets) */}
-            <circle cx="130" cy="100" r="4" fill="#E53935" />
-            <circle cx="340" cy="72" r="4" fill="#E53935" />
-            <circle cx="510" cy="120" r="4" fill="#E53935" />
-            <circle cx="680" cy="80" r="4" fill="#E53935" />
-            <circle cx="850" cy="128" r="4" fill="#E53935" />
-            <circle cx="1070" cy="100" r="4" fill="#E53935" />
+            <circle cx="130" cy="100" r="4" fill="#C9A66B" />
+            <circle cx="340" cy="72" r="4" fill="#C9A66B" />
+            <circle cx="510" cy="120" r="4" fill="#C9A66B" />
+            <circle cx="680" cy="80" r="4" fill="#C9A66B" />
+            <circle cx="850" cy="128" r="4" fill="#C9A66B" />
+            <circle cx="1070" cy="100" r="4" fill="#C9A66B" />
           </svg>
         </div>
 
@@ -101,13 +101,13 @@ export default function StatsSection() {
           >
             <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
                  style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
-              <div className="w-12 h-12 rounded-full border-2 border-[#E53935] text-[#E53935] flex items-center justify-center mb-4 mt-2">
+              <div className="w-12 h-12 rounded-full border-2 border-[#C9A66B] text-[#C9A66B] flex items-center justify-center mb-4 mt-2">
                 <Briefcase size={24} strokeWidth={1.5} />
               </div>
-              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#162B63] leading-none mb-3">
+              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#1B4B43] leading-none mb-3">
                 <AnimatedCounter to={16} suffix="+" />
               </h4>
-              <p className="text-[15px] md:text-[16px] text-[#162B63] font-[Poppins] leading-[1.4]">
+              <p className="text-[15px] md:text-[16px] text-[#1B4B43] font-[Poppins] leading-[1.4]">
                 Years of Expertise<br/>in Industry
               </p>
             </div>
@@ -161,13 +161,13 @@ export default function StatsSection() {
           >
             <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
                  style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
-              <div className="w-12 h-12 rounded-full border-2 border-[#E53935] text-[#E53935] flex items-center justify-center mb-4 mt-2">
+              <div className="w-12 h-12 rounded-full border-2 border-[#C9A66B] text-[#C9A66B] flex items-center justify-center mb-4 mt-2">
                 <Award size={24} strokeWidth={1.5} />
               </div>
-              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#162B63] leading-none mb-3">
+              <h4 className="text-[48px] md:text-[56px] font-bold font-[Playfair_Display] text-[#1B4B43] leading-none mb-3">
                 <AnimatedCounter to={163} />
               </h4>
-              <p className="text-[15px] md:text-[16px] text-[#162B63] font-[Poppins] leading-[1.4]">
+              <p className="text-[15px] md:text-[16px] text-[#1B4B43] font-[Poppins] leading-[1.4]">
                 Awards and<br/>Recognition<br/>in Industry
               </p>
             </div>

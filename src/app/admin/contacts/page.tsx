@@ -18,7 +18,7 @@ export default async function ContactsPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#172A53] tracking-tight">Contact Management</h1>
+        <h1 className="text-3xl font-bold text-[#1B4B43] tracking-tight">Contact Management</h1>
         <p className="text-gray-500 mt-2">Manage the organization's contact details (Departments, Phones, Emails).</p>
       </div>
 

@@ -39,19 +39,19 @@ export default function HomeGallerySection() {
         <div className="text-left flex flex-col items-start justify-center">
           <ScrollReveal delay={0.1}>
             <div className="inline-flex items-center justify-center space-x-2 bg-gray-50 px-4 py-2 rounded-full mb-4 border border-gray-100">
-              <span className="w-2 h-2 rounded-full bg-[#da251d] animate-pulse"></span>
-              <span className="text-[#172A53] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
+              <span className="w-2 h-2 rounded-full bg-[#C9A66B] animate-pulse"></span>
+              <span className="text-[#1B4B43] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
             </div>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#172A53] tracking-tight mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1B4B43] tracking-tight mb-4">
               Our Gallery
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.3}>
-            <div className="w-24 h-1.5 bg-[#da251d] rounded-full mb-6"></div>
+            <div className="w-24 h-1.5 bg-[#C9A66B] rounded-full mb-6"></div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
@@ -64,7 +64,7 @@ export default function HomeGallerySection() {
           <ScrollReveal delay={0.5}>
             <Link 
               href="/gallery" 
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#172A53] text-white font-bold rounded-xl hover:bg-[#111f3d] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#da251d] text-white font-bold rounded-xl hover:bg-[#b91c1c] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
             >
               <span>Explore More</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

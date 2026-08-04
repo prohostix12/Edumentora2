@@ -23,7 +23,7 @@ export default async function ProgramsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-24 font-[Poppins]">
+    <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
       
       <PageBanner
