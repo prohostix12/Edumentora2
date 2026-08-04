@@ -74,9 +74,6 @@ export default function Header() {
     return pathname?.startsWith(path);
   };
 
-  const isHome = pathname === '/';
-  const isTransparent = isHome && !isScrolled;
-
   return (
     <div className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 w-full flex justify-center pointer-events-none font-[Poppins]">
       <motion.header
@@ -84,11 +81,9 @@ export default function Header() {
         animate={{ y: isHidden ? -120 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
         className={`pointer-events-auto w-full max-w-7xl h-[82px] flex items-center justify-between px-6 md:px-8 transition-colors duration-300 rounded-[18px] ${
-          isTransparent
-            ? 'bg-transparent shadow-none border border-transparent'
-            : isScrolled
-              ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100'
-              : 'bg-white shadow-sm border border-transparent'
+          isScrolled
+            ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100'
+            : 'bg-white shadow-sm border border-transparent'
         }`}
       >
         <Link
