@@ -70,7 +70,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             </div>
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#1B4B43] leading-tight mb-8 max-w-4xl tracking-tight font-[Poppins]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#002147] leading-tight mb-8 max-w-4xl tracking-tight font-[Poppins]">
             {blog.sectionDis}
           </h1>
         </div>
@@ -93,11 +93,11 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             )}
             
             <div className="p-8 md:p-12">
-              <div className="prose prose-lg max-w-none prose-headings:text-[#1B4B43] prose-headings:font-bold prose-p:text-gray-600 prose-p:leading-relaxed">
+              <div className="prose prose-lg max-w-none prose-headings:text-[#002147] prose-headings:font-bold prose-p:text-gray-600 prose-p:leading-relaxed">
                 {blog.mainDis.map((block, index) => (
                   <div key={index} className="mb-10 last:mb-0">
                     {block.subHeading && (
-                      <h2 className="text-2xl md:text-3xl font-bold text-[#1B4B43] mb-4">
+                      <h2 className="text-2xl md:text-3xl font-bold text-[#002147] mb-4">
                         {block.subHeading}
                       </h2>
                     )}
@@ -118,7 +118,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             {/* Recent Blogs */}
             {recentBlogs.length > 0 && (
               <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                <h3 className="text-xl font-bold text-[#1B4B43] mb-6 pb-4 border-b border-gray-100">
+                <h3 className="text-xl font-bold text-[#002147] mb-6 pb-4 border-b border-gray-100">
                   Recent Blogs
                 </h3>
                 <div className="space-y-6">
@@ -134,7 +134,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                         </div>
                       )}
                       <div>
-                        <h4 className="text-sm font-bold text-[#1B4B43] line-clamp-2 group-hover:text-[#C9A66B] transition-colors mb-1">
+                        <h4 className="text-sm font-bold text-[#002147] line-clamp-2 group-hover:text-[#D2B48C] transition-colors mb-1">
                           {recent.sectionDis}
                         </h4>
                         <div className="text-xs text-gray-500 flex items-center gap-1">
@@ -150,22 +150,22 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
 
             {/* Comment Form */}
             <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-              <h3 className="text-xl font-bold text-[#1B4B43] mb-6 pb-4 border-b border-gray-100">
+              <h3 className="text-xl font-bold text-[#002147] mb-6 pb-4 border-b border-gray-100">
                 Write your comment Here
               </h3>
               <form action={postComment} className="space-y-4">
                 <input type="hidden" name="blogId" value={blog.id} />
                 <div>
-                  <input type="text" name="name" placeholder="Your Name *" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] transition-all text-sm text-[#1B4B43] placeholder:text-[#1B4B43]/70" />
+                  <input type="text" name="name" placeholder="Your Name *" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] transition-all text-sm text-[#002147] placeholder:text-[#002147]/70" />
                 </div>
                 <div>
-                  <input type="email" name="email" placeholder="Your Email *" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] transition-all text-sm text-[#1B4B43] placeholder:text-[#1B4B43]/70" />
+                  <input type="email" name="email" placeholder="Your Email *" required className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] transition-all text-sm text-[#002147] placeholder:text-[#002147]/70" />
                 </div>
                 <div>
-                  <input type="url" name="website" placeholder="Website (Optional)" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] transition-all text-sm text-[#1B4B43] placeholder:text-[#1B4B43]/70" />
+                  <input type="url" name="website" placeholder="Website (Optional)" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] transition-all text-sm text-[#002147] placeholder:text-[#002147]/70" />
                 </div>
                 <div>
-                  <textarea name="content" placeholder="Comment *" required rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] transition-all resize-none text-sm text-[#1B4B43] placeholder:text-[#1B4B43]/70"></textarea>
+                  <textarea name="content" placeholder="Comment *" required rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] transition-all resize-none text-sm text-[#002147] placeholder:text-[#002147]/70"></textarea>
                 </div>
                 <button type="submit" className="w-full py-3 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold rounded-xl transition-colors duration-300 flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" /> Post comment
@@ -176,15 +176,15 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             {/* Recent Comments */}
             {comments.length > 0 && (
               <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                <h3 className="text-xl font-bold text-[#1B4B43] mb-6 pb-4 border-b border-gray-100 flex items-center gap-2">
-                  Recent comments <span className="bg-gray-100 text-[#1B4B43] px-2 py-0.5 rounded-full text-xs">{comments.length}</span>
+                <h3 className="text-xl font-bold text-[#002147] mb-6 pb-4 border-b border-gray-100 flex items-center gap-2">
+                  Recent comments <span className="bg-gray-100 text-[#002147] px-2 py-0.5 rounded-full text-xs">{comments.length}</span>
                 </h3>
                 
                 <div className="space-y-6">
                   {comments.map((comment) => (
                     <div key={comment.id} className="border-b border-gray-50 last:border-0 pb-6 last:pb-0">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-bold text-[#1B4B43] text-sm">{comment.name}</h4>
+                        <h4 className="font-bold text-[#002147] text-sm">{comment.name}</h4>
                         <span className="text-xs text-gray-400">
                           {new Date(comment.createdAt).toLocaleDateString()}
                         </span>

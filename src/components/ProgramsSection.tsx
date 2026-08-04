@@ -35,16 +35,16 @@ export default function ProgramsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-[#C9A66B] font-bold tracking-widest text-sm uppercase mb-4">
+            <div className="text-[#D2B48C] font-bold tracking-widest text-sm uppercase mb-4">
               Our Programs
             </div>
-            <h2 className="text-[40px] lg:text-[52px] font-bold text-[#1B4B43] leading-tight mb-6">
+            <h2 className="text-[40px] lg:text-[52px] font-bold text-[#002147] leading-tight mb-6">
               Our Credit Transfer Programs
             </h2>
             <p className="text-gray-500 text-[16px] leading-relaxed mb-8">
               Seamlessly continue your academic journey by leveraging your prior learning across top institutions.
             </p>
-            <div className="w-16 h-[3px] bg-[#C9A66B]"></div>
+            <div className="w-16 h-[3px] bg-[#D2B48C]"></div>
           </motion.div>
         </div>
         
@@ -64,7 +64,7 @@ export default function ProgramsSection() {
               {/* Animated Red Connector */}
               <motion.path 
                 d="M 0,0 C 25,0 25,60 50,60 C 75,60 75,0 100,0" 
-                stroke="#C9A66B" 
+                stroke="#D2B48C" 
                 strokeWidth="2" 
                 fill="none"
                 initial={{ pathLength: 0 }}
@@ -87,17 +87,17 @@ export default function ProgramsSection() {
               >
                 {/* Icon Container */}
                 <div className="w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center shadow-[0_12px_30px_rgba(0,0,0,0.06)] mb-6 group-hover:-translate-y-2 transition-transform duration-300 border border-gray-50 mx-auto lg:mx-0">
-                  <program.Icon className="w-8 h-8 text-[#1B4B43]" strokeWidth={1.5} />
+                  <program.Icon className="w-8 h-8 text-[#002147]" strokeWidth={1.5} />
                 </div>
                 
                 {/* Content Block */}
                 <div className="text-center lg:text-left">
                   {/* Step Number */}
-                  <div className="text-[48px] font-bold text-[#C9A66B] opacity-20 mb-2 leading-none font-serif">
+                  <div className="text-[48px] font-bold text-[#D2B48C] opacity-20 mb-2 leading-none font-serif">
                     0{i+1}
                   </div>
                   
-                  <h3 className="text-[26px] font-semibold text-[#1B4B43] group-hover:text-[#C9A66B] transition-colors mb-3 leading-tight">
+                  <h3 className="text-[26px] font-semibold text-[#002147] group-hover:text-[#D2B48C] transition-colors mb-3 leading-tight">
                     {program.title}
                   </h3>
                   
@@ -105,7 +105,7 @@ export default function ProgramsSection() {
                     {program.desc}
                   </p>
                   
-                  <button className="inline-flex items-center text-[#1B4B43] font-bold group-hover:text-[#C9A66B] transition-colors overflow-hidden group/btn">
+                  <button className="inline-flex items-center text-[#002147] font-bold group-hover:text-[#D2B48C] transition-colors overflow-hidden group/btn">
                     Know More 
                     <ArrowRight className="ml-2 w-5 h-5 -translate-x-full opacity-0 group-hover/btn:translate-x-0 group-hover/btn:opacity-100 transition-all duration-300" />
                   </button>

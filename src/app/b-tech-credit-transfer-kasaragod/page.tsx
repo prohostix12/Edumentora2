@@ -45,7 +45,7 @@ export default function BTechCreditTransferPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-300 w-full">
-          <h3 className="text-xl font-bold text-[#1B4B43] mb-6 text-center">Enquire Now</h3>
+          <h3 className="text-xl font-bold text-[#002147] mb-6 text-center">Enquire Now</h3>
           <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function BTechCreditTransferPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16 space-y-3">
-        <h3 className="text-xl font-bold text-[#1B4B43] mb-2">Recent Posts</h3>
+        <h3 className="text-xl font-bold text-[#002147] mb-2">Recent Posts</h3>
         <Link
           href="/best-b-tech-credit-transfer-services-in-kerala-for-dropout-backlog-students/"
           className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
@@ -84,7 +84,7 @@ export default function BTechCreditTransferPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
-        <h3 className="text-xl font-bold text-[#1B4B43] mb-5">Recent Comments</h3>
+        <h3 className="text-xl font-bold text-[#002147] mb-5">Recent Comments</h3>
         <div className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-gray-600 text-sm">
           No comments to show.
         </div>
@@ -96,7 +96,7 @@ export default function BTechCreditTransferPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16 grid md:grid-cols-2 gap-10">
         <div>
-          <h3 className="text-xl font-bold text-[#1B4B43] mb-5">Categories</h3>
+          <h3 className="text-xl font-bold text-[#002147] mb-5">Categories</h3>
           <ul className="space-y-2 text-gray-700 text-sm md:text-base">
             <li>Credit Transfer (7)</li>
             <li>Education (4)</li>
@@ -104,7 +104,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         <div className="space-y-3">
-          <h3 className="text-xl font-bold text-[#1B4B43] mb-2">Recent Posts</h3>
+          <h3 className="text-xl font-bold text-[#002147] mb-2">Recent Posts</h3>
           <Link
             href="/best-b-tech-credit-transfer-services-in-kerala-for-dropout-backlog-students/"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"

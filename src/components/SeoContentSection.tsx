@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 
 export default function SeoContentSection() {
   return (
-    <section className="w-full bg-[#FBF3E7] py-5">
+    <section className="w-full bg-[#F7EFE1] py-5">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-[#1B4B43]/85 text-sm md:text-base leading-relaxed text-justify"
+        className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-[#002147]/85 text-sm md:text-base leading-relaxed text-justify"
       >
         <p>
           For students who wish to continue their education without losing valuable time, finding the Best Credit Transfer Institute in Kerala is very important. Many students look for better options when they move to a new city, need advanced facilities, or wish to study in a place that offers stronger career opportunities. In such cases, the Best Credit Transfer Institute in Kerala helps them carry forward the credits they have already earned.

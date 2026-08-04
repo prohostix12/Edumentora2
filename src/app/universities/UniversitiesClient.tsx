@@ -62,8 +62,8 @@ export default function UniversitiesClient({ universities }: { universities: Uni
               onClick={() => setActiveFilter(filter)}
               className={`px-8 py-3 rounded-full font-medium text-[15px] tracking-wide transition-all duration-300 ${
                 activeFilter === filter
-                  ? 'bg-[#C9A66B] text-white shadow-[0_8px_20px_-6px_rgba(201, 166, 107,0.5)] transform -translate-y-0.5'
-                  : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-[#1B4B43] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] border border-gray-100 hover:border-gray-200'
+                  ? 'bg-[#D2B48C] text-white shadow-[0_8px_20px_-6px_rgba(210, 180, 140,0.5)] transform -translate-y-0.5'
+                  : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-[#002147] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] border border-gray-100 hover:border-gray-200'
               }`}
             >
               {filter}
@@ -88,7 +88,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
                     className="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105" 
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[#1B4B43] to-[#254175] flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-br from-[#002147] to-[#254175] flex items-center justify-center">
                     <Building2 className="w-16 h-16 text-white/30" />
                   </div>
                 )}
@@ -97,13 +97,13 @@ export default function UniversitiesClient({ universities }: { universities: Uni
 
               {/* Middle: Content */}
               <div className="p-8 flex-grow flex flex-col">
-                <h3 className="text-[28px] font-semibold text-[#1B4B43] mb-2 leading-[1.2] tracking-tight">
+                <h3 className="text-[28px] font-semibold text-[#002147] mb-2 leading-[1.2] tracking-tight">
                   {item.name}
                 </h3>
                 
                 {item.location && (
                   <div className="flex items-center text-gray-500 mb-5 text-[15px]">
-                    <MapPin className="w-4 h-4 mr-1.5 text-[#C9A66B]" />
+                    <MapPin className="w-4 h-4 mr-1.5 text-[#D2B48C]" />
                     {item.location}
                   </div>
                 )}
@@ -127,7 +127,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
                   <Link href={`/universities/${item.id}`} className="flex-1 bg-[#da251d] hover:bg-[#b91c1c] text-white text-[15px] font-medium py-3.5 px-4 rounded-xl flex items-center justify-center transition-colors shadow-sm">
                     View Details
                   </Link>
-                  <Link href="/contact" className="flex-1 bg-white hover:bg-gray-50 text-[#1B4B43] text-[15px] font-medium py-3.5 px-4 rounded-xl border border-gray-200 flex items-center justify-center transition-colors">
+                  <Link href="/contact" className="flex-1 bg-white hover:bg-gray-50 text-[#002147] text-[15px] font-medium py-3.5 px-4 rounded-xl border border-gray-200 flex items-center justify-center transition-colors">
                     Enquire
                   </Link>
                 </div>
@@ -147,7 +147,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
       {/* Informational Text Section */}
       <div className="bg-white border-t border-gray-100 py-24">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-8 text-[17px] text-gray-600 leading-[1.8]">
-          <h2 className="text-3xl font-bold text-[#1B4B43] mb-8 text-center">Why Choose University Credit Transfer?</h2>
+          <h2 className="text-3xl font-bold text-[#002147] mb-8 text-center">Why Choose University Credit Transfer?</h2>
           <p>
             Many students reach a point where they want to change their university. The reason may be different for everyone – some go to another city with their family, some seek better courses or features, and others want a university that provides more career support. In such cases, starting the degree all over again would feel unfair. This is why University Credit Transfer exists.
           </p>
@@ -157,7 +157,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
           <p>
             The university credit transfer saves both time and money. This is the main advantage of choosing this credit. Students do not need to repeat classes that they have already passed. It also provides flexibility, which gives them a chance to study in a suitable location that fits with their personal or business goals.
           </p>
-          <p className="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-[#1B4B43] font-medium">
+          <p className="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-[#002147] font-medium">
             For students who are thinking about moving, understanding University Credit Transfer can make the shift simple and smooth. It values past efforts and helps them finish their degree on time.
           </p>
         </div>

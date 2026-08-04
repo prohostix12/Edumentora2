@@ -40,7 +40,7 @@ export default function MissionVisionSection() {
         <div className="relative z-10 space-y-4 w-full lg:w-[75%]">
           <h2 className="text-[36px] md:text-[44px] lg:text-[50px] font-[Poppins] font-extrabold text-[#2b2418] leading-[1.1] tracking-tight mb-4">
             Empowering Students<br className="hidden md:block"/>
-            <span className="text-[#C9A66B]">Through Credit Transfer</span>
+            <span className="text-[#D2B48C]">Through Credit Transfer</span>
           </h2>
 
           <p className="text-[18px] text-[#3b3226]/90 leading-[1.8] w-full pr-4 lg:pr-12">
@@ -96,15 +96,15 @@ export default function MissionVisionSection() {
             <ellipse cx="80" cy="248" rx="38" ry="8" fill="#000000" opacity="0.15" />
 
             {/* legs */}
-            <rect x="45" y="168" width="20" height="62" rx="8" fill="#1B4B43" />
-            <rect x="95" y="168" width="20" height="62" rx="8" fill="#1B4B43" />
+            <rect x="45" y="168" width="20" height="62" rx="8" fill="#002147" />
+            <rect x="95" y="168" width="20" height="62" rx="8" fill="#002147" />
 
             {/* shoes */}
             <ellipse cx="55" cy="234" rx="15" ry="8" fill="#2b2418" />
             <ellipse cx="105" cy="234" rx="15" ry="8" fill="#2b2418" />
 
             {/* body/shirt */}
-            <rect x="38" y="84" width="84" height="88" rx="22" fill="#C9A66B" />
+            <rect x="38" y="84" width="84" height="88" rx="22" fill="#D2B48C" />
 
             {/* arms hanging at sides */}
             <rect x="22" y="92" width="16" height="60" rx="8" fill="#f2c29c" />

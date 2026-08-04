@@ -80,11 +80,11 @@ export default function AboutSection() {
           style={{ x: contentX, rotateY: contentRotateY, transformStyle: 'preserve-3d' }}
           className="w-full lg:w-1/2 flex flex-col justify-center space-y-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1B4B43] my-5">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#002147] my-5">
             About Edumentora
           </h2>
 
-          <div className="border-l-4 border-[#C9A66B] pl-6">
+          <div className="border-l-4 border-[#D2B48C] pl-6">
             <p className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium">
               Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
             </p>
@@ -95,12 +95,12 @@ export default function AboutSection() {
           </p>
 
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-[#C9A66B]/10 rounded-xl flex items-center justify-center shadow-sm">
-              <Phone className="w-6 h-6 text-[#C9A66B]" />
+            <div className="w-12 h-12 bg-[#D2B48C]/10 rounded-xl flex items-center justify-center shadow-sm">
+              <Phone className="w-6 h-6 text-[#D2B48C]" />
             </div>
             <div>
               <p className="text-gray-500 text-sm font-medium">Call Us Anytime</p>
-              <p className="text-[#1B4B43] font-bold text-lg">+91 974458 7777</p>
+              <p className="text-[#002147] font-bold text-lg">+91 974458 7777</p>
             </div>
           </div>
 

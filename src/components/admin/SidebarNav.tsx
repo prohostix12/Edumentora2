@@ -40,7 +40,7 @@ export default function SidebarNav({ collapsed = false }: { collapsed?: boolean 
                 : 'hover:bg-white/10 text-white/70 hover:text-white'
             }`}
           >
-            <Icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#C9A66B]' : ''}`} />
+            <Icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-[#D2B48C]' : ''}`} />
             {!collapsed && (
               <span className="font-medium whitespace-nowrap overflow-hidden">{link.label}</span>
             )}

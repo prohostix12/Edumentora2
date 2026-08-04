@@ -52,7 +52,7 @@ function Field({ label, hint, error, children }: { label?: string; hint?: string
 }
 
 const iCls = (err?: string) =>
-  `w-full px-3 py-2 border rounded-lg text-sm text-[#1B4B43] placeholder:text-[#1B4B43]/40 focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/15 transition-all ${err ? 'border-red-400 bg-red-50/50' : 'border-gray-200 bg-white hover:border-gray-300'}`;
+  `w-full px-3 py-2 border rounded-lg text-sm text-[#002147] placeholder:text-[#002147]/40 focus:outline-none focus:ring-2 focus:ring-[#002147]/15 transition-all ${err ? 'border-red-400 bg-red-50/50' : 'border-gray-200 bg-white hover:border-gray-300'}`;
 
 // ─── PREVIEW CONTENT (shared inner content) ───────────────────────────────────
 function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, blocks }: {
@@ -66,16 +66,16 @@ function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, bloc
         {heroImage && (
           <div className="w-full aspect-[16/7] rounded-xl overflow-hidden relative">
             <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
-            {topic && <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#1B4B43] text-white text-[10px] font-bold uppercase rounded">{topic}</span>}
+            {topic && <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#002147] text-white text-[10px] font-bold uppercase rounded">{topic}</span>}
           </div>
         )}
         <div className="space-y-1.5">
-          {!heroImage && topic && <span className="inline-block px-2 py-0.5 bg-[#1B4B43]/10 text-[#1B4B43] text-[10px] font-bold uppercase rounded-full">{topic}</span>}
-          {subHeading && <p className="text-[#C9A66B] text-[10px] font-bold uppercase tracking-widest">{subHeading}</p>}
-          <h2 className="text-sm font-extrabold text-[#1B4B43] leading-tight">{heading || <span className="text-gray-200">Program heading…</span>}</h2>
-          <div className="w-8 h-0.5 bg-[#C9A66B] rounded" />
+          {!heroImage && topic && <span className="inline-block px-2 py-0.5 bg-[#002147]/10 text-[#002147] text-[10px] font-bold uppercase rounded-full">{topic}</span>}
+          {subHeading && <p className="text-[#D2B48C] text-[10px] font-bold uppercase tracking-widest">{subHeading}</p>}
+          <h2 className="text-sm font-extrabold text-[#002147] leading-tight">{heading || <span className="text-gray-200">Program heading…</span>}</h2>
+          <div className="w-8 h-0.5 bg-[#D2B48C] rounded" />
           <p className="text-gray-500 text-[11px] leading-relaxed">{paragraph || <span className="text-gray-200">Description…</span>}</p>
-          <span className="inline-block px-3 py-1 bg-[#C9A66B] text-white text-[10px] font-bold rounded-lg">Know More →</span>
+          <span className="inline-block px-3 py-1 bg-[#D2B48C] text-white text-[10px] font-bold rounded-lg">Know More →</span>
         </div>
       </div>
       {blocks.length > 0 && <div className="border-t border-gray-100" />}
@@ -84,22 +84,22 @@ function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, bloc
           <div key={block.id}>
             {block.type === 'text' && (
               <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
-                <h3 className="text-xs font-bold text-[#1B4B43] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
-                <div className="w-5 h-0.5 bg-[#C9A66B] rounded mb-2" />
+                <h3 className="text-xs font-bold text-[#002147] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#D2B48C] rounded mb-2" />
                 <p className="text-gray-500 text-[10px] leading-relaxed">{block.paragraph || <span className="text-gray-200">Paragraph…</span>}</p>
               </div>
             )}
             {block.type === 'cards' && (
               <div>
-                <h3 className="text-xs font-bold text-[#1B4B43] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
-                <div className="w-5 h-0.5 bg-[#C9A66B] rounded mb-2" />
+                <h3 className="text-xs font-bold text-[#002147] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#D2B48C] rounded mb-2" />
                 <div className={`grid gap-1.5 ${block.cards.length <= 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                   {block.cards.map((card: any, ci: number) => (
                     <div key={ci} className="bg-white border border-gray-200 rounded-lg p-2">
-                      <div className="w-4 h-4 rounded bg-[#1B4B43]/10 flex items-center justify-center mb-1">
-                        <span className="text-[#1B4B43] font-bold text-[8px]">{String(ci+1).padStart(2,'0')}</span>
+                      <div className="w-4 h-4 rounded bg-[#002147]/10 flex items-center justify-center mb-1">
+                        <span className="text-[#002147] font-bold text-[8px]">{String(ci+1).padStart(2,'0')}</span>
                       </div>
-                      <p className="text-[9px] font-bold text-[#1B4B43] mb-0.5">{card.cardHeading || <span className="text-gray-200">Heading</span>}</p>
+                      <p className="text-[9px] font-bold text-[#002147] mb-0.5">{card.cardHeading || <span className="text-gray-200">Heading</span>}</p>
                       <p className="text-[8px] text-gray-400 leading-relaxed">{card.cardPara || <span className="text-gray-200">Content…</span>}</p>
                     </div>
                   ))}
@@ -108,21 +108,21 @@ function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, bloc
             )}
             {block.type === 'arrows' && (
               <div>
-                <h3 className="text-xs font-bold text-[#1B4B43] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
-                <div className="w-5 h-0.5 bg-[#C9A66B] rounded mb-2" />
+                <h3 className="text-xs font-bold text-[#002147] mb-1">{block.heading || <span className="text-gray-300">Heading…</span>}</h3>
+                <div className="w-5 h-0.5 bg-[#D2B48C] rounded mb-2" />
                 <div className="grid grid-cols-2 gap-1.5">
                   {block.points.map((pt: any, pi: number) => (
                     <div key={pi} className="bg-white border border-gray-200 rounded-lg p-2">
                       {pt.pointHeading && (
                         <div className="flex items-center gap-1 mb-1.5 pb-1 border-b border-gray-100">
-                          <div className="w-3.5 h-3.5 rounded bg-[#C9A66B] flex items-center justify-center text-white text-[8px] font-bold">{pi+1}</div>
-                          <p className="text-[9px] font-bold text-[#1B4B43]">{pt.pointHeading}</p>
+                          <div className="w-3.5 h-3.5 rounded bg-[#D2B48C] flex items-center justify-center text-white text-[8px] font-bold">{pi+1}</div>
+                          <p className="text-[9px] font-bold text-[#002147]">{pt.pointHeading}</p>
                         </div>
                       )}
                       <ul className="space-y-0.5">
                         {pt.pointList.filter((x: string) => x).map((item: string, li: number) => (
                           <li key={li} className="flex items-start gap-1 text-[8px] text-gray-500">
-                            <span className="text-[#1B4B43] font-bold">→</span>{item}
+                            <span className="text-[#002147] font-bold">→</span>{item}
                           </li>
                         ))}
                       </ul>
@@ -183,7 +183,7 @@ function FloatingPreview({ topic, heading, subHeading, paragraph, heroImage, blo
       exit={{ opacity: 0, scale: 0.9, y: -20 }}
     >
       {/* Title bar — acts as drag handle */}
-      <div className="flex items-center gap-2 px-3 py-2 bg-[#1B4B43] cursor-move flex-shrink-0 select-none">
+      <div className="flex items-center gap-2 px-3 py-2 bg-[#002147] cursor-move flex-shrink-0 select-none">
         <Eye className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
         <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest flex-1">Live Preview — /programs</span>
         <div className="flex items-center gap-1">
@@ -249,14 +249,14 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
       value={block}
       dragListener={false}
       dragControls={controls}
-      className="bg-white rounded-xl border border-[#1B4B43]/10 shadow-sm overflow-hidden"
+      className="bg-white rounded-xl border border-[#002147]/10 shadow-sm overflow-hidden"
       whileDrag={{ scale: 1.01, boxShadow: '0 8px 30px rgba(23,42,83,0.15)', zIndex: 50 }}
       transition={{ duration: 0.15 }}
     >
       {/* Block header bar */}
       <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border-b border-gray-100">
         <DragHandle controls={controls} />
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-[#1B4B43]/8 text-[#1B4B43] text-[10px] font-bold uppercase tracking-widest rounded-lg">
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-[#002147]/8 text-[#002147] text-[10px] font-bold uppercase tracking-widest rounded-lg">
           {block.type === 'text'   && <><Type className="w-3 h-3" /> Text Block</>}
           {block.type === 'cards'  && <><LayoutGrid className="w-3 h-3" /> Cards Block</>}
           {block.type === 'arrows' && <><List className="w-3 h-3" /> Arrow List Block</>}
@@ -304,7 +304,7 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
               {block.cards.length < LIMITS.maxCards && (
                 <button type="button"
                   onClick={() => updateBlock(block.id, { cards: [...block.cards, { cardHeading: '', cardPara: '' }] })}
-                  className="text-[11px] text-[#C9A66B] font-bold flex items-center gap-1 hover:underline">
+                  className="text-[11px] text-[#D2B48C] font-bold flex items-center gap-1 hover:underline">
                   <Plus className="w-3 h-3" /> Add Card
                 </button>
               )}
@@ -357,7 +357,7 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
               {block.points.length < LIMITS.maxPoints && (
                 <button type="button"
                   onClick={() => updateBlock(block.id, { points: [...block.points, { pointHeading: '', pointList: [''] }] })}
-                  className="text-[11px] text-[#C9A66B] font-bold flex items-center gap-1 hover:underline">
+                  className="text-[11px] text-[#D2B48C] font-bold flex items-center gap-1 hover:underline">
                   <Plus className="w-3 h-3" /> Add Item
                 </button>
               )}
@@ -383,16 +383,16 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
                   <Counter value={pt.pointHeading} max={LIMITS.pointHeading} />
                 </div>
                 {errors[`b${bIndex}-p${pi}-ph`] && <p className="text-[10px] text-red-500">{errors[`b${bIndex}-p${pi}-ph`]}</p>}
-                <div className="pl-3 border-l-2 border-[#1B4B43]/15 space-y-1.5">
+                <div className="pl-3 border-l-2 border-[#002147]/15 space-y-1.5">
                   {pt.pointList.map((item, li) => (
                     <div key={li} className="flex items-center gap-2">
-                      <span className="text-[#C9A66B] text-xs flex-shrink-0">→</span>
+                      <span className="text-[#D2B48C] text-xs flex-shrink-0">→</span>
                       <input type="text" placeholder={`Bullet point`} value={item}
                         onChange={e => {
                           if (e.target.value.length > LIMITS.bulletPoint) return;
                           const np = [...block.points]; np[pi].pointList[li] = e.target.value; updateBlock(block.id, { points: np });
                         }}
-                        className="flex-1 px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-[#1B4B43] placeholder:text-[#1B4B43]/40 focus:outline-none focus:ring-1 focus:ring-[#1B4B43]/15"
+                        className="flex-1 px-2 py-1.5 border border-gray-200 rounded-lg text-xs text-[#002147] placeholder:text-[#002147]/40 focus:outline-none focus:ring-1 focus:ring-[#002147]/15"
                       />
                       {pt.pointList.length > 1 && (
                         <button type="button" onClick={() => {
@@ -404,7 +404,7 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
                   {pt.pointList.length < LIMITS.maxBullets && (
                     <button type="button"
                       onClick={() => { const np = [...block.points]; np[pi].pointList.push(''); updateBlock(block.id, { points: np }); }}
-                      className="text-[11px] text-[#1B4B43] font-semibold flex items-center gap-1 hover:underline mt-1">
+                      className="text-[11px] text-[#002147] font-semibold flex items-center gap-1 hover:underline mt-1">
                       <Plus className="w-3 h-3" /> Add bullet ({pt.pointList.length}/{LIMITS.maxBullets})
                     </button>
                   )}
@@ -502,7 +502,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
 
         {/* Top bar */}
-        <div className="px-6 py-4 bg-[#1B4B43] flex items-center justify-between">
+        <div className="px-6 py-4 bg-[#002147] flex items-center justify-between">
           <div>
             <h2 className="text-lg font-bold text-white">Build New Program</h2>
             <p className="text-white/50 text-xs mt-0.5">Drag blocks to reorder • Preview updates live</p>
@@ -526,11 +526,11 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
 
                 {/* Program Details */}
                 <div className="p-5 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
-                  <p className="text-[10px] font-bold text-[#C9A66B] uppercase tracking-widest">① Program Overview</p>
+                  <p className="text-[10px] font-bold text-[#D2B48C] uppercase tracking-widest">① Program Overview</p>
                   <input type="hidden" name="heroImage" value={heroImageBase64 || ''} />
 
                   {/* Image */}
-                  <div className="w-full h-36 border-2 border-dashed border-gray-200 rounded-xl relative overflow-hidden group cursor-pointer hover:border-[#1B4B43]/40 transition-colors">
+                  <div className="w-full h-36 border-2 border-dashed border-gray-200 rounded-xl relative overflow-hidden group cursor-pointer hover:border-[#002147]/40 transition-colors">
                     {heroImageBase64 ? (
                       <>
                         <img src={heroImageBase64} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -594,7 +594,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                 {/* Blocks Section */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-bold text-[#C9A66B] uppercase tracking-widest">② Content Blocks (drag to reorder)</p>
+                    <p className="text-[10px] font-bold text-[#D2B48C] uppercase tracking-widest">② Content Blocks (drag to reorder)</p>
                     <span className="text-[10px] text-gray-400 font-mono">{blocks.length}/{LIMITS.maxBlocks}</span>
                   </div>
 
@@ -688,11 +688,11 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                 <div>
                   <div className="flex items-start justify-between gap-4 mb-2">
                     <div>
-                      <span className="inline-block px-2.5 py-0.5 bg-[#1B4B43]/8 text-[#1B4B43] text-[10px] font-bold uppercase tracking-wider rounded-md mb-1">
+                      <span className="inline-block px-2.5 py-0.5 bg-[#002147]/8 text-[#002147] text-[10px] font-bold uppercase tracking-wider rounded-md mb-1">
                         {program.topic}
                       </span>
-                      <h3 className="text-base font-bold text-[#1B4B43] leading-snug">{program.heading}</h3>
-                      {program.subHeading && <p className="text-[#C9A66B] text-xs font-semibold mt-0.5">{program.subHeading}</p>}
+                      <h3 className="text-base font-bold text-[#002147] leading-snug">{program.heading}</h3>
+                      {program.subHeading && <p className="text-[#D2B48C] text-xs font-semibold mt-0.5">{program.subHeading}</p>}
                     </div>
                     <button onClick={() => handleDeleteProgram(program.id)} disabled={isPending}
                       className="text-gray-300 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors flex-shrink-0">

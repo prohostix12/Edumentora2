@@ -5,7 +5,7 @@ export default function AdminLoading() {
   return (
     <div className="flex items-center justify-center w-full h-full min-h-[500px]">
       <div className="flex flex-col items-center gap-4">
-        <Loader2 className="w-10 h-10 text-[#1B4B43] animate-spin" />
+        <Loader2 className="w-10 h-10 text-[#002147] animate-spin" />
         <p className="text-gray-500 font-medium animate-pulse">Loading data...</p>
       </div>
     </div>

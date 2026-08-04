@@ -18,7 +18,7 @@ export default async function AdminGalleryPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#1B4B43] mb-2">Image Gallery Management</h1>
+        <h1 className="text-3xl font-bold text-[#002147] mb-2">Image Gallery Management</h1>
         <p className="text-gray-600">Create sections and add images to show on the public gallery page.</p>
       </div>
 

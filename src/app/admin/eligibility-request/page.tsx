@@ -15,7 +15,7 @@ export default async function EligibilityRequestPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#1B4B43] mb-2">Eligibility Requests</h1>
+        <h1 className="text-3xl font-bold text-[#002147] mb-2">Eligibility Requests</h1>
         <p className="text-gray-600">View all eligibility request submissions from applicants.</p>
       </div>
 

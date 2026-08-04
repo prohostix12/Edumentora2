@@ -19,14 +19,14 @@ export default function AdminShell({
 
       {/* ── SIDEBAR ────────────────────────────────────────────────── */}
       <aside
-        className={`sticky top-0 h-screen bg-[#1B4B43] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 h-screen bg-[#002147] text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${
           collapsed ? 'w-16' : 'w-64'
         }`}
       >
         {/* Collapse Toggle Button */}
         <button
           onClick={() => setCollapsed(v => !v)}
-          className="absolute -right-3.5 top-6 z-50 w-7 h-7 bg-[#1B4B43] border-2 border-white/20 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#C9A66B] hover:border-[#C9A66B] transition-all"
+          className="absolute -right-3.5 top-6 z-50 w-7 h-7 bg-[#002147] border-2 border-white/20 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#D2B48C] hover:border-[#D2B48C] transition-all"
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {collapsed
@@ -43,7 +43,7 @@ export default function AdminShell({
           ) : (
             <>
               <h2 className="text-xl font-bold text-white mb-1 whitespace-nowrap">Edumentora</h2>
-              <p className="text-[#C9A66B] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Admin Panel</p>
+              <p className="text-[#D2B48C] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Admin Panel</p>
             </>
           )}
         </div>

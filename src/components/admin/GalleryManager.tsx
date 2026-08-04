@@ -110,13 +110,13 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
     <div className="space-y-8">
       {/* Create Section Form */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#1B4B43] mb-4">Create New Section</h2>
+        <h2 className="text-xl font-semibold text-[#002147] mb-4">Create New Section</h2>
         <form action={handleCreateSection} className="flex gap-4">
           <input
             type="text"
             name="sectionName"
             required
-            className="flex-1 px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+            className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
           />
           <button
             type="submit"

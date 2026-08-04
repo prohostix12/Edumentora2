@@ -16,7 +16,7 @@ export default function DiplomaCreditTransferPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12 grid lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 space-y-6 text-[#3b3226]">
-          <h2 className="text-2xl font-bold text-[#1B4B43]">
+          <h2 className="text-2xl font-bold text-[#002147]">
             Seamless Diploma Credit Transfer Program
           </h2>
           
@@ -53,7 +53,7 @@ export default function DiplomaCreditTransferPage() {
       {/* Full Width Enquire Now Form */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-[#1B4B43] mb-6 text-center">Enquire Now</h3>
+          <h3 className="text-2xl font-bold text-[#002147] mb-6 text-center">Enquire Now</h3>
           <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>
       </div>

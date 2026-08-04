@@ -45,13 +45,13 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             <ArrowLeft className="w-4 h-4" /> Back to Universities
           </Link>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#1B4B43] leading-tight mb-4 tracking-tight font-[Poppins]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#002147] leading-tight mb-4 tracking-tight font-[Poppins]">
             {university.name}
           </h1>
           
           {university.location && (
-            <div className="flex items-center text-[#1B4B43]/90 text-lg">
-              <MapPin className="w-5 h-5 mr-2 text-[#C9A66B]" />
+            <div className="flex items-center text-[#002147]/90 text-lg">
+              <MapPin className="w-5 h-5 mr-2 text-[#D2B48C]" />
               {university.location}
             </div>
           )}
@@ -72,14 +72,14 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
           )}
           
           <div className="p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-[#1B4B43] mb-6">About the University</h2>
+            <h2 className="text-2xl font-bold text-[#002147] mb-6">About the University</h2>
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap mb-10">
               {university.description}
             </div>
 
             {university.certificates && university.certificates.length > 0 && (
               <>
-                <h3 className="text-xl font-bold text-[#1B4B43] mb-6 border-t border-gray-100 pt-8">
+                <h3 className="text-xl font-bold text-[#002147] mb-6 border-t border-gray-100 pt-8">
                   Recognitions & Certificates
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

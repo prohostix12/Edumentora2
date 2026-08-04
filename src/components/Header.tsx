@@ -102,18 +102,18 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#1B4B43]">
+        <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#002147]">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               className="relative py-2 group"
             >
-              <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#C9A66B]' : 'hover:text-[#C9A66B]'}`}>
+              <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
                 {link.name}
               </span>
               {/* Animated Underline */}
-              <span className={`absolute left-0 bottom-0 h-[2px] bg-[#C9A66B] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              <span className={`absolute left-0 bottom-0 h-[2px] bg-[#D2B48C] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
           ))}
 
@@ -124,7 +124,7 @@ export default function Header() {
           >
             <button
               onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === 'about' ? null : 'about'); }}
-              className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === 'about' ? 'text-[#C9A66B]' : 'hover:text-[#C9A66B] transition-colors duration-200'}`}
+              className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === 'about' ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C] transition-colors duration-200'}`}
             >
               About <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : 'group-hover:rotate-180'}`} />
             </button>
@@ -138,19 +138,19 @@ export default function Header() {
                   className="absolute top-12 left-1/2 -translate-x-1/2 w-48 bg-white shadow-[0_10px_40px_rgb(0,0,0,0.1)] border border-gray-100 rounded-[16px] py-2 z-50 overflow-hidden"
                   onClick={() => setOpenDropdown(null)}
                 >
-                  <Link href="/about-us" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C9A66B] transition-colors">About us</Link>
-                  <Link href="/gallery" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C9A66B] transition-colors">Gallery</Link>
-                  <Link href="/blog" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C9A66B] transition-colors">Blog</Link>
+                  <Link href="/about-us" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">About us</Link>
+                  <Link href="/gallery" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">Gallery</Link>
+                  <Link href="/blog" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">Blog</Link>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
           <Link href="/contact" className="relative py-2 group">
-            <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#C9A66B]' : 'hover:text-[#C9A66B]'}`}>
+            <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
               Contact
             </span>
-            <span className={`absolute left-0 bottom-0 h-[2px] bg-[#C9A66B] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[2px] bg-[#D2B48C] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
         </nav>
 
@@ -161,7 +161,7 @@ export default function Header() {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="lg:hidden flex items-center justify-center p-2 text-gray-700 hover:text-[#C9A66B] transition-colors"
+          className="lg:hidden flex items-center justify-center p-2 text-gray-700 hover:text-[#D2B48C] transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -178,9 +178,9 @@ export default function Header() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="lg:hidden pointer-events-auto absolute top-24 left-4 right-4 bg-white shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-[20px] border border-gray-100 flex flex-col z-50 overflow-hidden"
           >
-            <div className="flex flex-col py-4 px-6 space-y-2 text-base font-bold text-[#1B4B43] h-max max-h-[80vh] overflow-y-auto">
+            <div className="flex flex-col py-4 px-6 space-y-2 text-base font-bold text-[#002147] h-max max-h-[80vh] overflow-y-auto">
               {navLinks.map((link) => (
-                <Link key={link.name} href={link.href} onClick={closeMobileMenu} className={`py-3 transition-colors border-b border-gray-50 ${isActive(link.href) ? 'text-[#C9A66B]' : 'hover:text-[#C9A66B]'}`}>
+                <Link key={link.name} href={link.href} onClick={closeMobileMenu} className={`py-3 transition-colors border-b border-gray-50 ${isActive(link.href) ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
                   {link.name}
                 </Link>
               ))}
@@ -188,7 +188,7 @@ export default function Header() {
               <div className="py-2 border-b border-gray-50">
                 <button
                   onClick={() => setMobileOpenDropdown(mobileOpenDropdown === 'about' ? null : 'about')}
-                  className="flex items-center justify-between w-full py-2 hover:text-[#C9A66B] transition-colors"
+                  className="flex items-center justify-between w-full py-2 hover:text-[#D2B48C] transition-colors"
                 >
                   About <ChevronDown className={`w-5 h-5 transition-transform ${mobileOpenDropdown === 'about' ? 'rotate-180' : ''}`} />
                 </button>
@@ -201,15 +201,15 @@ export default function Header() {
                       transition={{ duration: 0.2 }}
                       className="flex flex-col pl-4 mt-2 space-y-3 text-sm text-gray-600 border-l-2 border-red-100 overflow-hidden"
                     >
-                      <Link href="/about-us" onClick={closeMobileMenu} className="hover:text-[#C9A66B] transition-colors py-1">About us</Link>
-                      <Link href="/gallery" onClick={closeMobileMenu} className="hover:text-[#C9A66B] transition-colors py-1">Gallery</Link>
-                      <Link href="/blog" onClick={closeMobileMenu} className="hover:text-[#C9A66B] transition-colors py-1">Blog</Link>
+                      <Link href="/about-us" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">About us</Link>
+                      <Link href="/gallery" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">Gallery</Link>
+                      <Link href="/blog" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">Blog</Link>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              <Link href="/contact" onClick={closeMobileMenu} className={`py-3 transition-colors ${isActive('/contact') ? 'text-[#C9A66B]' : 'hover:text-[#C9A66B]'}`}>
+              <Link href="/contact" onClick={closeMobileMenu} className={`py-3 transition-colors ${isActive('/contact') ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
                 Contact
               </Link>
 

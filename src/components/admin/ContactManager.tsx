@@ -35,7 +35,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
     <div className="space-y-8">
       {/* Create Contact Form */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#1B4B43] mb-4">Add New Contact</h2>
+        <h2 className="text-xl font-semibold text-[#002147] mb-4">Add New Contact</h2>
         <form id="add-contact-form" action={handleCreateContact} className="flex flex-col gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="space-y-1.5">
@@ -44,7 +44,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="department"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
             
@@ -54,7 +54,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="lanphone"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
             
@@ -64,7 +64,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="mob"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
             
@@ -74,7 +74,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="email"
                 name="email"
                 required
-                className="w-full px-4 py-2 border border-gray-200 text-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+                className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
           </div>
@@ -107,22 +107,22 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
             
             <div className="space-y-3 mt-auto">
               <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#1B4B43]/5 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-[#1B4B43]" />
+                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-4 h-4 text-[#002147]" />
                 </div>
                 <span className="text-sm font-medium">{contact.lanphone}</span>
               </div>
               
               <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#1B4B43]/5 flex items-center justify-center flex-shrink-0">
-                  <Smartphone className="w-4 h-4 text-[#1B4B43]" />
+                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                  <Smartphone className="w-4 h-4 text-[#002147]" />
                 </div>
                 <span className="text-sm font-medium">{contact.mob}</span>
               </div>
               
               <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#1B4B43]/5 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-[#1B4B43]" />
+                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-4 h-4 text-[#002147]" />
                 </div>
                 <span className="text-sm font-medium truncate" title={contact.email}>{contact.email}</span>
               </div>

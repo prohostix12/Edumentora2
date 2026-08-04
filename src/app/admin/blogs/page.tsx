@@ -18,7 +18,7 @@ export default async function AdminBlogsPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#1B4B43] tracking-tight mb-2">Blog Management</h1>
+        <h1 className="text-3xl font-bold text-[#002147] tracking-tight mb-2">Blog Management</h1>
         <p className="text-gray-500">Create and manage your blog articles and content blocks.</p>
       </div>
 

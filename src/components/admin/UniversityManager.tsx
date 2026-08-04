@@ -162,7 +162,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
       {/* Create University Form */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-[#1B4B43]">
+          <h2 className="text-xl font-semibold text-[#002147]">
             {editingUniversity ? `Update University: ${editingUniversity.name}` : 'Add New University'}
           </h2>
           {editingUniversity && (
@@ -181,7 +181,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               defaultValue={editingUniversity?.name || ''}
               
               required
-              className="flex-1 px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
             />
             <input
               type="text"
@@ -189,7 +189,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               defaultValue={editingUniversity?.location || ''}
               
               required
-              className="flex-1 px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
             />
           </div>
           <div className="flex flex-col md:flex-row gap-4 h-32">
@@ -198,7 +198,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               defaultValue={editingUniversity?.description || ''}
               
               required
-              className="flex-1 px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43] resize-none h-full"
+              className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] resize-none h-full"
             />
             <div className="w-full md:w-1/4 h-full flex flex-col items-center justify-center p-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative overflow-hidden">
               {mainImageBase64 ? (
@@ -233,13 +233,13 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                     setTextCertificates(newCerts);
                   }}
                   
-                  className="flex-1 px-4 py-2 border border-gray-200 text-[#1B4B43] placeholder-[#1B4B43] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1B4B43]/20 focus:border-[#1B4B43]"
+                  className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                 />
                 {index === textCertificates.length - 1 && (
                   <button
                     type="button"
                     onClick={() => setTextCertificates([...textCertificates, ''])}
-                    className="px-4 py-2 bg-gray-100 text-[#1B4B43] font-medium rounded-xl hover:bg-gray-200 transition-colors"
+                    className="px-4 py-2 bg-gray-100 text-[#002147] font-medium rounded-xl hover:bg-gray-200 transition-colors"
                   >
                     <Plus className="w-5 h-5" />
                   </button>
@@ -254,36 +254,36 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
             {/* Vision */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-700">University Vision</label>
-              <input type="text" name="visionHeading" defaultValue={editingUniversity?.visionHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#1B4B43] placeholder-[#1B4B43]" />
-              <textarea name="visionPara" defaultValue={editingUniversity?.visionPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#1B4B43] placeholder-[#1B4B43]" />
+              <input type="text" name="visionHeading" defaultValue={editingUniversity?.visionHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
+              <textarea name="visionPara" defaultValue={editingUniversity?.visionPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
             </div>
 
             {/* Facilities */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-700">Our Facilities</label>
-              <input type="text" name="facilitiesHeading" defaultValue={editingUniversity?.facilitiesHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#1B4B43] placeholder-[#1B4B43]" />
-              <textarea name="facilitiesPara" defaultValue={editingUniversity?.facilitiesPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#1B4B43] placeholder-[#1B4B43]" />
+              <input type="text" name="facilitiesHeading" defaultValue={editingUniversity?.facilitiesHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
+              <textarea name="facilitiesPara" defaultValue={editingUniversity?.facilitiesPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
             </div>
 
             {/* Features */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-700">Our Features</label>
-              <input type="text" name="featuresHeading" defaultValue={editingUniversity?.featuresHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#1B4B43] placeholder-[#1B4B43]" />
-              <textarea name="featuresPara" defaultValue={editingUniversity?.featuresPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#1B4B43] placeholder-[#1B4B43]" />
+              <input type="text" name="featuresHeading" defaultValue={editingUniversity?.featuresHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
+              <textarea name="featuresPara" defaultValue={editingUniversity?.featuresPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
             </div>
 
             {/* Why Choose */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-700">Why Choose University?</label>
-              <input type="text" name="whyChooseHeading" defaultValue={editingUniversity?.whyChooseHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#1B4B43] placeholder-[#1B4B43]" />
-              <textarea name="whyChoosePara" defaultValue={editingUniversity?.whyChoosePara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#1B4B43] placeholder-[#1B4B43]" />
+              <input type="text" name="whyChooseHeading" defaultValue={editingUniversity?.whyChooseHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
+              <textarea name="whyChoosePara" defaultValue={editingUniversity?.whyChoosePara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
             </div>
 
             {/* B.Tech Programs */}
             <div className="flex flex-col gap-2 md:col-span-2">
               <label className="text-sm font-semibold text-gray-700">B.Tech Programs</label>
-              <input type="text" name="btechProgramsHeading" defaultValue={editingUniversity?.btechProgramsHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#1B4B43] placeholder-[#1B4B43]" />
-              <textarea name="btechProgramsPara" defaultValue={editingUniversity?.btechProgramsPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#1B4B43] placeholder-[#1B4B43]" />
+              <input type="text" name="btechProgramsHeading" defaultValue={editingUniversity?.btechProgramsHeading || ''}  className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
+              <textarea name="btechProgramsPara" defaultValue={editingUniversity?.btechProgramsPara || ''}  className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
             </div>
           </div>
 
@@ -344,7 +344,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                 <h4 className="font-semibold text-gray-800 mb-3 text-sm">Certificates & Approvals ({uni.certificates.length})</h4>
                 <div className="flex flex-wrap gap-2">
                   {uni.certificates.map((cert, index) => (
-                    <span key={index} className="px-3 py-1.5 bg-[#1B4B43]/10 text-[#1B4B43] text-sm font-medium rounded-full flex items-center gap-2">
+                    <span key={index} className="px-3 py-1.5 bg-[#002147]/10 text-[#002147] text-sm font-medium rounded-full flex items-center gap-2">
                       {cert}
                       <button
                         onClick={() => handleRemoveCertificate(uni.id, cert, uni.certificates)}

@@ -114,19 +114,19 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
           <div className="flex flex-col items-start w-full">
             <ScrollReveal delay={0.1}>
               <div className="inline-flex items-center justify-center space-x-2 bg-white px-4 py-2 rounded-full mb-4 border border-gray-100 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#C9A66B] animate-pulse"></span>
-                <span className="text-[#1B4B43] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
+                <span className="w-2 h-2 rounded-full bg-[#D2B48C] animate-pulse"></span>
+                <span className="text-[#002147] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#1B4B43] tracking-tight mb-4">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#002147] tracking-tight mb-4">
                 Our Gallery
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <div className="w-24 h-1.5 bg-[#C9A66B] rounded-full mb-6"></div>
+              <div className="w-24 h-1.5 bg-[#D2B48C] rounded-full mb-6"></div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.4}>
@@ -163,7 +163,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-[#1B4B43] text-left"
+              className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-[#002147] text-left"
             >
               What Our Students Say<br />About Us!
             </motion.h2>
