@@ -227,7 +227,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
           <button
             type="submit"
             disabled={isPending}
-            className="self-end px-8 py-3 bg-[#da251d] text-white font-medium rounded-xl hover:bg-[#da251d]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
+            className="self-end px-8 py-3 bg-[#8B0000] text-white font-medium rounded-xl hover:bg-[#8B0000]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
           >
             <Plus className="w-5 h-5" />
             Publish Blog

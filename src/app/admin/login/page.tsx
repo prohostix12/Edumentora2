@@ -72,7 +72,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-[#da251d] hover:bg-[#b91c1c] text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 bg-[#8B0000] hover:bg-[#5C0000] text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-50"
           >
             {loading ? 'Verifying...' : 'Login'}
             {!loading && <ArrowRight className="w-4 h-4" />}

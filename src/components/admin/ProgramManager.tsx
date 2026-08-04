@@ -630,7 +630,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
                         { label: 'Arrow List',   icon: List,       type: 'arrows' as const },
                       ].map(({ label, icon: Icon, type }) => (
                         <button key={label} type="button" onClick={() => addBlock(type)}
-                          className="py-3 bg-gray-50 border border-dashed border-gray-200 text-gray-400 text-xs font-semibold rounded-xl hover:bg-[#da251d] hover:text-white hover:border-[#da251d] transition-all flex items-center justify-center gap-1.5">
+                          className="py-3 bg-gray-50 border border-dashed border-gray-200 text-gray-400 text-xs font-semibold rounded-xl hover:bg-[#8B0000] hover:text-white hover:border-[#8B0000] transition-all flex items-center justify-center gap-1.5">
                           <Icon className="w-4 h-4" /> {label}
                         </button>
                       ))}
@@ -647,7 +647,7 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
 
                 {/* Submit */}
                 <button type="submit" disabled={isPending}
-                  className="w-full py-4 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold rounded-xl transition-all disabled:opacity-60 flex items-center justify-center gap-2 shadow-lg text-base">
+                  className="w-full py-4 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold rounded-xl transition-all disabled:opacity-60 flex items-center justify-center gap-2 shadow-lg text-base">
                   <Plus className="w-5 h-5" />
                   {isPending ? 'Publishing…' : 'Publish Program'}
                 </button>

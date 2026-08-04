@@ -20,7 +20,7 @@ export default function ApprenticeshipLearningProgram() {
             <p className="text-lg md:text-xl text-[#002147]/90 leading-relaxed text-justify">
               Edumentora’s apprenticeship credit transfer lets you carry your earned experience to new opportunities. Stay on track, keep learning, and grow without interruption.
             </p>
-            <button className="bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg w-max mt-4">
+            <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg w-max mt-4">
               Know More
             </button>
           </div>

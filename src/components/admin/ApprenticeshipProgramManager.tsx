@@ -297,7 +297,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
               setFormData(defaultFormData);
               setIsModalOpen(true);
             }}
-            className="bg-[#da251d] hover:bg-[#b91c1c] text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors"
+            className="bg-[#8B0000] hover:bg-[#5C0000] text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Create New Program
@@ -404,7 +404,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Overview Section</h3>
-                    <button type="button" onClick={() => addBlock('overviews')} className="text-[#da251d] font-bold text-sm flex items-center gap-1 hover:text-[#b91c1c] bg-[#da251d]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Overview</button>
+                    <button type="button" onClick={() => addBlock('overviews')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Overview</button>
                   </div>
                   <div className="space-y-6">
                     {formData.overviews.map((overview, index) => (
@@ -447,7 +447,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">How it Works</h3>
-                    <button type="button" onClick={() => addBlock('howItWorksBlocks')} className="text-[#da251d] font-bold text-sm flex items-center gap-1 hover:text-[#b91c1c] bg-[#da251d]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <button type="button" onClick={() => addBlock('howItWorksBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
                   </div>
                   <div className="space-y-8">
                     {formData.howItWorksBlocks.map((block, blockIndex) => (
@@ -495,7 +495,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Programs & Eligibility</h3>
-                    <button type="button" onClick={() => addBlock('programsBlocks')} className="text-[#da251d] font-bold text-sm flex items-center gap-1 hover:text-[#b91c1c] bg-[#da251d]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <button type="button" onClick={() => addBlock('programsBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
                   </div>
                   <div className="space-y-8">
                     {formData.programsBlocks.map((block, blockIndex) => (
@@ -574,7 +574,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Why Choose?</h3>
-                    <button type="button" onClick={() => addBlock('whyChooseBlocks')} className="text-[#da251d] font-bold text-sm flex items-center gap-1 hover:text-[#b91c1c] bg-[#da251d]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <button type="button" onClick={() => addBlock('whyChooseBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
                   </div>
                   <div className="space-y-8">
                     {formData.whyChooseBlocks.map((block, blockIndex) => (
@@ -628,7 +628,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 type="submit" 
                 form="apprenticeship-form"
                 disabled={isPending}
-                className="bg-[#da251d] hover:bg-[#b91c1c] text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50"
+                className="bg-[#8B0000] hover:bg-[#5C0000] text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50"
               >
                 <Save className="w-5 h-5" />
                 {isPending ? 'Saving...' : (editingProgramId ? 'Update Program' : 'Save Program')}

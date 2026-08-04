@@ -146,7 +146,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
             <ScrollReveal delay={0.6}>
               <Link
                 href="/gallery"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#da251d] text-white font-bold rounded-xl hover:bg-[#b91c1c] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B0000] text-white font-bold rounded-xl hover:bg-[#5C0000] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
               >
                 <span>Explore More</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -124,7 +124,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
 
                 {/* Bottom: Buttons */}
                 <div className="mt-auto flex gap-3 pt-2">
-                  <Link href={`/universities/${item.id}`} className="flex-1 bg-[#da251d] hover:bg-[#b91c1c] text-white text-[15px] font-medium py-3.5 px-4 rounded-xl flex items-center justify-center transition-colors shadow-sm">
+                  <Link href={`/universities/${item.id}`} className="flex-1 bg-[#8B0000] hover:bg-[#5C0000] text-white text-[15px] font-medium py-3.5 px-4 rounded-xl flex items-center justify-center transition-colors shadow-sm">
                     View Details
                   </Link>
                   <Link href="/contact" className="flex-1 bg-white hover:bg-gray-50 text-[#002147] text-[15px] font-medium py-3.5 px-4 rounded-xl border border-gray-200 flex items-center justify-center transition-colors">

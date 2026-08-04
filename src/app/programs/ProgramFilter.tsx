@@ -363,7 +363,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
 
                   <Link
                     href="/about-us"
-                    className="inline-flex items-center gap-2 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group text-base"
+                    className="inline-flex items-center gap-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group text-base"
                   >
                     Know More
                     <span className="transform transition-transform group-hover:translate-x-1">→</span>

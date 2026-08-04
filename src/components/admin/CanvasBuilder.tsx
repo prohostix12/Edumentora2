@@ -309,7 +309,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
               <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Paragraph</label>
               <textarea name="paragraph" value={hero.paragraph} onChange={e => setHero({ ...hero, paragraph: e.target.value })} className="w-full p-2 border rounded text-xs resize-none" rows={3} required />
             </div>
-            <button type="submit" disabled={isPending} className="w-full py-3 bg-[#da251d] text-white rounded-xl font-bold flex items-center justify-center gap-2">
+            <button type="submit" disabled={isPending} className="w-full py-3 bg-[#8B0000] text-white rounded-xl font-bold flex items-center justify-center gap-2">
               <Save className="w-4 h-4" /> Save Page
             </button>
           </form>

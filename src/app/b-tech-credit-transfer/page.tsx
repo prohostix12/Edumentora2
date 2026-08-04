@@ -183,7 +183,7 @@ export default function BTechCreditTransferPage() {
                 </div>
               </div>
 
-              <Link href="#educational-mobility" className="mt-8 relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-[#da251d] hover:bg-[#b91c1c] rounded-full overflow-hidden group w-fit shadow-md hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#da251d] focus-visible:ring-offset-2">
+              <Link href="#educational-mobility" className="mt-8 relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-[#8B0000] hover:bg-[#5C0000] rounded-full overflow-hidden group w-fit shadow-md hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B0000] focus-visible:ring-offset-2">
                 <span className="relative flex items-center gap-2">
                   Know More
                   <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

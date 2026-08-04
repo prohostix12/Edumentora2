@@ -36,7 +36,7 @@ export default function UGCreditTransferPage() {
             With Edumentora, you can complete your undergraduate degree efficiently, reclaim your academic progress, and achieve your educational goals with confidence.
           </p>
 
-          <Link href="/about-us" className="mt-4 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
+          <Link href="/about-us" className="mt-4 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
             Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>

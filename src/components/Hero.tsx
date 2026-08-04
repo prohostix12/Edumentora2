@@ -105,7 +105,7 @@ const LoopingTypewriterText = ({
           .hero-doodle { animation: none !important; }
         }
       `}</style>
-      <span className="inline-block w-[5px] h-[0.9em] bg-[#002147] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#8B0000] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
     </>
   );
 };
@@ -240,10 +240,10 @@ export default function Hero() {
                     { text: "Without Starting\nOver, Continue\nYour " },
                   ]}
                   loopSegments={[
-                    [{ text: "B.Tech", className: "text-[#002147] inline-block min-w-[3.2em]" }],
-                    [{ text: "UG", className: "text-[#002147] inline-block min-w-[3.2em]" }],
-                    [{ text: "PG", className: "text-[#002147] inline-block min-w-[3.2em]" }],
-                    [{ text: "Diploma", className: "text-[#002147] inline-block min-w-[3.2em]" }],
+                    [{ text: "B.Tech", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
+                    [{ text: "UG", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
+                    [{ text: "PG", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
+                    [{ text: "Diploma", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
                   ]}
                 />
               </div>
@@ -273,12 +273,12 @@ export default function Hero() {
               className="flex flex-wrap gap-4 items-center"
             >
               <a href="/contact">
-                <button className="bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-red-800/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#8B0000]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Enroll Now
                 </button>
               </a>
               <a href="/contact">
-                <button className="bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#da251d]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#8B0000]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Book a Free Consultation
                 </button>
               </a>

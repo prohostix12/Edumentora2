@@ -193,7 +193,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
                     setShowPopup(false);
                   }
                 }}
-                className="mt-4 w-full bg-[#da251d] hover:bg-[#b91c1c] text-white font-semibold py-3 rounded-xl transition-colors"
+                className="mt-4 w-full bg-[#8B0000] hover:bg-[#5C0000] text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 {popupState === 'checking' ? 'Close' : 'Close'}
               </button>

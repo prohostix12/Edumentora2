@@ -93,7 +93,7 @@ export default function ProgramsSection() {
                 {/* Content Block */}
                 <div className="text-center lg:text-left">
                   {/* Step Number */}
-                  <div className="text-[48px] font-bold text-[#D2B48C] opacity-20 mb-2 leading-none font-serif">
+                  <div className="text-[48px] font-bold text-[#8B0000] mb-2 leading-none font-serif">
                     0{i+1}
                   </div>
                   

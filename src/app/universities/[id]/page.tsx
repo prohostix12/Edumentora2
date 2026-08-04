@@ -96,7 +96,7 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             <AdditionalUniversityDetails university={university} />
 
             <div className="mt-12 flex justify-center">
-              <Link href="/contact" className="bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-4 px-10 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
+              <Link href="/contact" className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 px-10 rounded-xl shadow-lg transition-transform hover:-translate-y-1">
                 Enquire Now
               </Link>
             </div>

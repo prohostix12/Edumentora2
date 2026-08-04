@@ -145,7 +145,7 @@ export default function EnquiryForm({
       <button 
         type="submit" 
         disabled={status === 'loading'}
-        className={`w-full bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed ${isGrid ? 'md:col-span-2' : ''}`}
+        className={`w-full bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed ${isGrid ? 'md:col-span-2' : ''}`}
       >
         {status === 'loading' ? 'Sending...' : buttonText}
       </button>

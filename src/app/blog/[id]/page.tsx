@@ -167,7 +167,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                 <div>
                   <textarea name="content" placeholder="Comment *" required rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] transition-all resize-none text-sm text-[#002147] placeholder:text-[#002147]/70"></textarea>
                 </div>
-                <button type="submit" className="w-full py-3 bg-[#da251d] hover:bg-[#b91c1c] text-white font-bold rounded-xl transition-colors duration-300 flex items-center justify-center gap-2">
+                <button type="submit" className="w-full py-3 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold rounded-xl transition-colors duration-300 flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" /> Post comment
                 </button>
               </form>
