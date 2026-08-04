@@ -27,19 +27,24 @@ export default function PageBanner({
   subtitle,
   bgImage: _bgImage,
   isGradientText: _isGradientText,
-  bgClassName = 'bg-gradient-to-br from-[#0d1b3d] via-[#132a5c] to-[#172A53]',
-  badgeClassName = 'text-[#ff8577]',
-  titleClassName = 'text-[#f4ecd8]',
-  subtitleClassName = 'text-slate-300',
-  borderClassName = 'border-white/10',
-  badgePillClassName = 'bg-white/10 border-white/15',
+  bgClassName = 'bg-[#f8f3e6]',
+  badgeClassName = 'text-[#da251d]',
+  titleClassName = 'text-[#123F4A]',
+  subtitleClassName = 'text-gray-600',
+  borderClassName = 'border-[#172A53]/10',
+  badgePillClassName = 'bg-white border-[#172A53]/10 shadow-sm',
   children,
 }: PageBannerProps) {
   return (
     <div className={`w-full min-h-[300px] md:min-h-[400px] relative overflow-hidden flex items-center justify-center border-b ${borderClassName} ${bgClassName}`}>
+      {/* Dot-grid background texture — matches the Home page Hero section exactly */}
+      <div
+        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #172A53 1.5px, transparent 0)', backgroundSize: '26px 26px' }}
+      />
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 w-full py-12 md:py-20">
         {children ? (
-          <div className="[&_h1]:text-[#f4ecd8] [&_h1]:font-bold [&_h2]:text-[#f4ecd8] [&_p]:text-slate-300 [&_p]:leading-relaxed [&_p]:font-medium [&_span]:text-slate-300">
+          <div className="[&_h1]:text-[#123F4A] [&_h1]:font-bold [&_h2]:text-[#123F4A] [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:font-medium [&_span]:text-gray-600">
             {children}
           </div>
         ) : (

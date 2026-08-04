@@ -171,54 +171,44 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {programsBlocks.map((block: any, idx: number) => {
         const title = block.sectionTitle || block.title || 'Available Degree Programs';
         return (
-          <div key={idx} className={`bg-[#172A53] text-white py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#1f376a]' : ''}`}>
-            <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="space-y-16">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
-                  
-                  {block.ugPrograms?.length > 0 && (
-                    <>
-                      <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Undergraduate Programs</h3>
-                      <ul className="space-y-4 text-lg text-gray-200 mb-10">
-                        {block.ugPrograms.map((p: string, i: number) => (
-                          <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
+          <div key={idx} className={`bg-[#f8f3e6] text-[#172A53] py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#172A53]/10' : ''}`}>
+            <div className="max-w-5xl mx-auto px-4 md:px-8 space-y-16">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
 
-                  {block.pgPrograms?.length > 0 && (
-                    <>
-                      <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Postgraduate Programs</h3>
-                      <ul className="space-y-4 text-lg text-gray-200">
-                        {block.pgPrograms.map((p: string, i: number) => (
-                          <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>
-
-                {block.whoCanApply?.length > 0 && (
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8">Who Can Apply?</h2>
-                    <ul className="space-y-4 text-lg text-gray-200">
-                      {block.whoCanApply.map((p: string, i: number) => (
+                {block.ugPrograms?.length > 0 && (
+                  <>
+                    <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Undergraduate Programs</h3>
+                    <ul className="space-y-4 text-lg text-gray-600 mb-10">
+                      {block.ugPrograms.map((p: string, i: number) => (
                         <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
                       ))}
                     </ul>
-                  </div>
+                  </>
+                )}
+
+                {block.pgPrograms?.length > 0 && (
+                  <>
+                    <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Postgraduate Programs</h3>
+                    <ul className="space-y-4 text-lg text-gray-600">
+                      {block.pgPrograms.map((p: string, i: number) => (
+                        <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                      ))}
+                    </ul>
+                  </>
                 )}
               </div>
 
-              <div className="relative h-[400px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#1f376a]">
-                {block.image ? (
-                  <img src={block.image} alt="Programs" className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700 ease-in-out" />
-                ) : (
-                  <div className="w-full h-full bg-[#0d1830] flex items-center justify-center text-[#1f376a]">Image Placeholder</div>
-                )}
-              </div>
+              {block.whoCanApply?.length > 0 && (
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-8">Who Can Apply?</h2>
+                  <ul className="space-y-4 text-lg text-gray-600">
+                    {block.whoCanApply.map((p: string, i: number) => (
+                      <li key={i} className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>{p}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         );

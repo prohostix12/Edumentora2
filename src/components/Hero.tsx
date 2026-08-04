@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ClipboardCheck, ShieldCheck, GraduationCap } from 'lucide-react';
+import EligibilityForm from '@/components/EligibilityForm';
 
 const LoopingTypewriterText = ({
   baseSegments,
@@ -97,11 +97,15 @@ const LoopingTypewriterText = ({
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-6px); }
         }
+        @keyframes heroAchieveScroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
         @media (prefers-reduced-motion: reduce) {
           .hero-doodle { animation: none !important; }
         }
       `}</style>
-      <span className="inline-block w-[5px] h-[0.9em] bg-[#0d9488] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#1e40af] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
     </>
   );
 };
@@ -121,8 +125,16 @@ const MARQUEE_ITEMS = [
   'Multiple Specializations',
 ];
 
+const ACHIEVEMENTS = [
+  { value: '800+', label: 'Successful Credit Transfers' },
+  { value: '16', label: 'Years of Expertise in Industry' },
+  { value: '163', label: 'Awards and Recognition' },
+  { value: '3,000+', label: 'Graduates With Certified Degrees' },
+];
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
+
   const riseIn = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
     animate: { opacity: 1, y: 0 },
@@ -130,7 +142,50 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative w-full min-h-[100dvh] flex flex-col justify-center pt-32 lg:pt-[100px] pb-0 bg-[#f8f3e6] overflow-hidden font-[Poppins]">
+    <section className="relative w-full h-[100dvh] flex overflow-hidden font-[Poppins]">
+
+      {/* Left: full-height achievements sidebar — only Our Great Achievements, auto-scrolling */}
+      <aside className="hidden md:flex flex-col w-[240px] lg:w-[280px] h-full shrink-0 bg-gradient-to-b from-[#123F4A] to-[#0e2f38] relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #ffffff 1.5px, transparent 0)', backgroundSize: '22px 22px' }}
+        />
+
+        <div className="relative z-10 flex flex-col h-full p-6 lg:p-7">
+          {/* Spacer to clear the floating header pill */}
+          <div className="h-24 lg:h-20 shrink-0" />
+
+          <motion.div {...riseIn(0)} className="inline-block bg-white/15 text-white text-[11px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-lg mb-6 w-fit shrink-0">
+            Our Great Achievements
+          </motion.div>
+
+          {/* Vertical auto-scroll ticker through all achievements */}
+          <motion.div {...riseIn(0.05)} className="flex-1 min-h-0 overflow-hidden relative">
+            <div
+              className="flex flex-col"
+              style={{ animation: shouldReduceMotion ? 'none' : 'heroAchieveScroll 16s linear infinite' }}
+            >
+              {[0, 1].map((dup) => (
+                <div key={dup} aria-hidden={dup === 1} className="flex flex-col gap-7 shrink-0 pb-7">
+                  {ACHIEVEMENTS.map((item) => (
+                    <div key={item.label}>
+                      <div className="text-white text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-[1.5] mb-1.5">
+                        {item.value}
+                      </div>
+                      <div className="text-white/80 text-xs font-semibold leading-relaxed max-w-[11rem]">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </aside>
+
+      {/* Right: main hero area */}
+      <div className="relative flex-1 h-full flex flex-col pt-32 lg:pt-[100px] pb-0 bg-[#f8f3e6] overflow-hidden">
 
       {/* Dot-grid background texture — subtle, low-contrast, CSS-only (no raster asset needed) */}
       <div
@@ -138,24 +193,39 @@ export default function Hero() {
         style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #172A53 1.5px, transparent 0)', backgroundSize: '26px 26px' }}
       />
 
-      <div className="relative lg:max-w-6xl xl:max-w-7xl mx-auto w-full px-4 md:px-8 z-10 flex-grow flex flex-col justify-center pb-16">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Mobile-only: compact achievements row (sidebar is desktop-only) */}
+      <div className="md:hidden relative z-10 px-4 mb-4 shrink-0">
+        <div className="flex gap-3 overflow-x-auto pb-1 -mx-1 px-1">
+          {ACHIEVEMENTS.map((item) => (
+            <div
+              key={item.label}
+              className="shrink-0 bg-white rounded-xl border border-[#172A53]/10 shadow-sm px-4 py-2.5 min-w-[132px]"
+            >
+              <div className="text-[#172A53] text-lg font-extrabold leading-tight">{item.value}</div>
+              <div className="text-gray-500 text-[10px] font-semibold leading-tight">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-          {/* Left: Content */}
-          <div className="flex flex-col items-start justify-center text-left max-w-xl lg:max-w-2xl">
+      <div className="relative max-w-6xl mx-auto w-full px-4 md:px-8 z-10 flex-1 min-h-0 flex flex-col overflow-y-auto pb-6">
+        <div className="flex flex-col md:flex-row flex-1 min-h-0 gap-8 lg:gap-10 items-stretch">
+
+          {/* 1: Content + paragraph */}
+          <div className="flex flex-col items-start justify-center text-left h-full md:flex-[1.3]">
 
             {/* Trust badge card */}
             <motion.div
-              {...riseIn(0)}
+              {...riseIn(0.05)}
               className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-2xl shadow-[0_10px_30px_-10px_rgba(23,42,83,0.25)] mb-6"
             >
-              <ShieldCheck className="w-5 h-5 text-[#0d9488]" />
+              <ShieldCheck className="w-5 h-5 text-[#1e40af]" />
               <span className="font-bold text-[#172A53] text-sm">UGC &amp; AICTE Recognized</span>
             </motion.div>
 
             <motion.p
               {...riseIn(0.1)}
-              className="text-[#0d9488] font-bold text-base md:text-lg mb-3"
+              className="text-[#1e40af] font-bold text-base md:text-lg mb-3"
             >
               Ready to finish the degree you already started?
             </motion.p>
@@ -170,14 +240,21 @@ export default function Hero() {
                     { text: "Without Starting\nOver, Continue\nYour " },
                   ]}
                   loopSegments={[
-                    [{ text: "B.Tech", className: "text-[#0d9488] inline-block min-w-[3.2em]" }],
-                    [{ text: "UG", className: "text-[#0d9488] inline-block min-w-[3.2em]" }],
-                    [{ text: "PG", className: "text-[#0d9488] inline-block min-w-[3.2em]" }],
-                    [{ text: "Diploma", className: "text-[#0d9488] inline-block min-w-[3.2em]" }],
+                    [{ text: "B.Tech", className: "text-[#1e40af] inline-block min-w-[3.2em]" }],
+                    [{ text: "UG", className: "text-[#1e40af] inline-block min-w-[3.2em]" }],
+                    [{ text: "PG", className: "text-[#1e40af] inline-block min-w-[3.2em]" }],
+                    [{ text: "Diploma", className: "text-[#1e40af] inline-block min-w-[3.2em]" }],
                   ]}
                 />
               </div>
             </h1>
+
+            <motion.p
+              {...riseIn(0.15)}
+              className="text-gray-600 text-base leading-relaxed mb-6 max-w-md"
+            >
+              Transfer the credits you&rsquo;ve already earned to a UGC-approved, AICTE-recognized university and pick up exactly where you left off — no entrance exam, no repeated years.
+            </motion.p>
 
             <motion.div
               {...riseIn(0.2)}
@@ -196,67 +273,59 @@ export default function Hero() {
               className="flex flex-wrap gap-4 items-center"
             >
               <a href="/contact">
-                <button className="bg-[#0d9488] hover:bg-[#0f766e] text-white font-bold px-8 py-3.5 rounded-full text-base md:text-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#1e40af] hover:bg-[#1e3a8a] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-blue-800/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Enroll Now
                 </button>
               </a>
               <a href="/contact">
-                <button className="bg-[#172A53] hover:bg-[#0d1b3d] text-white font-bold px-8 py-3.5 rounded-full text-base md:text-lg shadow-lg shadow-[#172A53]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#172A53] hover:bg-[#0d1b3d] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#172A53]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Book a Free Consultation
                 </button>
               </a>
             </motion.div>
           </div>
 
-          {/* Right: Image with accent glow + doodles */}
+          {/* 3: Check Your Eligibility Now form, with accent glow + doodles */}
           <motion.div
             initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: shouldReduceMotion ? 0.01 : 0.7, delay: 0.15, ease: 'easeOut' }}
-            className="relative w-full flex justify-center md:justify-end"
+            className="relative w-full h-full flex items-center justify-center md:justify-end md:flex-1"
           >
             {/* Decorative doodles — gentle float, disabled under prefers-reduced-motion */}
             <svg
-              className="hero-doodle hidden md:block absolute -top-6 left-6 w-14 h-10 text-[#172A53]/70 pointer-events-none"
+              className="hero-doodle hidden lg:block absolute -top-6 left-6 w-14 h-10 text-[#172A53]/70 pointer-events-none"
               style={{ animation: shouldReduceMotion ? 'none' : 'heroFloat 4s ease-in-out infinite' }}
               viewBox="0 0 60 40" fill="none"
             >
               <path d="M2 8 Q10 2 18 8 T34 8 T50 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
             <svg
-              className="hero-doodle hidden md:block absolute top-10 -right-4 w-10 h-10 text-[#0d9488] pointer-events-none"
+              className="hero-doodle hidden lg:block absolute top-10 -right-4 w-10 h-10 text-[#1e40af] pointer-events-none"
               style={{ animation: shouldReduceMotion ? 'none' : 'heroFloat 3.2s ease-in-out infinite 0.4s' }}
               viewBox="0 0 40 40" fill="none"
             >
               <path d="M20 2 L23 15 L36 15 L25 23 L29 36 L20 28 L11 36 L15 23 L4 15 L17 15 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
-            <svg
-              className="hero-doodle hidden md:block absolute bottom-16 -left-6 w-8 h-8 text-[#172A53]/60 pointer-events-none"
-              style={{ animation: shouldReduceMotion ? 'none' : 'heroFloat 3.6s ease-in-out infinite 0.8s' }}
-              viewBox="0 0 30 30" fill="none"
-            >
-              <path d="M15 2 L2 22 L14 22 L11 28 L28 12 L15 12 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-            </svg>
 
-            {/* Glow ring behind the photo */}
-            <div className="absolute inset-x-8 inset-y-6 rounded-[3rem] bg-gradient-to-br from-[#0d9488]/25 via-[#e8b64a]/15 to-transparent blur-2xl -z-10" />
+            {/* Glow ring behind the card */}
+            <div className="absolute inset-x-8 inset-y-6 rounded-[3rem] bg-gradient-to-br from-[#1e40af]/25 via-[#e8b64a]/15 to-transparent blur-2xl -z-10" />
 
-            <div className="relative w-full max-w-[380px] aspect-[4/5] rounded-[2.5rem] border-4 border-[#0d9488]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] overflow-hidden bg-white">
-              <Image
-                src="/hero-image.png"
-                alt="Student who completed their degree through credit transfer"
-                fill
-                priority
-                sizes="(max-width: 768px) 90vw, 380px"
-                className="object-contain object-bottom"
-              />
+            <div id="eligibility-form" className="relative w-full max-w-[360px] rounded-[2.5rem] border-4 border-[#1e40af]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-white p-6 scroll-mt-32">
+              <div className="flex items-center gap-2 mb-3 rounded-full bg-blue-50 w-fit px-3 py-1.5">
+                <ClipboardCheck className="w-4 h-4 text-[#1e40af]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1e40af]">Fast Assessment</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#172A53] mb-1">Check Your Eligibility Now</h3>
+              <p className="text-sm text-gray-600 mb-4 leading-6">Get a quick review of your credit transfer eligibility in just a few steps.</p>
+              <EligibilityForm className="space-y-3" />
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* Scrolling trust marquee */}
-      <div className="relative z-10 w-full bg-[#0d9488] py-3 overflow-hidden mt-16 md:mt-24">
+      <div className="relative z-10 w-full shrink-0 bg-[#123F4A] py-3 overflow-hidden">
         <div
           className="flex whitespace-nowrap"
           style={{ width: 'max-content', animation: shouldReduceMotion ? 'none' : 'heroMarquee 26s linear infinite' }}
@@ -272,6 +341,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

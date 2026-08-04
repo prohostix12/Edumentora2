@@ -76,8 +76,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
         sectionTitle: 'Available Degree Programs',
         ugPrograms: [''],
         pgPrograms: [''],
-        whoCanApply: [''],
-        image: ''
+        whoCanApply: ['']
       }
     ],
 
@@ -137,8 +136,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
         sectionTitle: data.programsAndEligibility.title || 'Available Degree Programs',
         ugPrograms: data.programsAndEligibility.ugPrograms?.length ? data.programsAndEligibility.ugPrograms : [''],
         pgPrograms: data.programsAndEligibility.pgPrograms?.length ? data.programsAndEligibility.pgPrograms : [''],
-        whoCanApply: data.programsAndEligibility.whoCanApply?.length ? data.programsAndEligibility.whoCanApply : [''],
-        image: data.programsAndEligibility.image || ''
+        whoCanApply: data.programsAndEligibility.whoCanApply?.length ? data.programsAndEligibility.whoCanApply : ['']
       }];
     } else {
       programsBlocks = [...defaultFormData.programsBlocks];
@@ -179,18 +177,6 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     if (files?.length) {
       const url = await compressImage(files[0]);
       setFormData(prev => ({ ...prev, heroImage: url }));
-    }
-  };
-
-  const handleProgramsImage = async (e: React.ChangeEvent<HTMLInputElement>, blockIndex: number) => {
-    const files = e.target.files;
-    if (files?.length) {
-      const url = await compressImage(files[0]);
-      setFormData(prev => {
-        const newBlocks = [...prev.programsBlocks];
-        newBlocks[blockIndex] = { ...newBlocks[blockIndex], image: url };
-        return { ...prev, programsBlocks: newBlocks };
-      });
     }
   };
 
@@ -525,9 +511,8 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                             setFormData({...formData, programsBlocks: newArr});
                           }} className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#172A53]/20 focus:border-[#172A53] outline-none text-[#172A53]" />
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          <div className="space-y-6">
-                            
+                        <div className="space-y-6">
+
                             {/* UG Programs */}
                             <div>
                               <div className="flex items-center justify-between mb-2">
@@ -579,21 +564,6 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                               </div>
                             </div>
 
-                          </div>
-                          <div>
-                            <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Section Image</label>
-                            <div className="w-full h-full min-h-[300px] border-2 border-dashed border-gray-300 rounded-2xl relative flex items-center justify-center bg-white overflow-hidden shadow-inner">
-                              {block.image ? (
-                                <img src={block.image} alt="Programs" className="w-full h-full object-cover" />
-                              ) : (
-                                <div className="text-center text-gray-400">
-                                  <Upload className="w-8 h-8 mx-auto mb-2" />
-                                  <span className="text-sm font-semibold">Upload Image</span>
-                                </div>
-                              )}
-                              <input type="file" accept="image/*" onChange={(e) => handleProgramsImage(e, blockIndex)} className="absolute inset-0 opacity-0 cursor-pointer" />
-                            </div>
-                          </div>
                         </div>
                       </div>
                     ))}

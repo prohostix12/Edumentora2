@@ -82,35 +82,35 @@ export default function ApprenticeshipLearningProgram() {
       </div>
 
       {/* Programs and Eligibility Section */}
-      <div className="bg-[#172A53] text-white py-20">
+      <div className="bg-[#f8f3e6] text-[#172A53] py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-16">
             {/* Available Programs */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-8">Available Degree Programs</h2>
-              <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Undergraduate Programs</h3>
-              <ul className="space-y-4 text-lg text-gray-200 mb-10">
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">BBA</strong> (Bachelor of Business Administration) – Ideal for business professionals</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">B.Com</strong> (Bachelor of Commerce) – Perfect for accountants and finance experts</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">BCA</strong> (Bachelor of Computer Applications) – Best for IT professionals</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">B.Sc IT</strong> (Bachelor of Science in Information Technology) – For software and tech experts</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">B.Tech</strong> (Bachelor of Technology) – Suitable for engineering professionals in various fields</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">BA</strong> (Bachelor of Arts) – Various specializations in humanities and social sciences</span></li>
+              <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Undergraduate Programs</h3>
+              <ul className="space-y-4 text-lg text-gray-600 mb-10">
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">BBA</strong> (Bachelor of Business Administration) – Ideal for business professionals</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">B.Com</strong> (Bachelor of Commerce) – Perfect for accountants and finance experts</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">BCA</strong> (Bachelor of Computer Applications) – Best for IT professionals</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">B.Sc IT</strong> (Bachelor of Science in Information Technology) – For software and tech experts</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">B.Tech</strong> (Bachelor of Technology) – Suitable for engineering professionals in various fields</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">BA</strong> (Bachelor of Arts) – Various specializations in humanities and social sciences</span></li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#1f376a] pb-4">Postgraduate Programs</h3>
-              <ul className="space-y-4 text-lg text-gray-200">
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">MBA</strong> (Master of Business Administration) – For career growth in management</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">M.Com</strong> (Master of Commerce) – Advanced knowledge for commerce and finance professionals</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">MCA</strong> (Master of Computer Applications) – Higher studies in IT and computer applications</span></li>
-                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-white">M.Tech</strong> (Master of Technology) – For engineers looking for specialization and advanced knowledge</span></li>
+              <h3 className="text-xl font-semibold text-[#da251d] mb-6 border-b border-[#172A53]/15 pb-4">Postgraduate Programs</h3>
+              <ul className="space-y-4 text-lg text-gray-600">
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">MBA</strong> (Master of Business Administration) – For career growth in management</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">M.Com</strong> (Master of Commerce) – Advanced knowledge for commerce and finance professionals</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">MCA</strong> (Master of Computer Applications) – Higher studies in IT and computer applications</span></li>
+                <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span><strong className="text-[#172A53]">M.Tech</strong> (Master of Technology) – For engineers looking for specialization and advanced knowledge</span></li>
               </ul>
             </div>
 
             {/* Who Can Apply? */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-8">Who Can Apply?</h2>
-              <ul className="space-y-4 text-lg text-gray-200">
+              <ul className="space-y-4 text-lg text-gray-600">
                 <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>Working professionals who discontinued their studies and want to complete their degree.</span></li>
                 <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>Employees with 2+ years of industry experience who want an academic qualification.</span></li>
                 <li className="flex items-start"><span className="text-[#da251d] mr-3 font-bold text-xl">➤</span> <span>People seeking career growth and better job opportunities.</span></li>
@@ -118,9 +118,9 @@ export default function ApprenticeshipLearningProgram() {
               </ul>
             </div>
           </div>
-          
+
           {/* Image */}
-          <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#1f376a]">
+          <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#172A53]/15">
             <img 
               src="/apprenticeship-professionals.png" 
               alt="Working professionals studying" 

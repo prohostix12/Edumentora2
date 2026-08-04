@@ -83,7 +83,7 @@ export default function BTechCreditTransferPage() {
   ];
 
   return (
-    <main className="min-h-screen pt-24 font-[Poppins] bg-[#f7f9fc]">
+    <main className="min-h-screen pt-24 font-[Poppins] bg-[#fdf5f4]">
       <Header />
       <PageBanner
         badge="Engineering Career"
@@ -101,10 +101,10 @@ export default function BTechCreditTransferPage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-7xl mx-auto px-4 md:px-8 relative z-20"
         >
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] border border-[#eee2c8] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-gradient-to-br from-white via-white to-[#faf5e8]">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] border border-[#f6d9d5] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-gradient-to-br from-white via-white to-[#fdeeec]">
 
             {/* Background Decorative Blob */}
-            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#e8b64a]/10 blur-[100px] -z-10 pointer-events-none"></div>
+            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#f4a49c]/10 blur-[100px] -z-10 pointer-events-none"></div>
             <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#da251d]/5 blur-[100px] -z-10 pointer-events-none"></div>
 
             {/* Left Side: Image */}
@@ -115,9 +115,9 @@ export default function BTechCreditTransferPage() {
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
               className="relative w-full lg:w-5/12 flex justify-center group"
             >
-              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(0,0,0,0.2)] border border-[#eee2c8] z-10 bg-white">
+              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(0,0,0,0.2)] border border-[#f6d9d5] z-10 bg-white">
                 <Image
-                  src="/editorial-illustration.png"
+                  src="/image-008.png"
                   alt="Students on campus progressing toward graduation and their certificates"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
@@ -152,7 +152,7 @@ export default function BTechCreditTransferPage() {
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] leading-tight tracking-tight">
                 Complete your B.Tech <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#e8b64a]">Without Starting Over!</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#f4a49c]">Without Starting Over!</span>
               </h2>
 
               <div className="space-y-5">
@@ -208,11 +208,11 @@ export default function BTechCreditTransferPage() {
               <span className="text-[#da251d] font-bold text-xs uppercase tracking-widest">Program Details</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#172A53] tracking-tight">
-              Everything You Need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#e8b64a]">Know</span>
+              Everything You Need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#f4a49c]">Know</span>
             </h2>
           </motion.div>
 
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] border border-[#eee2c8] overflow-hidden bg-gradient-to-br from-white via-white to-[#faf5e8]">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] border border-[#f6d9d5] overflow-hidden bg-gradient-to-br from-white via-white to-[#fdeeec]">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -220,7 +220,7 @@ export default function BTechCreditTransferPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
-                className={`flex flex-col sm:flex-row gap-5 sm:items-center p-8 md:px-12 md:py-9 ${i > 0 ? 'border-t border-[#eee2c8]' : ''}`}
+                className={`flex flex-col sm:flex-row gap-5 sm:items-center p-8 md:px-12 md:py-9 ${i > 0 ? 'border-t border-[#f6d9d5]' : ''}`}
               >
                 <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-7 h-7 text-[#da251d]" />
@@ -245,12 +245,12 @@ export default function BTechCreditTransferPage() {
           className="max-w-7xl mx-auto px-4 md:px-8"
         >
           <div className="grid gap-6 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] items-stretch">
-            <div className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#faf5e8] border border-[#eee2c8] p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)]">
+            <div className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#fdeeec] border border-[#f6d9d5] p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)]">
               <h3 className="text-2xl font-bold text-[#172A53] mb-4 text-center">Enquire Now</h3>
               <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-3" isGrid={true} />
             </div>
 
-            <div id="educational-mobility" className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#faf5e8] border border-[#eee2c8] p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] scroll-mt-28">
+            <div id="educational-mobility" className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#fdeeec] border border-[#f6d9d5] p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(0,0,0,0.15)] scroll-mt-28">
               <div className="md:grid md:grid-cols-[280px_1fr]">
                 <div className="text-[#172A53] p-8 md:p-10 flex flex-col justify-center">
                   <span className="inline-flex items-center gap-2 mb-4">
@@ -262,7 +262,7 @@ export default function BTechCreditTransferPage() {
                     Discover how your prior credits can be applied toward a new degree, helping you move forward faster with confidence.
                   </p>
                 </div>
-                <div className="p-8 md:p-10 md:border-l md:border-[#eee2c8]">
+                <div className="p-8 md:p-10 md:border-l md:border-[#f6d9d5]">
                   <div className="space-y-5 text-[#172A53]">
                     <p className="text-base leading-8 text-gray-600">
                       Your existing credits can carry over to a new college, so you don&rsquo;t repeat courses you&rsquo;ve already passed.
@@ -286,7 +286,7 @@ export default function BTechCreditTransferPage() {
           {/* Subtle Background Pattern */}
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #172A53 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
-            <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#e8b64a] blur-[120px]"></div>
+            <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#f4a49c] blur-[120px]"></div>
           </div>
 
           <div className="max-w-[1400px] mx-auto px-4 md:px-8 relative z-10 flex flex-col items-center">
@@ -303,9 +303,9 @@ export default function BTechCreditTransferPage() {
                 <span className="text-[#da251d] font-bold text-xs uppercase tracking-widest">Choose Your Path</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#172A53] mb-4 tracking-tight">
-                Our Transfer <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#e8b64a]">Programs</span>
+                Our Transfer <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#da251d] to-[#f4a49c]">Programs</span>
               </h2>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-[#da251d] to-[#e8b64a] rounded-full mb-6"></div>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-[#da251d] to-[#f4a49c] rounded-full mb-6"></div>
               <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">Select the program that fits your educational background</p>
             </motion.div>
 
@@ -432,7 +432,7 @@ export default function BTechCreditTransferPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: index * 0.06, ease: 'easeOut' }}
-                className="group border border-[#eee2c8] rounded-2xl overflow-hidden bg-gradient-to-br from-white via-white to-[#faf5e8] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#172A53] focus-within:ring-offset-2"
+                className="group border border-[#f6d9d5] rounded-2xl overflow-hidden bg-gradient-to-br from-white via-white to-[#fdeeec] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#172A53] focus-within:ring-offset-2"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 role="button"
                 tabIndex={0}
@@ -454,7 +454,7 @@ export default function BTechCreditTransferPage() {
                 </div>
                 <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <div className="p-6 text-gray-600 bg-[#faf5e8]/60 border-t border-[#eee2c8] leading-relaxed text-justify">
+                    <div className="p-6 text-gray-600 bg-[#fdeeec]/60 border-t border-[#f6d9d5] leading-relaxed text-justify">
                       {faq.a}
                     </div>
                   </div>
@@ -469,7 +469,7 @@ export default function BTechCreditTransferPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 p-5 bg-gradient-to-br from-white via-white to-[#faf5e8] rounded-2xl border border-[#eee2c8] text-center shadow-sm"
+            className="mt-10 p-5 bg-gradient-to-br from-white via-white to-[#fdeeec] rounded-2xl border border-[#f6d9d5] text-center shadow-sm"
           >
             <p className="text-[#172A53] text-sm md:text-base italic font-medium leading-relaxed">
               *To complete your B.Tech degree through credit transfer, you must visit the university and write the failed subjects directly in offline mode. Universities do not allow online exams for credit transfer programs, as per UGC guidelines.
