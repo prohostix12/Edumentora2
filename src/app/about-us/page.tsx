@@ -67,7 +67,7 @@ export default function AboutUsPage() {
             {faqs.map((faq, index) => (
               <div 
                 key={index} 
-                className="group border border-gray-200 rounded-2xl overflow-hidden bg-[#F5F5F5] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
                 <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#002147]' : 'bg-gray-50 hover:bg-[#002147]'}`}>
@@ -80,7 +80,7 @@ export default function AboutUsPage() {
                 </div>
                 <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <p className="p-6 text-gray-700 bg-[#F5F5F5] border-t border-gray-100 leading-relaxed text-justify">
+                    <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
                       {faq.a}
                     </p>
                   </div>
@@ -98,7 +98,7 @@ export default function AboutUsPage() {
           
           {/* Image Space */}
           <div className="md:w-1/2 w-full flex justify-center items-center">
-            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden p-8 bg-[#F5F5F5] shadow-lg border border-gray-100 group">
+            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden p-8 bg-white shadow-lg border border-gray-100 group">
                <img src="/tims_logo.png" alt="Tirur Institute of Management Studies" className="relative z-0 w-full h-auto object-contain transform hover:scale-105 transition-transform duration-700" />
             </div>
           </div>

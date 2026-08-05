@@ -288,7 +288,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     <div className="font-[Poppins] space-y-6">
       
       {/* ── SAVED PROGRAMS ── */}
-      <div className="bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold text-[#002147]">Saved Programs</h2>
           <button 
@@ -311,7 +311,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {initialPrograms.map(program => (
-              <div key={program.id} className="bg-[#F5F5F5] border border-gray-200 rounded-2xl p-6 relative group hover:border-[#002147]/30 transition-all shadow-sm hover:shadow-md cursor-pointer" onClick={() => handleEdit(program)}>
+              <div key={program.id} className="bg-white border border-gray-200 rounded-2xl p-6 relative group hover:border-[#002147]/30 transition-all shadow-sm hover:shadow-md cursor-pointer" onClick={() => handleEdit(program)}>
                 <div className="absolute top-4 right-4 flex items-center gap-2 z-10" onClick={e => e.stopPropagation()}>
                   <button 
                     onClick={() => handleEdit(program)}
@@ -351,7 +351,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
           style={{ overscrollBehavior: 'contain' }}
         >
           <div className="flex items-start justify-center min-h-full p-4 py-8">
-          <div className="bg-[#F5F5F5] w-full max-w-4xl rounded-3xl shadow-2xl" onClick={e => e.stopPropagation()}>
+          <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl" onClick={e => e.stopPropagation()}>
             
             <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl">
               <h2 className="text-xl font-bold text-white">{editingProgramId ? 'Edit Apprenticeship Program' : 'Create New Program'}</h2>
@@ -385,7 +385,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Hero Image</label>
-                      <div className="w-full h-48 border-2 border-dashed border-gray-300 rounded-xl relative flex items-center justify-center bg-[#F5F5F5] overflow-hidden">
+                      <div className="w-full h-48 border-2 border-dashed border-gray-300 rounded-xl relative flex items-center justify-center bg-white overflow-hidden">
                         {formData.heroImage ? (
                           <img src={formData.heroImage} alt="Hero" className="w-full h-full object-cover" />
                         ) : (
@@ -465,7 +465,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           {block.steps.map((item, index) => (
-                            <div key={index} className="bg-[#F5F5F5] p-4 rounded-xl border border-gray-200 space-y-3 shadow-sm">
+                            <div key={index} className="bg-white p-4 rounded-xl border border-gray-200 space-y-3 shadow-sm">
                               <div className="w-8 h-8 bg-[#D2B48C] text-white font-bold rounded-lg flex items-center justify-center">{index + 1}</div>
                               <div>
                                 <label className="flex items-center justify-between text-[10px] font-bold text-gray-400 uppercase mb-1 w-full"><span>Step Heading</span><span className="font-normal text-gray-400 tracking-normal normal-case">{item.heading.length}/80</span></label>
@@ -590,7 +590,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                             setFormData({...formData, whyChooseBlocks: newArr});
                           }} className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] outline-none text-[#002147]" />
                         </div>
-                        <div className="bg-[#F5F5F5] p-6 rounded-2xl border border-gray-100 shadow-sm space-y-6">
+                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-6">
                           <div>
                             <div className="flex items-center justify-between mb-2">
                               <label className="text-xs font-bold text-gray-500 uppercase">Benefits (Bullet Points)</label>

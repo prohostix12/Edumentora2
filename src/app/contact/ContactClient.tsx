@@ -288,7 +288,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 </p>
               </div> */}
 
-              <div className="relative bg-[#F5F5F5] p-6 rounded-xl border border-gray-100 shadow-sm">
+              <div className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                 <span className="text-5xl text-[#002147] opacity-10 absolute -top-2 -left-2 font-serif hidden md:block">"</span>
                 <p className="text-gray-800 italic leading-relaxed text-lg font-medium relative z-10">
                   "At Edumentora, we don’t just offer education services—we offer second chances, renewed confidence, and a clear path toward a successful future. Together, let us transform past progress into lasting achievement."

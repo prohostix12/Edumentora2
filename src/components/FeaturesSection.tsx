@@ -52,7 +52,7 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="bg-[#F5F5F5] rounded-[30px] p-10 border border-gray-200 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+            className="bg-white rounded-[30px] p-10 border border-gray-200 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
           >
             <div className="mb-6">
               {feature.icon}

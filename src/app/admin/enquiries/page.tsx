@@ -22,7 +22,7 @@ export default async function EnquiriesPage() {
         <p className="text-gray-600">View all the messages submitted through the contact form.</p>
       </div>
 
-      <div className="bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

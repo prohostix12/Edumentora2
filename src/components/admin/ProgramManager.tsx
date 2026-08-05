@@ -95,7 +95,7 @@ function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, bloc
                 <div className="w-5 h-0.5 bg-[#D2B48C] rounded mb-2" />
                 <div className={`grid gap-1.5 ${block.cards.length <= 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                   {block.cards.map((card: any, ci: number) => (
-                    <div key={ci} className="bg-[#F5F5F5] border border-gray-200 rounded-lg p-2">
+                    <div key={ci} className="bg-white border border-gray-200 rounded-lg p-2">
                       <div className="w-4 h-4 rounded bg-[#002147]/10 flex items-center justify-center mb-1">
                         <span className="text-[#002147] font-bold text-[8px]">{String(ci+1).padStart(2,'0')}</span>
                       </div>
@@ -112,7 +112,7 @@ function PreviewContent({ topic, heading, subHeading, paragraph, heroImage, bloc
                 <div className="w-5 h-0.5 bg-[#D2B48C] rounded mb-2" />
                 <div className="grid grid-cols-2 gap-1.5">
                   {block.points.map((pt: any, pi: number) => (
-                    <div key={pi} className="bg-[#F5F5F5] border border-gray-200 rounded-lg p-2">
+                    <div key={pi} className="bg-white border border-gray-200 rounded-lg p-2">
                       {pt.pointHeading && (
                         <div className="flex items-center gap-1 mb-1.5 pb-1 border-b border-gray-100">
                           <div className="w-3.5 h-3.5 rounded bg-[#D2B48C] flex items-center justify-center text-white text-[8px] font-bold">{pi+1}</div>
@@ -249,7 +249,7 @@ function BlockItem({ block, bIndex, blocks, updateBlock, removeBlock, errors }: 
       value={block}
       dragListener={false}
       dragControls={controls}
-      className="bg-[#F5F5F5] rounded-xl border border-[#002147]/10 shadow-sm overflow-hidden"
+      className="bg-white rounded-xl border border-[#002147]/10 shadow-sm overflow-hidden"
       whileDrag={{ scale: 1.01, boxShadow: '0 8px 30px rgba(23,42,83,0.15)', zIndex: 50 }}
       transition={{ duration: 0.15 }}
     >
@@ -673,12 +673,12 @@ export default function ProgramManager({ initialPrograms }: { initialPrograms: P
           Published Programs ({initialPrograms.length})
         </h3>
         {initialPrograms.length === 0 ? (
-          <div className="text-center py-16 text-gray-400 bg-[#F5F5F5] rounded-2xl border border-dashed border-gray-200 text-sm">
+          <div className="text-center py-16 text-gray-400 bg-white rounded-2xl border border-dashed border-gray-200 text-sm">
             No programs yet — use the builder above to create one.
           </div>
         ) : (
           initialPrograms.map((program) => (
-            <div key={program.id} className="bg-[#F5F5F5] rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col sm:flex-row">
+            <div key={program.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col sm:flex-row">
               {program.heroImage && (
                 <div className="w-full sm:w-36 h-28 sm:h-auto relative flex-shrink-0">
                   <img src={program.heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />

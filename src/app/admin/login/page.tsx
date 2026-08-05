@@ -33,7 +33,7 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-[Poppins]">
-      <div className="w-full max-w-md bg-[#F5F5F5] rounded-3xl shadow-xl border border-gray-100 p-8">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
         <div className="flex justify-center mb-8">
           <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center">
             <Lock className="w-8 h-8 text-[#D2B48C]" />

@@ -169,7 +169,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
   return (
     <div className="space-y-8">
       {/* Create / Edit Review Form */}
-      <div className={`bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border transition-colors ${editingId ? 'border-yellow-400/50' : 'border-gray-100'}`}>
+      <div className={`bg-white p-6 rounded-2xl shadow-sm border transition-colors ${editingId ? 'border-yellow-400/50' : 'border-gray-100'}`}>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-[#002147] flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-[#D2B48C]" />
@@ -316,7 +316,7 @@ export default function ReviewManager({ initialReviews }: { initialReviews: any[
       </div>
 
       {/* Reviews List */}
-      <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <h2 className="text-xl font-semibold text-[#002147] mb-6">All Reviews</h2>
         
         {reviews.length === 0 ? (

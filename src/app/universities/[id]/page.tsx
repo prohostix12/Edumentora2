@@ -60,7 +60,7 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
 
       {/* Content Section */}
       <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="bg-[#F5F5F5] rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
           {university.mainImage && (
             <div className="w-full h-[300px] md:h-[500px] relative bg-gray-100">
               <img 

@@ -241,7 +241,7 @@ export default function Hero() {
           {ACHIEVEMENTS.map((item) => (
             <div
               key={item.label}
-              className="shrink-0 bg-[#F5F5F5] rounded-xl border border-[#002147]/10 shadow-sm px-4 py-2.5 min-w-[132px]"
+              className="shrink-0 bg-white rounded-xl border border-[#002147]/10 shadow-sm px-4 py-2.5 min-w-[132px]"
             >
               <div className="text-[#002147] text-lg font-extrabold leading-tight">{item.value}</div>
               <div className="text-gray-500 text-[10px] font-semibold leading-tight">{item.label}</div>
@@ -331,7 +331,7 @@ export default function Hero() {
               <path d="M20 2 L23 15 L36 15 L25 23 L29 36 L20 28 L11 36 L15 23 L4 15 L17 15 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
 
-            <div id="eligibility-form" className="relative w-full max-w-[360px] rounded-[2.5rem] border-4 border-[#002147]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-[#F5F5F5] p-6 scroll-mt-32">
+            <div id="eligibility-form" className="relative w-full max-w-[360px] rounded-[2.5rem] border-4 border-[#002147]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-white p-6 scroll-mt-32">
               <div className="flex items-center gap-2 mb-3 rounded-full bg-blue-50 w-fit px-3 py-1.5">
                 <ClipboardCheck className="w-4 h-4 text-[#002147]" />
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#002147]">Fast Assessment</span>

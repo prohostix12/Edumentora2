@@ -70,7 +70,7 @@ export default function ProcessSection() {
                  whileInView={{ opacity: 1, y: 0 }}
                  viewport={{ once: true }}
                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                 className="bg-[#F5F5F5] rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300 group flex flex-col sm:flex-row gap-6 items-start"
+                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md border border-gray-100 transition-all duration-300 group flex flex-col sm:flex-row gap-6 items-start"
                >
                  <div className={`w-16 h-16 rounded-full flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-300 ${feature.bgColor}`}>
                    {feature.icon}
@@ -121,7 +121,7 @@ export default function ProcessSection() {
                 >
                   {/* Left or Right Content Card */}
                   <div className={`w-full md:w-[45%] flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                    <div className="bg-[#F5F5F5] rounded-2xl p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300 w-full group cursor-pointer relative overflow-hidden border border-gray-50">
+                    <div className="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-1 transition-transform duration-300 w-full group cursor-pointer relative overflow-hidden border border-gray-50">
                       <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-[#D2B48C]">
                         <ArrowRight size={20} />
                       </div>

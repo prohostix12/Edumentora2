@@ -42,7 +42,7 @@ export default function BTechCreditTransferPage() {
             />
           </div>
 
-          <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-300">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
             <h3 className="text-xl font-bold text-[#002147] mb-5">Enquire Now</h3>
             <EnquiryForm className="space-y-4" isGrid={false} />
           </div>

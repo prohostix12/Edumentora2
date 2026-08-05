@@ -170,7 +170,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
 
             <div className="relative w-full max-w-lg">
               {/* The white card */}
-              <div className="bg-[#F5F5F5] rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
+              <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
 
                 {/* Avatar overlapping top edge */}
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">

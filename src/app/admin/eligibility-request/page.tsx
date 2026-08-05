@@ -19,7 +19,7 @@ export default async function EligibilityRequestPage() {
         <p className="text-gray-600">View all eligibility request submissions from applicants.</p>
       </div>
 
-      <div className="bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

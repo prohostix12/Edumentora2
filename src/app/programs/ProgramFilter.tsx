@@ -26,7 +26,7 @@ function SectionDivider() {
 
 function TextBlock({ block, bIndex }: { block: any; bIndex: number }) {
   return (
-    <div className="bg-[#F5F5F5] rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
+    <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
       <h3 className="text-2xl md:text-3xl font-bold text-[#002147] mb-2">{block.heading}</h3>
       <SectionDivider />
       {block.paragraph && (
@@ -65,7 +65,7 @@ function CardsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.cards.map((card: any, cIndex: number) => (
           <div
             key={cIndex}
-            className="group bg-[#F5F5F5] border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+            className="group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
           >
             {/* Top accent bar */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D2B48C] to-[#002147] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
@@ -99,7 +99,7 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.points.map((point: any, pIndex: number) => (
           <div
             key={pIndex}
-            className="bg-[#F5F5F5] border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147]/40 hover:shadow-md transition-all duration-300"
+            className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147]/40 hover:shadow-md transition-all duration-300"
           >
             {point.pointHeading && (
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
@@ -156,7 +156,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {steps.map((item: any, i: number) => (
-                <div key={i} className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div key={i} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                   <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">{i + 1}</div>
                   <h3 className="text-xl font-bold text-[#002147] mb-4">{item.heading}</h3>
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
@@ -266,7 +266,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
   if (programs.length === 0) {
     return (
       <div className="py-32 text-center text-gray-500 bg-gray-50">
-        <div className="inline-block p-6 bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 mb-6">
+        <div className="inline-block p-6 bg-white rounded-2xl shadow-sm border border-gray-100 mb-6">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
             <span className="text-3xl">📚</span>
           </div>
@@ -401,7 +401,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                             return (
                               <div 
                                 key={w.i as string}
-                                className="bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#002147]/30 transition-all overflow-hidden flex flex-col"
+                                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#002147]/30 transition-all overflow-hidden flex flex-col"
                                 style={{
                                   gridColumn: `var(--grid-col, 1 / -1)`,
                                   gridRow: `var(--grid-row, auto)`,

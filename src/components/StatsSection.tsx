@@ -99,7 +99,7 @@ export default function StatsSection() {
             viewport={{ once: true }}
             className="w-full sm:w-[240px] shrink-0 drop-shadow-[0_15px_25px_rgba(0,0,0,0.05)] hover:drop-shadow-[0_20px_35px_rgba(0,0,0,0.1)] hover:scale-105 transition-all duration-300 z-10"
           >
-            <div className="bg-[#F5F5F5] p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
+            <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
                  style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
               <div className="w-12 h-12 rounded-full border-2 border-[#D2B48C] text-[#D2B48C] flex items-center justify-center mb-4 mt-2">
                 <Briefcase size={24} strokeWidth={1.5} />
@@ -135,7 +135,7 @@ export default function StatsSection() {
                   className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] ${offsets[i]}`}
                 >
                   <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} className="block w-full h-full">
-                    <div className="bg-[#F5F5F5] rounded-[24px] p-4 w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
+                    <div className="bg-white rounded-[24px] p-4 w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
                       <div className="relative w-full h-full">
                         <Image
                           src={logo.image}
@@ -159,7 +159,7 @@ export default function StatsSection() {
             viewport={{ once: true }}
             className="w-full sm:w-[240px] shrink-0 drop-shadow-[0_15px_25px_rgba(0,0,0,0.05)] hover:drop-shadow-[0_20px_35px_rgba(0,0,0,0.1)] hover:scale-105 transition-all duration-300 z-10"
           >
-            <div className="bg-[#F5F5F5] p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
+            <div className="bg-white p-6 pb-8 flex flex-col items-center text-center relative w-full h-full"
                  style={{ clipPath: 'polygon(50% 0%, 100% 12%, 100% 88%, 50% 100%, 0% 88%, 0% 12%)', minHeight: '260px' }}>
               <div className="w-12 h-12 rounded-full border-2 border-[#D2B48C] text-[#D2B48C] flex items-center justify-center mb-4 mt-2">
                 <Award size={24} strokeWidth={1.5} />

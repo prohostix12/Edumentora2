@@ -57,21 +57,21 @@ export default function ApprenticeshipLearningProgram() {
           How it Works
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">1</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Work Experience as Academic Credits</h3>
             <p className="text-gray-600 leading-relaxed">
               If you have 2+ years of work experience, it will be evaluated and counted as part of your degree. You don’t need to study subjects where you already have practical knowledge.
             </p>
           </div>
-          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">2</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Reduced Study Duration</h3>
             <p className="text-gray-600 leading-relaxed">
               Instead of the traditional 3–4-year degree, your work experience helps you complete the course faster. The exact duration depends on your experience and the course requirements.
             </p>
           </div>
-          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">3</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Flexible Learning Options</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -178,7 +178,7 @@ export default function ApprenticeshipLearningProgram() {
             </p>
           </div>
           
-          <div className="bg-[#F5F5F5] p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
             <EnquiryForm className="space-y-6" isGrid={false} />
           </div>
         </div>
