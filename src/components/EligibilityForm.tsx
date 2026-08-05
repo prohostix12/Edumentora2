@@ -158,7 +158,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
 
       {showPopup && (
         <div className="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl border border-gray-100">
+          <div className="bg-[#F5F5F5] rounded-3xl p-8 w-full max-w-md shadow-2xl border border-gray-100">
             <div className="flex flex-col gap-4">
               {popupState === 'checking' && (
                 <>

@@ -121,7 +121,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
   return (
     <div className="space-y-8">
       {/* Create Blog Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
         <h2 className="text-xl font-semibold text-[#002147] mb-4">Add New Blog</h2>
         <form id="add-blog-form" action={handleCreateBlog} className="flex flex-col gap-6">
           <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
@@ -182,7 +182,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
             
             <div className="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-100">
               {mainDis.map((section, index) => (
-                <div key={index} className="flex gap-4 items-start relative bg-white p-4 rounded-lg border border-gray-200">
+                <div key={index} className="flex gap-4 items-start relative bg-[#F5F5F5] p-4 rounded-lg border border-gray-200">
                   <div className="flex-1 space-y-3">
                     <input
                       type="text"
@@ -238,7 +238,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
       {/* Existing Blogs */}
       <div className="space-y-6">
         {initialBlogs.map((blog) => (
-          <div key={blog.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col relative">
+          <div key={blog.id} className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col relative">
             <button
               onClick={() => handleDeleteBlog(blog.id)}
               disabled={isPending}
@@ -280,7 +280,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
         ))}
         
         {initialBlogs.length === 0 && (
-          <div className="text-center py-12 text-gray-500 bg-white rounded-2xl border border-gray-100 border-dashed">
+          <div className="text-center py-12 text-gray-500 bg-[#F5F5F5] rounded-2xl border border-gray-100 border-dashed">
             No blogs created yet.
           </div>
         )}

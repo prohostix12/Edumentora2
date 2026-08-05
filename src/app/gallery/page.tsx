@@ -30,11 +30,11 @@ export default async function Page() {
         isGradientText={true}
       />
 
-      <div className="py-12 sm:py-20 bg-white">
+      <div className="py-12 sm:py-20 bg-white dot-grid">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {galleries.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <div className="text-center py-20 bg-[#F5F5F5] rounded-3xl shadow-sm border border-gray-100">
               <h3 className="text-xl font-medium text-gray-900">No photos yet</h3>
               <p className="mt-2 text-gray-500">Check back later for new additions to our gallery.</p>
             </div>

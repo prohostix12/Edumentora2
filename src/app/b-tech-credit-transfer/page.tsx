@@ -94,7 +94,7 @@ export default function BTechCreditTransferPage() {
 
       <div id="know-more" className="relative pb-20 scroll-mt-28 pt-8">
         {/* Intro Card */}
-        <div className="bg-[#F7EFE1] pt-16 pb-20">
+        <div className="bg-[#F7EFE1] pt-16 pb-20 dot-grid">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export default function BTechCreditTransferPage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-7xl mx-auto px-4 md:px-8 relative z-20"
         >
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-white">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-[#F5F5F5]">
 
             {/* Background Decorative Blob */}
             <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#D2B48C]/10 blur-[100px] -z-10 pointer-events-none"></div>
@@ -116,7 +116,7 @@ export default function BTechCreditTransferPage() {
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
               className="relative w-full lg:w-5/12 flex justify-center group"
             >
-              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(0,33,71,0.25)] border border-gray-100 z-10 bg-white">
+              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(0,33,71,0.25)] border border-gray-100 z-10 bg-[#F5F5F5]">
                 <Image
                   src="/image-008.png"
                   alt="Students on campus progressing toward graduation and their certificates"
@@ -195,7 +195,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         {/* Program Highlights */}
-        <div className="bg-[#F7EFE1] py-20">
+        <div className="bg-[#F7EFE1] py-20 dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -213,7 +213,7 @@ export default function BTechCreditTransferPage() {
             </h2>
           </motion.div>
 
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 overflow-hidden bg-white">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 overflow-hidden bg-[#F5F5F5]">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -237,7 +237,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         {/* Enquire Now + Know More Row */}
-        <div className="bg-[#F7EFE1] py-16">
+        <div className="bg-[#F7EFE1] py-16 dot-grid">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -246,12 +246,12 @@ export default function BTechCreditTransferPage() {
           className="max-w-7xl mx-auto px-4 md:px-8"
         >
           <div className="grid gap-6 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] items-stretch">
-            <div className="rounded-[1.5rem] bg-white border border-gray-100 p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)]">
+            <div className="rounded-[1.5rem] bg-[#F5F5F5] border border-gray-100 p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)]">
               <h3 className="text-2xl font-bold text-[#002147] mb-4 text-center">Enquire Now</h3>
               <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-3" isGrid={true} />
             </div>
 
-            <div id="educational-mobility" className="rounded-[1.5rem] bg-white border border-gray-100 p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] scroll-mt-28">
+            <div id="educational-mobility" className="rounded-[1.5rem] bg-[#F5F5F5] border border-gray-100 p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] scroll-mt-28">
               <div className="md:grid md:grid-cols-[280px_1fr]">
                 <div className="text-[#002147] p-8 md:p-10 flex flex-col justify-center">
                   <span className="inline-flex items-center gap-2 mb-4">
@@ -283,9 +283,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         {/* Premium Programs Section */}
-        <div className="bg-[#F7EFE1] py-[100px] relative overflow-hidden">
-          {/* Subtle Background Pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #002147 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        <div className="bg-[#F7EFE1] py-[100px] relative overflow-hidden dot-grid">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#D2B48C] blur-[120px]"></div>
           </div>
@@ -412,7 +410,7 @@ export default function BTechCreditTransferPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-[#F7EFE1] py-20">
+      <div className="bg-[#F7EFE1] py-20 dot-grid">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -433,7 +431,7 @@ export default function BTechCreditTransferPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: index * 0.06, ease: 'easeOut' }}
-                className="group border border-gray-100 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#002147] focus-within:ring-offset-2"
+                className="group border border-gray-100 rounded-2xl overflow-hidden bg-[#F5F5F5] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#002147] focus-within:ring-offset-2"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 role="button"
                 tabIndex={0}
@@ -470,7 +468,7 @@ export default function BTechCreditTransferPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 p-5 bg-white rounded-2xl border border-gray-100 text-center shadow-sm"
+            className="mt-10 p-5 bg-[#F5F5F5] rounded-2xl border border-gray-100 text-center shadow-sm"
           >
             <p className="text-[#002147] text-sm md:text-base italic font-medium leading-relaxed">
               *To complete your B.Tech degree through credit transfer, you must visit the university and write the failed subjects directly in offline mode. Universities do not allow online exams for credit transfer programs, as per UGC guidelines.

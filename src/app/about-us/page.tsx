@@ -48,7 +48,7 @@ export default function AboutUsPage() {
       <AboutSection />
 
       {/* Overview Section */}
-      <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-24 border-y border-[#DDC7A0]">
+      <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-24 border-y border-[#DDC7A0] dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <p className="text-lg md:text-xl text-[#002147]/90 leading-relaxed text-justify md:text-center font-medium">
             Edumentora is an innovative education service provider that specializes in academic credit transfer solutions, helping students across India restart and complete their discontinued degree programs. Whether due to financial hardship, personal setbacks, academic difficulties, or institutional issues, many students pause their education, but with Edumentora, they don’t have to start over. We make it possible to transfer previously earned college or university credits to UGC-recognized institutions, allowing students to pick up where they left off. Our goal is to ensure that prior academic efforts are not wasted and that every learner gets a second chance to earn a respected qualification. At Edumentora, we’re committed to turning past progress into future success through reliable, student-focused credit transfer services.
@@ -57,7 +57,7 @@ export default function AboutUsPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0]">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-12">
             Frequently Asked Questions
@@ -67,7 +67,7 @@ export default function AboutUsPage() {
             {faqs.map((faq, index) => (
               <div 
                 key={index} 
-                className="group border border-gray-200 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+                className="group border border-gray-200 rounded-2xl overflow-hidden bg-[#F5F5F5] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
                 <div className={`p-6 flex justify-between items-center transition-colors duration-300 ${openFaq === index ? 'bg-[#002147]' : 'bg-gray-50 hover:bg-[#002147]'}`}>
@@ -80,7 +80,7 @@ export default function AboutUsPage() {
                 </div>
                 <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <p className="p-6 text-gray-700 bg-white border-t border-gray-100 leading-relaxed text-justify">
+                    <p className="p-6 text-gray-700 bg-[#F5F5F5] border-t border-gray-100 leading-relaxed text-justify">
                       {faq.a}
                     </p>
                   </div>
@@ -93,12 +93,12 @@ export default function AboutUsPage() {
       </div>
 
       {/* TIMS Partnership Section */}
-      <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-24 border-y border-[#DDC7A0]">
+      <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-24 border-y border-[#DDC7A0] dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-16">
           
           {/* Image Space */}
           <div className="md:w-1/2 w-full flex justify-center items-center">
-            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden p-8 bg-white shadow-lg border border-gray-100 group">
+            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden p-8 bg-[#F5F5F5] shadow-lg border border-gray-100 group">
                <img src="/tims_logo.png" alt="Tirur Institute of Management Studies" className="relative z-0 w-full h-auto object-contain transform hover:scale-105 transition-transform duration-700" />
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function AboutUsPage() {
       </div>
 
       {/* Best Credit Transfer Institute Section */}
-      <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0]">
+      <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-lg text-gray-700 leading-relaxed text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-10">
             The Best Credit Transfer Institute

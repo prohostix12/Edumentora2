@@ -147,7 +147,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
       )}
 
       {/* Contact Form Section */}
-      <div className="bg-[#F9F9F9] py-16 lg:py-24 border-t border-[#DDC7A0]">
+      <div className="bg-[#F9F9F9] py-16 lg:py-24 border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[#DDC7A0]">
             <div className="text-center mb-10">
@@ -258,7 +258,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
       </div>
 
       {/* Director's Message Mini Section */}
-      <div className="py-12 lg:py-16 bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] border-t border-[#DDC7A0]">
+      <div className="py-12 lg:py-16 bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 bg-gray-50 p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
@@ -288,7 +288,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 </p>
               </div> */}
 
-              <div className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+              <div className="relative bg-[#F5F5F5] p-6 rounded-xl border border-gray-100 shadow-sm">
                 <span className="text-5xl text-[#002147] opacity-10 absolute -top-2 -left-2 font-serif hidden md:block">"</span>
                 <p className="text-gray-800 italic leading-relaxed text-lg font-medium relative z-10">
                   "At Edumentora, we don’t just offer education services—we offer second chances, renewed confidence, and a clear path toward a successful future. Together, let us transform past progress into lasting achievement."

@@ -37,7 +37,7 @@ export default function ApprenticeshipLearningProgram() {
       </PageBanner>
 
       {/* EALP Overview Section */}
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 dot-grid">
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold text-[#002147]">
             Employee Apprenticeship-Learning Program (EALP)
@@ -57,21 +57,21 @@ export default function ApprenticeshipLearningProgram() {
           How it Works
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">1</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Work Experience as Academic Credits</h3>
             <p className="text-gray-600 leading-relaxed">
               If you have 2+ years of work experience, it will be evaluated and counted as part of your degree. You don’t need to study subjects where you already have practical knowledge.
             </p>
           </div>
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">2</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Reduced Study Duration</h3>
             <p className="text-gray-600 leading-relaxed">
               Instead of the traditional 3–4-year degree, your work experience helps you complete the course faster. The exact duration depends on your experience and the course requirements.
             </p>
           </div>
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+          <div className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
             <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">3</div>
             <h3 className="text-xl font-bold text-[#002147] mb-4">Flexible Learning Options</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -82,7 +82,7 @@ export default function ApprenticeshipLearningProgram() {
       </div>
 
       {/* Programs and Eligibility Section */}
-      <div className="bg-[#F7EFE1] text-[#002147] py-20">
+      <div className="bg-[#F7EFE1] text-[#002147] py-20 dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-16">
             {/* Available Programs */}
@@ -131,7 +131,7 @@ export default function ApprenticeshipLearningProgram() {
       </div>
 
       {/* Why Choose EALP Section */}
-      <div className="bg-white py-20">
+      <div className="bg-white py-20 dot-grid">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-10">
             Why Choose EALP?
@@ -167,7 +167,7 @@ export default function ApprenticeshipLearningProgram() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 dot-grid">
         <div className="max-w-3xl mx-auto px-4 md:px-8 py-24">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147]">
@@ -178,7 +178,7 @@ export default function ApprenticeshipLearningProgram() {
             </p>
           </div>
           
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+          <div className="bg-[#F5F5F5] p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
             <EnquiryForm className="space-y-6" isGrid={false} />
           </div>
         </div>

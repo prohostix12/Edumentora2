@@ -81,7 +81,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative z-10">
           
           {/* Left Column: Blog Content */}
-          <div className="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+          <div className="lg:col-span-2 bg-[#F5F5F5] rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
             {blog.mainImage && (
               <div className="w-full h-[300px] md:h-[450px] overflow-hidden">
                 <img 
@@ -117,7 +117,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             
             {/* Recent Blogs */}
             {recentBlogs.length > 0 && (
-              <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+              <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-md border border-gray-100">
                 <h3 className="text-xl font-bold text-[#002147] mb-6 pb-4 border-b border-gray-100">
                   Recent Blogs
                 </h3>
@@ -175,7 +175,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
 
             {/* Recent Comments */}
             {comments.length > 0 && (
-              <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+              <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-md border border-gray-100">
                 <h3 className="text-xl font-bold text-[#002147] mb-6 pb-4 border-b border-gray-100 flex items-center gap-2">
                   Recent comments <span className="bg-gray-100 text-[#002147] px-2 py-0.5 rounded-full text-xs">{comments.length}</span>
                 </h3>

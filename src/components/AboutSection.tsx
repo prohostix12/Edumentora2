@@ -30,7 +30,7 @@ export default function AboutSection() {
   const contentRotateY = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [90, 0, 0, 90]);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white overflow-hidden mb-[10px] -mt-[60px] relative z-10">
+    <section ref={sectionRef} className="w-full bg-white overflow-hidden mb-[10px] -mt-[60px] relative z-10 dot-grid">
       <motion.div
         style={{ opacity: sectionOpacity }}
         className="max-w-7xl mx-auto px-8 pt-16 pb-24 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center [perspective:1500px]"

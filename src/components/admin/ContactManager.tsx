@@ -34,7 +34,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
   return (
     <div className="space-y-8">
       {/* Create Contact Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
         <h2 className="text-xl font-semibold text-[#002147] mb-4">Add New Contact</h2>
         <form id="add-contact-form" action={handleCreateContact} className="flex flex-col gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -93,7 +93,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
       {/* Existing Contacts */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {initialContacts.map((contact) => (
-          <div key={contact.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full relative">
+          <div key={contact.id} className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full relative">
             <button
               onClick={() => handleDeleteContact(contact.id)}
               disabled={isPending}
@@ -131,7 +131,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
         ))}
         
         {initialContacts.length === 0 && (
-          <div className="col-span-full py-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100 border-dashed">
+          <div className="col-span-full py-12 text-center text-gray-500 bg-[#F5F5F5] rounded-2xl border border-gray-100 border-dashed">
             No contacts created yet.
           </div>
         )}

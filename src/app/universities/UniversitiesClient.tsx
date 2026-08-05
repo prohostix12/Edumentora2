@@ -77,7 +77,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
           {filteredData.map((item, index) => (
             <div 
               key={item.id} 
-              className="group bg-white rounded-[28px] overflow-hidden shadow-[0_10px_40px_-10px_rgba(0,0,0,0.04)] border border-gray-100/80 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(23,42,83,0.15)] hover:-translate-y-2 flex flex-col"
+              className="group bg-[#F5F5F5] rounded-[28px] overflow-hidden shadow-[0_10px_40px_-10px_rgba(0,0,0,0.04)] border border-gray-100/80 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(23,42,83,0.15)] hover:-translate-y-2 flex flex-col"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Top: Image Wrapper */}
@@ -151,7 +151,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
       </div>
 
       {/* Informational Text Section */}
-      <div className="bg-white border-t border-gray-100 py-24">
+      <div className="bg-white border-t border-gray-100 py-24 dot-grid">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-8 text-[17px] text-gray-600 leading-[1.8]">
           <h2 className="text-3xl font-bold text-[#002147] mb-8 text-center">Why Choose University Credit Transfer?</h2>
           <p>

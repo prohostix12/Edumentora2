@@ -26,7 +26,7 @@ function SectionDivider() {
 
 function TextBlock({ block, bIndex }: { block: any; bIndex: number }) {
   return (
-    <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
+    <div className="bg-[#F5F5F5] rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
       <h3 className="text-2xl md:text-3xl font-bold text-[#002147] mb-2">{block.heading}</h3>
       <SectionDivider />
       {block.paragraph && (
@@ -65,7 +65,7 @@ function CardsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.cards.map((card: any, cIndex: number) => (
           <div
             key={cIndex}
-            className="group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+            className="group bg-[#F5F5F5] border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147] hover:shadow-lg transition-all duration-300 relative overflow-hidden"
           >
             {/* Top accent bar */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D2B48C] to-[#002147] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
@@ -99,7 +99,7 @@ function ArrowsBlock({ block, bIndex }: { block: any; bIndex: number }) {
         {block.points.map((point: any, pIndex: number) => (
           <div
             key={pIndex}
-            className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147]/40 hover:shadow-md transition-all duration-300"
+            className="bg-[#F5F5F5] border border-gray-200 rounded-2xl p-6 md:p-8 hover:border-[#002147]/40 hover:shadow-md transition-all duration-300"
           >
             {point.pointHeading && (
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
@@ -138,7 +138,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
     <div className="w-full">
       {/* OVERVIEW SECTIONS */}
       {overviews.map((overview: any, idx: number) => (
-        <div key={idx} className={`bg-gray-50 ${idx !== overviews.length - 1 ? 'border-b border-gray-200' : ''}`}>
+        <div key={idx} className={`bg-gray-50 dot-grid ${idx !== overviews.length - 1 ? 'border-b border-gray-200' : ''}`}>
           <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147]">{overview.heading}</h2>
             <h3 className="text-xl md:text-2xl font-semibold text-[#D2B48C] leading-relaxed">{overview.subHeading}</h3>
@@ -156,7 +156,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {steps.map((item: any, i: number) => (
-                <div key={i} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div key={i} className="bg-[#F5F5F5] p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                   <div className="w-14 h-14 bg-[#D2B48C]/10 text-[#D2B48C] rounded-2xl flex items-center justify-center font-black text-2xl mb-6 shadow-sm border border-[#D2B48C]/25">{i + 1}</div>
                   <h3 className="text-xl font-bold text-[#002147] mb-4">{item.heading}</h3>
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
@@ -171,7 +171,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {programsBlocks.map((block: any, idx: number) => {
         const title = block.sectionTitle || block.title || 'Available Degree Programs';
         return (
-          <div key={idx} className={`bg-[#F7EFE1] text-[#002147] py-20 ${idx !== programsBlocks.length - 1 ? 'border-b border-[#002147]/10' : ''}`}>
+          <div key={idx} className={`bg-[#F7EFE1] text-[#002147] py-20 dot-grid ${idx !== programsBlocks.length - 1 ? 'border-b border-[#002147]/10' : ''}`}>
             <div className="max-w-5xl mx-auto px-4 md:px-8 space-y-16">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
@@ -218,7 +218,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {whyChooseBlocks.map((block: any, idx: number) => {
         const title = block.sectionTitle || block.title || 'Why Choose?';
         return (
-          <div key={idx} className={`bg-white py-20 ${idx !== whyChooseBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
+          <div key={idx} className={`bg-white py-20 dot-grid ${idx !== whyChooseBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
             <div className="max-w-4xl mx-auto px-4 md:px-8">
               <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-10">{title}</h2>
               <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
@@ -266,7 +266,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
   if (programs.length === 0) {
     return (
       <div className="py-32 text-center text-gray-500 bg-gray-50">
-        <div className="inline-block p-6 bg-white rounded-2xl shadow-sm border border-gray-100 mb-6">
+        <div className="inline-block p-6 bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 mb-6">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
             <span className="text-3xl">📚</span>
           </div>
@@ -382,7 +382,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                   })}
 
                   {program.blocks.some((w: any) => w.type !== 'apprenticeship-layout') && (
-                    <div className="bg-gray-50 border-t border-gray-100">
+                    <div className="bg-gray-50 border-t border-gray-100 dot-grid">
                       <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min md:auto-rows-[60px]">
                           {program.blocks.filter((w: any) => w.type !== 'apprenticeship-layout').map((w: Record<string, any>, bIndex: number) => {
@@ -401,7 +401,7 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
                             return (
                               <div 
                                 key={w.i as string}
-                                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#002147]/30 transition-all overflow-hidden flex flex-col"
+                                className="bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md hover:border-[#002147]/30 transition-all overflow-hidden flex flex-col"
                                 style={{
                                   gridColumn: `var(--grid-col, 1 / -1)`,
                                   gridRow: `var(--grid-row, auto)`,

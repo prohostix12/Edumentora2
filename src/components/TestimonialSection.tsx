@@ -77,7 +77,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
   }
 
   return (
-    <section className="w-full bg-gray-50 py-10 md:py-12 overflow-hidden">
+    <section className="w-full bg-gray-50 py-10 md:py-12 overflow-hidden dot-grid">
       <style>{`
         @keyframes scrollDown {
           0% { transform: translateY(-50%); }
@@ -170,7 +170,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
 
             <div className="relative w-full max-w-lg">
               {/* The white card */}
-              <div className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
+              <div className="bg-[#F5F5F5] rounded-2xl p-8 md:p-12 text-center shadow-xl relative">
 
                 {/* Avatar overlapping top edge */}
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">

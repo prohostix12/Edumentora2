@@ -31,7 +31,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-5 bg-white">
+    <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-5 bg-white dot-grid">
       <div className="mb-10">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -52,7 +52,7 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="bg-white rounded-[30px] p-10 border border-gray-200 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+            className="bg-[#F5F5F5] rounded-[30px] p-10 border border-gray-200 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
           >
             <div className="mb-6">
               {feature.icon}

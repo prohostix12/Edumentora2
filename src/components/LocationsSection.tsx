@@ -30,7 +30,7 @@ export default function LocationsSection() {
   ];
 
   return (
-    <section className="w-full bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-16 border-t border-[#DDC7A0]">
+    <section className="w-full bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-16 border-t border-[#DDC7A0] dot-grid">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -109,7 +109,7 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
   return (
     <div className="space-y-8">
       {/* Create Section Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
         <h2 className="text-xl font-semibold text-[#002147] mb-4">Create New Section</h2>
         <form action={handleCreateSection} className="flex gap-4">
           <input
@@ -132,7 +132,7 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
       {/* Existing Sections */}
       <div className="space-y-6">
         {initialGalleries.map((gallery) => (
-          <div key={gallery.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div key={gallery.id} className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">{gallery.section}</h3>
@@ -206,7 +206,7 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
         ))}
 
         {initialGalleries.length === 0 && (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100">
+          <div className="text-center py-16 bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-xl font-medium text-gray-900 mb-2">No Gallery Sections</h3>
             <p className="text-gray-500">Create your first section above to start building your gallery.</p>
           </div>

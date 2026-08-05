@@ -34,14 +34,14 @@ export default async function BlogPage() {
       {/* Blogs Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         {blogs.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
+          <div className="text-center py-20 bg-[#F5F5F5] rounded-3xl shadow-sm border border-gray-100">
             <h2 className="text-2xl font-bold text-[#002147] mb-2">No blogs found</h2>
             <p className="text-gray-500">Check back later for new articles and insights.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogs.map((blog) => (
-              <div key={blog.id} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-[#DDC7A0] flex flex-col group">
+              <div key={blog.id} className="bg-[#F5F5F5] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-[#DDC7A0] flex flex-col group">
                 <div className="relative h-64 overflow-hidden bg-gray-100">
                   {blog.mainImage ? (
                     <img 

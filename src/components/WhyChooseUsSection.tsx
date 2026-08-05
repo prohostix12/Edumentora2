@@ -91,7 +91,7 @@ export default function WhyChooseUsSection() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="group relative h-full"
             >
-              <div className="relative h-full bg-white border-2 border-gray-100 rounded-[1.5rem] p-5 lg:p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-[#D2B48C] group-hover:shadow-[0_20px_40px_-15px_rgba(210, 180, 140,0.25)] overflow-hidden flex flex-col z-10">
+              <div className="relative h-full bg-[#F5F5F5] border-2 border-gray-100 rounded-[1.5rem] p-5 lg:p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-[#D2B48C] group-hover:shadow-[0_20px_40px_-15px_rgba(210, 180, 140,0.25)] overflow-hidden flex flex-col z-10">
                 
                 {/* Decorative corner gradient */}
                 <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gray-50 rounded-full group-hover:bg-red-50 transition-colors duration-500 ease-out`} />

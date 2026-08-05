@@ -178,7 +178,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   return (
     <div className="space-y-8">
       {/* Create University Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-[#002147]">
             {editingUniversity ? `Update University: ${editingUniversity.name}` : 'Add New University'}
@@ -341,7 +341,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
       {/* Existing Universities */}
       <div className="space-y-6">
         {initialUniversities.map((uni) => (
-          <div key={uni.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div key={uni.id} className="bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-100">
             <div className="flex items-start justify-between mb-6">
               <div className="flex gap-4">
                 {uni.mainImage && (
@@ -408,7 +408,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
         ))}
 
         {initialUniversities.length === 0 && (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100">
+          <div className="text-center py-16 bg-[#F5F5F5] rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-xl font-medium text-gray-900 mb-2">No Universities Yet</h3>
             <p className="text-gray-500">Add a university above to start managing certificates.</p>
           </div>

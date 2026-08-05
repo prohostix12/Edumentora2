@@ -29,7 +29,7 @@ export default function UniversitiesSection() {
   ];
 
   return (
-    <section className="w-full bg-[#D2B48C] pt-24 pb-0 mt-5 relative z-10">
+    <section className="w-full bg-[#D2B48C] pt-24 pb-0 mt-5 relative z-10 dot-grid">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 30 }}

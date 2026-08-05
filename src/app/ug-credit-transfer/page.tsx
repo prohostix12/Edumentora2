@@ -56,7 +56,7 @@ export default function UGCreditTransferPage() {
 
       {/* Full Width Enquire Now Form */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-16">
-        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
+        <div className="bg-[#F5F5F5] p-6 md:p-8 rounded-2xl shadow-xl border border-gray-200 w-full max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-[#002147] mb-6 text-center">Enquire Now</h3>
           <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-4" isGrid={true} />
         </div>

@@ -80,7 +80,7 @@ export default function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: isHidden ? -120 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
-        className={`pointer-events-auto w-fit max-w-7xl h-[82px] flex items-center justify-center gap-8 px-[5%] transition-colors duration-300 rounded-[18px] ${
+        className={`pointer-events-auto w-fit max-w-7xl h-[82px] flex items-center justify-center gap-8 px-[5%] transition-colors duration-300 rounded-full ${
           isScrolled
             ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100'
             : 'bg-white shadow-sm border border-transparent'

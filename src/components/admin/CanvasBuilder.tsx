@@ -318,7 +318,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
 
       {/* ── CANVAS (Center) ── */}
       <div className="flex-1 overflow-y-auto p-8 relative">
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl min-h-[800px] ring-1 ring-gray-200 overflow-hidden relative">
+        <div className="max-w-5xl mx-auto bg-[#F5F5F5] rounded-2xl shadow-xl min-h-[800px] ring-1 ring-gray-200 overflow-hidden relative">
           
           <div className="bg-[#002147] p-8 text-white relative">
             {hero.heroImage && <img src={hero.heroImage} className="absolute inset-0 w-full h-full object-cover opacity-20" />}
@@ -359,7 +359,7 @@ export default function CanvasBuilder({ initialPrograms }: { initialPrograms: Pr
                         e.stopPropagation();
                         setEditingWidgetId(w.i);
                       }}
-                      className={`group bg-white rounded-xl border-2 transition-all cursor-move overflow-hidden widget-content ${
+                      className={`group bg-[#F5F5F5] rounded-xl border-2 transition-all cursor-move overflow-hidden widget-content ${
                         isEditing ? 'border-[#D2B48C] shadow-lg ring-4 ring-red-50 z-50 cursor-default' : 'border-gray-200 shadow-sm hover:border-[#002147]/50'
                       }`}
                     >

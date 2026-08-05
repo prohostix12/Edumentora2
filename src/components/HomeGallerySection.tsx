@@ -14,7 +14,7 @@ const edumentoraVideos = [
 
 export default function HomeGallerySection() {
   return (
-    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden dot-grid">
       <style>{`
         @keyframes scrollUpGallery {
           0% { transform: translateY(0); }
