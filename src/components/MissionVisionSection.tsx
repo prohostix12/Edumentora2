@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function MissionVisionSection() {
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative">
+    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative bg-white dot-grid">
       <div className="relative w-full mx-auto">
         <div className="relative bg-[#f4ecd8] rounded-3xl p-6 md:p-8 lg:p-10 border-[12px] border-white shadow-2xl overflow-hidden w-full">
         

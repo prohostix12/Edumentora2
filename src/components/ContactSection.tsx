@@ -23,7 +23,7 @@ export default function ContactSection() {
   const rodColor = '#D2B48C';
 
   return (
-    <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 md:px-8 pb-0">
+    <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 md:px-8 pb-0 bg-white dot-grid">
       <div className="relative max-w-5xl mx-auto">
         <motion.div
           style={{ clipPath }}
@@ -31,7 +31,6 @@ export default function ContactSection() {
         >
           {/* decorative glow accents */}
           <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-          <div aria-hidden className="pointer-events-none absolute -bottom-32 -left-16 w-80 h-80 bg-[#002147]/30 rounded-full blur-3xl" />
 
           {/* subtle dot-grid texture */}
           <div

@@ -29,9 +29,9 @@ function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: n
 
 export default function StatsSection() {
   const logos = [
-    { name: 'Manipur International University', id: 1, image: '/manipur_international_university.jpg' },
+    { name: 'Manipur International University', id: 1, image: '/manipur_international_university.png' },
     { name: 'Maya Devi University', id: 2, image: '/maya-devi-university.png' },
-    { name: 'Glocal University', id: 3, image: '/glocal_university.png' },
+    { name: 'Glocal University', id: 3, image: '/glocal_logo.png' },
     { name: 'ARNI University', id: 4, image: '/arni-university.png' },
   ];
 
@@ -135,13 +135,13 @@ export default function StatsSection() {
                   className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] ${offsets[i]}`}
                 >
                   <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} className="block w-full h-full">
-                    <div className="bg-white rounded-[24px] p-4 w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
+                    <div className="bg-white rounded-[24px] w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
                       <div className="relative w-full h-full">
                         <Image
                           src={logo.image}
                           alt={logo.name}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain"
                         />
                       </div>
                     </div>
