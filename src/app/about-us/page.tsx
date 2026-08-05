@@ -92,31 +92,6 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      {/* TIMS Partnership Section */}
-      <div className="bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] py-24 border-y border-[#DDC7A0] dot-grid">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-16">
-          
-          {/* Image Space */}
-          <div className="md:w-1/2 w-full flex justify-center items-center">
-            <div className="relative w-full max-w-sm rounded-3xl overflow-hidden p-8 bg-white shadow-lg border border-gray-100 group">
-               <img src="/tims_logo.png" alt="Tirur Institute of Management Studies" className="relative z-0 w-full h-auto object-contain transform hover:scale-105 transition-transform duration-700" />
-            </div>
-          </div>
-
-          {/* Text Content */}
-          <div className="md:w-1/2 space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#002147] leading-tight">
-              Tirur Institute of Management Studies (TIMS)
-            </h2>
-            <div className="w-20 h-1.5 bg-[#D2B48C] rounded-full"></div>
-            <p className="text-lg text-[#002147]/90 leading-relaxed text-justify mt-6">
-              EduMentora proudly partners with Tirur Institute of Management Studies (TIMS), a leading institution with 16 years of expertise in distance education, attestation, and credit transfer services. With branches in Tirur and Edappal, TIMS offers diverse programs, including SSLC, Plus Two, Online Degrees, Postgraduate Courses, BTech/MTech, and Diplomas, ensuring flexible learning opportunities for students.
-            </p>
-          </div>
-          
-        </div>
-      </div>
-
       {/* Best Credit Transfer Institute Section */}
       <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-lg text-gray-700 leading-relaxed text-justify">

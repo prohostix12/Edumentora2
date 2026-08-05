@@ -66,10 +66,7 @@ export default function Footer() {
       {/* ========================================================
           SECTION 1: TOP FOOTER (LARGE CONTENT AREA)
           ======================================================== */}
-      <div className="flex flex-col lg:flex-row relative bg-[#002147] w-full min-h-[500px] overflow-hidden">
-        
-        {/* Left Side Architectural Background (8-10% Opacity) */}
-        <div className="absolute top-0 left-0 w-full lg:w-[72%] h-full bg-[url('https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay pointer-events-none z-0" />
+      <div className="flex flex-col lg:flex-row relative bg-[#001F5C] w-full min-h-[500px] overflow-hidden">
 
         {/* LEFT SIDE (72%) - FOUR COLUMNS */}
         <div className="w-full lg:w-[72%] relative z-10 py-20 px-8 lg:px-12 xl:px-16 flex flex-col justify-center">
@@ -79,13 +76,13 @@ export default function Footer() {
             <div className="lg:pl-4">
               <h4 className="text-white font-bold text-xl mb-8 relative inline-block pb-3">
                 Quick Links
-                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2B48C]"></span>
+                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2042D]"></span>
               </h4>
               <ul className="space-y-4">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
                     <Link href={link.href} className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-medium text-sm">
-                      <ChevronRight className="w-4 h-4 mr-2 text-gray-500 group-hover:text-[#D2B48C] transition-colors" />
+                      <ChevronRight className="w-4 h-4 mr-2 text-gray-500 group-hover:text-[#D2042D] transition-colors" />
                       {link.name}
                     </Link>
                   </li>
@@ -97,13 +94,13 @@ export default function Footer() {
             <div>
               <h4 className="text-white font-bold text-xl mb-8 relative inline-block pb-3">
                 Credit Transfer
-                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2B48C]"></span>
+                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2042D]"></span>
               </h4>
               <ul className="space-y-4">
                 {creditTransferLinks.map((link, index) => (
                   <li key={index}>
                     <Link href={link.href} className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-medium text-sm">
-                      <ChevronRight className="w-4 h-4 mr-2 text-gray-500 group-hover:text-[#D2B48C] transition-colors" />
+                      <ChevronRight className="w-4 h-4 mr-2 text-gray-500 group-hover:text-[#D2042D] transition-colors" />
                       {link.name}
                     </Link>
                   </li>
@@ -115,7 +112,7 @@ export default function Footer() {
             <div>
               <h4 className="text-white font-bold text-xl mb-8 relative inline-block pb-3">
                 Locations
-                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2B48C]"></span>
+                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2042D]"></span>
               </h4>
               <ul className="space-y-4">
                 {locations.map((loc, index) => (
@@ -133,7 +130,7 @@ export default function Footer() {
             <div>
               <h4 className="text-white font-bold text-xl mb-8 relative inline-block pb-3">
                 Contact Info
-                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2B48C]"></span>
+                <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#D2042D]"></span>
               </h4>
               
               <ul className="space-y-6">
@@ -182,7 +179,7 @@ export default function Footer() {
                       <a 
                         key={idx} 
                         href={social.href} 
-                        className="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#D2B48C] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+                        className="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#D2042D] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                       >
                         <Icon className="w-4 h-4" />
                       </a>
@@ -200,10 +197,10 @@ export default function Footer() {
           
           {/* Diagonal Red Background Shape */}
           <div 
-            className="absolute inset-0 bg-gradient-to-br from-[#D2B48C] to-[#B8956A] z-0 hidden lg:block shadow-[-10px_0_30px_rgba(0,0,0,0.5)]"
+            className="absolute inset-0 bg-gradient-to-br from-[#D2042D] to-[#8B0000] z-0 hidden lg:block shadow-[-10px_0_30px_rgba(0,0,0,0.5)]"
             style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D2B48C] to-[#B8956A] z-0 lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#D2042D] to-[#8B0000] z-0 lg:hidden" />
           
           {/* Content Container */}
           <div className="relative z-10 w-full h-full flex flex-col justify-center py-20 px-10 xl:px-14 lg:pl-20 xl:pl-24">
@@ -220,14 +217,14 @@ export default function Footer() {
               
               <div className="space-y-3">
                 <h3 className="text-white font-bold text-xl tracking-wide">Edumentora Services LLP</h3>
-                <p className="text-[#F0E3CC]/90 text-sm leading-relaxed font-medium">
+                <p className="text-white/85 text-sm leading-relaxed font-medium">
                   Your trusted partner in education, offering expert guidance and innovative learning resources to empower students and professionals for academic and career success.
                 </p>
               </div>
 
               <Link 
                 href="/contact" 
-                className="inline-block bg-[#002147] text-white px-8 py-3.5 hover:bg-black transition-colors duration-300 rounded font-bold text-sm tracking-wide uppercase shadow-lg border border-white/10 mt-2"
+                className="inline-block bg-[#001F5C] text-white px-8 py-3.5 hover:bg-[#00133D] transition-colors duration-300 rounded font-bold text-sm tracking-wide uppercase shadow-lg border border-white/10 mt-2"
               >
                 Contact Us
               </Link>
@@ -241,7 +238,7 @@ export default function Footer() {
       {/* ========================================================
           SECTION 2: BOTTOM STRIP (COPYRIGHT & LEGAL)
           ======================================================== */}
-      <div className="h-auto md:h-[70px] bg-[#001529] py-6 md:py-0 px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between z-30">
+      <div className="h-auto md:h-[70px] bg-[#00133D] py-6 md:py-0 px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between z-30">
         
         {/* Left: Copyright */}
         <div className="w-full md:w-1/3 text-center md:text-left text-gray-500 text-sm font-medium mb-4 md:mb-0">
@@ -259,7 +256,7 @@ export default function Footer() {
           
           <button 
             onClick={scrollToTop}
-            className="w-10 h-10 rounded-full bg-[#D2B48C] border-2 border-[#D2B48C] flex items-center justify-center text-white hover:bg-transparent hover:text-[#D2B48C] transition-all duration-300 shadow-[0_4px_15px_rgba(210,180,140,0.3)] group"
+            className="w-10 h-10 rounded-full bg-[#D2042D] border-2 border-[#D2042D] flex items-center justify-center text-white hover:bg-transparent hover:text-[#D2042D] transition-all duration-300 shadow-[0_4px_15px_rgba(210,4,45,0.3)] group"
             aria-label="Back to top"
           >
             <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />

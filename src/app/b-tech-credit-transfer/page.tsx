@@ -1,18 +1,42 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Award, ArrowRight, ClipboardCheck, Landmark, TrendingUp, Layers, ChevronDown, Clock, Wallet, Shuffle, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { GraduationCap, Briefcase, Award, ArrowRight, ClipboardCheck, Landmark, TrendingUp, Layers, ChevronDown, Clock, Wallet, Shuffle, ShieldCheck, Minus } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import EligibilityForm from '@/components/EligibilityForm';
 
 export default function BTechCreditTransferPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showEligibilityPopup, setShowEligibilityPopup] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  useEffect(() => {
+    const STORAGE_KEY = 'btech-eligibility-popup-seen';
+
+    const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+
+    if (isReload) {
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+
+    const alreadySeen = sessionStorage.getItem(STORAGE_KEY) === 'true';
+
+    setShowEligibilityPopup(true);
+    if (alreadySeen) {
+      // Already shown once this session (came back via client-side navigation) — go straight to the small corner widget.
+      setIsMinimized(true);
+    } else {
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+    }
+  }, []);
 
   const faqs = [
     {
@@ -582,6 +606,61 @@ export default function BTechCreditTransferPage() {
           </p>
         </div>
       </div> */}
+
+      {/* Check Your Eligibility Now popup */}
+      <AnimatePresence>
+        {showEligibilityPopup && !isMinimized && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setIsMinimized(true)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: -20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-[400px] rounded-[2.5rem] border-4 border-[#002147]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-white p-6"
+            >
+              {/* Minimize Button */}
+              <button
+                onClick={() => setIsMinimized(true)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Minimize"
+              >
+                <Minus className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-2 mb-3 rounded-full bg-blue-50 w-fit px-3 py-1.5">
+                <ClipboardCheck className="w-4 h-4 text-[#002147]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#002147]">Fast Assessment</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#002147] mb-1">Check Your Eligibility Now</h3>
+              <p className="text-sm text-gray-600 mb-4 leading-6">Get a quick review of your B.Tech credit transfer eligibility in just a few steps.</p>
+              <EligibilityForm className="space-y-3" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Minimized: small tag pinned to the top-right, stays fixed regardless of scroll — click to reopen the form */}
+      <AnimatePresence>
+        {showEligibilityPopup && isMinimized && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.85, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: -10 }}
+            onClick={() => setIsMinimized(false)}
+            className="fixed top-24 right-4 md:right-6 z-[100] flex items-center gap-2 bg-white border-2 border-[#002147]/70 text-[#002147] font-bold px-4 py-2.5 rounded-full shadow-[0_10px_30px_-10px_rgba(23,42,83,0.35)] hover:-translate-y-0.5 transition-transform text-sm"
+          >
+            <ClipboardCheck className="w-4 h-4" />
+            Check Eligibility
+          </motion.button>
+        )}
+      </AnimatePresence>
+
 <Footer />
       <FloatingWhatsApp />
     </main>

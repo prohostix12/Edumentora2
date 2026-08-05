@@ -109,11 +109,11 @@ export default function Header() {
               href={link.href}
               className="relative py-2 group"
             >
-              <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
+              <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
                 {link.name}
               </span>
               {/* Animated Underline */}
-              <span className={`absolute left-0 bottom-0 h-[2px] bg-[#D2B48C] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              <span className={`absolute left-0 bottom-0 h-[2px] bg-[#8B0000] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
           ))}
 
@@ -147,10 +147,10 @@ export default function Header() {
           </div>
 
           <Link href="/contact" className="relative py-2 group">
-            <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
+            <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
               Contact
             </span>
-            <span className={`absolute left-0 bottom-0 h-[2px] bg-[#D2B48C] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[2px] bg-[#8B0000] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
         </nav>
 

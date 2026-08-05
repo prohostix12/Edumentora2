@@ -8,16 +8,17 @@ export default function MissionVisionSection() {
     <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative bg-white dot-grid rounded-[2.5rem] overflow-hidden">
       <div className="relative w-full mx-auto">
         <div
-          className="relative bg-[#f4ecd8]/60 rounded-3xl p-6 md:p-8 lg:p-10 border-[12px] border-solid shadow-2xl overflow-hidden w-full"
+          className="relative rounded-[2rem] overflow-hidden shadow-2xl w-full p-[12px]"
           style={{
-            borderImage: 'repeating-linear-gradient(100deg, #5C3A21 0px, #8B5E34 5px, #6B4423 10px, #7A5233 15px, #5C3A21 20px) 30',
+            backgroundImage: 'repeating-linear-gradient(100deg, #5C3A21 0px, #8B5E34 5px, #6B4423 10px, #7A5233 15px, #5C3A21 20px)',
           }}
         >
+        <div className="relative bg-[#D9BD94] rounded-[1.5rem] p-6 md:p-8 lg:p-10 overflow-hidden w-full h-full">
 
         {/* Background textures - grid lines */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-40 mix-blend-multiply"
+          className="pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply"
           style={{
             backgroundImage:
               "repeating-linear-gradient(12deg, transparent 0px, transparent 38px, rgba(0,0,0,0.35) 39px, transparent 41px, transparent 90px), repeating-linear-gradient(102deg, transparent 0px, transparent 55px, rgba(0,0,0,0.3) 56px, transparent 58px, transparent 130px), repeating-linear-gradient(165deg, transparent 0px, transparent 47px, rgba(0,0,0,0.28) 48px, transparent 50px, transparent 110px)",
@@ -26,7 +27,7 @@ export default function MissionVisionSection() {
         {/* crackled paper texture - fine grain */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+          className="pointer-events-none absolute inset-0 opacity-10 mix-blend-multiply"
           style={{
             backgroundImage:
               "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
@@ -38,7 +39,7 @@ export default function MissionVisionSection() {
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage: 'radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(0,0,0,0.12) 100%)',
+            backgroundImage: 'radial-gradient(120% 100% at 50% 50%, transparent 65%, rgba(0,0,0,0.05) 100%)',
           }}
         />
 
@@ -48,23 +49,24 @@ export default function MissionVisionSection() {
             <span className="text-[#8B5E34]">Through Credit Transfer</span>
           </h2>
 
-          <p className="text-[18px] text-[#6B4423]/90 leading-[1.8] w-full pr-4 lg:pr-12">
+          <p className="text-[18px] text-[#3B2412]/90 leading-[1.8] w-full pr-4 lg:pr-12">
             Resume your graduation or postgraduate education through Edumentora, a leading academic credit transfer institution. Transfer earned credits for B. Tech, engineering, and other programs to recognized universities, saving time and costs while achieving academic success.
           </p>
 
           <div className="space-y-2 pt-2">
             <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Mission</h3>
-            <p className="text-[15px] md:text-[16px] text-[#6B4423]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+            <p className="text-[15px] md:text-[16px] text-[#3B2412]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
               At EduMentora, our mission is to empower students to overcome academic setbacks by providing a seamless and fully supported pathway for credit transfers. We ensure that every previously earned credit is respected, helping learners transition to UGC-accredited universities. Through personalized guidance, we strive to save students valuable time and financial resources, turning educational interruptions into renewed opportunities for lifelong success.
             </p>
           </div>
 
           <div className="space-y-2 pt-2">
             <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Vision</h3>
-            <p className="text-[15px] md:text-[16px] text-[#6B4423]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+            <p className="text-[15px] md:text-[16px] text-[#3B2412]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
               Our vision at EduMentora is to create an inclusive educational landscape where no student is left behind due to past hurdles. We envision a future where every individual has unrestricted access to complete their higher education without having to start from scratch. By breaking down academic barriers and championing flexible learning pathways, we aim to be India's most trusted partner in transforming past progress into lasting achievement.
             </p>
           </div>
+        </div>
         </div>
       </div>
 
