@@ -102,7 +102,7 @@ export default function BTechCreditTransferPage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-7xl mx-auto px-4 md:px-8 relative z-20"
         >
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(27,75,67,0.2)] border border-[#DDC7A0] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-gradient-to-br from-white via-white to-[#F0E3CC]">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 lg:gap-20 items-center overflow-hidden bg-white">
 
             {/* Background Decorative Blob */}
             <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#D2B48C]/10 blur-[100px] -z-10 pointer-events-none"></div>
@@ -116,7 +116,7 @@ export default function BTechCreditTransferPage() {
               transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
               className="relative w-full lg:w-5/12 flex justify-center group"
             >
-              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(27,75,67,0.25)] border border-[#DDC7A0] z-10 bg-white">
+              <div className="relative w-full h-[400px] md:h-[460px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_45px_-20px_rgba(0,33,71,0.25)] border border-gray-100 z-10 bg-white">
                 <Image
                   src="/image-008.png"
                   alt="Students on campus progressing toward graduation and their certificates"
@@ -127,7 +127,7 @@ export default function BTechCreditTransferPage() {
 
                 {/* Floating badge */}
                 <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="w-10 h-10 bg-[#EAD9BA] text-[#002147] rounded-full flex items-center justify-center font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#002147]/10 text-[#002147] rounded-full flex items-center justify-center font-bold text-lg">
                     🎓
                   </div>
                   <div>
@@ -146,7 +146,7 @@ export default function BTechCreditTransferPage() {
               transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
               className="w-full lg:w-7/12 space-y-8 relative z-10"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EAD9BA]/60 border border-[#DDC7A0]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#002147]/10 border border-gray-100">
                 <span className="w-2 h-2 rounded-full bg-[#002147] animate-pulse"></span>
                 <span className="text-[#002147] font-bold text-xs uppercase tracking-widest">Resume Your Journey</span>
               </div>
@@ -158,7 +158,7 @@ export default function BTechCreditTransferPage() {
 
               <div className="space-y-5">
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#EAD9BA]/60 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#002147]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <GraduationCap className="w-5 h-5 text-[#002147]" />
                   </div>
                   <p className="text-stone-600 leading-relaxed font-medium">
@@ -166,7 +166,7 @@ export default function BTechCreditTransferPage() {
                   </p>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#EAD9BA]/60 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#002147]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Landmark className="w-5 h-5 text-[#002147]" />
                   </div>
                   <p className="text-stone-600 leading-relaxed font-medium">
@@ -174,7 +174,7 @@ export default function BTechCreditTransferPage() {
                   </p>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#EAD9BA]/60 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#002147]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <ClipboardCheck className="w-5 h-5 text-[#002147]" />
                   </div>
                   <p className="text-stone-600 leading-relaxed font-medium">
@@ -204,7 +204,7 @@ export default function BTechCreditTransferPage() {
             transition={{ duration: 0.7 }}
             className="text-center mb-12 flex flex-col items-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EAD9BA]/60 border border-[#DDC7A0] mb-5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#002147]/10 border border-gray-100 mb-5">
               <span className="w-2 h-2 rounded-full bg-[#002147] animate-pulse"></span>
               <span className="text-[#002147] font-bold text-xs uppercase tracking-widest">Program Details</span>
             </div>
@@ -213,7 +213,7 @@ export default function BTechCreditTransferPage() {
             </h2>
           </motion.div>
 
-          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(27,75,67,0.2)] border border-[#DDC7A0] overflow-hidden bg-gradient-to-br from-white via-white to-[#F0E3CC]">
+          <div className="relative rounded-[2.5rem] shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] border border-gray-100 overflow-hidden bg-white">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -221,9 +221,9 @@ export default function BTechCreditTransferPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
-                className={`flex flex-col sm:flex-row gap-5 sm:items-center p-8 md:px-12 md:py-9 ${i > 0 ? 'border-t border-[#DDC7A0]' : ''}`}
+                className={`flex flex-col sm:flex-row gap-5 sm:items-center p-8 md:px-12 md:py-9 ${i > 0 ? 'border-t border-gray-100' : ''}`}
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#EAD9BA]/60 flex items-center justify-center flex-shrink-0">
+                <div className="w-14 h-14 rounded-2xl bg-[#002147]/10 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-7 h-7 text-[#002147]" />
                 </div>
                 <div>
@@ -246,12 +246,12 @@ export default function BTechCreditTransferPage() {
           className="max-w-7xl mx-auto px-4 md:px-8"
         >
           <div className="grid gap-6 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] items-stretch">
-            <div className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#F0E3CC] border border-[#DDC7A0] p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(27,75,67,0.2)]">
+            <div className="rounded-[1.5rem] bg-white border border-gray-100 p-5 md:p-7 self-stretch flex flex-col justify-center shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)]">
               <h3 className="text-2xl font-bold text-[#002147] mb-4 text-center">Enquire Now</h3>
               <EnquiryForm className="grid grid-cols-1 md:grid-cols-2 gap-3" isGrid={true} />
             </div>
 
-            <div id="educational-mobility" className="rounded-[1.5rem] bg-gradient-to-br from-white via-white to-[#F0E3CC] border border-[#DDC7A0] p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(27,75,67,0.2)] scroll-mt-28">
+            <div id="educational-mobility" className="rounded-[1.5rem] bg-white border border-gray-100 p-0 overflow-hidden shadow-[0_20px_60px_-25px_rgba(0,33,71,0.2)] scroll-mt-28">
               <div className="md:grid md:grid-cols-[280px_1fr]">
                 <div className="text-[#002147] p-8 md:p-10 flex flex-col justify-center">
                   <span className="inline-flex items-center gap-2 mb-4">
@@ -263,7 +263,7 @@ export default function BTechCreditTransferPage() {
                     Discover how your prior credits can be applied toward a new degree, helping you move forward faster with confidence.
                   </p>
                 </div>
-                <div className="p-8 md:p-10 md:border-l md:border-[#DDC7A0]">
+                <div className="p-8 md:p-10 md:border-l md:border-gray-100">
                   <div className="space-y-5 text-[#002147]">
                     <p className="text-base leading-8 text-stone-600">
                       Your existing credits can carry over to a new college, so you don&rsquo;t repeat courses you&rsquo;ve already passed.
@@ -299,7 +299,7 @@ export default function BTechCreditTransferPage() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16 flex flex-col items-center"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EAD9BA]/60 border border-[#DDC7A0] mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#002147]/10 border border-gray-100 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#002147] animate-pulse"></span>
                 <span className="text-[#002147] font-bold text-xs uppercase tracking-widest">Choose Your Path</span>
               </div>
@@ -320,12 +320,12 @@ export default function BTechCreditTransferPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-[#DDC7A0] shadow-[0_20px_40px_-15px_rgba(27,75,67,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(27,75,67,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,33,71,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(0,33,71,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#EAD9BA]/60 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#002147] to-[#14213D] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#002147]/10 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#002147] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
-                <div className="w-16 h-16 bg-[#EAD9BA]/60 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#002147] transition-colors duration-500 shadow-inner">
+                <div className="w-16 h-16 bg-[#002147]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#002147] transition-colors duration-500 shadow-inner">
                   <GraduationCap className="w-8 h-8 text-[#002147] group-hover:text-white transition-colors duration-500" />
                 </div>
 
@@ -351,13 +351,13 @@ export default function BTechCreditTransferPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-[#DDC7A0] shadow-[0_20px_40px_-15px_rgba(47,111,99,0.12)] hover:shadow-[0_30px_60px_-15px_rgba(47,111,99,0.22)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,33,71,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(0,33,71,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#E3E8F0]/70 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#14213D] to-[#002147] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#002147]/10 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#002147] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
-                <div className="w-16 h-16 bg-[#E3E8F0] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#14213D] transition-colors duration-500 shadow-inner">
-                  <Briefcase className="w-8 h-8 text-[#14213D] group-hover:text-white transition-colors duration-500" />
+                <div className="w-16 h-16 bg-[#002147]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#002147] transition-colors duration-500 shadow-inner">
+                  <Briefcase className="w-8 h-8 text-[#002147] group-hover:text-white transition-colors duration-500" />
                 </div>
 
                 <div className="relative z-20 flex-grow flex flex-col">
@@ -366,9 +366,9 @@ export default function BTechCreditTransferPage() {
                     Transfer your PG credits to leading universities, saving time and money while completing your postgraduate degree smoothly.
                   </p>
 
-                  <Link href="/pg-credit-transfer" className="inline-flex items-center text-[#14213D] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14213D] focus-visible:ring-offset-2">
+                  <Link href="/pg-credit-transfer" className="inline-flex items-center text-[#002147] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002147] focus-visible:ring-offset-2">
                     Know More
-                    <span className="ml-2 w-10 h-10 rounded-full bg-[#F7EFE1] flex items-center justify-center group-hover/link:bg-[#14213D] group-hover/link:text-white transition-all duration-300">
+                    <span className="ml-2 w-10 h-10 rounded-full bg-[#F7EFE1] flex items-center justify-center group-hover/link:bg-[#002147] group-hover/link:text-white transition-all duration-300">
                       <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
                     </span>
                   </Link>
@@ -382,13 +382,13 @@ export default function BTechCreditTransferPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-[#DDC7A0] shadow-[0_20px_40px_-15px_rgba(210,180,140,0.15)] hover:shadow-[0_30px_60px_-15px_rgba(210,180,140,0.25)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(210,180,140,0.15)] hover:shadow-[0_30px_60px_-15px_rgba(210,180,140,0.25)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#EAD9BA]/70 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#D2B48C] to-[#DDC7A0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D2B48C]/20 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#D2B48C] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
-                <div className="w-16 h-16 bg-[#EAD9BA] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#D2B48C] transition-colors duration-500 shadow-inner">
-                  <Award className="w-8 h-8 text-[#B8956A] group-hover:text-white transition-colors duration-500" />
+                <div className="w-16 h-16 bg-[#002147]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#D2B48C] transition-colors duration-500 shadow-inner">
+                  <Award className="w-8 h-8 text-[#D2B48C] group-hover:text-white transition-colors duration-500" />
                 </div>
 
                 <div className="relative z-20 flex-grow flex flex-col">
@@ -397,7 +397,7 @@ export default function BTechCreditTransferPage() {
                     Transfer your Diploma credits to leading universities to fast-track your educational progression effortlessly.
                   </p>
 
-                  <Link href="/diploma-credit-transfer" className="inline-flex items-center text-[#B8956A] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D2B48C] focus-visible:ring-offset-2">
+                  <Link href="/diploma-credit-transfer" className="inline-flex items-center text-[#D2B48C] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D2B48C] focus-visible:ring-offset-2">
                     Know More
                     <span className="ml-2 w-10 h-10 rounded-full bg-[#F7EFE1] flex items-center justify-center group-hover/link:bg-[#D2B48C] group-hover/link:text-white transition-all duration-300">
                       <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
@@ -433,7 +433,7 @@ export default function BTechCreditTransferPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: index * 0.06, ease: 'easeOut' }}
-                className="group border border-[#DDC7A0] rounded-2xl overflow-hidden bg-gradient-to-br from-white via-white to-[#F0E3CC] transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#002147] focus-within:ring-offset-2"
+                className="group border border-gray-100 rounded-2xl overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer focus-within:ring-2 focus-within:ring-[#002147] focus-within:ring-offset-2"
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 role="button"
                 tabIndex={0}
@@ -455,7 +455,7 @@ export default function BTechCreditTransferPage() {
                 </div>
                 <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <div className="p-6 text-stone-600 bg-[#F0E3CC]/60 border-t border-[#DDC7A0] leading-relaxed text-justify">
+                    <div className="p-6 text-stone-600 bg-gray-50 border-t border-gray-100 leading-relaxed text-justify">
                       {faq.a}
                     </div>
                   </div>
@@ -470,7 +470,7 @@ export default function BTechCreditTransferPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 p-5 bg-gradient-to-br from-white via-white to-[#F0E3CC] rounded-2xl border border-[#DDC7A0] text-center shadow-sm"
+            className="mt-10 p-5 bg-white rounded-2xl border border-gray-100 text-center shadow-sm"
           >
             <p className="text-[#002147] text-sm md:text-base italic font-medium leading-relaxed">
               *To complete your B.Tech degree through credit transfer, you must visit the university and write the failed subjects directly in offline mode. Universities do not allow online exams for credit transfer programs, as per UGC guidelines.

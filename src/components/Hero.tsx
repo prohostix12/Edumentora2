@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ClipboardCheck, ShieldCheck, GraduationCap } from 'lucide-react';
+import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
 
 const LoopingTypewriterText = ({
@@ -101,20 +101,22 @@ const LoopingTypewriterText = ({
           0% { transform: translateY(0); }
           100% { transform: translateY(-50%); }
         }
+        @keyframes heroDotDrift {
+          0% { background-position: 0 0; }
+          100% { background-position: var(--dot-size) var(--dot-size); }
+        }
+        .hero-dotgrid {
+          animation: heroDotDrift 3s linear infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
           .hero-doodle { animation: none !important; }
+          .hero-dotgrid { animation: none !important; }
         }
       `}</style>
       <span className="inline-block w-[5px] h-[0.9em] bg-[#8B0000] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
     </>
   );
 };
-
-const FEATURES = [
-  { icon: ClipboardCheck, label: 'Check Eligibility' },
-  { icon: ShieldCheck, label: 'Get Approved' },
-  { icon: GraduationCap, label: 'Complete Your Degree' },
-];
 
 const MARQUEE_ITEMS = [
   'UGC-Approved Degrees',
@@ -132,6 +134,13 @@ const ACHIEVEMENTS = [
   { value: '3,000+', label: 'Graduates With Certified Degrees' },
 ];
 
+const TRANSFER_PATHWAYS = [
+  { icon: Cpu, title: 'B.Tech Credit Transfer', desc: 'Resume your engineering degree at an AICTE-approved college without repeating completed semesters.' },
+  { icon: BookOpen, title: 'UG Credit Transfer', desc: 'Carry forward earned credits into a recognized undergraduate programme and graduate on schedule.' },
+  { icon: Award, title: 'PG Credit Transfer', desc: 'Continue a postgraduate degree with your prior coursework recognized by the new university.' },
+  { icon: FileBadge, title: 'Diploma Credit Transfer', desc: 'Convert completed diploma coursework into credits toward a full degree programme.' },
+];
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -144,42 +153,41 @@ export default function Hero() {
   return (
     <section className="relative w-full h-[100dvh] flex overflow-hidden font-[Poppins]">
 
-      {/* Left: full-height achievements sidebar — only Our Great Achievements, auto-scrolling */}
+      {/* Left: full-height sidebar — degree pathways we support for credit transfer */}
       <aside className="hidden md:flex flex-col w-[240px] lg:w-[280px] h-full shrink-0 bg-gradient-to-b from-[#002147] to-[#001529] relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-[0.07] pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #ffffff 1.5px, transparent 0)', backgroundSize: '22px 22px' }}
+          className="hero-dotgrid absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #ffffff 2.5px, transparent 0)', backgroundSize: '22px 22px', '--dot-size': '22px' } as React.CSSProperties}
         />
 
-        <div className="relative z-10 flex flex-col h-full p-6 lg:p-7">
+        <div className="relative z-10 flex flex-col h-full p-6 lg:p-7 -translate-y-[10%]">
           {/* Spacer to clear the floating header pill */}
           <div className="h-24 lg:h-20 shrink-0" />
 
-          <motion.div {...riseIn(0)} className="inline-block bg-white/15 text-white text-[11px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-lg mb-6 w-fit shrink-0">
-            Our Great Achievements
+          <motion.div {...riseIn(0)} className="text-white text-lg font-bold leading-snug mb-1 shrink-0">
+            One Platform.
+          </motion.div>
+          <motion.div {...riseIn(0.03)} className="text-[#D2B48C] text-lg font-bold leading-snug mb-8 shrink-0">
+            Every Pathway.
           </motion.div>
 
-          {/* Vertical auto-scroll ticker through all achievements */}
-          <motion.div {...riseIn(0.05)} className="flex-1 min-h-0 overflow-hidden relative">
-            <div
-              className="flex flex-col"
-              style={{ animation: shouldReduceMotion ? 'none' : 'heroAchieveScroll 16s linear infinite' }}
-            >
-              {[0, 1].map((dup) => (
-                <div key={dup} aria-hidden={dup === 1} className="flex flex-col gap-7 shrink-0 pb-7">
-                  {ACHIEVEMENTS.map((item) => (
-                    <div key={item.label}>
-                      <div className="text-white text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-[1.5] mb-1.5">
-                        {item.value}
-                      </div>
-                      <div className="text-white/80 text-xs font-semibold leading-relaxed max-w-[11rem]">
-                        {item.label}
-                      </div>
-                    </div>
-                  ))}
+          {/* Degree / diploma credit transfer pathways */}
+          <motion.div {...riseIn(0.05)} className="flex-1 min-h-0 flex flex-col justify-center gap-7">
+            {TRANSFER_PATHWAYS.map(({ icon: Icon, title }) => (
+              <div key={title} className="flex items-center gap-3.5 pb-7 border-b border-white/10 last:border-b-0 last:pb-0">
+                <span className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 shrink-0">
+                  <Icon className="w-5 h-5 text-[#D2B48C]" />
+                </span>
+                <div className="text-white text-sm font-bold leading-snug">
+                  {title}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div {...riseIn(0.1)} className="pt-6 shrink-0">
+            <div className="text-white text-3xl font-extrabold tracking-tight">{ACHIEVEMENTS[0].value}</div>
+            <div className="text-white/70 text-xs font-semibold leading-relaxed mt-1">{ACHIEVEMENTS[0].label}</div>
           </motion.div>
         </div>
       </aside>
@@ -189,8 +197,8 @@ export default function Hero() {
 
       {/* Dot-grid background texture — subtle, low-contrast, CSS-only (no raster asset needed) */}
       <div
-        className="absolute inset-0 opacity-[0.08] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #002147 1.5px, transparent 0)', backgroundSize: '26px 26px' }}
+        className="hero-dotgrid absolute inset-0 opacity-[0.08] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, #002147 2.5px, transparent 0)', backgroundSize: '26px 26px', '--dot-size': '26px' } as React.CSSProperties}
       />
 
       {/* Mobile-only: compact achievements row (sidebar is desktop-only) */}
@@ -223,13 +231,6 @@ export default function Hero() {
               <span className="font-bold text-[#002147] text-sm">UGC &amp; AICTE Recognized</span>
             </motion.div>
 
-            <motion.p
-              {...riseIn(0.1)}
-              className="text-[#002147] font-bold text-base md:text-lg mb-3"
-            >
-              Ready to finish the degree you already started?
-            </motion.p>
-
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-[#002147] leading-[1.05] tracking-tight mb-6 h-[190px] sm:h-[170px] md:h-[200px] xl:h-[220px] flex flex-col justify-end">
               <div>
                 <LoopingTypewriterText
@@ -240,10 +241,10 @@ export default function Hero() {
                     { text: "Without Starting\nOver, Continue\nYour " },
                   ]}
                   loopSegments={[
-                    [{ text: "B.Tech", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
-                    [{ text: "UG", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
-                    [{ text: "PG", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
-                    [{ text: "Diploma", className: "text-[#8B0000] inline-block min-w-[3.2em]" }],
+                    [{ text: "B.Tech", className: "text-[#8B0000]" }],
+                    [{ text: "UG", className: "text-[#8B0000]" }],
+                    [{ text: "PG", className: "text-[#8B0000]" }],
+                    [{ text: "Diploma", className: "text-[#8B0000]" }],
                   ]}
                 />
               </div>
@@ -257,20 +258,8 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              {...riseIn(0.2)}
-              className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-8"
-            >
-              {FEATURES.map(({ icon: Icon, label }) => (
-                <span key={label} className="flex items-center gap-2 text-[#002147] font-bold text-sm">
-                  <Icon className="w-5 h-5" />
-                  {label}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.div
               {...riseIn(0.3)}
-              className="flex flex-wrap gap-4 items-center"
+              className="flex flex-wrap gap-4 items-center mt-[5%]"
             >
               <a href="/contact">
                 <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#8B0000]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">

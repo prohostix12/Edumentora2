@@ -80,7 +80,7 @@ export default function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: isHidden ? -120 : 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
-        className={`pointer-events-auto w-full max-w-7xl h-[82px] flex items-center justify-between px-6 md:px-8 transition-colors duration-300 rounded-[18px] ${
+        className={`pointer-events-auto w-fit max-w-7xl h-[82px] flex items-center justify-center gap-8 px-[5%] transition-colors duration-300 rounded-[18px] ${
           isScrolled
             ? 'bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100'
             : 'bg-white shadow-sm border border-transparent'
@@ -102,7 +102,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav ref={navRef} className="hidden lg:flex flex-1 items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#002147]">
+        <nav ref={navRef} className="hidden lg:flex items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#002147] ml-[10%]">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -153,11 +153,6 @@ export default function Header() {
             <span className={`absolute left-0 bottom-0 h-[2px] bg-[#D2B48C] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
         </nav>
-
-        {/* Desktop CTA */}
-        <Link href="/contact#contacts-section" className="hidden lg:flex shrink-0 items-center justify-center px-6 py-2.5 bg-[#8B0000] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(139,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(139,0,0,0.23)] hover:bg-[#5C0000] hover:-translate-y-0.5 transition-all duration-200">
-          Enquire Now
-        </Link>
 
         {/* Mobile Hamburger Button */}
         <button
@@ -220,6 +215,14 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating Enquire Now Button */}
+      <Link
+        href="/contact#contacts-section"
+        className="fixed bottom-6 right-6 z-50 pointer-events-auto flex items-center justify-center px-6 py-3 bg-[#8B0000] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(139,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(139,0,0,0.23)] hover:bg-[#5C0000] hover:-translate-y-0.5 transition-all duration-200"
+      >
+        Enquire Now
+      </Link>
     </div>
   );
 }
