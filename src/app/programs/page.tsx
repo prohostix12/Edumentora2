@@ -34,7 +34,9 @@ export default async function ProgramsPage() {
       />
       
       {/* INTERACTIVE FILTER & PROGRAMS LIST */}
-      <ProgramFilter programs={programs} />
+      <React.Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center text-gray-500 font-medium">Loading programs...</div>}>
+        <ProgramFilter programs={programs} />
+      </React.Suspense>
 <Footer />
       <FloatingWhatsApp />
     </main>

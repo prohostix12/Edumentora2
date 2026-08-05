@@ -11,14 +11,6 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
   const staticTestimonials = [
     {
       id: "1",
-      name: "9.E 33 Muji_o_d_7_",
-      date: "1 year ago",
-      text: "I had a great experience with edumentora",
-      rating: 5,
-      image: null
-    },
-    {
-      id: "2",
       name: "Aiswarya Raj",
       date: "2 months ago",
       text: "The best credit transfer agency in Kerala. The team is very supportive and helpful throughout the entire process.",
@@ -26,10 +18,18 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
       image: null
     },
     {
-      id: "3",
+      id: "2",
       name: "Mohammed Shibil",
       date: "6 months ago",
       text: "Highly recommended! They made my B.Tech credit transfer process incredibly smooth and tension-free.",
+      rating: 5,
+      image: null
+    },
+    {
+      id: "3",
+      name: "Fathima Nasrin",
+      date: "8 months ago",
+      text: "Professional, honest, and quick with responses. My university transfer went through without any hassle.",
       rating: 5,
       image: null
     }

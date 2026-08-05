@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 type Program = {
   id: string;
@@ -247,6 +248,9 @@ function ApprenticeshipBlock({ block }: { block: any }) {
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export default function ProgramFilter({ programs }: { programs: Program[] }) {
+  const searchParams = useSearchParams();
+  const topicParam = searchParams.get('topic');
+
   const topics = useMemo(() => {
     const uniqueTopics = new Set<string>();
     programs.forEach((p) => uniqueTopics.add(p.topic));
@@ -254,9 +258,15 @@ export default function ProgramFilter({ programs }: { programs: Program[] }) {
   }, [programs]);
 
   const [activeTopic, setActiveTopic] = useState<string>('');
-  
+
+  useEffect(() => {
+    if (topicParam && topics.includes(topicParam)) {
+      setActiveTopic(topicParam);
+    }
+  }, [topicParam, topics]);
+
   // Default to the first topic if none is selected
-  const currentTopic = activeTopic || (topics.length > 0 ? topics[0] : '');
+  const currentTopic = activeTopic || (topicParam && topics.includes(topicParam) ? topicParam : (topics.length > 0 ? topics[0] : ''));
 
   const filteredPrograms = useMemo(() => {
     if (!currentTopic) return [];

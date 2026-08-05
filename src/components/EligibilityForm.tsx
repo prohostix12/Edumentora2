@@ -150,7 +150,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-gradient-to-r from-[#D2B48C] to-[#B8956A] hover:from-[#B8956A] hover:to-[#B8956A] text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-[#D2B48C]/25 hover:shadow-xl hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-[#E91D24]/25 hover:shadow-xl hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {status === 'loading' ? 'Checking...' : 'Check Eligibility Now'}
         </button>
@@ -193,7 +193,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
                     setShowPopup(false);
                   }
                 }}
-                className="mt-4 w-full bg-[#8B0000] hover:bg-[#5C0000] text-white font-semibold py-3 rounded-xl transition-colors"
+                className="mt-4 w-full bg-[#002147] hover:bg-[#001529] text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 {popupState === 'checking' ? 'Close' : 'Close'}
               </button>

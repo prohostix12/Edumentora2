@@ -5,10 +5,15 @@ import { motion } from 'framer-motion';
 
 export default function MissionVisionSection() {
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative bg-white dot-grid">
+    <section className="w-full max-w-[1400px] mx-auto px-4 md:px-12 lg:px-16 pb-4 pt-4 lg:pb-8 lg:pt-8 relative bg-white dot-grid rounded-[2.5rem] overflow-hidden">
       <div className="relative w-full mx-auto">
-        <div className="relative bg-[#f4ecd8] rounded-3xl p-6 md:p-8 lg:p-10 border-[12px] border-white shadow-2xl overflow-hidden w-full">
-        
+        <div
+          className="relative bg-[#f4ecd8]/60 rounded-3xl p-6 md:p-8 lg:p-10 border-[12px] border-solid shadow-2xl overflow-hidden w-full"
+          style={{
+            borderImage: 'repeating-linear-gradient(100deg, #5C3A21 0px, #8B5E34 5px, #6B4423 10px, #7A5233 15px, #5C3A21 20px) 30',
+          }}
+        >
+
         {/* Background textures - grid lines */}
         <div
           aria-hidden
@@ -38,25 +43,25 @@ export default function MissionVisionSection() {
         />
 
         <div className="relative z-10 space-y-4 w-full lg:w-[75%]">
-          <h2 className="text-[36px] md:text-[44px] lg:text-[50px] font-[Poppins] font-extrabold text-[#2b2418] leading-[1.1] tracking-tight mb-4">
+          <h2 className="text-[36px] md:text-[44px] lg:text-[50px] font-[Poppins] font-extrabold text-[#5C3A21] leading-[1.1] tracking-tight mb-4">
             Empowering Students<br className="hidden md:block"/>
-            <span className="text-[#D2B48C]">Through Credit Transfer</span>
+            <span className="text-[#8B5E34]">Through Credit Transfer</span>
           </h2>
 
-          <p className="text-[18px] text-[#3b3226]/90 leading-[1.8] w-full pr-4 lg:pr-12">
+          <p className="text-[18px] text-[#6B4423]/90 leading-[1.8] w-full pr-4 lg:pr-12">
             Resume your graduation or postgraduate education through Edumentora, a leading academic credit transfer institution. Transfer earned credits for B. Tech, engineering, and other programs to recognized universities, saving time and costs while achieving academic success.
           </p>
 
           <div className="space-y-2 pt-2">
-            <h3 className="text-[24px] font-semibold text-[#2b2418]">Our Mission</h3>
-            <p className="text-[15px] md:text-[16px] text-[#3b3226]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+            <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Mission</h3>
+            <p className="text-[15px] md:text-[16px] text-[#6B4423]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
               At EduMentora, our mission is to empower students to overcome academic setbacks by providing a seamless and fully supported pathway for credit transfers. We ensure that every previously earned credit is respected, helping learners transition to UGC-accredited universities. Through personalized guidance, we strive to save students valuable time and financial resources, turning educational interruptions into renewed opportunities for lifelong success.
             </p>
           </div>
 
           <div className="space-y-2 pt-2">
-            <h3 className="text-[24px] font-semibold text-[#2b2418]">Our Vision</h3>
-            <p className="text-[15px] md:text-[16px] text-[#3b3226]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
+            <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Vision</h3>
+            <p className="text-[15px] md:text-[16px] text-[#6B4423]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
               Our vision at EduMentora is to create an inclusive educational landscape where no student is left behind due to past hurdles. We envision a future where every individual has unrestricted access to complete their higher education without having to start from scratch. By breaking down academic barriers and championing flexible learning pathways, we aim to be India's most trusted partner in transforming past progress into lasting achievement.
             </p>
           </div>

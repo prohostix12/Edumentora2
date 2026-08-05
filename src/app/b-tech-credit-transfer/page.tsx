@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Award, ArrowRight, ClipboardCheck, Landmark, TrendingUp, Layers, ChevronDown } from 'lucide-react';
+import { GraduationCap, Briefcase, Award, ArrowRight, ClipboardCheck, Landmark, TrendingUp, Layers, ChevronDown, Clock, Wallet, Shuffle, ShieldCheck } from 'lucide-react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -57,6 +57,29 @@ export default function BTechCreditTransferPage() {
       q: "Can I write the credit transfer exam online?",
       a: <p className="text-stone-600 text-lg leading-relaxed">No! A UGC-approved credit transfer exam can never be conducted online.</p>
     }
+  ];
+
+  const btechBenefits = [
+    {
+      icon: Clock,
+      title: 'Saves Time and Effort',
+      body: 'Complete the degree you already started — since your earned credits are recognized, you never repeat courses you’ve already passed.',
+    },
+    {
+      icon: Wallet,
+      title: 'Reduces Financial Cost',
+      body: 'Paying for fewer repeated semesters means real savings on tuition, hostel, and related expenses.',
+    },
+    {
+      icon: Shuffle,
+      title: 'Offers Flexibility',
+      body: 'Switch institutions for personal, academic, or professional reasons — relocation, better facilities, or a change in career focus.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Prevents Loss of Academic Progress',
+      body: 'Discontinued your studies for personal or academic reasons? Resume exactly where you left off, without starting from scratch.',
+    },
   ];
 
   const highlights = [
@@ -194,6 +217,68 @@ export default function BTechCreditTransferPage() {
             </motion.div>
           </div>
         </motion.div>
+        </div>
+
+        {/* What Is B.Tech Credit Transfer + Benefits */}
+        <div className="bg-white py-20 dot-grid">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+
+            {/* Left: What Is */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8B0000] text-white text-xs font-bold uppercase tracking-widest mb-6">
+                What Is
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#002147] leading-tight tracking-tight mb-2">
+                B.Tech
+              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#8B0000] leading-tight tracking-tight mb-6">
+                Credit Transfer?
+              </h2>
+              <p className="text-[#D2B48C] font-bold text-sm uppercase tracking-widest mb-3">
+                Academic Credit Transfer
+              </p>
+              <p className="text-stone-600 text-lg leading-relaxed">
+                Academic credit transfer enables students to move from one institution to another, carrying forward the credits earned in courses they&rsquo;ve already completed — so they don&rsquo;t need to repeat those subjects. The process involves evaluating the curriculum, grades, and relevance of your previous coursework to confirm equivalency and eligibility for transfer to your new university.
+              </p>
+            </motion.div>
+
+            {/* Right: Benefits */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            >
+              <h3 className="text-2xl md:text-3xl font-extrabold text-[#002147] mb-8">
+                Benefits of B.Tech Credit Transfer
+              </h3>
+              <div className="space-y-7">
+                {btechBenefits.map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: i * 0.12, ease: 'easeOut' }}
+                    className="flex gap-4"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#002147]/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-[#8B0000]" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-[#002147] mb-1">{item.title}</h4>
+                      <p className="text-stone-600 leading-relaxed">{item.body}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Program Highlights */}

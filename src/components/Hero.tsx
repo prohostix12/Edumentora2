@@ -113,7 +113,7 @@ const LoopingTypewriterText = ({
           .hero-dotgrid { animation: none !important; }
         }
       `}</style>
-      <span className="inline-block w-[5px] h-[0.9em] bg-[#8B0000] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
+      <span className="inline-block w-[5px] h-[0.9em] bg-[#E91D24] ml-1 align-middle" style={{ marginTop: '-4px', animation: 'typeBlink 1s infinite' }}></span>
     </>
   );
 };
@@ -149,9 +149,9 @@ const SIDEBAR_SECTIONS = [
   {
     headline: ['Why Students', 'Choose Us.'],
     items: [
-      { icon: ShieldCheck, title: 'UGC & AICTE Recognized' },
-      { icon: ClipboardCheck, title: 'No Entrance Exam Required' },
-      { icon: Award, title: 'Trusted Partner Universities' },
+      { icon: ShieldCheck, title: '17+ Years of Experience' },
+      { icon: ClipboardCheck, title: '5000+ Successful Alumni' },
+      { icon: Award, title: '12+ Universities' },
       { icon: Cpu, title: 'End-to-End Guided Process' },
     ],
   },
@@ -262,7 +262,7 @@ export default function Hero() {
               className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-2xl shadow-[0_10px_30px_-10px_rgba(23,42,83,0.25)] mb-6"
             >
               <ShieldCheck className="w-5 h-5 text-[#002147]" />
-              <span className="font-bold text-[#002147] text-sm">UGC &amp; AICTE Recognized</span>
+              <span className="font-bold text-[#002147] text-sm">India&rsquo;s No. 1 Credit Transfer Platform</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-[#002147] leading-[1.05] tracking-tight mb-6 h-[190px] sm:h-[170px] md:h-[200px] xl:h-[220px] flex flex-col justify-end">
@@ -275,10 +275,10 @@ export default function Hero() {
                     { text: "Without Starting\nOver, Continue\nYour " },
                   ]}
                   loopSegments={[
-                    [{ text: "B.Tech", className: "text-[#8B0000]" }],
-                    [{ text: "UG", className: "text-[#8B0000]" }],
-                    [{ text: "PG", className: "text-[#8B0000]" }],
-                    [{ text: "Diploma", className: "text-[#8B0000]" }],
+                    [{ text: "B.Tech", className: "text-[#E91D24]" }],
+                    [{ text: "UG", className: "text-[#E91D24]" }],
+                    [{ text: "PG", className: "text-[#E91D24]" }],
+                    [{ text: "Diploma", className: "text-[#E91D24]" }],
                   ]}
                 />
               </div>
@@ -296,12 +296,12 @@ export default function Hero() {
               className="flex flex-wrap gap-4 items-center mt-[5%]"
             >
               <a href="/contact">
-                <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#8B0000]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#E91D24]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Enroll Now
                 </button>
               </a>
               <a href="/contact">
-                <button className="bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#8B0000]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                <button className="bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#E91D24]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Book a Free Consultation
                 </button>
               </a>

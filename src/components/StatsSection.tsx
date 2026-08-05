@@ -54,12 +54,17 @@ export default function StatsSection() {
         </span>
         <h2 className="text-[36px] md:text-[48px] font-bold text-[#002147] font-[Playfair_Display] leading-[1.15] mb-5 max-w-4xl">
           Edumentora Makes<br />
-          <span className="text-[#D2B48C]">Restarting</span> your Education Easier
+          <span className="text-[#E91D24]">Restarting</span> your Education Easier
         </h2>
         <div className="w-20 h-[2px] bg-[#D2B48C] rounded-full mb-8"></div>
-        
+
         <h3 className="text-[20px] md:text-[24px] font-semibold text-[#002147] font-[Poppins]">
-          Our Trusted Universities
+          <Link
+            href="/universities"
+            className="hover:text-[#E91D24] transition-colors underline decoration-[#D2B48C] decoration-2 underline-offset-4"
+          >
+            Visit Our Trusted Universities
+          </Link>
         </h3>
       </motion.div>
 
@@ -68,15 +73,27 @@ export default function StatsSection() {
         
         {/* SVG Curved Connector (Desktop only to prevent messy mobile overlap) */}
         <div className="absolute top-1/2 left-0 w-full h-[200px] -translate-y-1/2 pointer-events-none z-0 hidden xl:block">
+          <style>{`
+            @keyframes statsConnectorFlow {
+              0% { stroke-dashoffset: 0; }
+              100% { stroke-dashoffset: -24; }
+            }
+            .stats-connector-line {
+              animation: statsConnectorFlow 1.2s linear infinite;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .stats-connector-line { animation: none; }
+            }
+          `}</style>
           <svg width="100%" height="100%" viewBox="0 0 1200 200" fill="none" preserveAspectRatio="none">
             {/* Smooth flowing sine-wave style path connecting the centers */}
-            <path 
-              d="M 130,100 C 300,50 400,160 600,100 C 800,40 900,150 1070,100" 
-              stroke="#D2B48C" 
-              strokeWidth="2" 
+            <path
+              className="stats-connector-line opacity-70"
+              d="M 130,100 C 300,50 400,160 600,100 C 800,40 900,150 1070,100"
+              stroke="#E91D24"
+              strokeWidth="2"
               strokeDasharray="6 6"
               fill="none"
-              className="opacity-40"
             />
             {/* Connection nodes under each card (approximate positions corresponding to the offsets) */}
             <circle cx="130" cy="100" r="4" fill="#D2B48C" />

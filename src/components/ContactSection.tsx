@@ -20,14 +20,14 @@ export default function ContactSection() {
   const rodWidth = useTransform(revealPercent, (v) => 22 + (v / 100) * 70);
   const rodWidthPx = useTransform(rodWidth, (w) => `${w}px`);
   const rodMarginLeftPx = useTransform(rodWidth, (w) => `${-w / 2}px`);
-  const rodColor = '#D2B48C';
+  const rodColor = '#E91D24';
 
   return (
     <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 md:px-8 pb-0 bg-white dot-grid">
       <div className="relative max-w-5xl mx-auto">
         <motion.div
           style={{ clipPath }}
-          className="relative bg-gradient-to-br from-[#DDC7A0] via-[#D2B48C] to-[#B8956A] rounded-t-[40px] rounded-b-[40px] md:rounded-b-none p-6 md:p-10 flex flex-col lg:flex-row gap-8 text-white overflow-hidden shadow-2xl shadow-black/50"
+          className="relative bg-gradient-to-br from-[#E91D24] via-[#D6181E] to-[#A81216] rounded-t-[40px] rounded-b-[40px] md:rounded-b-none p-6 md:p-10 flex flex-col lg:flex-row gap-8 text-white overflow-hidden shadow-2xl shadow-black/50"
         >
           {/* decorative glow accents */}
           <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
@@ -55,7 +55,7 @@ export default function ContactSection() {
             Ready To Grow with Edumentora
           </h2>
 
-          <div className="border-l-4 border-red-800/50 pl-4">
+          <div className="border-l-4 border-white/40 pl-4">
             <p className="text-white/90 text-sm leading-relaxed">
               Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
             </p>
