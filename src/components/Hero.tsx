@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
 
@@ -141,8 +141,32 @@ const TRANSFER_PATHWAYS = [
   { icon: FileBadge, title: 'Diploma Credit Transfer', desc: 'Convert completed diploma coursework into credits toward a full degree programme.' },
 ];
 
+const SIDEBAR_SECTIONS = [
+  {
+    headline: ['One Platform.', 'Every Pathway.'],
+    items: TRANSFER_PATHWAYS.map(({ icon, title }) => ({ icon, title })),
+  },
+  {
+    headline: ['Why Students', 'Choose Us.'],
+    items: [
+      { icon: ShieldCheck, title: 'UGC & AICTE Recognized' },
+      { icon: ClipboardCheck, title: 'No Entrance Exam Required' },
+      { icon: Award, title: 'Trusted Partner Universities' },
+      { icon: Cpu, title: 'End-to-End Guided Process' },
+    ],
+  },
+];
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const [sectionIndex, setSectionIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSectionIndex((i) => (i + 1) % SIDEBAR_SECTIONS.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const riseIn = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
@@ -164,26 +188,36 @@ export default function Hero() {
           {/* Spacer to clear the floating header pill */}
           <div className="h-24 lg:h-20 shrink-0" />
 
-          <motion.div {...riseIn(0)} className="text-white text-lg font-bold leading-snug mb-1 shrink-0">
-            One Platform.
-          </motion.div>
-          <motion.div {...riseIn(0.03)} className="text-[#D2B48C] text-lg font-bold leading-snug mb-8 shrink-0">
-            Every Pathway.
-          </motion.div>
-
-          {/* Degree / diploma credit transfer pathways */}
-          <motion.div {...riseIn(0.05)} className="flex-1 min-h-0 flex flex-col justify-center gap-7">
-            {TRANSFER_PATHWAYS.map(({ icon: Icon, title }) => (
-              <div key={title} className="flex items-center gap-3.5 pb-7 border-b border-white/10 last:border-b-0 last:pb-0">
-                <span className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 shrink-0">
-                  <Icon className="w-5 h-5 text-[#D2B48C]" />
-                </span>
-                <div className="text-white text-sm font-bold leading-snug">
-                  {title}
-                </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={sectionIndex}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -12 }}
+              transition={{ duration: shouldReduceMotion ? 0.01 : 0.5, ease: 'easeOut' }}
+              className="flex-1 min-h-0 flex flex-col"
+            >
+              <div className="text-white text-lg font-bold leading-snug mb-1 shrink-0">
+                {SIDEBAR_SECTIONS[sectionIndex].headline[0]}
               </div>
-            ))}
-          </motion.div>
+              <div className="text-[#D2B48C] text-lg font-bold leading-snug mb-8 shrink-0">
+                {SIDEBAR_SECTIONS[sectionIndex].headline[1]}
+              </div>
+
+              <div className="flex-1 min-h-0 flex flex-col justify-center gap-7">
+                {SIDEBAR_SECTIONS[sectionIndex].items.map(({ icon: Icon, title }) => (
+                  <div key={title} className="flex items-center gap-3.5 pb-7 border-b border-white/10 last:border-b-0 last:pb-0">
+                    <span className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 shrink-0">
+                      <Icon className="w-5 h-5 text-[#D2B48C]" />
+                    </span>
+                    <div className="text-white text-sm font-bold leading-snug">
+                      {title}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           <motion.div {...riseIn(0.1)} className="pt-6 shrink-0">
             <div className="text-white text-3xl font-extrabold tracking-tight">{ACHIEVEMENTS[0].value}</div>
@@ -296,9 +330,6 @@ export default function Hero() {
             >
               <path d="M20 2 L23 15 L36 15 L25 23 L29 36 L20 28 L11 36 L15 23 L4 15 L17 15 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
-
-            {/* Glow ring behind the card */}
-            <div className="absolute inset-x-8 inset-y-6 rounded-[3rem] bg-gradient-to-br from-[#002147]/25 via-[#D2B48C]/15 to-transparent blur-2xl -z-10" />
 
             <div id="eligibility-form" className="relative w-full max-w-[360px] rounded-[2.5rem] border-4 border-[#002147]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-white p-6 scroll-mt-32">
               <div className="flex items-center gap-2 mb-3 rounded-full bg-blue-50 w-fit px-3 py-1.5">
