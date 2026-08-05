@@ -152,7 +152,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
         const steps = block.steps || block.howItWorks || [];
         if (steps.length === 0) return null;
         return (
-          <div key={idx} className={`max-w-7xl mx-auto px-4 md:px-8 py-20 ${idx !== howItWorksBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
+          <div key={idx} className={`max-w-7xl mx-auto px-4 md:px-8 py-20 bg-white dot-grid ${idx !== howItWorksBlocks.length - 1 ? 'border-b border-gray-100' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-16">{block.sectionTitle || 'How it Works'}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {steps.map((item: any, i: number) => (

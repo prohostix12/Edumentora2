@@ -53,7 +53,7 @@ export default function UniversitiesClient({ universities }: { universities: Uni
       />
 
       {/* Filter & Grid Section */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-20">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-20 bg-white dot-grid">
         
         {/* Modern Filter Chips */}
         <div className="flex flex-wrap justify-center gap-4 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">

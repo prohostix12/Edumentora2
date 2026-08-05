@@ -90,11 +90,13 @@ export default function BTechCreditTransferPage() {
         badge="Engineering Career"
         title="Take the Next Step in your Engineering Career"
         subtitle="Don’t let an incomplete B.Tech stop you from achieving your dreams. With Edumentora’s B.Tech Credit Transfer Program, you can resume your studies, complete your degree, and build a successful future."
+        bgClassName="bg-[#F5F5F5]"
+        borderClassName="border-transparent"
       />
 
       <div id="know-more" className="relative pb-20 scroll-mt-28 pt-8">
         {/* Intro Card */}
-        <div className="bg-[#F7EFE1] pt-16 pb-20 dot-grid">
+        <div className="bg-[#F5F5F5] pt-16 pb-20 dot-grid">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -195,7 +197,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         {/* Program Highlights */}
-        <div className="bg-[#F7EFE1] py-20 dot-grid">
+        <div className="bg-[#F5F5F5] py-20 dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -283,7 +285,7 @@ export default function BTechCreditTransferPage() {
         </div>
 
         {/* Premium Programs Section */}
-        <div className="bg-[#F7EFE1] py-[100px] relative overflow-hidden dot-grid">
+        <div className="bg-[#F5F5F5] py-[100px] relative overflow-hidden dot-grid">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
             <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#D2B48C] blur-[120px]"></div>
           </div>
