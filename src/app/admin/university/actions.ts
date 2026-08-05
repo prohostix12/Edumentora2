@@ -12,9 +12,10 @@ export async function createUniversity(formData: FormData) {
   const location = formData.get('location') as string;
   const description = formData.get('description') as string;
   const mainImage = formData.get('mainImage') as string | null;
+  const logo = formData.get('logo') as string | null;
   const certs = formData.getAll('certificates') as string[];
   const validCerts = certs.filter(c => c.trim() !== '');
-  
+
   const visionHeading = formData.get('visionHeading') as string | null;
   const visionPara = formData.get('visionPara') as string | null;
   const facilitiesHeading = formData.get('facilitiesHeading') as string | null;
@@ -27,13 +28,14 @@ export async function createUniversity(formData: FormData) {
   const btechProgramsPara = formData.get('btechProgramsPara') as string | null;
 
   if (!name || !location || !description) return;
-  
+
   await prisma.university.create({
     data: {
       name,
       location,
       description,
       mainImage,
+      logo,
       certificates: validCerts,
       visionHeading,
       visionPara,
@@ -56,9 +58,10 @@ export async function updateUniversity(id: string, formData: FormData) {
   const location = formData.get('location') as string;
   const description = formData.get('description') as string;
   const mainImage = formData.get('mainImage') as string | null;
+  const logo = formData.get('logo') as string | null;
   const certs = formData.getAll('certificates') as string[];
   const validCerts = certs.filter(c => c.trim() !== '');
-  
+
   const visionHeading = formData.get('visionHeading') as string | null;
   const visionPara = formData.get('visionPara') as string | null;
   const facilitiesHeading = formData.get('facilitiesHeading') as string | null;
@@ -92,6 +95,11 @@ export async function updateUniversity(id: string, formData: FormData) {
   // Only update image if a new base64 string is provided
   if (mainImage && mainImage.startsWith('data:image')) {
     data.mainImage = mainImage;
+  }
+
+  // Only update logo if a new base64 string is provided
+  if (logo && logo.startsWith('data:image')) {
+    data.logo = logo;
   }
 
   await prisma.university.update({

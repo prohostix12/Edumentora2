@@ -47,6 +47,7 @@ model University {
   location     String
   description  String
   mainImage    String?
+  logo         String?
   certificates String[]
 
   visionHeading        String?

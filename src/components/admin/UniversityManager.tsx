@@ -10,6 +10,7 @@ type University = {
   location: string;
   description: string;
   mainImage?: string | null;
+  logo?: string | null;
   certificates: string[];
   visionHeading?: string | null;
   visionPara?: string | null;
@@ -27,6 +28,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   const [isPending, startTransition] = useTransition();
   const [uploadingId, setUploadingId] = useState<string | null>(null);
   const [mainImageBase64, setMainImageBase64] = useState<string | null>(null);
+  const [logoBase64, setLogoBase64] = useState<string | null>(null);
   const [textCertificates, setTextCertificates] = useState<string[]>(['']);
   const [editingUniversity, setEditingUniversity] = useState<University | null>(null);
 
@@ -36,6 +38,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
         updateUniversity(editingUniversity.id, formData).then(() => {
           setEditingUniversity(null);
           setMainImageBase64(null);
+          setLogoBase64(null);
           setTextCertificates(['']);
         });
       } else {
@@ -43,6 +46,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
         const form = document.getElementById('add-university-form') as HTMLFormElement;
         if (form) form.reset();
         setMainImageBase64(null);
+        setLogoBase64(null);
         setTextCertificates(['']);
       }
     });
@@ -51,6 +55,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   const handleEditClick = (uni: University) => {
     setEditingUniversity(uni);
     setMainImageBase64(uni.mainImage || null);
+    setLogoBase64(uni.logo || null);
     setTextCertificates(uni.certificates.length > 0 ? [...uni.certificates, ''] : ['']);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -58,6 +63,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   const handleCancelEdit = () => {
     setEditingUniversity(null);
     setMainImageBase64(null);
+    setLogoBase64(null);
     setTextCertificates(['']);
   };
 
@@ -157,6 +163,18 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     }
   };
 
+  const handleLogoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    try {
+      const compressedBase64 = await compressImage(files[0]);
+      setLogoBase64(compressedBase64);
+    } catch (error) {
+      console.error("Error processing logo:", error);
+      alert("Failed to process logo.");
+    }
+  };
+
   return (
     <div className="space-y-8">
       {/* Create University Form */}
@@ -174,6 +192,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
         
         <form key={editingUniversity ? editingUniversity.id : 'new'} id="add-university-form" action={handleCreateOrUpdateUniversity} className="flex flex-col gap-4">
           <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
+          <input type="hidden" name="logo" value={logoBase64 || ''} />
           <div className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
@@ -217,7 +236,28 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
               <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleMainImageChange} />
             </div>
           </div>
-          
+
+          {/* University Logo Upload */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-gray-700">University Logo (shown on card, top-right corner)</label>
+            <div className="w-28 h-28 flex flex-col items-center justify-center p-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative overflow-hidden">
+              {logoBase64 ? (
+                <>
+                   <img src={logoBase64} alt="Logo Preview" className="absolute inset-0 w-full h-full object-contain p-2 bg-white" />
+                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                      <span className="text-white text-xs font-medium">Change Logo</span>
+                   </div>
+                </>
+              ) : (
+                <div className="flex flex-col items-center text-gray-500">
+                  <Upload className="w-5 h-5 mb-1 text-gray-400" />
+                  <span className="text-xs font-medium text-center">Add Logo</span>
+                </div>
+              )}
+              <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleLogoChange} />
+            </div>
+          </div>
+
           {/* Dynamic Certificates Text Fields */}
           <div className="flex flex-col gap-3">
             <label className="text-sm font-semibold text-gray-700">Certificates & Approvals</label>
@@ -307,6 +347,11 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                 {uni.mainImage && (
                   <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
                     <img src={uni.mainImage} alt={uni.name} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                {uni.logo && (
+                  <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0 bg-white p-1" title="Logo">
+                    <img src={uni.logo} alt={`${uni.name} logo`} className="w-full h-full object-contain" />
                   </div>
                 )}
                 <div>
