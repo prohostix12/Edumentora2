@@ -7,7 +7,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   async function handleLogout() {
     'use server';
     await logoutAdmin();
-    redirect('/admin/login');
+    redirect('/');
   }
 
   return <AdminShell onLogout={handleLogout}>{children}</AdminShell>;

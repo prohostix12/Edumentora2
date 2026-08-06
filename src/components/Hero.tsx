@@ -91,8 +91,8 @@ const LoopingTypewriterText = ({
           100% { opacity: 1; }
         }
         @keyframes heroMarquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          0% { left: 100%; }
+          100% { left: -100%; }
         }
         @keyframes heroFloat {
           0%, 100% { transform: translateY(0); }
@@ -162,6 +162,7 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [sectionIndex, setSectionIndex] = useState(0);
   const [marqueeItems, setMarqueeItems] = useState<string[]>(MARQUEE_ITEMS);
+  const [marqueeIndex, setMarqueeIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -352,23 +353,21 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scrolling trust marquee */}
-      <div className="relative z-10 w-full shrink-0 bg-[#002147] py-3 overflow-hidden">
-        <div
-          className="flex whitespace-nowrap"
-          style={{ width: 'max-content', animation: shouldReduceMotion ? 'none' : 'heroMarquee 26s linear infinite' }}
-        >
-          {[0, 1].map((dup) => (
-            <div key={dup} className="flex items-center shrink-0" aria-hidden={dup === 1}>
-              {marqueeItems.map((item) => (
-                <span key={item} className="flex items-center gap-3 mx-5 text-white text-sm font-semibold tracking-wide">
-                  {item}
-                  <span className="text-[#002147]">&#10022;</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+      {/* Scrolling trust marquee — one notification at a time; the next starts immediately once the current one fully exits */}
+      <div className="relative z-10 w-full shrink-0 bg-[#002147] py-3 overflow-hidden h-11">
+        {marqueeItems.length > 0 && (
+          <div
+            key={marqueeIndex}
+            className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap flex items-center"
+            style={shouldReduceMotion ? undefined : { animation: 'heroMarquee 4s linear' }}
+            onAnimationEnd={() => setMarqueeIndex((i) => (i + 1) % marqueeItems.length)}
+          >
+            <span className="flex items-center gap-3 mx-5 text-white text-sm font-semibold tracking-wide">
+              {marqueeItems[marqueeIndex]}
+              <span className="text-[#002147]">&#10022;</span>
+            </span>
+          </div>
+        )}
       </div>
       </div>
     </section>

@@ -224,6 +224,13 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     });
   };
 
+  // Removes the whole section (all blocks under it) so it's excluded from the saved
+  // program and won't render on the public page at all.
+  const deleteSection = (blockField: 'overviews' | 'howItWorksBlocks' | 'programsBlocks' | 'whyChooseBlocks') => {
+    if (!confirm('Delete this section? It will no longer be shown on the program page.')) return;
+    setFormData(prev => ({ ...prev, [blockField]: [] }));
+  };
+
   const handleCreateProgram = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -449,8 +456,18 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Overview Section</h3>
-                    <button type="button" onClick={() => addBlock('overviews')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Overview</button>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => addBlock('overviews')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Overview</button>
+                      {formData.overviews.length > 0 && (
+                        <button type="button" onClick={() => deleteSection('overviews')} className="text-gray-500 font-bold text-sm flex items-center gap-1 hover:text-red-600 bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-lg"><Trash2 className="w-4 h-4"/> Delete Section</button>
+                      )}
+                    </div>
                   </div>
+                  {formData.overviews.length === 0 ? (
+                    <div className="text-center py-8 text-gray-400 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 text-sm">
+                      This section has been deleted and won&rsquo;t appear on the program page.
+                    </div>
+                  ) : (
                   <div className="space-y-6">
                     {formData.overviews.map((overview, index) => (
                       <div key={index} className="bg-gray-50 p-6 rounded-2xl border border-gray-200 relative">
@@ -486,14 +503,25 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                       </div>
                     ))}
                   </div>
+                  )}
                 </section>
 
                 {/* 3. HOW IT WORKS (Repeatable) */}
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">How it Works</h3>
-                    <button type="button" onClick={() => addBlock('howItWorksBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => addBlock('howItWorksBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                      {formData.howItWorksBlocks.length > 0 && (
+                        <button type="button" onClick={() => deleteSection('howItWorksBlocks')} className="text-gray-500 font-bold text-sm flex items-center gap-1 hover:text-red-600 bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-lg"><Trash2 className="w-4 h-4"/> Delete Section</button>
+                      )}
+                    </div>
                   </div>
+                  {formData.howItWorksBlocks.length === 0 ? (
+                    <div className="text-center py-8 text-gray-400 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 text-sm">
+                      This section has been deleted and won&rsquo;t appear on the program page.
+                    </div>
+                  ) : (
                   <div className="space-y-8">
                     {formData.howItWorksBlocks.map((block, blockIndex) => (
                       <div key={blockIndex} className="bg-gray-50 p-6 rounded-2xl border border-gray-200 relative">
@@ -534,14 +562,25 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                       </div>
                     ))}
                   </div>
+                  )}
                 </section>
 
                 {/* 4. PROGRAMS & ELIGIBILITY (Repeatable) */}
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Programs & Eligibility</h3>
-                    <button type="button" onClick={() => addBlock('programsBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => addBlock('programsBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                      {formData.programsBlocks.length > 0 && (
+                        <button type="button" onClick={() => deleteSection('programsBlocks')} className="text-gray-500 font-bold text-sm flex items-center gap-1 hover:text-red-600 bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-lg"><Trash2 className="w-4 h-4"/> Delete Section</button>
+                      )}
+                    </div>
                   </div>
+                  {formData.programsBlocks.length === 0 ? (
+                    <div className="text-center py-8 text-gray-400 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 text-sm">
+                      This section has been deleted and won&rsquo;t appear on the program page.
+                    </div>
+                  ) : (
                   <div className="space-y-8">
                     {formData.programsBlocks.map((block, blockIndex) => (
                       <div key={blockIndex} className="bg-gray-50 p-6 rounded-2xl border border-gray-200 relative">
@@ -613,14 +652,25 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                       </div>
                     ))}
                   </div>
+                  )}
                 </section>
 
                 {/* 5. WHY CHOOSE (Repeatable) */}
                 <section className="space-y-6">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="text-lg font-bold text-[#D2B48C]">Why Choose?</h3>
-                    <button type="button" onClick={() => addBlock('whyChooseBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => addBlock('whyChooseBlocks')} className="text-[#8B0000] font-bold text-sm flex items-center gap-1 hover:text-[#5C0000] bg-[#8B0000]/10 px-3 py-1.5 rounded-lg"><Plus className="w-4 h-4"/> Add Section</button>
+                      {formData.whyChooseBlocks.length > 0 && (
+                        <button type="button" onClick={() => deleteSection('whyChooseBlocks')} className="text-gray-500 font-bold text-sm flex items-center gap-1 hover:text-red-600 bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-lg"><Trash2 className="w-4 h-4"/> Delete Section</button>
+                      )}
+                    </div>
                   </div>
+                  {formData.whyChooseBlocks.length === 0 ? (
+                    <div className="text-center py-8 text-gray-400 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 text-sm">
+                      This section has been deleted and won&rsquo;t appear on the program page.
+                    </div>
+                  ) : (
                   <div className="space-y-8">
                     {formData.whyChooseBlocks.map((block, blockIndex) => (
                       <div key={blockIndex} className="bg-gray-50 p-6 rounded-2xl border border-gray-200 relative">
@@ -663,6 +713,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                       </div>
                     ))}
                   </div>
+                  )}
                 </section>
 
               </form>
