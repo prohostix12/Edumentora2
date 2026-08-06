@@ -140,10 +140,10 @@ function ApprenticeshipBlock({ block }: { block: any }) {
       {/* OVERVIEW SECTIONS */}
       {overviews.map((overview: any, idx: number) => (
         <div key={idx} className={`bg-gray-50 dot-grid ${idx !== overviews.length - 1 ? 'border-b border-gray-200' : ''}`}>
-          <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-6">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-left space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-[#002147]">{overview.heading}</h2>
             <h3 className="text-xl md:text-2xl font-semibold text-[#D2B48C] leading-relaxed">{overview.subHeading}</h3>
-            <p className="text-lg text-gray-700 leading-relaxed text-justify md:text-center mt-6 whitespace-pre-line">{overview.paragraph}</p>
+            <p className="text-lg text-gray-700 leading-relaxed text-left mt-6 whitespace-pre-line">{overview.paragraph}</p>
           </div>
         </div>
       ))}

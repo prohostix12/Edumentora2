@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
@@ -90,10 +90,6 @@ const LoopingTypewriterText = ({
           50%, 99% { opacity: 0; }
           100% { opacity: 1; }
         }
-        @keyframes heroMarquee {
-          0% { left: 100%; }
-          100% { left: -100%; }
-        }
         @keyframes heroFloat {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-6px); }
@@ -162,7 +158,8 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [sectionIndex, setSectionIndex] = useState(0);
   const [marqueeItems, setMarqueeItems] = useState<string[]>(MARQUEE_ITEMS);
-  const [marqueeIndex, setMarqueeIndex] = useState(0);
+  const marqueeBarRef = useRef<HTMLDivElement>(null);
+  const [marqueeGap, setMarqueeGap] = useState(24);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -177,11 +174,33 @@ export default function Hero() {
     });
   }, []);
 
+  // Keep the gap between notifications at a true 5% of the marquee bar's own width.
+  useEffect(() => {
+    const updateGap = () => {
+      if (marqueeBarRef.current) {
+        setMarqueeGap(marqueeBarRef.current.clientWidth * 0.05);
+      }
+    };
+    updateGap();
+    window.addEventListener('resize', updateGap);
+    return () => window.removeEventListener('resize', updateGap);
+  }, []);
+
   const riseIn = (delay = 0) => ({
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: shouldReduceMotion ? 0.01 : 0.5, delay, ease: 'easeOut' as const },
   });
+
+  // A handful (or even just one) notification would otherwise only fill a small
+  // portion of the bar, leaving the rest empty — repeat the list so the strip
+  // comfortably spans the full width regardless of how many notifications there are.
+  let displayMarqueeItems = marqueeItems;
+  if (displayMarqueeItems.length > 0 && displayMarqueeItems.length < 8) {
+    while (displayMarqueeItems.length < 8) {
+      displayMarqueeItems = [...displayMarqueeItems, ...marqueeItems];
+    }
+  }
 
   return (
     <section className="relative w-full h-[100dvh] flex overflow-hidden font-[Poppins]">
@@ -353,19 +372,20 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scrolling trust marquee — one notification at a time; the next starts immediately once the current one fully exits */}
-      <div className="relative z-10 w-full shrink-0 bg-[#002147] py-3 overflow-hidden h-11">
-        {marqueeItems.length > 0 && (
-          <div
-            key={marqueeIndex}
-            className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap flex items-center"
-            style={shouldReduceMotion ? undefined : { animation: 'heroMarquee 4s linear' }}
-            onAnimationEnd={() => setMarqueeIndex((i) => (i + 1) % marqueeItems.length)}
-          >
-            <span className="flex items-center gap-3 mx-5 text-white text-sm font-semibold tracking-wide">
-              {marqueeItems[marqueeIndex]}
-              <span className="text-[#002147]">&#10022;</span>
-            </span>
+      {/* Scrolling trust marquee — all notifications flow continuously in one strip, looping seamlessly */}
+      <div ref={marqueeBarRef} className="relative z-10 w-full shrink-0 bg-[#002147] py-3 overflow-hidden">
+        {displayMarqueeItems.length > 0 && (
+          <div className="hero-marquee-track flex whitespace-nowrap w-max">
+            {[0, 1].map((dup) => (
+              <div key={dup} className="flex items-center shrink-0" aria-hidden={dup === 1}>
+                {displayMarqueeItems.map((item, i) => (
+                  <span key={i} style={{ marginLeft: marqueeGap / 2, marginRight: marqueeGap / 2 }} className="flex items-center gap-3 text-white text-sm font-semibold tracking-wide">
+                    {item}
+                    <span className="text-[#002147]">&#10022;</span>
+                  </span>
+                ))}
+              </div>
+            ))}
           </div>
         )}
       </div>
