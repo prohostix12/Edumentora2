@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LogOut, ChevronLeft, ChevronRight, UserCircle } from 'lucide-react';
 import SidebarNav from '@/components/admin/SidebarNav';
 
 export default function AdminShell({
@@ -58,8 +58,21 @@ export default function AdminShell({
         {/* Nav Links */}
         <SidebarNav collapsed={collapsed} />
 
-        {/* Logout */}
-        <div className={`mt-auto p-3 ${collapsed ? 'flex justify-center' : ''}`}>
+        {/* Profile + Logout */}
+        <div className={`mt-auto p-3 space-y-1 ${collapsed ? 'flex flex-col items-center' : ''}`}>
+          <Link
+            href="/admin/profile"
+            title="Profile"
+            className={`flex items-center gap-3 rounded-xl transition-colors ${
+              pathname === '/admin/profile'
+                ? 'bg-white/20 text-white font-semibold'
+                : 'hover:bg-white/10 text-white/70 hover:text-white'
+            } ${collapsed ? 'p-2 justify-center' : 'px-4 py-3 w-full'}`}
+          >
+            <UserCircle className="w-5 h-5 flex-shrink-0" />
+            {!collapsed && <span className="font-medium whitespace-nowrap">Profile</span>}
+          </Link>
+
           <form action={onLogout}>
             <button
               type="submit"

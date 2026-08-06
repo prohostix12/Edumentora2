@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model AdminConfig {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  passwordHash String
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_config")
+}
+
 model EnquiryList {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
