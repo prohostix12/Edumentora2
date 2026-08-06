@@ -48,7 +48,7 @@ export default function AchievementsSection() {
     },
     {
       title: "Graduates With Certified Degrees",
-      value: "3,000+",
+      value: "5,000+",
     }
   ];
 

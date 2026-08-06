@@ -131,7 +131,7 @@ const ACHIEVEMENTS = [
   { value: '800+', label: 'Successful Credit Transfers' },
   { value: '16', label: 'Years of Expertise in Industry' },
   { value: '163', label: 'Awards and Recognition' },
-  { value: '3,000+', label: 'Graduates With Certified Degrees' },
+  { value: '5,000+', label: 'Graduates With Certified Degrees' },
 ];
 
 const TRANSFER_PATHWAYS = [
