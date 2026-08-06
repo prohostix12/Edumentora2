@@ -279,14 +279,16 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                       name="name"
                       defaultValue={editingUniversity?.name || ''}
                       required
-                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+                      placeholder="University Name"
+                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                     />
                     <input
                       type="text"
                       name="location"
                       defaultValue={editingUniversity?.location || ''}
                       required
-                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+                      placeholder="Location (e.g. Kochi, Kerala)"
+                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                     />
                   </div>
                   <div className="flex flex-col md:flex-row gap-4 h-32">
@@ -294,7 +296,8 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                       name="description"
                       defaultValue={editingUniversity?.description || ''}
                       required
-                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] resize-none h-full"
+                      placeholder="Short description of the university"
+                      className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] resize-none h-full"
                     />
                     <div className="w-full md:w-1/4 h-full flex flex-col items-center justify-center p-2 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative overflow-hidden">
                       {mainImageBase64 ? (
@@ -349,7 +352,8 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                             newCerts[index] = e.target.value;
                             setTextCertificates(newCerts);
                           }}
-                          className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+                          placeholder="e.g. UGC Approved"
+                          className="flex-1 px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                         />
                         {index === textCertificates.length - 1 && (
                           <button
@@ -370,36 +374,36 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                     {/* Vision */}
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">University Vision</label>
-                      <input type="text" name="visionHeading" defaultValue={editingUniversity?.visionHeading || ''} className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
-                      <textarea name="visionPara" defaultValue={editingUniversity?.visionPara || ''} className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
+                      <input type="text" name="visionHeading" defaultValue={editingUniversity?.visionHeading || ''} placeholder="Vision Heading" className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]/40" />
+                      <textarea name="visionPara" defaultValue={editingUniversity?.visionPara || ''} placeholder="Describe the university's vision" className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]/40" />
                     </div>
 
                     {/* Facilities */}
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">Our Facilities</label>
-                      <input type="text" name="facilitiesHeading" defaultValue={editingUniversity?.facilitiesHeading || ''} className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
-                      <textarea name="facilitiesPara" defaultValue={editingUniversity?.facilitiesPara || ''} className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
+                      <input type="text" name="facilitiesHeading" defaultValue={editingUniversity?.facilitiesHeading || ''} placeholder="Facilities Heading" className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]/40" />
+                      <textarea name="facilitiesPara" defaultValue={editingUniversity?.facilitiesPara || ''} placeholder="Describe the facilities offered" className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]/40" />
                     </div>
 
                     {/* Features */}
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">Our Features</label>
-                      <input type="text" name="featuresHeading" defaultValue={editingUniversity?.featuresHeading || ''} className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
-                      <textarea name="featuresPara" defaultValue={editingUniversity?.featuresPara || ''} className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
+                      <input type="text" name="featuresHeading" defaultValue={editingUniversity?.featuresHeading || ''} placeholder="Features Heading" className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]/40" />
+                      <textarea name="featuresPara" defaultValue={editingUniversity?.featuresPara || ''} placeholder="Describe key features" className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]/40" />
                     </div>
 
                     {/* Why Choose */}
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">Why Choose University?</label>
-                      <input type="text" name="whyChooseHeading" defaultValue={editingUniversity?.whyChooseHeading || ''} className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
-                      <textarea name="whyChoosePara" defaultValue={editingUniversity?.whyChoosePara || ''} className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
+                      <input type="text" name="whyChooseHeading" defaultValue={editingUniversity?.whyChooseHeading || ''} placeholder="Why Choose Heading" className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]/40" />
+                      <textarea name="whyChoosePara" defaultValue={editingUniversity?.whyChoosePara || ''} placeholder="Explain why students should choose this university" className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]/40" />
                     </div>
 
                     {/* B.Tech Programs */}
                     <div className="flex flex-col gap-2 md:col-span-2">
                       <label className="text-sm font-semibold text-gray-700">B.Tech Programs</label>
-                      <input type="text" name="btechProgramsHeading" defaultValue={editingUniversity?.btechProgramsHeading || ''} className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]" />
-                      <textarea name="btechProgramsPara" defaultValue={editingUniversity?.btechProgramsPara || ''} className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]" />
+                      <input type="text" name="btechProgramsHeading" defaultValue={editingUniversity?.btechProgramsHeading || ''} placeholder="B.Tech Programs Heading" className="px-4 py-2 border border-gray-200 rounded-xl text-[#002147] placeholder-[#002147]/40" />
+                      <textarea name="btechProgramsPara" defaultValue={editingUniversity?.btechProgramsPara || ''} placeholder="Describe available B.Tech programs" className="px-4 py-2 border border-gray-200 rounded-xl h-24 resize-none text-[#002147] placeholder-[#002147]/40" />
                     </div>
                   </div>
 

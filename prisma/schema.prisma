@@ -103,7 +103,24 @@ model University {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  programs UniversityProgram[]
+
   @@map("universities")
+}
+
+model UniversityProgram {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseDescription    String
+  eligibilityCriteria  String[]
+  careerOpportunities  String[]
+  feeStructure         String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  universityId String     @db.ObjectId
+  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+
+  @@map("university_programs")
 }
 
 model Contact {

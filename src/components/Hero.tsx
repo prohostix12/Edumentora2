@@ -115,15 +115,6 @@ const LoopingTypewriterText = ({
   );
 };
 
-const MARQUEE_ITEMS = [
-  'UGC-Approved Degrees',
-  'AICTE-Recognized Universities',
-  'No Entrance Exam',
-  'Retain Your Earned Credits',
-  'Guided End-to-End Process',
-  'Multiple Specializations',
-];
-
 const ACHIEVEMENTS = [
   { value: '800+', label: 'Successful Credit Transfers' },
   { value: '16', label: 'Years of Expertise in Industry' },
@@ -157,7 +148,8 @@ const SIDEBAR_SECTIONS = [
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [sectionIndex, setSectionIndex] = useState(0);
-  const [marqueeItems, setMarqueeItems] = useState<string[]>(MARQUEE_ITEMS);
+  // Empty until the visible notifications finish loading — no placeholder content shown.
+  const [marqueeItems, setMarqueeItems] = useState<string[]>([]);
   const marqueeBarRef = useRef<HTMLDivElement>(null);
   const [marqueeGap, setMarqueeGap] = useState(24);
 
@@ -170,7 +162,7 @@ export default function Hero() {
 
   useEffect(() => {
     getPublicNotifications().then((items) => {
-      if (items.length > 0) setMarqueeItems(items);
+      setMarqueeItems(items);
     });
   }, []);
 

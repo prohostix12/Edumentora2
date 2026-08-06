@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, ClipboardList, HelpCircle, ChevronDown, Clapperboard, Bell } from 'lucide-react';
+import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, ClipboardList, HelpCircle, ChevronDown, Clapperboard, Bell, Landmark } from 'lucide-react';
 
 const links = [
   { href: '/admin',                   label: 'Dashboard',        icon: LayoutDashboard, exact: true },
   { href: '/admin/enquiries',         label: 'Your Enquiry',     icon: MessageSquare },
   { href: '/admin/eligibility-request', label: 'Eligibility Request', icon: ClipboardList },
   { href: '/admin/university',        label: 'University',        icon: GraduationCap },
+  { href: '/admin/university-programs', label: 'University Program', icon: Landmark },
   { href: '/admin/contacts',          label: 'Contacts',          icon: Users },
   { href: '/admin/reviews',           label: 'Reviews',           icon: Star },
   { href: '/admin/gallery',           label: 'Image Gallery',     icon: Image },

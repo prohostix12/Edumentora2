@@ -6,7 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import PageBanner from '@/components/PageBanner';
 import { PrismaClient } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import { MapPin, Award, ArrowLeft } from 'lucide-react';
+import { MapPin, Award, ArrowLeft, CheckCircle2, Briefcase, Wallet } from 'lucide-react';
 import Link from 'next/link';
 import AdditionalUniversityDetails from './ViewMoreDetails';
 
@@ -31,6 +31,11 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
   if (!university) {
     notFound();
   }
+
+  const universityPrograms = await prisma.universityProgram.findMany({
+    where: { universityId: id },
+    orderBy: { createdAt: 'asc' },
+  });
 
   return (
     <main className="min-h-screen bg-gray-50 font-[Poppins]">
@@ -87,6 +92,66 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
                     <div key={i} className="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100">
                       <Award className="w-6 h-6 mr-3 text-yellow-600 flex-shrink-0" />
                       <span className="text-gray-800 font-medium">{cert}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {universityPrograms.length > 0 && (
+              <>
+                <h3 className="text-xl font-bold text-[#002147] mb-6 border-t border-gray-100 pt-8">
+                  Our University Programs
+                </h3>
+                <div className="space-y-6 mb-10">
+                  {universityPrograms.map((program) => (
+                    <div key={program.id} className="bg-gray-50 rounded-2xl border border-gray-100 p-6 md:p-8">
+                      <p className="text-gray-700 leading-relaxed whitespace-pre-wrap mb-6">
+                        {program.courseDescription}
+                      </p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {program.eligibilityCriteria.length > 0 && (
+                          <div>
+                            <h4 className="flex items-center gap-2 text-sm font-bold text-[#002147] uppercase tracking-wide mb-3">
+                              <CheckCircle2 className="w-4 h-4 text-[#D2B48C]" />
+                              Eligibility Criteria
+                            </h4>
+                            <ul className="space-y-2">
+                              {program.eligibilityCriteria.map((item, i) => (
+                                <li key={i} className="flex items-start text-sm text-gray-700">
+                                  <span className="text-[#D2B48C] mr-2 font-bold">•</span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {program.careerOpportunities.length > 0 && (
+                          <div>
+                            <h4 className="flex items-center gap-2 text-sm font-bold text-[#002147] uppercase tracking-wide mb-3">
+                              <Briefcase className="w-4 h-4 text-[#D2B48C]" />
+                              Career Opportunities
+                            </h4>
+                            <ul className="space-y-2">
+                              {program.careerOpportunities.map((item, i) => (
+                                <li key={i} className="flex items-start text-sm text-gray-700">
+                                  <span className="text-[#D2B48C] mr-2 font-bold">•</span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+
+                      {program.feeStructure && (
+                        <div className="flex items-center gap-2 text-sm font-semibold text-[#002147] mt-6 pt-6 border-t border-gray-200">
+                          <Wallet className="w-4 h-4 text-[#D2B48C]" />
+                          Fee Structure: <span className="font-normal text-gray-700">{program.feeStructure}</span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
