@@ -74,7 +74,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
 
     programsBlocks: [
       {
-        sectionTitle: 'Available Degree Programs',
+        sectionTitle: 'Programs & Eligibility',
         ugPrograms: [''],
         pgPrograms: [''],
         whoCanApply: ['']
@@ -134,7 +134,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     } else if (data.programsAndEligibility) {
       // Legacy single object migration
       programsBlocks = [{
-        sectionTitle: data.programsAndEligibility.title || 'Available Degree Programs',
+        sectionTitle: data.programsAndEligibility.title || 'Programs & Eligibility',
         ugPrograms: data.programsAndEligibility.ugPrograms?.length ? data.programsAndEligibility.ugPrograms : [''],
         pgPrograms: data.programsAndEligibility.pgPrograms?.length ? data.programsAndEligibility.pgPrograms : [''],
         whoCanApply: data.programsAndEligibility.whoCanApply?.length ? data.programsAndEligibility.whoCanApply : ['']
@@ -298,7 +298,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
       ? data.programsBlocks
       : data.programsAndEligibility
         ? [{
-            sectionTitle: data.programsAndEligibility.title || 'Available Degree Programs',
+            sectionTitle: data.programsAndEligibility.title || 'Programs & Eligibility',
             ugPrograms: data.programsAndEligibility.ugPrograms || [],
             pgPrograms: data.programsAndEligibility.pgPrograms || [],
             whoCanApply: data.programsAndEligibility.whoCanApply || [],
@@ -759,7 +759,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
                     <div className="pt-6 border-t border-gray-100 space-y-5">
                       {nonEmptyPrograms.map((block: any, bi: number) => (
                         <div key={bi}>
-                          <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide mb-3">{block.sectionTitle || 'Available Degree Programs'}</h3>
+                          <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide mb-3">{block.sectionTitle || 'Programs & Eligibility'}</h3>
                           <div className="space-y-3 text-sm text-gray-600">
                             {(block.ugPrograms || []).some((p: string) => hasText(p)) && (
                               <div><span className="font-semibold text-[#002147]">UG Programs: </span>{block.ugPrograms.filter((p: string) => hasText(p)).join(', ')}</div>

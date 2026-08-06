@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, ClipboardList, HelpCircle, ChevronDown, Clapperboard } from 'lucide-react';
+import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, ClipboardList, HelpCircle, ChevronDown, Clapperboard, Bell } from 'lucide-react';
 
 const links = [
   { href: '/admin',                   label: 'Dashboard',        icon: LayoutDashboard, exact: true },
@@ -16,6 +16,7 @@ const links = [
   { href: '/admin/blogs',             label: 'Blogs',             icon: FileText },
   { href: '/admin/programs',          label: 'Programs',          icon: BookOpen },
   { href: '/admin/reels',             label: 'Add Reels',         icon: Clapperboard },
+  { href: '/admin/notifications',     label: 'Notification',      icon: Bell },
 ];
 
 const faqLinks = [

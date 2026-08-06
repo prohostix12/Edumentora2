@@ -170,7 +170,7 @@ function ApprenticeshipBlock({ block }: { block: any }) {
 
       {/* PROGRAMS AND ELIGIBILITY SECTIONS */}
       {programsBlocks.map((block: any, idx: number) => {
-        const title = block.sectionTitle || block.title || 'Available Degree Programs';
+        const title = block.sectionTitle || block.title || 'Programs & Eligibility';
         return (
           <div key={idx} className={`bg-[#F7EFE1] text-[#002147] py-20 dot-grid ${idx !== programsBlocks.length - 1 ? 'border-b border-[#002147]/10' : ''}`}>
             <div className="max-w-5xl mx-auto px-4 md:px-8 space-y-16">

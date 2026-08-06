@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
+import { getPublicNotifications } from '@/app/admin/notifications/actions';
 
 const LoopingTypewriterText = ({
   baseSegments,
@@ -160,12 +161,19 @@ const SIDEBAR_SECTIONS = [
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [sectionIndex, setSectionIndex] = useState(0);
+  const [marqueeItems, setMarqueeItems] = useState<string[]>(MARQUEE_ITEMS);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSectionIndex((i) => (i + 1) % SIDEBAR_SECTIONS.length);
     }, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    getPublicNotifications().then((items) => {
+      if (items.length > 0) setMarqueeItems(items);
+    });
   }, []);
 
   const riseIn = (delay = 0) => ({
@@ -352,7 +360,7 @@ export default function Hero() {
         >
           {[0, 1].map((dup) => (
             <div key={dup} className="flex items-center shrink-0" aria-hidden={dup === 1}>
-              {MARQUEE_ITEMS.map((item) => (
+              {marqueeItems.map((item) => (
                 <span key={item} className="flex items-center gap-3 mx-5 text-white text-sm font-semibold tracking-wide">
                   {item}
                   <span className="text-[#002147]">&#10022;</span>
