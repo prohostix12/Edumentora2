@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useTransition, useEffect } from 'react';
-import { Trash2, Plus, Upload, X, Save, Edit2 } from 'lucide-react';
+import { Trash2, Plus, Upload, X, Save, Edit2, Eye } from 'lucide-react';
 import { createProgram, deleteProgram, updateProgram } from '@/app/admin/programs/actions';
 import { compressImage } from '@/utils/imageCompression';
 
@@ -20,10 +20,11 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
   const [isPending, startTransition] = useTransition();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProgramId, setEditingProgramId] = useState<string | null>(null);
+  const [viewingProgram, setViewingProgram] = useState<Program | null>(null);
 
   // Lock body scroll when modal is open to prevent scroll interference/lag
   useEffect(() => {
-    if (isModalOpen) {
+    if (isModalOpen || viewingProgram) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
@@ -48,7 +49,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
       document.body.style.right = '';
       document.body.style.overflow = '';
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, viewingProgram]);
 
   const defaultFormData = {
     topic: '',
@@ -276,6 +277,43 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
     });
   };
 
+  // Extracts the same structured block data as handleEdit, for read-only viewing.
+  const parseProgramBlocks = (program: Program) => {
+    const block = program.blocks.find((b: any) => b.type === 'apprenticeship-layout');
+    const data = block?.data || {};
+
+    const overviews = (data.overviews && Array.isArray(data.overviews) && data.overviews.length > 0)
+      ? data.overviews
+      : data.overview
+        ? [{ heading: data.overview.heading || '', subHeading: data.overview.subHeading || '', paragraph: data.overview.paragraph || '' }]
+        : [];
+
+    const howItWorksBlocks = (data.howItWorksBlocks && Array.isArray(data.howItWorksBlocks) && data.howItWorksBlocks.length > 0)
+      ? data.howItWorksBlocks
+      : data.howItWorks
+        ? [{ sectionTitle: data.howItWorksSectionTitle || 'How it Works', steps: data.howItWorks }]
+        : [];
+
+    const programsBlocks = (data.programsBlocks && Array.isArray(data.programsBlocks) && data.programsBlocks.length > 0)
+      ? data.programsBlocks
+      : data.programsAndEligibility
+        ? [{
+            sectionTitle: data.programsAndEligibility.title || 'Available Degree Programs',
+            ugPrograms: data.programsAndEligibility.ugPrograms || [],
+            pgPrograms: data.programsAndEligibility.pgPrograms || [],
+            whoCanApply: data.programsAndEligibility.whoCanApply || [],
+          }]
+        : [];
+
+    const whyChooseBlocks = (data.whyChooseBlocks && Array.isArray(data.whyChooseBlocks) && data.whyChooseBlocks.length > 0)
+      ? data.whyChooseBlocks
+      : data.whyChoose
+        ? [{ sectionTitle: data.whyChoose.title || 'Why Choose?', points: data.whyChoose.points || [], conclusion: data.whyChoose.conclusion || '' }]
+        : [];
+
+    return { overviews, howItWorksBlocks, programsBlocks, whyChooseBlocks };
+  };
+
   const handleDelete = (id: string) => {
     if (confirm('Are you sure you want to delete this program?')) {
       startTransition(() => {
@@ -309,34 +347,40 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
             No programs saved yet. Create one to get started!
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="divide-y divide-gray-100 border-t border-gray-100">
             {initialPrograms.map(program => (
-              <div key={program.id} className="bg-white border border-gray-200 rounded-2xl p-6 relative group hover:border-[#002147]/30 transition-all shadow-sm hover:shadow-md cursor-pointer" onClick={() => handleEdit(program)}>
-                <div className="absolute top-4 right-4 flex items-center gap-2 z-10" onClick={e => e.stopPropagation()}>
-                  <button 
+              <div key={program.id} className="flex items-center gap-4 py-4 hover:bg-gray-50 transition-colors">
+                <span className="flex-shrink-0 px-3 py-1 bg-[#002147]/10 text-[#002147] text-xs font-bold uppercase rounded-full">
+                  {program.topic}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-[#002147] truncate">{program.heading}</h3>
+                  <p className="text-sm text-gray-500 truncate">{program.paragraph}</p>
+                </div>
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <button
+                    onClick={() => setViewingProgram(program)}
+                    className="text-gray-400 hover:text-[#002147] hover:bg-gray-100 p-2 rounded-lg transition-colors"
+                    title="View More"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+                  <button
                     onClick={() => handleEdit(program)}
                     disabled={isPending}
-                    className="text-gray-400 hover:text-[#002147] bg-gray-50 p-2 rounded-lg transition-colors"
+                    className="text-blue-500 hover:text-blue-600 hover:bg-blue-50 p-2 rounded-lg transition-colors"
+                    title="Update Program"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
-                  <button 
+                  <button
                     onClick={() => handleDelete(program.id)}
                     disabled={isPending}
-                    className="text-gray-400 hover:text-red-500 bg-gray-50 p-2 rounded-lg transition-colors"
+                    className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                    title="Delete Program"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
-                </div>
-                <div className="mb-4">
-                  <span className="px-3 py-1 bg-[#002147]/10 text-[#002147] text-xs font-bold uppercase rounded-full">
-                    {program.topic}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-[#002147] mb-2 pr-20">{program.heading}</h3>
-                <p className="text-sm text-gray-500 line-clamp-2">{program.paragraph}</p>
-                <div className="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400">
-                  {new Date(program.createdAt).toLocaleDateString()}
                 </div>
               </div>
             ))}
@@ -640,6 +684,119 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
           </div>
         </div>
       )}
+
+      {/* ── VIEW MORE MODAL (read-only, hides empty sections) ── */}
+      {viewingProgram && (() => {
+        const { overviews, howItWorksBlocks, programsBlocks, whyChooseBlocks } = parseProgramBlocks(viewingProgram);
+        const hasText = (v?: string) => !!v && v.trim().length > 0;
+        const nonEmptyOverviews = overviews.filter((o: any) => hasText(o.heading) || hasText(o.subHeading) || hasText(o.paragraph));
+        const nonEmptyHowItWorks = howItWorksBlocks.filter((b: any) => (b.steps || []).some((s: any) => hasText(s.heading) || hasText(s.description)));
+        const nonEmptyPrograms = programsBlocks.filter((b: any) =>
+          (b.ugPrograms || []).some((p: string) => hasText(p)) ||
+          (b.pgPrograms || []).some((p: string) => hasText(p)) ||
+          (b.whoCanApply || []).some((p: string) => hasText(p))
+        );
+        const nonEmptyWhyChoose = whyChooseBlocks.filter((b: any) => (b.points || []).some((p: string) => hasText(p)) || hasText(b.conclusion));
+
+        return (
+          <div
+            data-lenis-prevent
+            className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-[2px]"
+            style={{ overscrollBehavior: 'contain' }}
+            onClick={() => setViewingProgram(null)}
+          >
+            <div className="flex items-start justify-center min-h-full p-4 py-8">
+              <div className="bg-white w-full max-w-3xl rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl">
+                  <h2 className="text-xl font-bold text-white">{viewingProgram.heading}</h2>
+                  <button type="button" onClick={() => setViewingProgram(null)} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="p-6 space-y-8">
+                  {viewingProgram.heroImage && (
+                    <img src={viewingProgram.heroImage} alt={viewingProgram.heading} className="w-full h-56 object-cover rounded-2xl border border-gray-100" />
+                  )}
+
+                  <div>
+                    <span className="px-3 py-1 bg-[#002147]/10 text-[#002147] text-xs font-bold uppercase rounded-full">{viewingProgram.topic}</span>
+                    <p className="text-gray-700 leading-relaxed mt-3">{viewingProgram.paragraph}</p>
+                  </div>
+
+                  {nonEmptyOverviews.length > 0 && (
+                    <div className="pt-6 border-t border-gray-100 space-y-5">
+                      <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide">Overview</h3>
+                      {nonEmptyOverviews.map((o: any, i: number) => (
+                        <div key={i}>
+                          {hasText(o.heading) && <h4 className="font-bold text-[#002147]">{o.heading}</h4>}
+                          {hasText(o.subHeading) && <p className="text-sm font-semibold text-[#8B0000] mt-0.5">{o.subHeading}</p>}
+                          {hasText(o.paragraph) && <p className="text-gray-600 text-sm leading-relaxed mt-1">{o.paragraph}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {nonEmptyHowItWorks.length > 0 && (
+                    <div className="pt-6 border-t border-gray-100 space-y-5">
+                      {nonEmptyHowItWorks.map((block: any, bi: number) => (
+                        <div key={bi}>
+                          <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide mb-3">{block.sectionTitle || 'How it Works'}</h3>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {(block.steps || []).filter((s: any) => hasText(s.heading) || hasText(s.description)).map((s: any, i: number) => (
+                              <div key={i} className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                {hasText(s.heading) && <h4 className="font-bold text-[#002147] text-sm mb-1">{s.heading}</h4>}
+                                {hasText(s.description) && <p className="text-gray-600 text-xs leading-relaxed">{s.description}</p>}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {nonEmptyPrograms.length > 0 && (
+                    <div className="pt-6 border-t border-gray-100 space-y-5">
+                      {nonEmptyPrograms.map((block: any, bi: number) => (
+                        <div key={bi}>
+                          <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide mb-3">{block.sectionTitle || 'Available Degree Programs'}</h3>
+                          <div className="space-y-3 text-sm text-gray-600">
+                            {(block.ugPrograms || []).some((p: string) => hasText(p)) && (
+                              <div><span className="font-semibold text-[#002147]">UG Programs: </span>{block.ugPrograms.filter((p: string) => hasText(p)).join(', ')}</div>
+                            )}
+                            {(block.pgPrograms || []).some((p: string) => hasText(p)) && (
+                              <div><span className="font-semibold text-[#002147]">PG Programs: </span>{block.pgPrograms.filter((p: string) => hasText(p)).join(', ')}</div>
+                            )}
+                            {(block.whoCanApply || []).some((p: string) => hasText(p)) && (
+                              <div><span className="font-semibold text-[#002147]">Who Can Apply: </span>{block.whoCanApply.filter((p: string) => hasText(p)).join(', ')}</div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {nonEmptyWhyChoose.length > 0 && (
+                    <div className="pt-6 border-t border-gray-100 space-y-5">
+                      {nonEmptyWhyChoose.map((block: any, bi: number) => (
+                        <div key={bi}>
+                          <h3 className="text-sm font-bold text-[#D2B48C] uppercase tracking-wide mb-3">{block.sectionTitle || 'Why Choose?'}</h3>
+                          {(block.points || []).some((p: string) => hasText(p)) && (
+                            <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
+                              {block.points.filter((p: string) => hasText(p)).map((p: string, i: number) => <li key={i}>{p}</li>)}
+                            </ul>
+                          )}
+                          {hasText(block.conclusion) && <p className="text-gray-600 text-sm leading-relaxed mt-2 italic">{block.conclusion}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
     </div>
   );
