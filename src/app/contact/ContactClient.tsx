@@ -256,49 +256,6 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
           </div>
         </div>
       </div>
-
-      {/* Director's Message Mini Section */}
-      <div className="py-12 lg:py-16 bg-[linear-gradient(135deg,_#F7EFE1_0%,_#F0E3CC_50%,_#EAD9BA_100%)] border-t border-[#DDC7A0] dot-grid">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 bg-gray-50 p-8 md:p-12 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-50 rounded-full blur-2xl -ml-10 -mb-10 opacity-60"></div>
-
-            <div className="w-40 h-40 md:w-56 md:h-56 shrink-0 relative z-10 mx-auto md:mx-0">
-              <img
-                src="/muh_shameem_director.jpg"
-                alt="Mohamed Shameem - Director"
-                className="w-full h-full object-cover rounded-2xl shadow-lg border-4 border-white"
-              />
-            </div>
-
-            <div className="text-center md:text-left flex-1 relative z-10">
-              <h3 className="text-3xl font-bold text-[#002147] mb-1">Director's Message</h3>
-              <p className="text-[#D2B48C] font-semibold mb-6 tracking-wide text-sm uppercase">Mohamed Shameem</p>
-
-              {/* <div className="text-gray-700 space-y-4 text-base leading-relaxed text-justify md:text-left mb-6">
-                <p>
-                  At Edumentora, we strongly believe that education should never be a dead end. Across India, thousands of students discontinue their degree programs due to financial challenges, personal circumstances, academic hurdles, or institutional constraints. Unfortunately, this often leads to wasted academic effort and lost confidence. Our mission is to change that narrative.
-                </p>
-                <p>
-                  Edumentora was founded with a clear purpose: to help students restart and complete their higher education without having to begin from scratch. Through our academic credit transfer solutions, we enable learners to transfer their previously earned credits to UGC-recognized institutions, allowing them to continue their education from where they left off. Every credit earned represents hard work, time, and determination—and we ensure it is respected and utilized.
-                </p>
-                <p>
-                  We are deeply committed to providing transparent, reliable, and student-focused guidance at every step of the process. Our team works closely with each student to understand their academic background and identify the best possible pathway to a recognized qualification.
-                </p>
-              </div> */}
-
-              <div className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                <span className="text-5xl text-[#002147] opacity-10 absolute -top-2 -left-2 font-serif hidden md:block">"</span>
-                <p className="text-gray-800 italic leading-relaxed text-lg font-medium relative z-10">
-                  "At Edumentora, we don’t just offer education services—we offer second chances, renewed confidence, and a clear path toward a successful future. Together, let us transform past progress into lasting achievement."
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <LocationsSection />
       <Footer />
       <FloatingWhatsApp />

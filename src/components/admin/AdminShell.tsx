@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
 import SidebarNav from '@/components/admin/SidebarNav';
 
@@ -13,6 +14,12 @@ export default function AdminShell({
   onLogout: () => void;
 }) {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
+
+  // The login page must render standalone — no sidebar/nav behind it.
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-50 font-[Poppins]">

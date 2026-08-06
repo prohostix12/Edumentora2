@@ -347,6 +347,7 @@ export default function ApprenticeshipProgramManager({ initialPrograms }: { init
       {/* ── CREATE/EDIT MODAL ── */}
       {isModalOpen && (
         <div
+          data-lenis-prevent
           className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-[2px]"
           style={{ overscrollBehavior: 'contain' }}
         >

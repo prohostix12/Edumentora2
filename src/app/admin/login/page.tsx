@@ -32,8 +32,15 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-[Poppins]">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
+    <div className="relative min-h-screen flex items-center justify-center p-4 font-[Poppins] overflow-hidden bg-[#002147]">
+      {/* Blurred decorative backdrop — nothing else is shown behind the form */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-[#D2B48C]/40 rounded-full blur-[100px]" />
+        <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-[#8B0000]/40 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 backdrop-blur-2xl bg-[#002147]/40" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
         <div className="flex justify-center mb-8">
           <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center">
             <Lock className="w-8 h-8 text-[#D2B48C]" />
