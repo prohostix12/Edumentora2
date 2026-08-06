@@ -7,7 +7,7 @@ import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 import HomeGalleryClient from './HomeGalleryClient';
 
-export default function TestimonialSection({ reviews = [], galleryImages = [] }: { reviews?: any[], galleryImages?: string[] }) {
+export default function TestimonialSection({ reviews = [], galleryImages = [], promoVideos = [], successVideos = [] }: { reviews?: any[], galleryImages?: string[], promoVideos?: string[], successVideos?: string[] }) {
   const staticTestimonials = [
     {
       id: "1",
@@ -54,20 +54,8 @@ export default function TestimonialSection({ reviews = [], galleryImages = [] }:
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? displayTestimonials.length - 1 : prevIndex - 1));
   };
 
-  const videoTestimonials = [
-    "/videos/vidssave.com student testimonial 720P.mp4",
-    "/videos/AQPDt6ZnCjg1ySd7qSIiSb5ZRzKiwZ4_KoDZX9g6NSr7BdEZPJ4T6nvb7v9nAmwxUiVmmYe1UqoVmrSxcXgluMdxyVDtK-_DlCms2RI.mp4",
-    "/videos/AQNpbY6wsmlrIYsrakwMbQbdsUruf5ouV6QV8vdYssaYGubvcnQOrRcfINTg-pZdYzJvXOYkF1aGQ1-VfAmDV1WcnrNTeiOgQRtrA9o.mp4"
-  ];
-
-  const edumentoraVideos = [
-    "/videos/edu_vdo_002/AQMVj3lkTOBgMHTnLZTC2J4kfHstGPCf2q03YmOLyyo6c3tT2MXe3fa_KOV7ZqW3-y1_BPFhshr8BcJg6LBF95WvJxk_iXMkDgXHsjc.mp4",
-    "/videos/edu_vdo_002/AQNSavI6FlYWDwT6h6LLNyQGF24TQPZIX7g3EmKsBpaVn-4mDMUz6b9w6tPS6ZIoNI3D0kjp_c6AY6fLRWMBvP46xqd9EI7K7U5p968.mp4",
-    "/videos/edu_vdo_002/AQONsMIdVI0-4Qh0PeZPNOd1hLNrEpXKKLKPMB_ZsQEkISLYbqILCZoYfj1n8DF7RqGaFcE_AX8gRyc8Kzq6Q8udqWFdJbIyDnCKwss.mp4",
-    "/videos/edu_vdo_002/AQOYIuE_RxbeMs5toV-jgVMPka2Pu5oupIwX-iXJjtkCWkgKCP4SEiS9l1vdvKPRE-QwXre_oEaORvYnmFj8ZYSfTMt1m5rMKNTko7U.mp4",
-    "/videos/edu_vdo_002/AQOxffHXxWVuQqOy-5bt_MkuHMZoeQmlQ1bD6oIQVsNkclT8_43QjykbdsS9hZV8neWXGIzzL8Yp4gIGqBG5caMUgj_NOSvC9CPrFSM.mp4",
-    "/videos/edu_vdo_002/AQP1bJu-J18cIMOjllZW30S4EEX6dVbCNZLW-5lBxYrHhjm6kaf2q0ZwJQTDOElKNjaXQQ6SoLckr3FxCRVtElzBHwrhOfdLrUKFxYE.mp4"
-  ];
+  const videoTestimonials = successVideos;
+  const edumentoraVideos = promoVideos;
 
   let displayImages = galleryImages;
   if (displayImages.length > 0 && displayImages.length < 5) {

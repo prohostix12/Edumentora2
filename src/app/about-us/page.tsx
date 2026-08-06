@@ -1,37 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
-
-const faqs = [
-  {
-    q: 'What is academic credit transfer?',
-    a: 'Academic credit transfer allows students to transfer previously earned credits from one institution to another, enabling them to continue their education without starting over.'
-  },
-  {
-    q: 'Who can apply for a credit transfer?',
-    a: 'Students who have discontinued their education or faced academic setbacks can apply for a credit transfer to resume their studies.'
-  },
-  {
-    q: 'Which universities does Edumentora partner with?',
-    a: 'We have partnered with Glocal University and IEC University to provide recognized and accredited degrees.'
-  },
-  {
-    q: 'How does the credit transfer process work?',
-    a: 'Our team evaluates your existing credits, matches them with a suitable university, and facilitates a smooth transfer process.'
-  },
-  {
-    q: 'Will my transferred credits be recognized by the new university?',
-    a: 'Yes, we work with accredited universities that recognize and accept transferred credits.'
-  }
-];
+import { getPublicFaqs } from '@/app/admin/faq/actions';
 
 export default function AboutUsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [faqs, setFaqs] = useState<{ id: string; q: string; a: string }[]>([]);
+
+  useEffect(() => {
+    getPublicFaqs('ABOUT').then(setFaqs);
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#F9F9F9] font-[Poppins]">

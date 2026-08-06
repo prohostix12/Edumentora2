@@ -11,11 +11,17 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
 import EligibilityForm from '@/components/EligibilityForm';
+import { getPublicFaqs } from '@/app/admin/faq/actions';
 
 export default function BTechCreditTransferPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showEligibilityPopup, setShowEligibilityPopup] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [faqs, setFaqs] = useState<{ id: string; q: string; a: string }[]>([]);
+
+  useEffect(() => {
+    getPublicFaqs('BTECH').then(setFaqs);
+  }, []);
 
   useEffect(() => {
     const STORAGE_KEY = 'btech-eligibility-popup-seen';
@@ -37,51 +43,6 @@ export default function BTechCreditTransferPage() {
       sessionStorage.setItem(STORAGE_KEY, 'true');
     }
   }, []);
-
-  const faqs = [
-    {
-      q: "How long does the credit transfer process take?",
-      a: <p className="text-stone-600 text-lg leading-relaxed">The process usually takes a few weeks, depending on the university’s approval and document verification. Edumentora ensures a fast and smooth process.</p>
-    },
-    {
-      q: "Is my B.Tech degree valid after credit transfer?",
-      a: <p className="text-stone-600 text-lg leading-relaxed">Yes! You will receive a UGC-approved B.Tech degree, which is valid for all jobs, government exams, and higher studies.</p>
-    },
-    {
-      q: "Can I transfer credits from any university?",
-      a: <p className="text-stone-600 text-lg leading-relaxed">Your previous university must be UGC-approved for credit transfer eligibility. Contact us to check your university’s approval status.</p>
-    },
-    {
-      q: "What documents are required for credit transfer?",
-      a: (
-        <div className="text-stone-600 text-lg leading-relaxed w-full">
-          <p className="mb-3">You need to submit:</p>
-          <ul className="space-y-3 pl-2">
-            <li className="flex items-center">
-              <img src="https://s.w.org/images/core/emoji/17.0.2/svg/2714.svg" alt="check" className="w-5 h-5 mr-3 flex-shrink-0" />
-              <span>Previous B.Tech mark sheets and transcripts</span>
-            </li>
-            <li className="flex items-center">
-              <img src="https://s.w.org/images/core/emoji/17.0.2/svg/2714.svg" alt="check" className="w-5 h-5 mr-3 flex-shrink-0" />
-              <span>ID proof (Aadhaar, Passport, etc.)</span>
-            </li>
-            <li className="flex items-center">
-              <img src="https://s.w.org/images/core/emoji/17.0.2/svg/2714.svg" alt="check" className="w-5 h-5 mr-3 flex-shrink-0" />
-              <span>University migration or transfer certificate (if applicable)</span>
-            </li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      q: "Do I need to take an entrance exam for credit transfer?",
-      a: <p className="text-stone-600 text-lg leading-relaxed">No! Credit transfer admissions do not require entrance exams. You only need to provide your academic records for evaluation.</p>
-    },
-    {
-      q: "Can I write the credit transfer exam online?",
-      a: <p className="text-stone-600 text-lg leading-relaxed">No! A UGC-approved credit transfer exam can never be conducted online.</p>
-    }
-  ];
 
   const btechBenefits = [
     {

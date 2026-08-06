@@ -54,6 +54,16 @@ export default async function Home() {
     console.error("Failed to fetch galleries:", error);
   }
 
+  let promoVideos: string[] = [];
+  let successVideos: string[] = [];
+  try {
+    const reels = await prisma.reel.findMany({ orderBy: { createdAt: 'asc' } });
+    promoVideos = reels.filter(r => r.category === 'PROMO').map(r => r.videoUrl);
+    successVideos = reels.filter(r => r.category === 'SUCCESS').map(r => r.videoUrl);
+  } catch (error) {
+    console.error("Failed to fetch reels:", error);
+  }
+
   return (
     <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
@@ -66,7 +76,7 @@ export default async function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
-      <TestimonialSection reviews={reviews} galleryImages={galleryImages} />
+      <TestimonialSection reviews={reviews} galleryImages={galleryImages} promoVideos={promoVideos} successVideos={successVideos} />
       <Footer />
       <FloatingWhatsApp />
     </main>
