@@ -15,18 +15,19 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus('loading');
     setErrorMessage('');
     setPopupState('checking');
     setShowPopup(true);
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const result = await submitEligibilityRequest(formData);
 
     if (result.success) {
       setStatus('success');
       setPopupState('success');
-      e.currentTarget.reset();
+      form.reset();
     } else {
       setStatus('error');
       setErrorMessage(result.error || 'Something went wrong.');

@@ -21,14 +21,15 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus('loading');
-    
-    const formData = new FormData(e.currentTarget);
+
+    const formData = new FormData(form);
     const result = await submitEnquiry(formData);
-    
+
     if (result.success) {
       setStatus('success');
-      (e.target as HTMLFormElement).reset();
+      form.reset();
     } else {
       setStatus('error');
       setErrorMessage(result.error || 'Something went wrong.');

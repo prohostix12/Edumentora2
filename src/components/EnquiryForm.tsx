@@ -20,14 +20,15 @@ export default function EnquiryForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus('loading');
-    
-    const formData = new FormData(e.currentTarget);
+
+    const formData = new FormData(form);
     const result = await submitEnquiry(formData);
-    
+
     if (result.success) {
       setStatus('success');
-      (e.target as HTMLFormElement).reset();
+      form.reset();
       if (onSuccess) {
         // slight delay before calling onSuccess to let them see the success message
         setTimeout(() => onSuccess(), 2000);
