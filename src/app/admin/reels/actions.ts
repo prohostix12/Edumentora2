@@ -39,9 +39,16 @@ async function deleteVideoFile(videoUrl: string) {
 
 export async function createReel(category: ReelCategory, formData: FormData) {
   const file = formData.get('video') as File | null;
-  if (!file || file.size === 0) return;
+  const url = (formData.get('videoUrl') as string | null)?.trim();
 
-  const videoUrl = await saveVideoFile(file);
+  let videoUrl: string;
+  if (url) {
+    videoUrl = url;
+  } else if (file && file.size > 0) {
+    videoUrl = await saveVideoFile(file);
+  } else {
+    return;
+  }
 
   await prisma.reel.create({
     data: { category, videoUrl },
@@ -52,10 +59,18 @@ export async function createReel(category: ReelCategory, formData: FormData) {
 
 export async function updateReel(id: string, formData: FormData) {
   const file = formData.get('video') as File | null;
-  if (!file || file.size === 0) return;
+  const url = (formData.get('videoUrl') as string | null)?.trim();
+
+  let videoUrl: string;
+  if (url) {
+    videoUrl = url;
+  } else if (file && file.size > 0) {
+    videoUrl = await saveVideoFile(file);
+  } else {
+    return;
+  }
 
   const existing = await prisma.reel.findUnique({ where: { id } });
-  const videoUrl = await saveVideoFile(file);
 
   await prisma.reel.update({
     where: { id },

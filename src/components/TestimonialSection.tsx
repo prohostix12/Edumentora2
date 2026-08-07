@@ -6,6 +6,7 @@ import { Star, ChevronLeft, ChevronRight, User, ArrowRight } from 'lucide-react'
 import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 import HomeGalleryClient from './HomeGalleryClient';
+import ReelPlayer from './ReelPlayer';
 
 export default function TestimonialSection({ reviews = [], galleryImages = [], promoVideos = [], successVideos = [] }: { reviews?: any[], galleryImages?: string[], promoVideos?: string[], successVideos?: string[] }) {
   const staticTestimonials = [
@@ -256,7 +257,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
                   key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
@@ -270,7 +271,7 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
                   key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>

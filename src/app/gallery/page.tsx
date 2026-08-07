@@ -3,6 +3,7 @@ import PageBanner from '@/components/PageBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import GalleryImage from '@/components/GalleryImage';
 
 import { PrismaClient } from '@prisma/client';
 
@@ -67,11 +68,10 @@ export default async function Page() {
                           className={`relative rounded-3xl overflow-hidden group shadow-sm hover:shadow-2xl transition-shadow duration-500 cursor-pointer ${spanClasses}`}
                         >
                           {/* Image */}
-                          <img
+                          <GalleryImage
                             src={image}
                             alt={`${gallery.section} photo ${index + 1}`}
                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
-                            loading="lazy"
                           />
                           
                           {/* Gradient Overlay */}

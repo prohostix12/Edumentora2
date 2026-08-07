@@ -151,7 +151,7 @@ export default async function AdminDashboard() {
       </SectionCard>
 
       {/* Recent Eligibility Requests */}
-      <SectionCard title="Recent Eligibility Requests" count={eligibilityCount} viewAllHref="/admin/eligibility-request">
+      <SectionCard title="Recent Eligibility Requests" count={eligibilityCount} viewAllHref="/admin/enquiries?filter=ELIGIBILITY">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-100">

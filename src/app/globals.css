@@ -75,7 +75,7 @@ img:hover {
    back-to-back and scrolls exactly one copy's width, so the loop never shows
    a seam or gap. */
 .hero-marquee-track {
-  animation: heroMarquee 16s linear infinite;
+  animation: heroMarquee 79s linear infinite;
 }
 
 @keyframes heroMarquee {

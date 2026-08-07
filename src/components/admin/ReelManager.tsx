@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useTransition, useRef } from 'react';
-import { Upload, Trash2, RefreshCw } from 'lucide-react';
+import { Upload, Trash2, RefreshCw, Link2, FileVideo, Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { createReel, updateReel, deleteReel, type ReelCategory } from '@/app/admin/reels/actions';
+import { getYouTubeEmbedUrl } from '@/lib/video';
+import ReelPlayer from '@/components/ReelPlayer';
 
 type Reel = {
   id: string;
@@ -10,18 +12,83 @@ type Reel = {
   videoUrl: string;
 };
 
+type UrlCheckStatus = 'idle' | 'checking' | 'valid' | 'invalid';
+
+function checkVideoUrl(url: string): Promise<boolean> {
+  if (getYouTubeEmbedUrl(url)) return Promise.resolve(true);
+
+  return new Promise((resolve) => {
+    const video = document.createElement('video');
+    const timeout = setTimeout(() => resolve(false), 8000);
+    video.onloadedmetadata = () => {
+      clearTimeout(timeout);
+      resolve(true);
+    };
+    video.onerror = () => {
+      clearTimeout(timeout);
+      resolve(false);
+    };
+    video.src = url;
+  });
+}
+
 export default function ReelManager({ promoReels, successReels }: { promoReels: Reel[]; successReels: Reel[] }) {
   const [isPending, startTransition] = useTransition();
   const [activeTab, setActiveTab] = useState<ReelCategory>('PROMO');
+  const [addMode, setAddMode] = useState<'file' | 'url'>('file');
+  const [addUrlValue, setAddUrlValue] = useState('');
+  const [addUrlStatus, setAddUrlStatus] = useState<UrlCheckStatus>('idle');
   const [replacingId, setReplacingId] = useState<string | null>(null);
+  const [urlReplaceRowId, setUrlReplaceRowId] = useState<string | null>(null);
+  const [replaceUrlValue, setReplaceUrlValue] = useState('');
+  const [replaceUrlStatus, setReplaceUrlStatus] = useState<UrlCheckStatus>('idle');
   const addFormRef = useRef<HTMLFormElement>(null);
+  const checkTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const replaceCheckTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const reels = activeTab === 'PROMO' ? promoReels : successReels;
 
-  const handleAdd = (formData: FormData) => {
+  const handleAddUrlChange = (value: string) => {
+    setAddUrlValue(value);
+    if (checkTimer.current) clearTimeout(checkTimer.current);
+    const trimmed = value.trim();
+    if (!trimmed) {
+      setAddUrlStatus('idle');
+      return;
+    }
+    setAddUrlStatus('checking');
+    checkTimer.current = setTimeout(async () => {
+      const ok = await checkVideoUrl(trimmed);
+      setAddUrlStatus(ok ? 'valid' : 'invalid');
+    }, 500);
+  };
+
+  const handleReplaceUrlChange = (value: string) => {
+    setReplaceUrlValue(value);
+    if (replaceCheckTimer.current) clearTimeout(replaceCheckTimer.current);
+    const trimmed = value.trim();
+    if (!trimmed) {
+      setReplaceUrlStatus('idle');
+      return;
+    }
+    setReplaceUrlStatus('checking');
+    replaceCheckTimer.current = setTimeout(async () => {
+      const ok = await checkVideoUrl(trimmed);
+      setReplaceUrlStatus(ok ? 'valid' : 'invalid');
+    }, 500);
+  };
+
+  const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (addMode === 'url' && addUrlStatus !== 'valid') return;
+
+    const formData = new FormData(e.currentTarget);
     startTransition(() => {
       createReel(activeTab, formData).then(() => {
         addFormRef.current?.reset();
+        setAddMode('file');
+        setAddUrlValue('');
+        setAddUrlStatus('idle');
       });
     });
   };
@@ -32,6 +99,22 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
     startTransition(() => {
       updateReel(id, formData).then(() => {
         setReplacingId(null);
+      });
+    });
+  };
+
+  const handleReplaceUrl = (id: string) => {
+    const url = replaceUrlValue.trim();
+    if (!url || replaceUrlStatus !== 'valid') return;
+    const formData = new FormData();
+    formData.set('videoUrl', url);
+    setReplacingId(id);
+    startTransition(() => {
+      updateReel(id, formData).then(() => {
+        setReplacingId(null);
+        setUrlReplaceRowId(null);
+        setReplaceUrlValue('');
+        setReplaceUrlStatus('idle');
       });
     });
   };
@@ -72,19 +155,77 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
 
       {/* Upload Field */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <h2 className="text-xl font-semibold text-[#002147] mb-4">
-          Add {activeTab === 'PROMO' ? 'Promo' : 'Success'} Video
-        </h2>
-        <form ref={addFormRef} action={handleAdd} className="flex flex-col gap-4">
-          <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 hover:border-[#002147]/40 transition-colors">
-            <Upload className="w-6 h-6 text-gray-400" />
-            <span className="text-sm font-semibold text-gray-500">Choose a video file to upload</span>
-            <input type="file" name="video" accept="video/*" required className="text-sm text-gray-600" />
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-[#002147]">
+            Add {activeTab === 'PROMO' ? 'Promo' : 'Success'} Video
+          </h2>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setAddMode('file')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                addMode === 'file' ? 'bg-[#002147] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <FileVideo className="w-3.5 h-3.5" />
+              Upload File
+            </button>
+            <button
+              type="button"
+              onClick={() => setAddMode('url')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                addMode === 'url' ? 'bg-[#002147] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <Link2 className="w-3.5 h-3.5" />
+              Paste URL
+            </button>
           </div>
+        </div>
+        <form ref={addFormRef} onSubmit={handleAdd} className="flex flex-col gap-4">
+          {addMode === 'file' ? (
+            <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 hover:border-[#002147]/40 transition-colors">
+              <Upload className="w-6 h-6 text-gray-400" />
+              <span className="text-sm font-semibold text-gray-500">Choose a video file to upload</span>
+              <input type="file" name="video" accept="video/*" required className="text-sm text-gray-600" />
+            </div>
+          ) : (
+            <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center gap-2">
+              <Link2 className="w-6 h-6 text-gray-400" />
+              <span className="text-sm font-semibold text-gray-500">Paste a video URL or YouTube link</span>
+              <div className="w-full max-w-md relative">
+                <input
+                  type="url"
+                  name="videoUrl"
+                  required
+                  value={addUrlValue}
+                  onChange={(e) => handleAddUrlChange(e.target.value)}
+                  placeholder="https://example.com/video.mp4 or a YouTube link"
+                  className={`w-full pl-4 pr-9 py-2 border rounded-xl text-[#002147] focus:outline-none focus:ring-2 ${
+                    addUrlStatus === 'invalid'
+                      ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
+                      : addUrlStatus === 'valid'
+                        ? 'border-green-300 focus:ring-green-100 focus:border-green-400'
+                        : 'border-gray-200 focus:ring-[#002147]/20 focus:border-[#002147]'
+                  }`}
+                />
+                <span className="absolute right-3 top-1/2 -translate-y-1/2">
+                  {addUrlStatus === 'checking' && <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />}
+                  {addUrlStatus === 'valid' && <Check className="w-4 h-4 text-green-500" />}
+                  {addUrlStatus === 'invalid' && <AlertTriangle className="w-4 h-4 text-red-500" />}
+                </span>
+              </div>
+              {addUrlStatus === 'invalid' && (
+                <p className="text-xs text-red-500 max-w-md text-center">
+                  This doesn&rsquo;t look like a playable video. Paste a direct video file link (.mp4, .webm) or a YouTube link — not a search or webpage link.
+                </p>
+              )}
+            </div>
+          )}
           <button
             type="submit"
-            disabled={isPending}
-            className="self-end px-6 py-2 bg-[#8B0000] text-white font-medium rounded-xl hover:bg-[#8B0000]/90 transition-colors disabled:opacity-70"
+            disabled={isPending || (addMode === 'url' && addUrlStatus !== 'valid')}
+            className="self-end px-6 py-2 bg-[#8B0000] text-white font-medium rounded-xl hover:bg-[#8B0000]/90 transition-colors disabled:opacity-50"
           >
             {isPending ? 'Uploading...' : 'Add Video'}
           </button>
@@ -105,9 +246,48 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
             {reels.map((reel) => (
               <div key={reel.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
                 <div className="relative aspect-[9/16] bg-black">
-                  <video src={reel.videoUrl} className="w-full h-full object-cover" controls preload="metadata" />
+                  <ReelPlayer src={reel.videoUrl} className="w-full h-full object-cover" />
                 </div>
-                <div className="p-3 flex items-center justify-between gap-2">
+
+                {urlReplaceRowId === reel.id && (
+                  <div className="p-3 pt-0">
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 relative">
+                        <input
+                          type="url"
+                          autoFocus
+                          value={replaceUrlValue}
+                          onChange={(e) => handleReplaceUrlChange(e.target.value)}
+                          placeholder="Paste video URL or YouTube link"
+                          className={`w-full px-3 py-1.5 pr-7 text-xs border rounded-lg text-[#002147] focus:outline-none focus:ring-2 ${
+                            replaceUrlStatus === 'invalid'
+                              ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
+                              : replaceUrlStatus === 'valid'
+                                ? 'border-green-300 focus:ring-green-100 focus:border-green-400'
+                                : 'border-gray-200 focus:ring-[#002147]/20 focus:border-[#002147]'
+                          }`}
+                        />
+                        <span className="absolute right-2 top-1/2 -translate-y-1/2">
+                          {replaceUrlStatus === 'checking' && <Loader2 className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
+                          {replaceUrlStatus === 'valid' && <Check className="w-3.5 h-3.5 text-green-500" />}
+                          {replaceUrlStatus === 'invalid' && <AlertTriangle className="w-3.5 h-3.5 text-red-500" />}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => handleReplaceUrl(reel.id)}
+                        disabled={isPending || replaceUrlStatus !== 'valid'}
+                        className="px-2 py-1.5 text-xs font-semibold text-white bg-[#002147] rounded-lg hover:bg-[#002147]/90 disabled:opacity-50"
+                      >
+                        Save
+                      </button>
+                    </div>
+                    {replaceUrlStatus === 'invalid' && (
+                      <p className="text-[10px] text-red-500 mt-1">Not a playable video link.</p>
+                    )}
+                  </div>
+                )}
+
+                <div className="p-3 flex items-center justify-between gap-1">
                   <label className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 py-2 rounded-lg cursor-pointer transition-colors">
                     <RefreshCw className={`w-3.5 h-3.5 ${replacingId === reel.id && isPending ? 'animate-spin' : ''}`} />
                     Replace
@@ -125,6 +305,18 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                       }}
                     />
                   </label>
+                  <button
+                    onClick={() => {
+                      setReplaceUrlValue('');
+                      setReplaceUrlStatus('idle');
+                      setUrlReplaceRowId(urlReplaceRowId === reel.id ? null : reel.id);
+                    }}
+                    disabled={isPending}
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 py-2 rounded-lg transition-colors"
+                  >
+                    <Link2 className="w-3.5 h-3.5" />
+                    URL
+                  </button>
                   <button
                     onClick={() => handleDelete(reel.id)}
                     disabled={isPending}

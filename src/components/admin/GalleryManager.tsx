@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useTransition, useState } from 'react';
+import React, { useTransition, useState, useRef } from 'react';
 import { createSection, deleteSection, addImages, removeImageUrl } from '@/app/admin/gallery/actions';
-import { Trash2, Plus, Image as ImageIcon, Upload, Loader2 } from 'lucide-react';
+import { Trash2, Plus, Upload, Loader2, Link2, Check, AlertTriangle, ImageOff } from 'lucide-react';
 
 type Gallery = {
   id: string;
@@ -10,9 +10,29 @@ type Gallery = {
   images: string[];
 };
 
+type UrlCheckStatus = 'idle' | 'checking' | 'valid' | 'invalid';
+
+function SafeImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div className={`flex flex-col items-center justify-center gap-1 bg-gray-100 text-gray-400 ${className}`}>
+        <ImageOff className="w-6 h-6" />
+        <span className="text-[10px] font-medium">Broken link</span>
+      </div>
+    );
+  }
+
+  return <img src={src} alt={alt} className={className} onError={() => setFailed(true)} />;
+}
+
 export default function GalleryManager({ initialGalleries }: { initialGalleries: Gallery[] }) {
   const [isPending, startTransition] = useTransition();
   const [uploadingSectionId, setUploadingSectionId] = useState<string | null>(null);
+  const [urlInputs, setUrlInputs] = useState<Record<string, string>>({});
+  const [urlStatus, setUrlStatus] = useState<Record<string, UrlCheckStatus>>({});
+  const checkTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   const handleCreateSection = (formData: FormData) => {
     startTransition(() => {
@@ -106,6 +126,37 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
     e.target.value = '';
   };
 
+  const handleUrlInputChange = (sectionId: string, value: string) => {
+    setUrlInputs((prev) => ({ ...prev, [sectionId]: value }));
+
+    if (checkTimers.current[sectionId]) clearTimeout(checkTimers.current[sectionId]);
+
+    const trimmed = value.trim();
+    if (!trimmed) {
+      setUrlStatus((prev) => ({ ...prev, [sectionId]: 'idle' }));
+      return;
+    }
+
+    setUrlStatus((prev) => ({ ...prev, [sectionId]: 'checking' }));
+    checkTimers.current[sectionId] = setTimeout(() => {
+      const testImg = new Image();
+      testImg.onload = () => setUrlStatus((prev) => ({ ...prev, [sectionId]: 'valid' }));
+      testImg.onerror = () => setUrlStatus((prev) => ({ ...prev, [sectionId]: 'invalid' }));
+      testImg.src = trimmed;
+    }, 500);
+  };
+
+  const handleAddImageUrl = (sectionId: string) => {
+    const url = (urlInputs[sectionId] || '').trim();
+    if (!url || urlStatus[sectionId] !== 'valid') return;
+    startTransition(() => {
+      addImages(sectionId, [url]).then(() => {
+        setUrlInputs((prev) => ({ ...prev, [sectionId]: '' }));
+        setUrlStatus((prev) => ({ ...prev, [sectionId]: 'idle' }));
+      });
+    });
+  };
+
   return (
     <div className="space-y-8">
       {/* Create Section Form */}
@@ -174,6 +225,53 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
               </label>
             </div>
 
+            {/* Add Image via URL */}
+            <div className="mb-6">
+              <div className="flex gap-2">
+                <div className="flex-1 relative">
+                  <Link2 className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="url"
+                    value={urlInputs[gallery.id] || ''}
+                    onChange={(e) => handleUrlInputChange(gallery.id, e.target.value)}
+                    placeholder="Paste a direct image URL (ending in .jpg, .png, .webp…)"
+                    className={`w-full pl-9 pr-9 py-2 border rounded-xl text-[#002147] focus:outline-none focus:ring-2 ${
+                      urlStatus[gallery.id] === 'invalid'
+                        ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
+                        : urlStatus[gallery.id] === 'valid'
+                          ? 'border-green-300 focus:ring-green-100 focus:border-green-400'
+                          : 'border-gray-200 focus:ring-[#002147]/20 focus:border-[#002147]'
+                    }`}
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2">
+                    {urlStatus[gallery.id] === 'checking' && <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />}
+                    {urlStatus[gallery.id] === 'valid' && <Check className="w-4 h-4 text-green-500" />}
+                    {urlStatus[gallery.id] === 'invalid' && <AlertTriangle className="w-4 h-4 text-red-500" />}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleAddImageUrl(gallery.id)}
+                  disabled={isPending || urlStatus[gallery.id] !== 'valid'}
+                  className="px-4 py-2 bg-[#002147] text-white font-medium rounded-xl hover:bg-[#002147]/90 transition-colors disabled:opacity-50 flex items-center gap-2 text-sm"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add URL
+                </button>
+              </div>
+              {urlStatus[gallery.id] === 'invalid' && (
+                <p className="text-xs text-red-500 mt-1.5">
+                  This doesn&rsquo;t look like a direct image link (e.g. a Google search or webpage URL won&rsquo;t work). Right-click the image itself and choose &ldquo;Copy image address&rdquo;.
+                </p>
+              )}
+              {urlStatus[gallery.id] === 'valid' && (
+                <div className="mt-2 flex items-center gap-2">
+                  <img src={urlInputs[gallery.id]} alt="Preview" className="w-12 h-12 rounded-lg object-cover border border-gray-200" />
+                  <span className="text-xs text-green-600 font-medium">Looks good — ready to add</span>
+                </div>
+              )}
+            </div>
+
             {/* Images Grid */}
             {gallery.images.length === 0 ? (
               <div className="text-center py-8 text-gray-500 bg-gray-50 rounded-xl border border-dashed border-gray-200">
@@ -183,7 +281,7 @@ export default function GalleryManager({ initialGalleries }: { initialGalleries:
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {gallery.images.map((url, index) => (
                   <div key={index} className="relative group aspect-square rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
-                    <img
+                    <SafeImage
                       src={url}
                       alt={`Gallery image ${index + 1}`}
                       className="w-full h-full object-cover"
