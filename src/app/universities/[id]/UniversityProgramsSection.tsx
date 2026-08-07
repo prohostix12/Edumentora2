@@ -1,0 +1,136 @@
+'use client';
+
+import React, { useState } from 'react';
+import { CheckCircle2, Briefcase, Wallet, Clock, ArrowRight, X } from 'lucide-react';
+
+type UniversityProgram = {
+  id: string;
+  courseDescription: string;
+  courseDuration: string;
+  eligibilityCriteria: string[];
+  careerOpportunities: string[];
+  feeStructure: string | null;
+};
+
+function ProgramCard({ program, onViewMore }: { program: UniversityProgram; onViewMore: () => void }) {
+  return (
+    <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
+      <div className="flex-1 min-w-0">
+        {program.courseDuration && (
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#002147] bg-[#D2B48C]/20 px-3 py-1 rounded-full mb-3">
+            <Clock className="w-3.5 h-3.5" />
+            {program.courseDuration}
+          </div>
+        )}
+        <p className="text-gray-700 leading-relaxed line-clamp-2">
+          {program.courseDescription}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        onClick={onViewMore}
+        className="self-start md:self-center flex-shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-bold text-white bg-[#002147] hover:bg-[#002147]/90 rounded-full transition-colors"
+      >
+        View More
+        <ArrowRight className="w-4 h-4" />
+      </button>
+    </div>
+  );
+}
+
+function ProgramModal({ program, onClose }: { program: UniversityProgram; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl sticky top-0">
+          <div className="flex items-center gap-2 text-white font-bold text-lg">
+            <Clock className="w-4 h-4 text-[#D2B48C]" />
+            {program.courseDuration || 'Program Details'}
+          </div>
+          <button onClick={onClose} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="p-6 md:p-8 space-y-6">
+          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+            {program.courseDescription}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {program.eligibilityCriteria.length > 0 && (
+              <div>
+                <h4 className="flex items-center gap-2 text-sm font-bold text-[#002147] uppercase tracking-wide mb-3">
+                  <CheckCircle2 className="w-4 h-4 text-[#D2B48C]" />
+                  Eligibility Criteria
+                </h4>
+                <ul className="space-y-2">
+                  {program.eligibilityCriteria.map((item, i) => (
+                    <li key={i} className="flex items-start text-sm text-gray-700">
+                      <span className="text-[#D2B48C] mr-2 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {program.careerOpportunities.length > 0 && (
+              <div>
+                <h4 className="flex items-center gap-2 text-sm font-bold text-[#002147] uppercase tracking-wide mb-3">
+                  <Briefcase className="w-4 h-4 text-[#D2B48C]" />
+                  Career Opportunities
+                </h4>
+                <ul className="space-y-2">
+                  {program.careerOpportunities.map((item, i) => (
+                    <li key={i} className="flex items-start text-sm text-gray-700">
+                      <span className="text-[#D2B48C] mr-2 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {program.feeStructure && (
+            <div className="flex items-center gap-2 text-sm font-semibold text-[#002147] pt-4 border-t border-gray-100">
+              <Wallet className="w-4 h-4 text-[#D2B48C]" />
+              Fee Structure: <span className="font-normal text-gray-700">{program.feeStructure}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function UniversityProgramsSection({ programs }: { programs: UniversityProgram[] }) {
+  const [activeProgram, setActiveProgram] = useState<UniversityProgram | null>(null);
+
+  if (programs.length === 0) return null;
+
+  return (
+    <>
+      <h3 className="text-xl font-bold text-[#002147] mb-6 border-t border-gray-100 pt-8">
+        Our University Programs
+      </h3>
+      <div className="space-y-6 mb-10">
+        {programs.map((program) => (
+          <ProgramCard key={program.id} program={program} onViewMore={() => setActiveProgram(program)} />
+        ))}
+      </div>
+
+      {activeProgram && (
+        <ProgramModal program={activeProgram} onClose={() => setActiveProgram(null)} />
+      )}
+    </>
+  );
+}
