@@ -1,6 +1,7 @@
 "use server"
 
 import { PrismaClient } from '@prisma/client'
+import { sendLeadNotification } from '@/lib/mail'
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 const prisma = globalForPrisma.prisma || new PrismaClient()
@@ -25,6 +26,12 @@ export async function submitEnquiry(formData: FormData) {
         message,
       },
     })
+
+    await sendLeadNotification({
+      type: 'Enquiry',
+      fields: { Name: name, Phone: phone, Email: email, Message: message },
+    })
+
     return { success: true }
   } catch (error) {
     console.error('Error submitting enquiry:', error)

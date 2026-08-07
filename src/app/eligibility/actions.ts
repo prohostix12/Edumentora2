@@ -1,6 +1,7 @@
 "use server"
 
 import { PrismaClient } from '@prisma/client'
+import { sendLeadNotification } from '@/lib/mail'
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 const prisma = globalForPrisma.prisma || new PrismaClient()
@@ -29,6 +30,19 @@ export async function submitEligibilityRequest(formData: FormData) {
         courseCompletedYear,
       },
     })
+
+    await sendLeadNotification({
+      type: 'Eligibility Request',
+      fields: {
+        Name: name,
+        'Contact Number': phone,
+        Place: place,
+        Course: course,
+        'Previous University': previousUniversity,
+        'Course Completed Year': courseCompletedYear,
+      },
+    })
+
     return { success: true }
   } catch (error) {
     console.error('Error submitting eligibility request:', error)
