@@ -17,7 +17,7 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function Home() {
   let reviews: any[] = [];
@@ -64,11 +64,23 @@ export default async function Home() {
     console.error("Failed to fetch reels:", error);
   }
 
+  let statUniversities: { id: string; name: string; logo: string }[] = [];
+  try {
+    const unis = await prisma.university.findMany({
+      where: { logo: { not: null } },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, name: true, logo: true },
+    });
+    statUniversities = unis.filter(u => !!u.logo) as { id: string; name: string; logo: string }[];
+  } catch (error) {
+    console.error("Failed to fetch universities:", error);
+  }
+
   return (
     <main className="min-h-screen bg-white font-[Poppins]">
       <Header />
       <Hero />
-      <StatsSection />
+      <StatsSection universities={statUniversities} />
       <MissionVisionSection />
       <ContactSection />
       <AboutInstituteSection />

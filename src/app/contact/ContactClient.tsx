@@ -38,12 +38,14 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
   return (
     <main className="min-h-screen bg-[#F9F9F9] font-[Poppins]">
       <Header />
-      <PageBanner 
-        badge="Our Offices" 
-        title="Get In Touch" 
-        subtitle="Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals."
-        isGradientText={true}
-      />
+      <div id="contact-hero" className="scroll-mt-24">
+        <PageBanner
+          badge="Our Offices"
+          title="Get In Touch"
+          subtitle="Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions. We are here to help you achieve your educational goals."
+          isGradientText={true}
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24">
 

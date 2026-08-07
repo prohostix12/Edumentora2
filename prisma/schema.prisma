@@ -110,6 +110,7 @@ model University {
 
 model UniversityProgram {
   id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  programName          String
   courseDescription    String
   courseDuration       String
   eligibilityCriteria  String[]

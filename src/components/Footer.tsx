@@ -50,8 +50,8 @@ export default function Footer() {
   ];
 
   const locations = [
-    { name: "Calicut", href: "#" },
-    { name: "Kochi", href: "#" }
+    { name: "Calicut", href: "" },
+    { name: "Kochi", href: "" }
   ];
 
   const scrollToTop = () => {
@@ -117,10 +117,10 @@ export default function Footer() {
               <ul className="space-y-4">
                 {locations.map((loc, index) => (
                   <li key={index}>
-                    <span className="group flex items-center text-gray-400 cursor-default font-medium text-sm">
-                      <MapPin className="w-4 h-4 mr-3 text-gray-500" />
+                    <Link href="/contact#contact-hero" className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-medium text-sm">
+                      <MapPin className="w-4 h-4 mr-3 text-gray-500 group-hover:text-[#D2042D] transition-colors" />
                       {loc.name}
-                    </span>
+                    </Link>
                   </li>
                 ))}
               </ul>

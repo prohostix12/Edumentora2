@@ -5,6 +5,7 @@ import { CheckCircle2, Briefcase, Wallet, Clock, ArrowRight, X } from 'lucide-re
 
 type UniversityProgram = {
   id: string;
+  programName: string;
   courseDescription: string;
   courseDuration: string;
   eligibilityCriteria: string[];
@@ -12,25 +13,23 @@ type UniversityProgram = {
   feeStructure: string | null;
 };
 
-function ProgramCard({ program, onViewMore }: { program: UniversityProgram; onViewMore: () => void }) {
+function ProgramRow({ program, onViewMore }: { program: UniversityProgram; onViewMore: () => void }) {
   return (
-    <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
-      <div className="flex-1 min-w-0">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 px-6 py-5">
+      <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+        <span className="font-bold text-[#002147] truncate">{program.programName}</span>
         {program.courseDuration && (
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#002147] bg-[#D2B48C]/20 px-3 py-1 rounded-full mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#002147] bg-[#D2B48C]/20 px-3 py-1 rounded-full w-fit flex-shrink-0">
             <Clock className="w-3.5 h-3.5" />
             {program.courseDuration}
-          </div>
+          </span>
         )}
-        <p className="text-gray-700 leading-relaxed line-clamp-2">
-          {program.courseDescription}
-        </p>
       </div>
 
       <button
         type="button"
         onClick={onViewMore}
-        className="self-start md:self-center flex-shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-bold text-white bg-[#002147] hover:bg-[#002147]/90 rounded-full transition-colors"
+        className="self-start sm:self-center flex-shrink-0 inline-flex items-center gap-1.5 px-5 py-2 text-sm font-bold text-white bg-[#002147] hover:bg-[#002147]/90 rounded-full transition-colors"
       >
         View More
         <ArrowRight className="w-4 h-4" />
@@ -50,11 +49,16 @@ function ProgramModal({ program, onClose }: { program: UniversityProgram; onClos
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl sticky top-0">
-          <div className="flex items-center gap-2 text-white font-bold text-lg">
-            <Clock className="w-4 h-4 text-[#D2B48C]" />
-            {program.courseDuration || 'Program Details'}
+          <div className="min-w-0">
+            <div className="text-white font-bold text-lg truncate">{program.programName}</div>
+            {program.courseDuration && (
+              <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#D2B48C] mt-1">
+                <Clock className="w-3.5 h-3.5" />
+                {program.courseDuration}
+              </div>
+            )}
           </div>
-          <button onClick={onClose} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full">
+          <button onClick={onClose} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full flex-shrink-0 ml-4">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -122,9 +126,9 @@ export default function UniversityProgramsSection({ programs }: { programs: Univ
       <h3 className="text-xl font-bold text-[#002147] mb-6 border-t border-gray-100 pt-8">
         Our University Programs
       </h3>
-      <div className="space-y-6 mb-10">
+      <div className="bg-gray-50 rounded-2xl border border-gray-100 divide-y divide-gray-200 mb-10 overflow-hidden">
         {programs.map((program) => (
-          <ProgramCard key={program.id} program={program} onViewMore={() => setActiveProgram(program)} />
+          <ProgramRow key={program.id} program={program} onViewMore={() => setActiveProgram(program)} />
         ))}
       </div>
 

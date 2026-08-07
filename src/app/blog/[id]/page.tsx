@@ -14,7 +14,7 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function BlogDetailPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;

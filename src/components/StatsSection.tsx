@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView, animate } from 'framer-motion';
-import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import Link from 'next/link';
 import { Award, Briefcase } from 'lucide-react';
+
+type StatUniversity = { id: string; name: string; logo: string };
 
 function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: number, to: number, duration?: number, suffix?: string }) {
   const ref = useRef(null);
@@ -27,13 +28,21 @@ function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: n
   return <span ref={ref}>{value}{suffix}</span>;
 }
 
-export default function StatsSection() {
-  const logos = [
-    { name: 'Manipur International University', id: 1, image: '/manipur_international_university.png' },
-    { name: 'Maya Devi University', id: 2, image: '/maya-devi-university.png' },
-    { name: 'Glocal University', id: 3, image: '/glocal_logo.png' },
-    { name: 'ARNI University', id: 4, image: '/arni-university.png' },
-  ];
+export default function StatsSection({ universities = [] }: { universities?: StatUniversity[] }) {
+  const slots = Math.min(4, universities.length) || 4;
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    if (universities.length <= slots) return;
+    const timer = setInterval(() => {
+      setOffset((prev) => (prev + slots) % universities.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [universities.length, slots]);
+
+  const visibleLogos = Array.from({ length: Math.min(slots, universities.length) }, (_, i) =>
+    universities[(offset + i) % universities.length]
+  );
 
   return (
     <section className="relative z-20 w-full bg-[#FAF7F0] overflow-hidden">
@@ -132,40 +141,36 @@ export default function StatsSection() {
 
           {/* Universities Container */}
           <div className="flex flex-wrap xl:flex-nowrap justify-center gap-[32px] flex-1">
-            {logos.map((logo, i) => {
-              const filterName = logo.name === 'ARNI University' 
-                ? 'Arni University' 
-                : logo.name === 'Manipur International University'
-                  ? 'All'
-                  : logo.name;
-              
-              // Alternate vertical offsets for a sine wave feel on large screens
+            {/* Alternate vertical offsets for a sine wave feel on large screens */}
+            {(() => {
               const offsets = ['xl:-translate-y-8', 'xl:translate-y-4', 'xl:-translate-y-4', 'xl:translate-y-8'];
-              
               return (
-                <motion.div
-                  key={logo.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] ${offsets[i]}`}
-                >
-                  <Link href={`/universities?filter=${encodeURIComponent(filterName)}#universities-list`} className="block w-full h-full">
-                    <div className="bg-white rounded-[24px] w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={logo.image}
-                          alt={logo.name}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
+                <AnimatePresence mode="popLayout">
+                  {visibleLogos.map((logo, i) => (
+                    <motion.div
+                      key={logo.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] ${offsets[i]}`}
+                    >
+                      <Link href={`/universities?filter=${encodeURIComponent(logo.name)}#universities-list`} className="block w-full h-full">
+                        <div className="bg-white rounded-[24px] w-full h-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#ECECEC] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 p-4">
+                          <img
+                            src={logo.logo}
+                            alt={logo.name}
+                            className="w-full h-full object-contain"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               );
-            })}
+            })()}
           </div>
 
           {/* Right Stat */}

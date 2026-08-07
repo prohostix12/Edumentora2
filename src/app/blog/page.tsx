@@ -11,7 +11,7 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function BlogPage() {
   const blogs = await prisma.blog.findMany({

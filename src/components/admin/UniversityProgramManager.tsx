@@ -12,6 +12,7 @@ type University = {
 type UniversityProgram = {
   id: string;
   universityId: string;
+  programName: string;
   courseDescription: string;
   courseDuration: string;
   eligibilityCriteria: string[];
@@ -22,6 +23,7 @@ type UniversityProgram = {
 
 type FormState = {
   universityId: string;
+  programName: string;
   courseDescription: string;
   courseDuration: string;
   eligibilityCriteria: string[];
@@ -31,6 +33,7 @@ type FormState = {
 
 const emptyForm: FormState = {
   universityId: '',
+  programName: '',
   courseDescription: '',
   courseDuration: '',
   eligibilityCriteria: [''],
@@ -115,6 +118,7 @@ export default function UniversityProgramManager({
     setEditingProgram(program);
     setForm({
       universityId: program.universityId,
+      programName: program.programName,
       courseDescription: program.courseDescription,
       courseDuration: program.courseDuration,
       eligibilityCriteria: program.eligibilityCriteria.length > 0 ? program.eligibilityCriteria : [''],
@@ -135,6 +139,7 @@ export default function UniversityProgramManager({
 
     const formData = new FormData();
     formData.set('universityId', form.universityId);
+    formData.set('programName', form.programName);
     formData.set('courseDescription', form.courseDescription);
     formData.set('courseDuration', form.courseDuration);
     formData.set('feeStructure', form.feeStructure);
@@ -178,6 +183,7 @@ export default function UniversityProgramManager({
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Program Name</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">University Name</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Description</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Course Duration</th>
@@ -190,13 +196,14 @@ export default function UniversityProgramManager({
             <tbody className="divide-y divide-gray-100">
               {initialPrograms.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
                     No university programs yet. Click &ldquo;Create New University Program&rdquo; to add one.
                   </td>
                 </tr>
               ) : (
                 initialPrograms.map((program) => (
                   <tr key={program.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-sm font-bold text-gray-900 whitespace-nowrap">{program.programName}</td>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{program.university?.name || '—'}</td>
                     <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={program.courseDescription}>
                       {program.courseDescription}
@@ -257,6 +264,19 @@ export default function UniversityProgramManager({
               </div>
 
               <form onSubmit={handleSubmit} className="p-6 space-y-5">
+                {/* 0. Program Name */}
+                <div className="space-y-1.5">
+                  <label className="text-sm font-semibold text-gray-700">Program Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={form.programName}
+                    onChange={(e) => setForm({ ...form, programName: e.target.value })}
+                    placeholder="e.g. B.Tech Computer Science"
+                    className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+                  />
+                </div>
+
                 {/* 1. Select University */}
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-gray-700">Select University</label>

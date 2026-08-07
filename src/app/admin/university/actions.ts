@@ -51,6 +51,8 @@ export async function createUniversity(formData: FormData) {
   });
   
   revalidatePath('/admin/university');
+  revalidatePath('/universities');
+  revalidatePath('/');
 }
 
 export async function updateUniversity(id: string, formData: FormData) {
@@ -108,14 +110,20 @@ export async function updateUniversity(id: string, formData: FormData) {
   });
   
   revalidatePath('/admin/university');
+  revalidatePath('/universities');
+  revalidatePath(`/universities/${id}`);
+  revalidatePath('/');
 }
 
 export async function deleteUniversity(id: string) {
   await prisma.university.delete({
     where: { id },
   });
-  
+
   revalidatePath('/admin/university');
+  revalidatePath('/universities');
+  revalidatePath(`/universities/${id}`);
+  revalidatePath('/');
 }
 
 export async function addCertificates(id: string, base64Images: string[]) {
@@ -131,6 +139,7 @@ export async function addCertificates(id: string, base64Images: string[]) {
   });
 
   revalidatePath('/admin/university');
+  revalidatePath(`/universities/${id}`);
 }
 
 export async function removeCertificate(id: string, urlToRemove: string, currentCertificates: string[]) {
@@ -146,4 +155,5 @@ export async function removeCertificate(id: string, urlToRemove: string, current
   });
 
   revalidatePath('/admin/university');
+  revalidatePath(`/universities/${id}`);
 }
