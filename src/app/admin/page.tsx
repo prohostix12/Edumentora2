@@ -69,6 +69,9 @@ export default async function AdminDashboard() {
     enquiryCount,
     eligibilityCount,
     blogCount,
+    universityCount,
+    universityProgramCount,
+    programCount,
   ] = await Promise.all([
     prisma.enquiryList.findMany({ orderBy: { createdAt: 'desc' }, take: 5 }),
     prisma.eligibilityRequest.findMany({ orderBy: { createdAt: 'desc' }, take: 5 }),
@@ -79,6 +82,9 @@ export default async function AdminDashboard() {
     prisma.enquiryList.count(),
     prisma.eligibilityRequest.count(),
     prisma.blog.count(),
+    prisma.university.count(),
+    prisma.universityProgram.count(),
+    prisma.program.count(),
   ]);
 
   return (
@@ -100,6 +106,18 @@ export default async function AdminDashboard() {
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center h-32">
           <p className="text-gray-500 font-medium mb-1">Published Blogs</p>
           <h2 className="text-4xl font-bold text-[#002147]">{blogCount}</h2>
+        </div>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center h-32">
+          <p className="text-gray-500 font-medium mb-1">Total Universities</p>
+          <h2 className="text-4xl font-bold text-[#002147]">{universityCount}</h2>
+        </div>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center h-32">
+          <p className="text-gray-500 font-medium mb-1">Available University Programs</p>
+          <h2 className="text-4xl font-bold text-[#002147]">{universityProgramCount}</h2>
+        </div>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center h-32">
+          <p className="text-gray-500 font-medium mb-1">Total Programs</p>
+          <h2 className="text-4xl font-bold text-[#002147]">{programCount}</h2>
         </div>
       </div>
 
