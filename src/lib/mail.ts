@@ -28,11 +28,15 @@ export async function sendLeadNotification(params: {
     .map(([label, value]) => `<tr><td style="padding:6px 12px;font-weight:600;color:#002147;border-bottom:1px solid #eee;">${label}</td><td style="padding:6px 12px;color:#333;border-bottom:1px solid #eee;">${value}</td></tr>`)
     .join('');
 
+  const text = `New ${params.type} received on the Edumentora website:\n\n` +
+    Object.entries(params.fields).map(([label, value]) => `${label}: ${value}`).join('\n');
+
   try {
     await transporter.sendMail({
       from: `Edumentora Website <${process.env.GMAIL_USER}>`,
       to: LEAD_NOTIFICATION_EMAIL,
       subject: `New ${params.type} Lead — Edumentora`,
+      text,
       html: `
         <div style="font-family:sans-serif;max-width:520px;margin:0 auto;">
           <div style="background:#002147;color:#fff;padding:16px 20px;border-radius:12px 12px 0 0;font-size:18px;font-weight:700;">
