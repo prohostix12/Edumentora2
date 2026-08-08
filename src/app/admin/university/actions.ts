@@ -15,6 +15,8 @@ export async function createUniversity(formData: FormData) {
   const logo = formData.get('logo') as string | null;
   const certs = formData.getAll('certificates') as string[];
   const validCerts = certs.filter(c => c.trim() !== '');
+  const brochureFileName = formData.get('brochureFileName') as string | null;
+  const brochureFileUrl = formData.get('brochureFileUrl') as string | null;
 
   const visionHeading = formData.get('visionHeading') as string | null;
   const visionPara = formData.get('visionPara') as string | null;
@@ -29,7 +31,7 @@ export async function createUniversity(formData: FormData) {
 
   if (!name || !location || !description) return;
 
-  await prisma.university.create({
+  const university = await prisma.university.create({
     data: {
       name,
       location,
@@ -49,7 +51,17 @@ export async function createUniversity(formData: FormData) {
       btechProgramsPara,
     },
   });
-  
+
+  if (brochureFileUrl && brochureFileUrl.startsWith('data:application/pdf') && brochureFileName) {
+    await prisma.brochure.create({
+      data: {
+        universityId: university.id,
+        fileName: brochureFileName,
+        fileUrl: brochureFileUrl,
+      },
+    });
+  }
+
   revalidatePath('/admin/university');
   revalidatePath('/universities');
   revalidatePath('/');
@@ -63,6 +75,8 @@ export async function updateUniversity(id: string, formData: FormData) {
   const logo = formData.get('logo') as string | null;
   const certs = formData.getAll('certificates') as string[];
   const validCerts = certs.filter(c => c.trim() !== '');
+  const brochureFileName = formData.get('brochureFileName') as string | null;
+  const brochureFileUrl = formData.get('brochureFileUrl') as string | null;
 
   const visionHeading = formData.get('visionHeading') as string | null;
   const visionPara = formData.get('visionPara') as string | null;
@@ -108,7 +122,22 @@ export async function updateUniversity(id: string, formData: FormData) {
     where: { id },
     data,
   });
-  
+
+  if (brochureFileUrl && brochureFileUrl.startsWith('data:application/pdf') && brochureFileName) {
+    await prisma.brochure.upsert({
+      where: { universityId: id },
+      create: {
+        universityId: id,
+        fileName: brochureFileName,
+        fileUrl: brochureFileUrl,
+      },
+      update: {
+        fileName: brochureFileName,
+        fileUrl: brochureFileUrl,
+      },
+    });
+  }
+
   revalidatePath('/admin/university');
   revalidatePath('/universities');
   revalidatePath(`/universities/${id}`);
@@ -124,6 +153,17 @@ export async function deleteUniversity(id: string) {
   revalidatePath('/universities');
   revalidatePath(`/universities/${id}`);
   revalidatePath('/');
+}
+
+export async function removeBrochure(universityId: string) {
+  if (!universityId) return;
+
+  await prisma.brochure.deleteMany({
+    where: { universityId },
+  });
+
+  revalidatePath('/admin/university');
+  revalidatePath(`/universities/${universityId}`);
 }
 
 export async function addCertificates(id: string, base64Images: string[]) {

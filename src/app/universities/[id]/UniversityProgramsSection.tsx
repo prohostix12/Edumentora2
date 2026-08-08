@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CheckCircle2, Briefcase, Wallet, Clock, ArrowRight, X } from 'lucide-react';
+import { CheckCircle2, Briefcase, Wallet, Clock, ArrowRight, X, Layers } from 'lucide-react';
 
 type UniversityProgram = {
   id: string;
-  programName: string;
-  courseDescription: string;
-  courseDuration: string;
+  programName: string | null;
+  courseDescription: string | null;
+  specializations: string[];
+  courseDuration: string | null;
   eligibilityCriteria: string[];
   careerOpportunities: string[];
   feeStructure: string | null;
@@ -17,7 +18,7 @@ function ProgramRow({ program, onViewMore }: { program: UniversityProgram; onVie
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 px-6 py-5">
       <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-        <span className="font-bold text-[#002147] truncate">{program.programName}</span>
+        <span className="font-bold text-[#002147] truncate">{program.programName || 'Untitled Program'}</span>
         {program.courseDuration && (
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#002147] bg-[#D2B48C]/20 px-3 py-1 rounded-full w-fit flex-shrink-0">
             <Clock className="w-3.5 h-3.5" />
@@ -50,7 +51,7 @@ function ProgramModal({ program, onClose }: { program: UniversityProgram; onClos
       >
         <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl sticky top-0">
           <div className="min-w-0">
-            <div className="text-white font-bold text-lg truncate">{program.programName}</div>
+            <div className="text-white font-bold text-lg truncate">{program.programName || 'Untitled Program'}</div>
             {program.courseDuration && (
               <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[#D2B48C] mt-1">
                 <Clock className="w-3.5 h-3.5" />
@@ -64,9 +65,27 @@ function ProgramModal({ program, onClose }: { program: UniversityProgram; onClos
         </div>
 
         <div className="p-6 md:p-8 space-y-6">
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-            {program.courseDescription}
-          </p>
+          {program.courseDescription && (
+            <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              {program.courseDescription}
+            </p>
+          )}
+
+          {program.specializations.length > 0 && (
+            <div>
+              <h4 className="flex items-center gap-2 text-sm font-bold text-[#002147] uppercase tracking-wide mb-3">
+                <Layers className="w-4 h-4 text-[#D2B48C]" />
+                Specializations
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {program.specializations.map((item, i) => (
+                  <span key={i} className="px-3 py-1.5 bg-[#002147]/5 text-[#002147] text-sm font-medium rounded-full">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {program.eligibilityCriteria.length > 0 && (

@@ -6,7 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import PageBanner from '@/components/PageBanner';
 import { PrismaClient } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import { MapPin, Award, ArrowLeft } from 'lucide-react';
+import { MapPin, Award, ArrowLeft, FileText, Download } from 'lucide-react';
 import Link from 'next/link';
 import AdditionalUniversityDetails from './ViewMoreDetails';
 import UniversityProgramsSection from './UniversityProgramsSection';
@@ -27,6 +27,9 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
 
   const university = await prisma.university.findUnique({
     where: { id },
+    include: {
+      brochure: true,
+    },
   });
 
   if (!university) {
@@ -82,6 +85,28 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap mb-10">
               {university.description}
             </div>
+
+            {university.brochure && (
+              <div className="mb-10 flex items-center justify-between gap-4 p-6 bg-[#002147]/5 rounded-2xl border border-[#002147]/10">
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="w-12 h-12 rounded-xl bg-[#8B0000]/10 flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-6 h-6 text-[#8B0000]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-[#002147]">University Brochure</h4>
+                    <p className="text-sm text-gray-500 truncate">{university.brochure.fileName}</p>
+                  </div>
+                </div>
+                <a
+                  href={university.brochure.fileUrl}
+                  download={university.brochure.fileName}
+                  className="flex-shrink-0 inline-flex items-center gap-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold text-sm py-3 px-5 rounded-xl shadow-sm transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  Download
+                </a>
+              </div>
+            )}
 
             {university.certificates && university.certificates.length > 0 && (
               <>

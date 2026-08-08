@@ -13,6 +13,9 @@ export default async function AdminUniversityPage() {
     orderBy: {
       createdAt: 'desc',
     },
+    include: {
+      brochure: true,
+    },
   });
 
   return (

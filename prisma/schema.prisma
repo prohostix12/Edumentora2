@@ -103,16 +103,31 @@ model University {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  programs UniversityProgram[]
+  programs  UniversityProgram[]
+  brochure  Brochure?
 
   @@map("universities")
 }
 
+model Brochure {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileName  String
+  fileUrl   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  universityId String     @unique @db.ObjectId
+  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+
+  @@map("brochures")
+}
+
 model UniversityProgram {
   id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-  programName          String
-  courseDescription    String
-  courseDuration       String
+  programName          String?
+  courseDescription    String?
+  specializations      String[]
+  courseDuration       String?
   eligibilityCriteria  String[]
   careerOpportunities  String[]
   feeStructure         String?

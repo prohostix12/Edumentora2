@@ -12,9 +12,10 @@ type University = {
 type UniversityProgram = {
   id: string;
   universityId: string;
-  programName: string;
-  courseDescription: string;
-  courseDuration: string;
+  programName: string | null;
+  courseDescription: string | null;
+  specializations: string[];
+  courseDuration: string | null;
   eligibilityCriteria: string[];
   careerOpportunities: string[];
   feeStructure: string | null;
@@ -25,6 +26,7 @@ type FormState = {
   universityId: string;
   programName: string;
   courseDescription: string;
+  specializations: string[];
   courseDuration: string;
   eligibilityCriteria: string[];
   careerOpportunities: string[];
@@ -35,6 +37,7 @@ const emptyForm: FormState = {
   universityId: '',
   programName: '',
   courseDescription: '',
+  specializations: [''],
   courseDuration: '',
   eligibilityCriteria: [''],
   careerOpportunities: [''],
@@ -118,9 +121,10 @@ export default function UniversityProgramManager({
     setEditingProgram(program);
     setForm({
       universityId: program.universityId,
-      programName: program.programName,
-      courseDescription: program.courseDescription,
-      courseDuration: program.courseDuration,
+      programName: program.programName || '',
+      courseDescription: program.courseDescription || '',
+      specializations: program.specializations.length > 0 ? program.specializations : [''],
+      courseDuration: program.courseDuration || '',
       eligibilityCriteria: program.eligibilityCriteria.length > 0 ? program.eligibilityCriteria : [''],
       careerOpportunities: program.careerOpportunities.length > 0 ? program.careerOpportunities : [''],
       feeStructure: program.feeStructure || '',
@@ -143,6 +147,7 @@ export default function UniversityProgramManager({
     formData.set('courseDescription', form.courseDescription);
     formData.set('courseDuration', form.courseDuration);
     formData.set('feeStructure', form.feeStructure);
+    form.specializations.filter(v => v.trim()).forEach(v => formData.append('specializations', v));
     form.eligibilityCriteria.filter(v => v.trim()).forEach(v => formData.append('eligibilityCriteria', v));
     form.careerOpportunities.filter(v => v.trim()).forEach(v => formData.append('careerOpportunities', v));
 
@@ -186,6 +191,7 @@ export default function UniversityProgramManager({
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Program Name</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">University Name</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Description</th>
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Specializations</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Course Duration</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Eligibility Criteria</th>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Career Opportunities</th>
@@ -196,19 +202,22 @@ export default function UniversityProgramManager({
             <tbody className="divide-y divide-gray-100">
               {initialPrograms.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={9} className="px-6 py-12 text-center text-gray-500">
                     No university programs yet. Click &ldquo;Create New University Program&rdquo; to add one.
                   </td>
                 </tr>
               ) : (
                 initialPrograms.map((program) => (
                   <tr key={program.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 text-sm font-bold text-gray-900 whitespace-nowrap">{program.programName}</td>
+                    <td className="px-6 py-4 text-sm font-bold text-gray-900 whitespace-nowrap">{program.programName || '—'}</td>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{program.university?.name || '—'}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={program.courseDescription}>
-                      {program.courseDescription}
+                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={program.courseDescription || ''}>
+                      {program.courseDescription || '—'}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{program.courseDuration}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={program.specializations.join(', ')}>
+                      {program.specializations.length > 0 ? program.specializations.join(', ') : '—'}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{program.courseDuration || '—'}</td>
                     <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={program.eligibilityCriteria.join(', ')}>
                       {program.eligibilityCriteria.length > 0 ? program.eligibilityCriteria.join(', ') : '—'}
                     </td>
@@ -269,7 +278,6 @@ export default function UniversityProgramManager({
                   <label className="text-sm font-semibold text-gray-700">Program Name</label>
                   <input
                     type="text"
-                    required
                     value={form.programName}
                     onChange={(e) => setForm({ ...form, programName: e.target.value })}
                     placeholder="e.g. B.Tech Computer Science"
@@ -281,7 +289,6 @@ export default function UniversityProgramManager({
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-gray-700">Select University</label>
                   <select
-                    required
                     value={form.universityId}
                     onChange={(e) => setForm({ ...form, universityId: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] bg-white"
@@ -297,7 +304,6 @@ export default function UniversityProgramManager({
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-gray-700">Course Description</label>
                   <textarea
-                    required
                     rows={4}
                     value={form.courseDescription}
                     onChange={(e) => setForm({ ...form, courseDescription: e.target.value })}
@@ -305,12 +311,18 @@ export default function UniversityProgramManager({
                   />
                 </div>
 
+                {/* Specializations */}
+                <BulletListEditor
+                  label="Specializations"
+                  items={form.specializations}
+                  onChange={(items) => setForm({ ...form, specializations: items })}
+                />
+
                 {/* Course Duration */}
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-gray-700">Course Duration</label>
                   <input
                     type="text"
-                    required
                     value={form.courseDuration}
                     onChange={(e) => setForm({ ...form, courseDuration: e.target.value })}
                     placeholder="e.g. 4 Years"

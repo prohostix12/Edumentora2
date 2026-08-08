@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useTransition, useState, useEffect } from 'react';
-import { createUniversity, deleteUniversity, updateUniversity } from '@/app/admin/university/actions';
-import { Trash2, Plus, Upload, MapPin, Edit2, X, Eye, Save } from 'lucide-react';
+import { createUniversity, deleteUniversity, updateUniversity, removeBrochure } from '@/app/admin/university/actions';
+import { Trash2, Plus, Upload, MapPin, Edit2, X, Eye, Save, FileText, Download } from 'lucide-react';
 
 type University = {
   id: string;
@@ -22,6 +22,7 @@ type University = {
   whyChoosePara?: string | null;
   btechProgramsHeading?: string | null;
   btechProgramsPara?: string | null;
+  brochure?: { id: string; fileName: string; fileUrl: string } | null;
 };
 
 const hasText = (v?: string | null) => !!v && v.trim().length > 0;
@@ -32,6 +33,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
   const [mainImageBase64, setMainImageBase64] = useState<string | null>(null);
   const [logoBase64, setLogoBase64] = useState<string | null>(null);
   const [textCertificates, setTextCertificates] = useState<string[]>(['']);
+  const [brochureFile, setBrochureFile] = useState<{ fileName: string; fileUrl: string } | null>(null);
   const [editingUniversity, setEditingUniversity] = useState<University | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [viewingUniversity, setViewingUniversity] = useState<University | null>(null);
@@ -82,6 +84,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     setMainImageBase64(null);
     setLogoBase64(null);
     setTextCertificates(['']);
+    setBrochureFile(null);
     setIsFormOpen(true);
   };
 
@@ -90,6 +93,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     setMainImageBase64(uni.mainImage || null);
     setLogoBase64(uni.logo || null);
     setTextCertificates(uni.certificates.length > 0 ? [...uni.certificates, ''] : ['']);
+    setBrochureFile(uni.brochure ? { fileName: uni.brochure.fileName, fileUrl: uni.brochure.fileUrl } : null);
     setIsFormOpen(true);
   };
 
@@ -99,6 +103,7 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     setMainImageBase64(null);
     setLogoBase64(null);
     setTextCertificates(['']);
+    setBrochureFile(null);
   };
 
   const handleDeleteUniversity = (id: string) => {
@@ -171,6 +176,32 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
     } catch (error) {
       console.error("Error processing logo:", error);
       alert("Failed to process logo.");
+    }
+  };
+
+  const handleBrochureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf') {
+      alert('Please select a PDF file for the brochure.');
+      e.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setBrochureFile({ fileName: file.name, fileUrl: event.target?.result as string });
+    };
+    reader.onerror = () => alert('Failed to read the brochure file.');
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  const handleRemoveBrochure = () => {
+    setBrochureFile(null);
+    if (editingUniversity?.brochure) {
+      startTransition(() => {
+        removeBrochure(editingUniversity.id);
+      });
     }
   };
 
@@ -273,6 +304,8 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                 <form key={editingUniversity ? editingUniversity.id : 'new'} id="add-university-form" action={handleCreateOrUpdateUniversity} className="flex flex-col gap-4">
                   <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
                   <input type="hidden" name="logo" value={logoBase64 || ''} />
+                  <input type="hidden" name="brochureFileName" value={brochureFile?.fileName || ''} />
+                  <input type="hidden" name="brochureFileUrl" value={brochureFile?.fileUrl || ''} />
                   <div className="flex flex-col md:flex-row gap-4">
                     <input
                       type="text"
@@ -368,6 +401,30 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                     ))}
                   </div>
 
+                  {/* Brochure (PDF) Upload */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-semibold text-gray-700">University Brochure (PDF)</label>
+                    {brochureFile ? (
+                      <div className="flex items-center gap-3 px-4 py-3 border border-gray-200 rounded-xl bg-gray-50">
+                        <FileText className="w-6 h-6 text-[#8B0000] flex-shrink-0" />
+                        <span className="flex-1 text-sm font-medium text-[#002147] truncate">{brochureFile.fileName}</span>
+                        <label className="text-xs font-semibold text-blue-600 hover:text-blue-700 cursor-pointer">
+                          Replace
+                          <input type="file" accept="application/pdf" className="hidden" onChange={handleBrochureChange} />
+                        </label>
+                        <button type="button" onClick={handleRemoveBrochure} className="text-xs font-semibold text-red-500 hover:text-red-600">
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center gap-2 p-6 border border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer relative">
+                        <Upload className="w-5 h-5 text-gray-400" />
+                        <span className="text-sm font-medium text-gray-500">Upload brochure PDF</span>
+                        <input type="file" accept="application/pdf" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleBrochureChange} />
+                      </div>
+                    )}
+                  </div>
+
                   {/* Extra Details Sections */}
                   <div className="pt-4 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
 
@@ -450,6 +507,17 @@ export default function UniversityManager({ initialUniversities }: { initialUniv
                 </div>
 
                 <p className="text-gray-700 leading-relaxed">{viewingUniversity.description}</p>
+
+                {viewingUniversity.brochure && (
+                  <a
+                    href={viewingUniversity.brochure.fileUrl}
+                    download={viewingUniversity.brochure.fileName}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#8B0000]/5 text-[#8B0000] font-semibold text-sm rounded-xl hover:bg-[#8B0000]/10 transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Brochure
+                  </a>
+                )}
 
                 {viewingUniversity.certificates.length > 0 && (
                   <div>
