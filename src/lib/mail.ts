@@ -1,18 +1,22 @@
 import nodemailer from 'nodemailer';
 
-const LEAD_NOTIFICATION_EMAIL = process.env.LEAD_NOTIFICATION_EMAIL || 'abheeshkumaran7@gmail.com';
+const LEAD_NOTIFICATION_EMAIL = process.env.LEAD_NOTIFICATION_EMAIL || 'info@edumentora.com';
 
 function getTransporter() {
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT) || 465;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
 
-  if (!user || !pass) {
-    console.error('Email notification skipped: GMAIL_USER / GMAIL_APP_PASSWORD not configured in .env');
+  if (!host || !user || !pass) {
+    console.error('Email notification skipped: SMTP_HOST / SMTP_USER / SMTP_PASS not configured in .env');
     return null;
   }
 
   return nodemailer.createTransport({
-    service: 'gmail',
+    host,
+    port,
+    secure: port === 465,
     auth: { user, pass },
   });
 }
@@ -33,7 +37,7 @@ export async function sendLeadNotification(params: {
 
   try {
     await transporter.sendMail({
-      from: `Edumentora Website <${process.env.GMAIL_USER}>`,
+      from: `Edumentora Website <${process.env.SMTP_USER}>`,
       to: LEAD_NOTIFICATION_EMAIL,
       subject: `New ${params.type} Lead — Edumentora`,
       text,
