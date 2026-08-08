@@ -6,11 +6,11 @@ import { Plus, Trash2, Edit2, Building, Phone, Smartphone, Mail, FileText } from
 
 type Contact = {
   id: string;
-  department: string;
+  department: string | null;
   description: string | null;
-  lanphone: string;
-  mob: string;
-  email: string;
+  lanphone: string | null;
+  mob: string | null;
+  email: string | null;
 };
 
 export default function ContactManager({ initialContacts }: { initialContacts: Contact[] }) {
@@ -54,7 +54,7 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-[#002147]">
-            {editingContact ? `Update Contact: ${editingContact.department}` : 'Add New Contact'}
+            {editingContact ? `Update Contact: ${editingContact.department || 'Untitled'}` : 'Add New Contact'}
           </h2>
           {editingContact && (
             <button onClick={handleCancelEdit} className="text-sm text-red-500 hover:text-red-600 font-medium">
@@ -70,7 +70,6 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="department"
                 defaultValue={editingContact?.department || ''}
-                required
                 className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
@@ -91,7 +90,6 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="lanphone"
                 defaultValue={editingContact?.lanphone || ''}
-                required
                 className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
@@ -102,7 +100,6 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="text"
                 name="mob"
                 defaultValue={editingContact?.mob || ''}
-                required
                 className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
@@ -113,7 +110,6 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 type="email"
                 name="email"
                 defaultValue={editingContact?.email || ''}
-                required
                 className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
@@ -153,7 +149,9 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
               </button>
             </div>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-2 pr-20">{contact.department}</h3>
+            {contact.department && (
+              <h3 className="text-xl font-bold text-gray-900 mb-2 pr-20">{contact.department}</h3>
+            )}
 
             {contact.description && (
               <p className="text-sm text-gray-500 mb-4 flex items-start gap-2">

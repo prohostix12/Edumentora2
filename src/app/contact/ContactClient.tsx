@@ -9,11 +9,11 @@ import { submitEnquiry } from './actions';
 
 type Contact = {
   id: string;
-  department: string;
+  department: string | null;
   description: string | null;
-  lanphone: string;
-  mob: string;
-  email: string;
+  lanphone: string | null;
+  mob: string | null;
+  email: string | null;
 };
 
 export default function ContactClient({ contacts }: { contacts: Contact[] }) {
@@ -116,11 +116,15 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
           </div>
           
           <div className="flex flex-wrap justify-center gap-8 mb-8">
-            {contacts.map((contact) => (
+            {contacts
+              .filter((contact) => contact.department || contact.description || contact.lanphone || contact.mob || contact.email)
+              .map((contact) => (
               <div key={contact.id} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col items-center text-center space-y-4">
-                <h3 className="text-xl font-bold text-[#002147]">
-                  {contact.department}
-                </h3>
+                {contact.department && (
+                  <h3 className="text-xl font-bold text-[#002147]">
+                    {contact.department}
+                  </h3>
+                )}
 
                 {contact.description && (
                   <p className="text-gray-600 text-sm -mt-2">{contact.description}</p>

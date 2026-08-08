@@ -8,13 +8,11 @@ const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export async function createContact(formData: FormData) {
-  const department = formData.get('department') as string;
+  const department = (formData.get('department') as string) || null;
   const description = (formData.get('description') as string) || null;
-  const lanphone = formData.get('lanphone') as string;
-  const mob = formData.get('mob') as string;
-  const email = formData.get('email') as string;
-
-  if (!department || !lanphone || !mob || !email) return;
+  const lanphone = (formData.get('lanphone') as string) || null;
+  const mob = (formData.get('mob') as string) || null;
+  const email = (formData.get('email') as string) || null;
 
   await prisma.contact.create({
     data: {
@@ -31,13 +29,11 @@ export async function createContact(formData: FormData) {
 }
 
 export async function updateContact(id: string, formData: FormData) {
-  const department = formData.get('department') as string;
+  const department = (formData.get('department') as string) || null;
   const description = (formData.get('description') as string) || null;
-  const lanphone = formData.get('lanphone') as string;
-  const mob = formData.get('mob') as string;
-  const email = formData.get('email') as string;
-
-  if (!department || !lanphone || !mob || !email) return;
+  const lanphone = (formData.get('lanphone') as string) || null;
+  const mob = (formData.get('mob') as string) || null;
+  const email = (formData.get('email') as string) || null;
 
   await prisma.contact.update({
     where: { id },
