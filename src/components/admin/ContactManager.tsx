@@ -2,11 +2,12 @@
 
 import React, { useTransition, useState } from 'react';
 import { createContact, updateContact, deleteContact } from '@/app/admin/contacts/actions';
-import { Plus, Trash2, Edit2, Building, Phone, Smartphone, Mail } from 'lucide-react';
+import { Plus, Trash2, Edit2, Building, Phone, Smartphone, Mail, FileText } from 'lucide-react';
 
 type Contact = {
   id: string;
   department: string;
+  description: string | null;
   lanphone: string;
   mob: string;
   email: string;
@@ -71,6 +72,16 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
                 defaultValue={editingContact?.department || ''}
                 required
                 className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+              />
+            </div>
+
+            <div className="space-y-1.5 md:col-span-2">
+              <label className="text-sm font-semibold text-gray-700">Description <span className="text-gray-400 font-normal">(optional)</span></label>
+              <textarea
+                name="description"
+                rows={2}
+                defaultValue={editingContact?.description || ''}
+                className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
               />
             </div>
 
@@ -142,29 +153,42 @@ export default function ContactManager({ initialContacts }: { initialContacts: C
               </button>
             </div>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-4 pr-20">{contact.department}</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 pr-20">{contact.department}</h3>
+
+            {contact.description && (
+              <p className="text-sm text-gray-500 mb-4 flex items-start gap-2">
+                <FileText className="w-4 h-4 text-[#D2B48C] flex-shrink-0 mt-0.5" />
+                <span>{contact.description}</span>
+              </p>
+            )}
 
             <div className="space-y-3 mt-auto">
-              <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-[#002147]" />
+              {contact.lanphone && (
+                <div className="flex items-center gap-3 text-gray-600">
+                  <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 text-[#002147]" />
+                  </div>
+                  <span className="text-sm font-medium">{contact.lanphone}</span>
                 </div>
-                <span className="text-sm font-medium">{contact.lanphone}</span>
-              </div>
+              )}
 
-              <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
-                  <Smartphone className="w-4 h-4 text-[#002147]" />
+              {contact.mob && (
+                <div className="flex items-center gap-3 text-gray-600">
+                  <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                    <Smartphone className="w-4 h-4 text-[#002147]" />
+                  </div>
+                  <span className="text-sm font-medium">{contact.mob}</span>
                 </div>
-                <span className="text-sm font-medium">{contact.mob}</span>
-              </div>
+              )}
 
-              <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-[#002147]" />
+              {contact.email && (
+                <div className="flex items-center gap-3 text-gray-600">
+                  <div className="w-8 h-8 rounded-full bg-[#002147]/5 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-[#002147]" />
+                  </div>
+                  <span className="text-sm font-medium truncate" title={contact.email}>{contact.email}</span>
                 </div>
-                <span className="text-sm font-medium truncate" title={contact.email}>{contact.email}</span>
-              </div>
+              )}
             </div>
           </div>
         ))}

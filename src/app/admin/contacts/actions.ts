@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export async function createContact(formData: FormData) {
   const department = formData.get('department') as string;
+  const description = (formData.get('description') as string) || null;
   const lanphone = formData.get('lanphone') as string;
   const mob = formData.get('mob') as string;
   const email = formData.get('email') as string;
@@ -18,6 +19,7 @@ export async function createContact(formData: FormData) {
   await prisma.contact.create({
     data: {
       department,
+      description,
       lanphone,
       mob,
       email,
@@ -25,10 +27,12 @@ export async function createContact(formData: FormData) {
   });
 
   revalidatePath('/admin/contacts');
+  revalidatePath('/contact');
 }
 
 export async function updateContact(id: string, formData: FormData) {
   const department = formData.get('department') as string;
+  const description = (formData.get('description') as string) || null;
   const lanphone = formData.get('lanphone') as string;
   const mob = formData.get('mob') as string;
   const email = formData.get('email') as string;
@@ -39,6 +43,7 @@ export async function updateContact(id: string, formData: FormData) {
     where: { id },
     data: {
       department,
+      description,
       lanphone,
       mob,
       email,
@@ -46,6 +51,7 @@ export async function updateContact(id: string, formData: FormData) {
   });
 
   revalidatePath('/admin/contacts');
+  revalidatePath('/contact');
 }
 
 export async function deleteContact(id: string) {
@@ -54,4 +60,5 @@ export async function deleteContact(id: string) {
   });
 
   revalidatePath('/admin/contacts');
+  revalidatePath('/contact');
 }

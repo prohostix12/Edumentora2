@@ -126,9 +126,10 @@ model UniversityProgram {
 }
 
 model Contact {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  department String
-  lanphone   String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  department  String
+  description String?
+  lanphone    String
   mob        String
   email      String
   createdAt  DateTime @default(now())
