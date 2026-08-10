@@ -47,6 +47,29 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Each scrolling track pauses while a video inside it is actually playing,
+  // and resumes once it's paused/ended — independent of hover.
+  const [playingUpTrack, setPlayingUpTrack] = useState<Set<number>>(new Set());
+  const [playingDownTrack, setPlayingDownTrack] = useState<Set<number>>(new Set());
+
+  const trackPlayHandlers = (setter: React.Dispatch<React.SetStateAction<Set<number>>>, idx: number) => ({
+    onPlay: () => setter((prev) => new Set(prev).add(idx)),
+    onPause: () =>
+      setter((prev) => {
+        if (!prev.has(idx)) return prev;
+        const next = new Set(prev);
+        next.delete(idx);
+        return next;
+      }),
+    onEnded: () =>
+      setter((prev) => {
+        if (!prev.has(idx)) return prev;
+        const next = new Set(prev);
+        next.delete(idx);
+        return next;
+      }),
+  });
+
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex === displayTestimonials.length - 1 ? 0 : prevIndex + 1));
   };
@@ -251,13 +274,16 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
           {/* Track 1: Edumentora Videos (Scrolls Up) */}
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
-            <div className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]">
+            <div
+              className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]"
+              style={playingUpTrack.size > 0 ? { animationPlayState: 'paused' } : undefined}
+            >
               {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
                 <div
                   key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <ReelPlayer src={src} className="w-full h-full object-cover" />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" {...trackPlayHandlers(setPlayingUpTrack, idx)} />
                 </div>
               ))}
             </div>
@@ -265,13 +291,16 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
           {/* Track 2: Video Testimonials (Scrolls Down) */}
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
-            <div className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]">
+            <div
+              className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]"
+              style={playingDownTrack.size > 0 ? { animationPlayState: 'paused' } : undefined}
+            >
               {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
                 <div
                   key={idx}
                   className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                 >
-                  <ReelPlayer src={src} className="w-full h-full object-cover" />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" {...trackPlayHandlers(setPlayingDownTrack, idx)} />
                 </div>
               ))}
             </div>

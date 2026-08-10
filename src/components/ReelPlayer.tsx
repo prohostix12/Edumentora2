@@ -1,15 +1,32 @@
 'use client';
 
 import React from 'react';
-import { getYouTubeEmbedUrl } from '@/lib/video';
+import { getEmbedInfo } from '@/lib/video';
+import InstagramEmbed from '@/components/InstagramEmbed';
 
-export default function ReelPlayer({ src, className }: { src: string; className?: string }) {
-  const embedUrl = getYouTubeEmbedUrl(src);
+export default function ReelPlayer({
+  src,
+  className,
+  onPlay,
+  onPause,
+  onEnded,
+}: {
+  src: string;
+  className?: string;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onEnded?: () => void;
+}) {
+  const embed = getEmbedInfo(src);
 
-  if (embedUrl) {
+  if (embed?.platform === 'instagram') {
+    return <InstagramEmbed url={src} className={className} />;
+  }
+
+  if (embed) {
     return (
       <iframe
-        src={embedUrl}
+        src={embed.embedUrl}
         className={className}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
@@ -17,5 +34,16 @@ export default function ReelPlayer({ src, className }: { src: string; className?
     );
   }
 
-  return <video src={src} className={className} controls playsInline preload="metadata" />;
+  return (
+    <video
+      src={src}
+      className={className}
+      controls
+      playsInline
+      preload="metadata"
+      onPlay={onPlay}
+      onPause={onPause}
+      onEnded={onEnded}
+    />
+  );
 }

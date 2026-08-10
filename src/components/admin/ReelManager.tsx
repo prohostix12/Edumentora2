@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useTransition, useRef } from 'react';
-import { Upload, Trash2, RefreshCw, Link2, FileVideo, Check, AlertTriangle, Loader2 } from 'lucide-react';
+import { Upload, Trash2, RefreshCw, Link2, FileVideo, Check, AlertTriangle } from 'lucide-react';
 import { createReel, updateReel, deleteReel, type ReelCategory } from '@/app/admin/reels/actions';
-import { getYouTubeEmbedUrl } from '@/lib/video';
+import { isAcceptableVideoUrl } from '@/lib/video';
 import ReelPlayer from '@/components/ReelPlayer';
 
 type Reel = {
@@ -12,25 +12,7 @@ type Reel = {
   videoUrl: string;
 };
 
-type UrlCheckStatus = 'idle' | 'checking' | 'valid' | 'invalid';
-
-function checkVideoUrl(url: string): Promise<boolean> {
-  if (getYouTubeEmbedUrl(url)) return Promise.resolve(true);
-
-  return new Promise((resolve) => {
-    const video = document.createElement('video');
-    const timeout = setTimeout(() => resolve(false), 8000);
-    video.onloadedmetadata = () => {
-      clearTimeout(timeout);
-      resolve(true);
-    };
-    video.onerror = () => {
-      clearTimeout(timeout);
-      resolve(false);
-    };
-    video.src = url;
-  });
-}
+type UrlCheckStatus = 'idle' | 'valid' | 'invalid';
 
 export default function ReelManager({ promoReels, successReels }: { promoReels: Reel[]; successReels: Reel[] }) {
   const [isPending, startTransition] = useTransition();
@@ -43,39 +25,19 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
   const [replaceUrlValue, setReplaceUrlValue] = useState('');
   const [replaceUrlStatus, setReplaceUrlStatus] = useState<UrlCheckStatus>('idle');
   const addFormRef = useRef<HTMLFormElement>(null);
-  const checkTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const replaceCheckTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const reels = activeTab === 'PROMO' ? promoReels : successReels;
 
   const handleAddUrlChange = (value: string) => {
     setAddUrlValue(value);
-    if (checkTimer.current) clearTimeout(checkTimer.current);
     const trimmed = value.trim();
-    if (!trimmed) {
-      setAddUrlStatus('idle');
-      return;
-    }
-    setAddUrlStatus('checking');
-    checkTimer.current = setTimeout(async () => {
-      const ok = await checkVideoUrl(trimmed);
-      setAddUrlStatus(ok ? 'valid' : 'invalid');
-    }, 500);
+    setAddUrlStatus(!trimmed ? 'idle' : isAcceptableVideoUrl(trimmed) ? 'valid' : 'invalid');
   };
 
   const handleReplaceUrlChange = (value: string) => {
     setReplaceUrlValue(value);
-    if (replaceCheckTimer.current) clearTimeout(replaceCheckTimer.current);
     const trimmed = value.trim();
-    if (!trimmed) {
-      setReplaceUrlStatus('idle');
-      return;
-    }
-    setReplaceUrlStatus('checking');
-    replaceCheckTimer.current = setTimeout(async () => {
-      const ok = await checkVideoUrl(trimmed);
-      setReplaceUrlStatus(ok ? 'valid' : 'invalid');
-    }, 500);
+    setReplaceUrlStatus(!trimmed ? 'idle' : isAcceptableVideoUrl(trimmed) ? 'valid' : 'invalid');
   };
 
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
@@ -192,7 +154,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
           ) : (
             <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center gap-2">
               <Link2 className="w-6 h-6 text-gray-400" />
-              <span className="text-sm font-semibold text-gray-500">Paste a video URL or YouTube link</span>
+              <span className="text-sm font-semibold text-gray-500">Paste a YouTube, Instagram, Facebook, Vimeo, or direct video link</span>
               <div className="w-full max-w-md relative">
                 <input
                   type="url"
@@ -200,7 +162,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                   required
                   value={addUrlValue}
                   onChange={(e) => handleAddUrlChange(e.target.value)}
-                  placeholder="https://example.com/video.mp4 or a YouTube link"
+                  placeholder="https://example.com/video.mp4, a YouTube/Instagram/Facebook link…"
                   className={`w-full pl-4 pr-9 py-2 border rounded-xl text-[#002147] focus:outline-none focus:ring-2 ${
                     addUrlStatus === 'invalid'
                       ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
@@ -210,14 +172,13 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                   }`}
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2">
-                  {addUrlStatus === 'checking' && <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />}
                   {addUrlStatus === 'valid' && <Check className="w-4 h-4 text-green-500" />}
                   {addUrlStatus === 'invalid' && <AlertTriangle className="w-4 h-4 text-red-500" />}
                 </span>
               </div>
               {addUrlStatus === 'invalid' && (
                 <p className="text-xs text-red-500 max-w-md text-center">
-                  This doesn&rsquo;t look like a playable video. Paste a direct video file link (.mp4, .webm) or a YouTube link — not a search or webpage link.
+                  That doesn&rsquo;t look like a valid link. Paste a full URL starting with http:// or https://.
                 </p>
               )}
             </div>
@@ -258,7 +219,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                           autoFocus
                           value={replaceUrlValue}
                           onChange={(e) => handleReplaceUrlChange(e.target.value)}
-                          placeholder="Paste video URL or YouTube link"
+                          placeholder="Paste YouTube, Instagram, Facebook, Vimeo, or direct video link"
                           className={`w-full px-3 py-1.5 pr-7 text-xs border rounded-lg text-[#002147] focus:outline-none focus:ring-2 ${
                             replaceUrlStatus === 'invalid'
                               ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
@@ -268,7 +229,6 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                           }`}
                         />
                         <span className="absolute right-2 top-1/2 -translate-y-1/2">
-                          {replaceUrlStatus === 'checking' && <Loader2 className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
                           {replaceUrlStatus === 'valid' && <Check className="w-3.5 h-3.5 text-green-500" />}
                           {replaceUrlStatus === 'invalid' && <AlertTriangle className="w-3.5 h-3.5 text-red-500" />}
                         </span>
@@ -282,7 +242,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                       </button>
                     </div>
                     {replaceUrlStatus === 'invalid' && (
-                      <p className="text-[10px] text-red-500 mt-1">Not a playable video link.</p>
+                      <p className="text-[10px] text-red-500 mt-1">Not a valid link.</p>
                     )}
                   </div>
                 )}

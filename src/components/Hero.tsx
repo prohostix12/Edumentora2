@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge } from 'lucide-react';
+import { ClipboardCheck, ShieldCheck, Cpu, BookOpen, Award, FileBadge, X, ArrowRight } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
 import { getPublicNotifications } from '@/app/admin/notifications/actions';
 
@@ -152,6 +152,19 @@ export default function Hero() {
   const [marqueeItems, setMarqueeItems] = useState<string[]>([]);
   const marqueeBarRef = useRef<HTMLDivElement>(null);
   const [marqueeGap, setMarqueeGap] = useState(24);
+  const [showEligibilityModal, setShowEligibilityModal] = useState(false);
+
+  // Lock body scroll while the mobile eligibility modal is open
+  useEffect(() => {
+    if (showEligibilityModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showEligibilityModal]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -313,27 +326,46 @@ export default function Hero() {
 
             <motion.div
               {...riseIn(0.3)}
-              className="flex flex-wrap gap-4 items-center mt-[5%]"
+              className="flex flex-nowrap md:flex-wrap gap-2 md:gap-4 items-center mt-[5%] w-full md:w-auto"
             >
-              <a href="/contact">
-                <button className="bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#E91D24]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+              <a href="/contact" className="flex-1 md:flex-none min-w-0">
+                <button className="w-full whitespace-nowrap bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-2.5 py-2 text-[11px] md:px-7 md:py-3 md:text-base rounded-full shadow-lg shadow-[#E91D24]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Enroll Now
                 </button>
               </a>
-              <a href="/contact">
-                <button className="bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-7 py-3 rounded-full text-base shadow-lg shadow-[#E91D24]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+              <a href="/contact" className="flex-1 md:flex-none min-w-0">
+                <button className="w-full whitespace-nowrap bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-2.5 py-2 text-[11px] md:px-7 md:py-3 md:text-base rounded-full shadow-lg shadow-[#E91D24]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   Book a Free Consultation
                 </button>
               </a>
             </motion.div>
+
+            {/* Mobile-only widget — replaces the inline eligibility form; tap to open it in a modal */}
+            <motion.button
+              type="button"
+              {...riseIn(0.4)}
+              onClick={() => setShowEligibilityModal(true)}
+              className="md:hidden mt-5 w-full flex items-center justify-between gap-3 bg-white border-2 border-[#002147]/70 rounded-2xl px-5 py-4 shadow-[0_10px_30px_-10px_rgba(23,42,83,0.25)] hover:-translate-y-0.5 transition-transform"
+            >
+              <span className="flex items-center gap-3">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 shrink-0">
+                  <ClipboardCheck className="w-5 h-5 text-[#002147]" />
+                </span>
+                <span className="text-left">
+                  <span className="block text-sm font-bold text-[#002147]">Check Your Eligibility</span>
+                  <span className="block text-xs text-gray-500">Get a quick eligibility review</span>
+                </span>
+              </span>
+              <ArrowRight className="w-5 h-5 text-[#002147] shrink-0" />
+            </motion.button>
           </div>
 
-          {/* 3: Check Your Eligibility Now form, with accent glow + doodles */}
+          {/* 3: Check Your Eligibility Now form, with accent glow + doodles — hidden on mobile, replaced by a tap-to-open widget below */}
           <motion.div
             initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: shouldReduceMotion ? 0.01 : 0.7, delay: 0.15, ease: 'easeOut' }}
-            className="relative w-full h-full flex items-center justify-center md:justify-end md:flex-1"
+            className="hidden md:flex relative w-full h-full items-center justify-center md:justify-end md:flex-1"
           >
             {/* Decorative doodles — gentle float, disabled under prefers-reduced-motion */}
             <svg
@@ -382,6 +414,44 @@ export default function Hero() {
         )}
       </div>
       </div>
+
+      {/* Mobile eligibility widget modal — same content as the desktop inline form */}
+      <AnimatePresence>
+        {showEligibilityModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            data-lenis-prevent
+            className="md:hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowEligibilityModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="relative w-full max-w-[400px] max-h-[90vh] overflow-y-auto rounded-[2.5rem] border-4 border-[#002147]/70 shadow-[0_25px_60px_-20px_rgba(23,42,83,0.35)] bg-white p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setShowEligibilityModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-[#002147] bg-gray-50 hover:bg-gray-100 p-2 rounded-full transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-2 mb-3 rounded-full bg-blue-50 w-fit px-3 py-1.5">
+                <ClipboardCheck className="w-4 h-4 text-[#002147]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#002147]">Fast Assessment</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#002147] mb-1 pr-8">Check Your Eligibility Now</h3>
+              <p className="text-sm text-gray-600 mb-4 leading-6">Get a quick review of your credit transfer eligibility in just a few steps.</p>
+              <EligibilityForm className="space-y-3" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

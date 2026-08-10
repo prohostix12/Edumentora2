@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -13,6 +15,28 @@ const edumentoraVideos = [
 ];
 
 export default function HomeGallerySection() {
+  // Scroll pauses while any video in the strip is actually playing (not just on hover),
+  // and resumes once every playing video has been paused/ended.
+  const [playingIndices, setPlayingIndices] = useState<Set<number>>(new Set());
+  const isAnyPlaying = playingIndices.size > 0;
+
+  const handlePlay = (idx: number) => {
+    setPlayingIndices((prev) => {
+      const next = new Set(prev);
+      next.add(idx);
+      return next;
+    });
+  };
+
+  const handleStop = (idx: number) => {
+    setPlayingIndices((prev) => {
+      if (!prev.has(idx)) return prev;
+      const next = new Set(prev);
+      next.delete(idx);
+      return next;
+    });
+  };
+
   return (
     <section className="py-12 md:py-16 bg-white relative overflow-hidden dot-grid">
       <style>{`
@@ -34,7 +58,7 @@ export default function HomeGallerySection() {
 
       {/* Grid Content Section */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
+
         {/* Left Side: Text and Button */}
         <div className="text-left flex flex-col items-start justify-center">
           <ScrollReveal delay={0.1}>
@@ -43,13 +67,13 @@ export default function HomeGallerySection() {
               <span className="text-[#002147] font-semibold text-sm tracking-wider uppercase">Campus Life</span>
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#002147] tracking-tight mb-4">
               Our Gallery
             </h2>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.3}>
             <div className="w-24 h-1.5 bg-[#D2B48C] rounded-full mb-6"></div>
           </ScrollReveal>
@@ -62,8 +86,8 @@ export default function HomeGallerySection() {
 
           {/* Explore More Button */}
           <ScrollReveal delay={0.5}>
-            <Link 
-              href="/gallery" 
+            <Link
+              href="/gallery"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B0000] text-white font-bold rounded-xl hover:bg-[#5C0000] transition-all hover:scale-105 shadow-lg hover:shadow-xl group"
             >
               <span>Explore More</span>
@@ -76,13 +100,25 @@ export default function HomeGallerySection() {
         <div className="w-full flex justify-center">
           <ScrollReveal delay={0.6} className="w-full flex justify-center">
             <div className="relative h-[450px] md:h-[550px] w-full max-w-[180px] md:max-w-[220px] overflow-hidden fade-edges-gallery mx-auto">
-              <div className="flex flex-col gap-5 animate-scroll-up-gallery pb-5 hover:[animation-play-state:paused]">
+              <div
+                className="flex flex-col gap-5 animate-scroll-up-gallery pb-5 hover:[animation-play-state:paused]"
+                style={isAnyPlaying ? { animationPlayState: 'paused' } : undefined}
+              >
                 {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
                   >
-                    <video src={src} className="w-full h-full object-cover" controls playsInline preload="metadata" />
+                    <video
+                      src={src}
+                      className="w-full h-full object-cover"
+                      controls
+                      playsInline
+                      preload="metadata"
+                      onPlay={() => handlePlay(idx)}
+                      onPause={() => handleStop(idx)}
+                      onEnded={() => handleStop(idx)}
+                    />
                   </div>
                 ))}
               </div>
