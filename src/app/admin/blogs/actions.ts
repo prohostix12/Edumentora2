@@ -34,6 +34,34 @@ export async function createBlog(formData: FormData) {
   revalidatePath('/blog', 'layout'); // Just to be safe with dynamic child routes
 }
 
+export async function updateBlog(id: string, formData: FormData) {
+  const dateStr = formData.get('date') as string;
+  const category = formData.get('category') as string;
+  const sectionDis = formData.get('sectionDis') as string;
+  const mainImage = formData.get('mainImage') as string | null;
+  const mainDisJson = formData.get('mainDis') as string;
+
+  if (!dateStr || !category || !sectionDis || !mainDisJson) return;
+
+  const date = new Date(dateStr);
+  const mainDis = JSON.parse(mainDisJson) as { subHeading: string, subPara: string }[];
+
+  await prisma.blog.update({
+    where: { id },
+    data: {
+      date,
+      category,
+      sectionDis,
+      mainImage: mainImage || null,
+      mainDis,
+    },
+  });
+
+  revalidatePath('/admin/blogs');
+  revalidatePath('/blog');
+  revalidatePath('/blog', 'layout');
+}
+
 export async function deleteBlog(id: string) {
   await prisma.blog.delete({
     where: { id },

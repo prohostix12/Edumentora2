@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useTransition, useState } from 'react';
-import { createBlog, deleteBlog } from '@/app/admin/blogs/actions';
-import { Plus, Trash2, Calendar, LayoutList, Upload, X } from 'lucide-react';
+import { createBlog, updateBlog, deleteBlog } from '@/app/admin/blogs/actions';
+import { Plus, Trash2, Calendar, LayoutList, Upload, X, Pencil } from 'lucide-react';
 
 type BlogSection = {
   subHeading: string;
@@ -21,27 +21,49 @@ type Blog = {
 export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) {
   const [isPending, startTransition] = useTransition();
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
   const [mainDis, setMainDis] = useState<BlogSection[]>([{ subHeading: '', subPara: '' }]);
   const [mainImageBase64, setMainImageBase64] = useState<string | null>(null);
 
   const closeForm = () => {
     setIsFormOpen(false);
+    setEditingBlog(null);
     setMainDis([{ subHeading: '', subPara: '' }]);
     setMainImageBase64(null);
   };
 
-  const handleCreateBlog = (formData: FormData) => {
+  const openCreateForm = () => {
+    setEditingBlog(null);
+    setMainDis([{ subHeading: '', subPara: '' }]);
+    setMainImageBase64(null);
+    setIsFormOpen(true);
+  };
+
+  const openEditForm = (blog: Blog) => {
+    setEditingBlog(blog);
+    setMainDis(blog.mainDis.length > 0 ? blog.mainDis : [{ subHeading: '', subPara: '' }]);
+    setMainImageBase64(blog.mainImage || null);
+    setIsFormOpen(true);
+  };
+
+  const handleSubmitBlog = (formData: FormData) => {
     // Inject the mainDis JSON string into the form data
     formData.set('mainDis', JSON.stringify(mainDis));
 
     startTransition(async () => {
       try {
-        await createBlog(formData);
-        closeForm();
-        alert('Blog published successfully!');
+        if (editingBlog) {
+          await updateBlog(editingBlog.id, formData);
+          closeForm();
+          alert('Blog updated successfully!');
+        } else {
+          await createBlog(formData);
+          closeForm();
+          alert('Blog published successfully!');
+        }
       } catch (error) {
-        console.error('Error creating blog:', error);
-        alert('Failed to publish blog! Please check the terminal for errors. You may need to restart the server.');
+        console.error('Error saving blog:', error);
+        alert('Failed to save blog! Please check the terminal for errors. You may need to restart the server.');
       }
     });
   };
@@ -128,7 +150,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-[#002147]">Blogs</h2>
         <button
-          onClick={() => setIsFormOpen(true)}
+          onClick={openCreateForm}
           className="bg-[#8B0000] hover:bg-[#5C0000] text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors"
         >
           <Plus className="w-5 h-5" />
@@ -179,6 +201,14 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                     <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{blog.mainDis.length}</td>
                     <td className="px-6 py-4 text-sm whitespace-nowrap text-right">
                       <button
+                        onClick={() => openEditForm(blog)}
+                        disabled={isPending}
+                        className="text-gray-400 hover:text-[#002147] hover:bg-blue-50 p-2 rounded-lg transition-colors"
+                        title="Update Blog"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+                      <button
                         onClick={() => handleDeleteBlog(blog.id)}
                         disabled={isPending}
                         className="text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors"
@@ -206,14 +236,14 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
           <div className="flex items-start justify-center min-h-full p-4 py-8">
             <div className="bg-white w-full max-w-3xl rounded-3xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#002147] rounded-t-3xl">
-                <h2 className="text-xl font-bold text-white">Create New Blog</h2>
+                <h2 className="text-xl font-bold text-white">{editingBlog ? 'Update Blog' : 'Create New Blog'}</h2>
                 <button type="button" onClick={closeForm} className="text-white/70 hover:text-white bg-white/10 p-2 rounded-full">
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               <div className="p-6">
-                <form id="add-blog-form" action={handleCreateBlog} className="flex flex-col gap-6">
+                <form id="add-blog-form" action={handleSubmitBlog} className="flex flex-col gap-6" key={editingBlog?.id ?? 'new'}>
                   <input type="hidden" name="mainImage" value={mainImageBase64 || ''} />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
@@ -222,6 +252,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                         type="date"
                         name="date"
                         required
+                        defaultValue={editingBlog ? new Date(editingBlog.date).toISOString().slice(0, 10) : undefined}
                         className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                       />
                     </div>
@@ -232,6 +263,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                         name="category"
                         placeholder="e.g. Technology, Education"
                         required
+                        defaultValue={editingBlog?.category}
                         className="w-full px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                       />
                     </div>
@@ -244,6 +276,7 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                         name="sectionDis"
                         placeholder="Short description or intro paragraph..."
                         required
+                        defaultValue={editingBlog?.sectionDis}
                         className="w-full px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147] resize-none h-[calc(100%-28px)]"
                       />
                     </div>
@@ -319,8 +352,8 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                     disabled={isPending}
                     className="self-end px-8 py-3 bg-[#8B0000] text-white font-medium rounded-xl hover:bg-[#8B0000]/90 transition-colors disabled:opacity-70 flex items-center gap-2"
                   >
-                    <Plus className="w-5 h-5" />
-                    Publish Blog
+                    {editingBlog ? <Pencil className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                    {editingBlog ? 'Update Blog' : 'Publish Blog'}
                   </button>
                 </form>
               </div>
