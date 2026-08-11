@@ -10,12 +10,30 @@ import { MapPin, Award, ArrowLeft, FileText, Download } from 'lucide-react';
 import Link from 'next/link';
 import AdditionalUniversityDetails from './ViewMoreDetails';
 import UniversityProgramsSection from './UniversityProgramsSection';
+import type { Metadata } from 'next';
+import { pageMetadata, breadcrumbJsonLd, courseJsonLd } from '@/lib/seo';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const revalidate = 3600;
+
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await props.params;
+  if (!id) return {};
+
+  const university = await prisma.university.findUnique({ where: { id } });
+  if (!university) return {};
+
+  const description = `${university.name}, ${university.location} — ${university.description}`;
+
+  return pageMetadata({
+    title: university.name,
+    description: description.length > 160 ? `${description.slice(0, 157)}...` : description,
+    path: `/universities/${id}`,
+  });
+}
 
 export default async function UniversityDetailPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -41,10 +59,28 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
     orderBy: { createdAt: 'asc' },
   });
 
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Universities', path: '/universities' },
+    { name: university.name, path: `/universities/${id}` },
+  ]);
+  const courseLd = courseJsonLd(university, universityPrograms);
+
   return (
     <main className="min-h-screen bg-gray-50 font-[Poppins]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      {courseLd.map((course, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(course) }}
+        />
+      ))}
       <Header />
-      
+
       <PageBanner title={university.name}>
         <div className="pt-8">
           <Link 

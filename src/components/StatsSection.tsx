@@ -10,10 +10,14 @@ type StatUniversity = { id: string; name: string; logo: string };
 function AnimatedCounter({ from = 0, to, duration = 2, suffix = '' }: { from?: number, to: number, duration?: number, suffix?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [value, setValue] = useState(from);
+  // Starts at the real, final value (not `from`) so the number is correct in
+  // the server-rendered HTML before any JS runs — the count-up is then a
+  // purely cosmetic flourish layered on top once the element scrolls into view.
+  const [value, setValue] = useState(to);
 
   useEffect(() => {
     if (isInView) {
+      setValue(from);
       const controls = animate(from, to, {
         duration,
         ease: "easeOut",

@@ -4,6 +4,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Best B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students',
+  description: 'Reliable B Tech credit transfer services in Kerala for dropout and backlog students — evaluate your completed subjects and resume your engineering degree from the right point.',
+  path: '/best-b-tech-credit-transfer-services-in-kerala-for-dropout-backlog-students',
+});
 
 export default function BestBTechCreditTransferServicesPage() {
   return (

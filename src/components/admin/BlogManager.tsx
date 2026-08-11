@@ -14,6 +14,7 @@ type Blog = {
   date: Date;
   category: string;
   sectionDis: string;
+  author?: string | null;
   mainImage?: string | null;
   mainDis: BlogSection[];
 };
@@ -264,6 +265,16 @@ export default function BlogManager({ initialBlogs }: { initialBlogs: Blog[] }) 
                         placeholder="e.g. Technology, Education"
                         required
                         defaultValue={editingBlog?.category}
+                        className="w-full px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-gray-700">Author (optional)</label>
+                      <input
+                        type="text"
+                        name="author"
+                        placeholder="e.g. Jane Doe, Academic Counselor"
+                        defaultValue={editingBlog?.author ?? ''}
                         className="w-full px-4 py-2 border border-gray-200 text-[#002147] placeholder-[#002147]/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]"
                       />
                     </div>

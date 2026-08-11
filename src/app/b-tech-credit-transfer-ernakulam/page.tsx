@@ -14,6 +14,13 @@ import TestimonialSection from '@/components/TestimonialSection';
 import SeoContentSection from '@/components/SeoContentSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Ernakulam',
+  description: 'Best Credit Transfer Institute in Kerala — carry forward your earned credits and continue your B.Tech in Ernakulam without losing valuable time.',
+  path: '/b-tech-credit-transfer-ernakulam',
+});
 
 export default function Page() {
   return (

@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Malappuram',
+  description: 'Choose a smoother academic path with credit transfer guidance in Malappuram.',
+  path: '/b-tech-credit-transfer-malappuram',
+});
 
 export default function BTechCreditTransferPage() {
   return (

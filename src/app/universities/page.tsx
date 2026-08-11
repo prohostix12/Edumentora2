@@ -1,6 +1,13 @@
 import React from 'react';
 import { PrismaClient } from '@prisma/client';
 import UniversitiesClient from './UniversitiesClient';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Partner Universities',
+  description: 'Explore our globally recognized partner institutions and discover the perfect program for your academic journey and credit transfer.',
+  path: '/universities',
+});
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();

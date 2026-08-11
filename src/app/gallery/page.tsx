@@ -6,6 +6,13 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import GalleryImage from '@/components/GalleryImage';
 
 import { PrismaClient } from '@prisma/client';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Gallery',
+  description: 'Explore beautiful moments, events, and milestones from our vibrant community.',
+  path: '/gallery',
+});
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -70,7 +77,7 @@ export default async function Page() {
                           {/* Image */}
                           <GalleryImage
                             src={image}
-                            alt={`${gallery.section} photo ${index + 1}`}
+                            alt={`Edumentora ${gallery.section} — photo ${index + 1}`}
                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                           />
                           

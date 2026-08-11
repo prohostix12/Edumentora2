@@ -1,6 +1,13 @@
 import React from 'react';
 import { PrismaClient } from '@prisma/client';
 import ContactClient from './ContactClient';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Contact Us',
+  description: 'Reach out to our offices in Calicut and Kochi for expert guidance and academic credit transfer solutions.',
+  path: '/contact',
+});
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();

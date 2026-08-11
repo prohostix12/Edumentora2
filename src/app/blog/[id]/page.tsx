@@ -9,12 +9,30 @@ import Link from 'next/link';
 import { Calendar, ArrowLeft, Send } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { postComment } from './actions';
+import type { Metadata } from 'next';
+import { pageMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const revalidate = 3600;
+
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await props.params;
+  if (!id || id.length !== 24) return {};
+
+  const blog = await prisma.blog.findUnique({ where: { id } });
+  if (!blog) return {};
+
+  const excerpt = blog.mainDis.find((block) => block.subPara)?.subPara ?? blog.sectionDis;
+
+  return pageMetadata({
+    title: blog.sectionDis,
+    description: excerpt.length > 160 ? `${excerpt.slice(0, 157)}...` : excerpt,
+    path: `/blog/${id}`,
+  });
+}
 
 export default async function BlogDetailPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -43,8 +61,32 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     orderBy: { createdAt: 'desc' },
   });
 
+  const excerpt = blog.mainDis.find((block) => block.subPara)?.subPara ?? blog.sectionDis;
+  const articleLd = articleJsonLd({
+    headline: blog.sectionDis,
+    description: excerpt.length > 300 ? `${excerpt.slice(0, 297)}...` : excerpt,
+    image: blog.mainImage,
+    author: blog.author,
+    datePublished: blog.date,
+    dateModified: blog.updatedAt,
+    path: `/blog/${id}`,
+  });
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: blog.sectionDis, path: `/blog/${id}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-gray-50 font-[Poppins]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <Header />
       
       <PageBanner badge={blog.category} title={blog.sectionDis} isGradientText={true}>
@@ -81,7 +123,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative z-10">
           
           {/* Left Column: Blog Content */}
-          <div className="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+          <article className="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
             {blog.mainImage && (
               <div className="w-full h-[300px] md:h-[450px] overflow-hidden">
                 <img 
@@ -110,7 +152,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                 ))}
               </div>
             </div>
-          </div>
+          </article>
 
           {/* Right Column: Sidebar */}
           <div className="space-y-8 mt-16 lg:mt-0">

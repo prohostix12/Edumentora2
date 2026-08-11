@@ -4,6 +4,13 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
 import PageBanner from '@/components/PageBanner';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Apprenticeship Learning Program',
+  description: "Edumentora's apprenticeship credit transfer lets you carry your earned experience to new opportunities — stay on track, keep learning, and grow without interruption.",
+  path: '/apprenticeship-learning-program',
+});
 
 export default function ApprenticeshipLearningProgram() {
   return (

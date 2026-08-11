@@ -6,6 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'BTech Credit Transfer in Kochi',
+  description: 'Get expert credit transfer assistance and complete your engineering degree in Kochi.',
+  path: '/b-tech-credit-transfer-in-kochi',
+});
 
 export default function BTechCreditTransferPage() {
   return (
@@ -36,7 +43,7 @@ export default function BTechCreditTransferPage() {
           <div className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
               src="/btech_transfer_kochi.png"
-              alt="Credit Transfer Student"
+              alt="Credit Transfer Student in Kochi"
               fill
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"

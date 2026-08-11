@@ -6,6 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Diploma Credit Transfer',
+  description: 'Transfer your diploma credits to a new institution and continue your studies without starting over — keep your progress moving.',
+  path: '/diploma-credit-transfer',
+});
 
 export default function DiplomaCreditTransferPage() {
   return (

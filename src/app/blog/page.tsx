@@ -6,6 +6,13 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Blog',
+  description: 'Stay updated with the latest news, guides, and insights about education and career.',
+  path: '/blog',
+});
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();

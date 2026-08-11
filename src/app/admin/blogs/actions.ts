@@ -11,6 +11,7 @@ export async function createBlog(formData: FormData) {
   const dateStr = formData.get('date') as string;
   const category = formData.get('category') as string;
   const sectionDis = formData.get('sectionDis') as string;
+  const author = (formData.get('author') as string | null)?.trim();
   const mainImage = formData.get('mainImage') as string | null;
   const mainDisJson = formData.get('mainDis') as string;
 
@@ -24,6 +25,7 @@ export async function createBlog(formData: FormData) {
       date,
       category,
       sectionDis,
+      author: author || null,
       mainImage: mainImage || null,
       mainDis,
     },
@@ -38,6 +40,7 @@ export async function updateBlog(id: string, formData: FormData) {
   const dateStr = formData.get('date') as string;
   const category = formData.get('category') as string;
   const sectionDis = formData.get('sectionDis') as string;
+  const author = (formData.get('author') as string | null)?.trim();
   const mainImage = formData.get('mainImage') as string | null;
   const mainDisJson = formData.get('mainDis') as string;
 
@@ -52,6 +55,7 @@ export async function updateBlog(id: string, formData: FormData) {
       date,
       category,
       sectionDis,
+      author: author || null,
       mainImage: mainImage || null,
       mainDis,
     },

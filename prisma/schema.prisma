@@ -163,6 +163,7 @@ model Blog {
   date       DateTime
   category   String
   sectionDis String
+  author     String?
   mainImage  String?
   mainDis    BlogSection[]
   createdAt  DateTime      @default(now())

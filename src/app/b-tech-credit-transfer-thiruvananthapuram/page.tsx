@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Thiruvananthapuram',
+  description: 'Complete your engineering goals with trusted credit transfer support in Thiruvananthapuram.',
+  path: '/b-tech-credit-transfer-thiruvananthapuram',
+});
 
 export default function BTechCreditTransferPage() {
   return (

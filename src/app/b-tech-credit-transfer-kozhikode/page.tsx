@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Kozhikode',
+  description: 'Move closer to completing your degree with expert support in Kozhikode.',
+  path: '/b-tech-credit-transfer-kozhikode',
+});
 
 export default function BTechCreditTransferPage() {
   return (

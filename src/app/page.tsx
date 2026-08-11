@@ -9,9 +9,11 @@ import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialSection from '@/components/TestimonialSection';
+import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
+import { aggregateRatingJsonLd } from '@/lib/seo';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -76,8 +78,16 @@ export default async function Home() {
     console.error("Failed to fetch universities:", error);
   }
 
+  const ratingJsonLd = aggregateRatingJsonLd(reviews);
+
   return (
     <main className="min-h-screen bg-white font-[Poppins]">
+      {ratingJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ratingJsonLd) }}
+        />
+      )}
       <Header />
       <Hero />
       <StatsSection universities={statUniversities} />
@@ -89,6 +99,7 @@ export default async function Home() {
       <ProgramsSection />
       <WhyChooseUsSection />
       <TestimonialSection reviews={reviews} galleryImages={galleryImages} promoVideos={promoVideos} successVideos={successVideos} />
+      <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
     </main>

@@ -6,6 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'UG Credit Transfer',
+  description: 'Transfer your UG credits and pick up right where you left off — stay on track with your academic goals.',
+  path: '/ug-credit-transfer',
+});
 
 export default function UGCreditTransferPage() {
   return (

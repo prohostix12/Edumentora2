@@ -6,6 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'PG Credit Transfer',
+  description: 'Transfer your PG credits seamlessly and continue your academic journey with confidence and clarity.',
+  path: '/pg-credit-transfer',
+});
 
 export default function PGCreditTransferPage() {
   return (

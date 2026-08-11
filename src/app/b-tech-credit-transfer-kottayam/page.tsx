@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Kottayam',
+  description: 'Continue your education confidently with credit transfer guidance in Kottayam.',
+  path: '/b-tech-credit-transfer-kottayam',
+});
 
 export default function BTechCreditTransferPage() {
   return (

@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Alappuzha',
+  description: 'Resume your engineering journey with trusted credit transfer guidance in Alappuzha.',
+  path: '/b-tech-credit-transfer-alappuzha',
+});
 
 export default function BTechCreditTransferPage() {
   return (
@@ -35,7 +42,7 @@ export default function BTechCreditTransferPage() {
           <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
               src="/about-us-hero.png"
-              alt="Credit Transfer Student"
+              alt="Credit Transfer Student in Alappuzha"
               fill 
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"

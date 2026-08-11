@@ -5,6 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Wayanad',
+  description: 'Stay on track with dependable credit transfer support in Wayanad.',
+  path: '/b-tech-credit-transfer-wayanad',
+});
 
 export default function BTechCreditTransferPage() {
   return (
@@ -32,7 +39,7 @@ export default function BTechCreditTransferPage() {
           <div className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
               src="/apprenticeship-professionals.png"
-              alt="Credit Transfer Student"
+              alt="Credit Transfer Student in Wayanad"
               fill
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"

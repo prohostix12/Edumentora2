@@ -5,6 +5,13 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
 import ProgramFilter from './ProgramFilter';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Programmes',
+  description: 'Discover our comprehensive programs designed to help working professionals convert their valuable experience into academic credits and achieve their career goals.',
+  path: '/programs',
+});
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();

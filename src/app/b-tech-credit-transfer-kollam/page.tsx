@@ -6,6 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'B Tech Credit Transfer Kollam',
+  description: 'Reconnect with your academic goals through structured credit transfer support in Kollam.',
+  path: '/b-tech-credit-transfer-kollam',
+});
 
 export default function BTechCreditTransferPage() {
   return (
@@ -33,7 +40,7 @@ export default function BTechCreditTransferPage() {
           <div className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-gray-200">
             <Image
               src="/wilp-hero.png"
-              alt="Credit Transfer Student"
+              alt="Credit Transfer Student in Kollam"
               fill
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 400px"
