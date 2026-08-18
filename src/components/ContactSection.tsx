@@ -7,6 +7,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  // Mobile-only: the enquiry form is collapsed by default behind a "Send
+  // Your Message" toggle, to keep the section compact; details are always shown.
+  const [showForm, setShowForm] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -62,8 +65,8 @@ export default function ContactSection() {
             />
           )}
 
-          {/* Left Side: Information */}
-        <div className="relative z-10 w-full lg:w-1/2 flex flex-col space-y-6">
+          {/* Left Side: Information — desktop/tablet, unchanged */}
+        <div className="relative z-10 w-full lg:w-1/2 hidden md:flex flex-col space-y-6">
           <h2 className="text-xl md:text-3xl font-bold leading-tight whitespace-nowrap">
             Ready To Grow with Edumentora
           </h2>
@@ -114,9 +117,72 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Right Side: Form */}
-        <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center">
+        {/* Right Side: Form — desktop/tablet, unchanged */}
+        <div className="relative z-10 w-full lg:w-1/2 hidden md:flex flex-col justify-center">
           <EnquiryForm className="space-y-4" isGrid={false} />
+        </div>
+
+        {/* Mobile-only: compact — heading and details always shown, only the form is behind a toggle */}
+        <div className="relative z-10 w-full flex flex-col space-y-4 md:hidden">
+          <h2 className="text-xl font-bold leading-tight">
+            Ready To Grow with Edumentora
+          </h2>
+
+          <div className="border-l-4 border-white/40 pl-4">
+            <p className="text-white/90 text-sm leading-relaxed">
+              Edumentora makes restarting your education easy by transferring past credits to accredited universities, saving you time and money.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="bg-[#002147] p-1.5 rounded-full shadow-lg shadow-black/40">
+                <Clock className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium">Fast Application Processing</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="bg-[#002147] p-1.5 rounded-full shadow-lg shadow-black/40">
+                <CheckCircle2 className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium">Successful Transfers</span>
+            </div>
+          </div>
+
+          <div className="space-y-4 pt-2">
+            {/* Phone */}
+            <div className="flex items-center gap-4">
+              <div className="bg-[#002147] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
+                <Phone className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-white/80 text-xs font-medium">Call Us Anytime</p>
+                <p className="font-bold text-base">+91 974458 7777</p>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-4">
+              <div className="bg-[#002147] w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-black/40">
+                <MapPin className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-white/80 text-xs font-medium">Location</p>
+                <p className="font-bold text-base">Calicut & Kochi</p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowForm((v) => !v)}
+            aria-expanded={showForm}
+            className="w-full px-4 py-3 rounded-xl text-sm font-bold bg-[#002147] text-white shadow-lg shadow-black/40"
+          >
+            {showForm ? 'Hide Form' : 'Send Your Message'}
+          </button>
+
+          {showForm && <EnquiryForm className="space-y-4" isGrid={false} />}
         </div>
 
         </motion.div>

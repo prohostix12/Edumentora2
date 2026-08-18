@@ -219,7 +219,7 @@ export default function Header() {
       {/* Floating Enquire Now Button */}
       <Link
         href="/contact#contacts-section"
-        className="fixed bottom-6 right-6 z-50 pointer-events-auto flex items-center justify-center px-6 py-3 bg-[#E91D24] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(233,29,36,0.39)] hover:shadow-[0_6px_20px_rgba(233,29,36,0.23)] hover:bg-[#B8151B] hover:-translate-y-0.5 transition-all duration-200"
+        className="fixed bottom-6 right-6 z-50 pointer-events-auto flex items-center justify-center px-4 py-2 text-sm md:px-6 md:py-3 md:text-base bg-[#E91D24] text-white font-medium rounded-full shadow-[0_4px_14px_0_rgba(233,29,36,0.39)] hover:shadow-[0_6px_20px_rgba(233,29,36,0.23)] hover:bg-[#B8151B] hover:-translate-y-0.5 transition-all duration-200"
       >
         Enquire Now
       </Link>

@@ -449,13 +449,13 @@ export default function BTechCreditTransferClient({ faqs }: { faqs: Faq[] }) {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(210,180,140,0.15)] hover:shadow-[0_30px_60px_-15px_rgba(210,180,140,0.25)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
+                className="group relative bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,33,71,0.1)] hover:shadow-[0_30px_60px_-15px_rgba(0,33,71,0.2)] overflow-hidden transition-all duration-500 flex flex-col justify-between min-h-[420px]"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D2B48C]/20 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#D2B48C] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#002147]/10 to-transparent rounded-full blur-3xl -z-10 transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#002147] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
-                <div className="w-16 h-16 bg-[#002147]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#D2B48C] transition-colors duration-500 shadow-inner">
-                  <Award className="w-8 h-8 text-[#D2B48C] group-hover:text-white transition-colors duration-500" />
+                <div className="w-16 h-16 bg-[#002147]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#002147] transition-colors duration-500 shadow-inner">
+                  <Award className="w-8 h-8 text-[#002147] group-hover:text-white transition-colors duration-500" />
                 </div>
 
                 <div className="relative z-20 flex-grow flex flex-col">
@@ -464,9 +464,9 @@ export default function BTechCreditTransferClient({ faqs }: { faqs: Faq[] }) {
                     Transfer your Diploma credits to leading universities to fast-track your educational progression effortlessly.
                   </p>
 
-                  <Link href="/diploma-credit-transfer" className="inline-flex items-center text-[#D2B48C] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D2B48C] focus-visible:ring-offset-2">
+                  <Link href="/diploma-credit-transfer" className="inline-flex items-center text-[#002147] font-bold text-lg group/link mt-auto w-max rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002147] focus-visible:ring-offset-2">
                     Know More
-                    <span className="ml-2 w-10 h-10 rounded-full bg-[#F7EFE1] flex items-center justify-center group-hover/link:bg-[#D2B48C] group-hover/link:text-white transition-all duration-300">
+                    <span className="ml-2 w-10 h-10 rounded-full bg-[#F7EFE1] flex items-center justify-center group-hover/link:bg-[#002147] group-hover/link:text-white transition-all duration-300">
                       <ArrowRight className="w-5 h-5 transform group-hover/link:-rotate-45 transition-transform duration-300" />
                     </span>
                   </Link>
