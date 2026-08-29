@@ -12,6 +12,7 @@ const STATIC_ROUTES = [
   '/gallery',
   '/blog',
   '/contact',
+  '/notifications',
   '/programs',
   '/universities',
   '/b-tech-credit-transfer',

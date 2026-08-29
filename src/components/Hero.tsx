@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { ClipboardCheck, ShieldCheck, X, ArrowRight } from 'lucide-react';
+import { ClipboardCheck, ShieldCheck, X, ArrowRight, Bell } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
 import { getPublicNotifications } from '@/app/admin/notifications/actions';
 
@@ -299,6 +300,16 @@ export default function Hero() {
 
       {/* Scrolling trust marquee — all notifications flow continuously in one strip, looping seamlessly */}
       <div ref={marqueeBarRef} className="relative z-10 w-full shrink-0 bg-[#002147] py-3 overflow-hidden">
+        {/* Bell icon pinned at the left, marking this strip as notifications — sits above the scrolling track, fades it out underneath, and links to the notifications page */}
+        {displayMarqueeItems.length > 0 && (
+          <Link
+            href="/notifications"
+            aria-label="View all notifications"
+            className="absolute inset-y-0 left-0 z-20 flex items-center pl-4 pr-8 bg-gradient-to-r from-[#002147] via-[#002147] to-transparent hover:opacity-80 transition-opacity"
+          >
+            <Bell className="h-full w-auto max-h-9 text-[#D2B48C]" />
+          </Link>
+        )}
         {displayMarqueeItems.length > 0 && (
           <div className="hero-marquee-track flex whitespace-nowrap w-max">
             {[0, 1].map((dup) => (
