@@ -39,26 +39,7 @@ export default async function NotificationsPage() {
       />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
-        {/* Left: Previous Notifications */}
-        <div>
-          <h2 className="flex items-center gap-2.5 text-2xl font-bold text-[#002147] mb-6">
-            <Clock className="w-6 h-6 text-[#D2B48C]" />
-            Previous Notifications
-          </h2>
-          {previous.length === 0 ? (
-            <p className="text-gray-500">No previous notifications yet.</p>
-          ) : (
-            <ul className="space-y-4">
-              {previous.map((n) => (
-                <li key={n.id} className="rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-gray-700">
-                  {n.text}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        {/* Right: Current Notifications — same content shown in the hero marquee */}
+        {/* Left: Current Notifications — same content shown in the hero marquee */}
         <div>
           <h2 className="flex items-center gap-2.5 text-2xl font-bold text-[#002147] mb-6">
             <Bell className="w-6 h-6 text-[#D2B48C]" />
@@ -70,6 +51,25 @@ export default async function NotificationsPage() {
             <ul className="space-y-4">
               {current.map((n) => (
                 <li key={n.id} className="rounded-xl border border-[#002147]/15 bg-[#F7EFE1] px-5 py-4 text-[#002147] font-medium">
+                  {n.text}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Right: Previous Notifications */}
+        <div>
+          <h2 className="flex items-center gap-2.5 text-2xl font-bold text-[#002147] mb-6">
+            <Clock className="w-6 h-6 text-[#D2B48C]" />
+            Previous Notifications
+          </h2>
+          {previous.length === 0 ? (
+            <p className="text-gray-500">No previous notifications yet.</p>
+          ) : (
+            <ul className="space-y-4">
+              {previous.map((n) => (
+                <li key={n.id} className="rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 text-gray-700">
                   {n.text}
                 </li>
               ))}

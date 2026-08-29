@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function AboutInstituteSection() {
@@ -24,27 +23,6 @@ export default function AboutInstituteSection() {
         <div className="border-b-2 border-[#2b2418] mb-10" />
 
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-12">
-          {/* Photo styled like a halftone newspaper print, with a caption */}
-          <motion.figure
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full max-w-[140px] shrink-0 mx-auto lg:mx-0 lg:self-start"
-          >
-            <div className="relative aspect-[4/5] border-4 border-[#2b2418] grayscale contrast-125">
-              <Image
-                src="/student-portrait.png"
-                alt="Edumentora Student Portrait"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="font-serif italic text-sm text-center mt-2 text-[#2b2418]/80">
-              Fig. 1 — A student resuming their degree through Edumentora&apos;s credit transfer program.
-            </figcaption>
-          </motion.figure>
-
           {/* Article body, set in newspaper-style columns with a drop cap */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}

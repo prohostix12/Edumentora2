@@ -176,6 +176,18 @@ export default function Hero() {
       {/* Main hero area */}
       <div className="relative flex-1 h-full flex flex-col pt-32 lg:pt-[100px] pb-0 bg-[#F7EFE1] overflow-hidden">
 
+      {/* Background video */}
+      <video
+        src="/bg/hero-bg-live.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
+      {/* Tint over the video so the existing dark-navy text/UI stay readable */}
+      <div className="absolute inset-0 bg-[#F7EFE1]/80 z-[1]" />
+
       <div className="relative max-w-6xl mx-auto w-full px-4 md:px-8 z-10 flex-1 min-h-0 flex flex-col overflow-y-auto pb-6">
         <div className="flex flex-col md:flex-row flex-1 min-h-0 gap-8 lg:gap-10 items-stretch">
 
