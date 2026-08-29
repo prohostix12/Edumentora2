@@ -154,7 +154,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
           ) : (
             <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center gap-2">
               <Link2 className="w-6 h-6 text-gray-400" />
-              <span className="text-sm font-semibold text-gray-500">Paste a YouTube, Instagram, Facebook, Vimeo, or direct video link</span>
+              <span className="text-sm font-semibold text-gray-500">Paste a YouTube, Instagram, Facebook, Vimeo, Google Drive, or direct video link</span>
               <div className="w-full max-w-md relative">
                 <input
                   type="url"
@@ -162,7 +162,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                   required
                   value={addUrlValue}
                   onChange={(e) => handleAddUrlChange(e.target.value)}
-                  placeholder="https://example.com/video.mp4, a YouTube/Instagram/Facebook link…"
+                  placeholder="https://example.com/video.mp4, a YouTube/Instagram/Google Drive link…"
                   className={`w-full pl-4 pr-9 py-2 border rounded-xl text-[#002147] focus:outline-none focus:ring-2 ${
                     addUrlStatus === 'invalid'
                       ? 'border-red-300 focus:ring-red-100 focus:border-red-400'
@@ -219,7 +219,7 @@ export default function ReelManager({ promoReels, successReels }: { promoReels: 
                           autoFocus
                           value={replaceUrlValue}
                           onChange={(e) => handleReplaceUrlChange(e.target.value)}
-                          placeholder="Paste YouTube, Instagram, Facebook, Vimeo, or direct video link"
+                          placeholder="Paste YouTube, Instagram, Facebook, Vimeo, Google Drive, or direct video link"
                           className={`w-full px-3 py-1.5 pr-7 text-xs border rounded-lg text-[#002147] focus:outline-none focus:ring-2 ${
                             replaceUrlStatus === 'invalid'
                               ? 'border-red-300 focus:ring-red-100 focus:border-red-400'

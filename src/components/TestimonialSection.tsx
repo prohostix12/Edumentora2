@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, User, ArrowRight } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, User, ArrowRight, X } from 'lucide-react';
 import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 import HomeGalleryClient from './HomeGalleryClient';
@@ -47,28 +47,10 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Each scrolling track pauses while a video inside it is actually playing,
-  // and resumes once it's paused/ended — independent of hover.
-  const [playingUpTrack, setPlayingUpTrack] = useState<Set<number>>(new Set());
-  const [playingDownTrack, setPlayingDownTrack] = useState<Set<number>>(new Set());
-
-  const trackPlayHandlers = (setter: React.Dispatch<React.SetStateAction<Set<number>>>, idx: number) => ({
-    onPlay: () => setter((prev) => new Set(prev).add(idx)),
-    onPause: () =>
-      setter((prev) => {
-        if (!prev.has(idx)) return prev;
-        const next = new Set(prev);
-        next.delete(idx);
-        return next;
-      }),
-    onEnded: () =>
-      setter((prev) => {
-        if (!prev.has(idx)) return prev;
-        const next = new Set(prev);
-        next.delete(idx);
-        return next;
-      }),
-  });
+  // Gallery videos never play inline — clicking one opens it in a popup;
+  // clicking outside the popup closes it, which unmounts the player and so
+  // stops playback for every video type (native <video> or any iframe embed).
+  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null);
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex === displayTestimonials.length - 1 ? 0 : prevIndex + 1));
@@ -274,16 +256,16 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
           {/* Track 1: Edumentora Videos (Scrolls Up) */}
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
-            <div
-              className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]"
-              style={playingUpTrack.size > 0 ? { animationPlayState: 'paused' } : undefined}
-            >
+            <div className="flex flex-col gap-2 animate-scroll-up pb-2 hover:[animation-play-state:paused]">
               {[...edumentoraVideos, ...edumentoraVideos].map((src, idx) => (
                 <div
                   key={idx}
-                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
+                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group cursor-pointer"
+                  onClick={() => setActiveVideoSrc(src)}
                 >
-                  <ReelPlayer src={src} className="w-full h-full object-cover" {...trackPlayHandlers(setPlayingUpTrack, idx)} />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" />
+                  {/* Blocks direct interaction with the inline thumbnail — the video only ever plays inside the popup */}
+                  <div className="absolute inset-0 z-10" />
                 </div>
               ))}
             </div>
@@ -291,16 +273,16 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
 
           {/* Track 2: Video Testimonials (Scrolls Down) */}
           <div className="relative h-[1000px] md:h-[1150px] w-full max-w-[160px] md:max-w-[200px] overflow-hidden fade-edges">
-            <div
-              className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]"
-              style={playingDownTrack.size > 0 ? { animationPlayState: 'paused' } : undefined}
-            >
+            <div className="flex flex-col gap-2 animate-scroll-down pb-2 hover:[animation-play-state:paused]">
               {[...videoTestimonials, ...videoTestimonials].map((src, idx) => (
                 <div
                   key={idx}
-                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group"
+                  className="shrink-0 w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-md relative group cursor-pointer"
+                  onClick={() => setActiveVideoSrc(src)}
                 >
-                  <ReelPlayer src={src} className="w-full h-full object-cover" {...trackPlayHandlers(setPlayingDownTrack, idx)} />
+                  <ReelPlayer src={src} className="w-full h-full object-cover" />
+                  {/* Blocks direct interaction with the inline thumbnail — the video only ever plays inside the popup */}
+                  <div className="absolute inset-0 z-10" />
                 </div>
               ))}
             </div>
@@ -309,6 +291,42 @@ export default function TestimonialSection({ reviews = [], galleryImages = [], p
         </div>
 
       </div>
+
+      {/* Video popup — same backdrop/card/close-button styling and animation as the
+          site's "Start Your Journey" lead popup (PopupForm.tsx), just with a video
+          instead of a form. Clicking outside closes it, which unmounts the player
+          and stops playback. */}
+      <AnimatePresence>
+        {activeVideoSrc && (
+          <motion.div
+            data-lenis-prevent
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setActiveVideoSrc(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: -20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-black rounded-3xl shadow-2xl w-full max-w-lg aspect-[9/16] relative border border-gray-100 overflow-hidden"
+            >
+              <button
+                type="button"
+                onClick={() => setActiveVideoSrc(null)}
+                aria-label="Close"
+                className="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <ReelPlayer src={activeVideoSrc} className="w-full h-full object-cover" autoPlay />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -41,7 +41,20 @@ export function getVimeoEmbedUrl(url: string): string | null {
   return `https://player.vimeo.com/video/${match[1]}`;
 }
 
-export type EmbedInfo = { platform: 'youtube' | 'instagram' | 'facebook' | 'vimeo'; embedUrl: string } | null;
+export function getGoogleDriveEmbedUrl(url: string): string | null {
+  if (!url) return null;
+
+  // Covers the two share-link shapes Drive actually hands out:
+  // .../file/d/<FILE_ID>/view?usp=sharing  and  ...?id=<FILE_ID> (open/uc links)
+  const pathMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]{10,})/);
+  const idParamMatch = url.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([a-zA-Z0-9_-]{10,})/);
+  const fileId = pathMatch?.[1] ?? idParamMatch?.[1];
+  if (!fileId) return null;
+
+  return `https://drive.google.com/file/d/${fileId}/preview`;
+}
+
+export type EmbedInfo = { platform: 'youtube' | 'instagram' | 'facebook' | 'vimeo' | 'googledrive'; embedUrl: string } | null;
 
 // Tries every known platform embed. Returns null if the URL doesn't match any
 // of them — callers should then fall back to treating it as a direct video
@@ -58,6 +71,9 @@ export function getEmbedInfo(url: string): EmbedInfo {
 
   const vimeo = getVimeoEmbedUrl(url);
   if (vimeo) return { platform: 'vimeo', embedUrl: vimeo };
+
+  const googleDrive = getGoogleDriveEmbedUrl(url);
+  if (googleDrive) return { platform: 'googledrive', embedUrl: googleDrive };
 
   return null;
 }

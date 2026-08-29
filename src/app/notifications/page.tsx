@@ -20,10 +20,10 @@ export const metadata = pageMetadata({
 });
 
 export default async function NotificationsPage() {
-  // "Current" mirrors exactly what the homepage hero marquee shows (status
-  // SHOW, same order); "Previous" is everything since taken down (status HIDE).
+  // "Current" is whatever is enabled (status SHOW) in the admin panel, latest
+  // first; "Previous" is everything disabled there (status HIDE).
   const [current, previous] = await Promise.all([
-    prisma.notification.findMany({ where: { status: 'SHOW' }, orderBy: { createdAt: 'asc' } }),
+    prisma.notification.findMany({ where: { status: 'SHOW' }, orderBy: { createdAt: 'desc' } }),
     prisma.notification.findMany({ where: { status: 'HIDE' }, orderBy: { createdAt: 'desc' } }),
   ]);
 
@@ -39,7 +39,7 @@ export default async function NotificationsPage() {
       />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
-        {/* Left: Current Notifications — same content shown in the hero marquee */}
+        {/* Left: Current Notifications — status SHOW in admin, latest first */}
         <div>
           <h2 className="flex items-center gap-2.5 text-2xl font-bold text-[#002147] mb-6">
             <Bell className="w-6 h-6 text-[#D2B48C]" />

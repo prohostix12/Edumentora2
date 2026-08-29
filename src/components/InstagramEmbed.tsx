@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getInstagramEmbedUrl } from '@/lib/video';
+import { useIframePlayOverlay } from '@/lib/useIframePlayOverlay';
 
 // Instagram's raw embed page has roughly fixed pixel-height chrome (a header
 // bar with the account/profile info, and a footer with like/comment/share
@@ -21,8 +22,8 @@ const NATURAL_WIDTH = 400;
 const NATURAL_HEIGHT = 1000;
 const HEADER_PX = 80;
 
-export default function InstagramEmbed({ url, className }: { url: string; className?: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function InstagramEmbed({ url, className, onPlay, onPause }: { url: string; className?: string; onPlay?: () => void; onPause?: () => void }) {
+  const { containerRef, overlayRef } = useIframePlayOverlay({ onPlay, onPause });
   const [scale, setScale] = useState(0);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export default function InstagramEmbed({ url, className }: { url: string; classN
           }}
         />
       )}
+      <div ref={overlayRef} style={{ position: 'absolute', inset: 0, background: 'transparent', cursor: 'pointer' }} />
     </div>
   );
 }

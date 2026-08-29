@@ -242,9 +242,9 @@ export default function Hero() {
               {...riseIn(0.3)}
               className="flex flex-nowrap md:flex-wrap gap-2 md:gap-4 items-center mt-[5%] w-full md:w-auto"
             >
-              <a href="/contact" className="flex-1 md:flex-none min-w-0">
-                <button className="w-full whitespace-nowrap bg-[#E91D24] hover:bg-[#B8151B] text-white font-bold px-2.5 py-2 text-[11px] md:px-7 md:py-3 md:text-base rounded-full shadow-lg shadow-[#E91D24]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
-                  Enroll Now
+              <a href="https://findyouruniversity.com/" target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none min-w-0">
+                <button className="w-full whitespace-nowrap bg-[#002147] hover:bg-[#001529] text-white font-bold px-2.5 py-2 text-[11px] md:px-7 md:py-3 md:text-base rounded-full shadow-lg shadow-[#002147]/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                  Find Your University
                 </button>
               </a>
               <a href="/contact" className="flex-1 md:flex-none min-w-0">
