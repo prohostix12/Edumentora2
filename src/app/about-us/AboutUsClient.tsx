@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import LocationsSection from '@/components/LocationsSection';
 
 type Faq = { id: string; q: string; a: string };
 
@@ -91,6 +92,8 @@ export default function AboutUsClient({ faqs }: { faqs: Faq[] }) {
           </p>
         </div>
       </div>
+
+      <LocationsSection />
 <Footer />
       <FloatingWhatsApp />
     </main>

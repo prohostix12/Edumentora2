@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import Header from '@/components/Header';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import PageBanner from '@/components/PageBanner';
@@ -274,7 +273,6 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
           </div>
         </div>
       </div>
-      <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
     </main>

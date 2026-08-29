@@ -11,7 +11,6 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import EnquiryForm from '@/components/EnquiryForm';
 import EligibilityForm from '@/components/EligibilityForm';
-import LocationsSection from '@/components/LocationsSection';
 
 type Faq = { id: string; q: string; a: string };
 
@@ -619,7 +618,6 @@ export default function BTechCreditTransferClient({ faqs }: { faqs: Faq[] }) {
         )}
       </AnimatePresence>
 
-<LocationsSection />
 <Footer />
       <FloatingWhatsApp />
     </main>

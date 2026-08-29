@@ -9,7 +9,6 @@ import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import TestimonialSection from '@/components/TestimonialSection';
-import LocationsSection from '@/components/LocationsSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
@@ -99,7 +98,6 @@ export default async function Home() {
       <ProgramsSection />
       <WhyChooseUsSection />
       <TestimonialSection reviews={reviews} galleryImages={galleryImages} promoVideos={promoVideos} successVideos={successVideos} />
-      <LocationsSection />
       <Footer />
       <FloatingWhatsApp />
     </main>
