@@ -232,6 +232,13 @@ export default function Hero() {
             </h1>
 
             <motion.p
+              {...riseIn(0.12)}
+              className="text-[#002147] font-bold text-sm md:text-base tracking-wide mb-3"
+            >
+              Academic Credit Transfer Guidance in Kerala
+            </motion.p>
+
+            <motion.p
               {...riseIn(0.15)}
               className="text-gray-600 text-base leading-relaxed mb-6 max-w-md"
             >

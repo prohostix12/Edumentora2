@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function AboutInstituteSection() {
@@ -36,7 +37,11 @@ export default function AboutInstituteSection() {
             academic roadblocks, personal setbacks, or institutional barriers. This often leaves
             them uncertain about how to complete their education without starting over. As a
             leading academic credit transfer institution, Edumentora specializes in helping
-            students seamlessly resume and complete their degrees, including B. Tech and other
+            students seamlessly resume and complete their degrees, including{' '}
+            <Link href="/b-tech-credit-transfer" className="underline decoration-1 underline-offset-2 hover:text-[#8B0000] transition-colors">
+              B. Tech
+            </Link>{' '}
+            and other
             professional programs. Recognized as a trusted engineering academic credit
             transfer institution in Kerala, we offer a streamlined solution for transferring
             previously earned academic credits to UGC-recognized universities. Our process is

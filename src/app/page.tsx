@@ -12,13 +12,26 @@ import TestimonialSection from '@/components/TestimonialSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
-import { aggregateRatingJsonLd } from '@/lib/seo';
+import { aggregateRatingJsonLd, pageMetadata } from '@/lib/seo';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const revalidate = 3600;
+
+export const metadata = {
+  ...pageMetadata({
+    title: 'Credit Transfer Institute in Kerala',
+    description: 'Academic credit transfer guidance in Kerala — resume your B.Tech, UG, PG, or Diploma at a UGC-recognized university without starting over.',
+    path: '/',
+  }),
+  // The root layout's title template doesn't apply to the index route the
+  // same way it does for every other page (verified directly in the built
+  // HTML) — set the final title explicitly here rather than touch the
+  // shared template in layout.tsx.
+  title: { absolute: 'Credit Transfer Institute in Kerala | eduMentora' },
+};
 
 export default async function Home() {
   let reviews: any[] = [];
