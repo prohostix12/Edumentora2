@@ -43,6 +43,11 @@ const organizationJsonLd = {
   email: 'info@edumentora.com',
   telephone: '+91-9744587777',
   areaServed: ['Calicut', 'Kochi', 'Kerala'],
+  sameAs: [
+    'https://www.facebook.com/edumentoradotcom/',
+    'https://www.instagram.com/edumentora/?hl=en',
+    'https://www.linkedin.com/company/edumentora/home/',
+  ],
 };
 
 import PopupForm from '@/components/PopupForm';

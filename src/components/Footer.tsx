@@ -27,12 +27,6 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const TwitterIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-  </svg>
-);
-
 export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
@@ -50,8 +44,8 @@ export default function Footer() {
   ];
 
   const locations = [
-    { name: "Calicut", href: "" },
-    { name: "Kochi", href: "" }
+    { name: "Calicut" },
+    { name: "Kochi" }
   ];
 
   const scrollToTop = () => {
@@ -117,10 +111,10 @@ export default function Footer() {
               <ul className="space-y-4">
                 {locations.map((loc, index) => (
                   <li key={index}>
-                    <Link href="/contact#contact-hero" className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-medium text-sm">
-                      <MapPin className="w-4 h-4 mr-3 text-gray-500 group-hover:text-[#D2042D] transition-colors" />
+                    <p className="flex items-center text-gray-400 font-medium text-sm">
+                      <MapPin className="w-4 h-4 mr-3 text-gray-500" />
                       {loc.name}
-                    </Link>
+                    </p>
                   </li>
                 ))}
               </ul>
@@ -169,16 +163,17 @@ export default function Footer() {
               <div className="mt-8 pt-4 border-t border-white/10">
                 <div className="flex space-x-3">
                   {[
-                    { icon: FacebookIcon, href: "#" },
-                    { icon: InstagramIcon, href: "#" },
-                    { icon: LinkedinIcon, href: "#" },
-                    { icon: TwitterIcon, href: "#" }
+                    { icon: FacebookIcon, href: "https://www.facebook.com/edumentoradotcom/" },
+                    { icon: InstagramIcon, href: "https://www.instagram.com/edumentora/?hl=en" },
+                    { icon: LinkedinIcon, href: "https://www.linkedin.com/company/edumentora/home/" }
                   ].map((social, idx) => {
                     const Icon = social.icon;
                     return (
-                      <a 
-                        key={idx} 
-                        href={social.href} 
+                      <a
+                        key={idx}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#D2042D] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                       >
                         <Icon className="w-4 h-4" />

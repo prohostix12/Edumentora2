@@ -6,25 +6,25 @@ Contact: info@edumentora.com | +91 974458 7777
 
 ## Core pages
 
-- [Home](https://edumentora.com/): Overview of Edumentora's services, partner universities, and student testimonials.
-- [About Us](https://edumentora.com/about-us): Who Edumentora is and how the credit transfer process works, with FAQs.
-- [B.Tech Credit Transfer](https://edumentora.com/b-tech-credit-transfer): Main program page for engineering credit transfer, including eligibility, partner universities, and FAQs.
-- [UG Credit Transfer](https://edumentora.com/ug-credit-transfer)
-- [PG Credit Transfer](https://edumentora.com/pg-credit-transfer)
-- [Diploma Credit Transfer](https://edumentora.com/diploma-credit-transfer)
-- [Apprenticeship Learning Program](https://edumentora.com/apprenticeship-learning-program)
-- [Programmes](https://edumentora.com/programs): Full list of available academic programs.
-- [Partner Universities](https://edumentora.com/universities): Recognized universities Edumentora works with.
-- [Blog](https://edumentora.com/blog): Articles on education and career topics.
-- [Gallery](https://edumentora.com/gallery): Photos from events and campus life.
-- [Contact](https://edumentora.com/contact): Office locations (Calicut, Kochi) and enquiry form.
+- [Home](https://www.edumentora.com/): Overview of Edumentora's services, partner universities, and student testimonials.
+- [About Us](https://www.edumentora.com/about-us): Who Edumentora is and how the credit transfer process works, with FAQs.
+- [B.Tech Credit Transfer](https://www.edumentora.com/b-tech-credit-transfer): Main program page for engineering credit transfer, including eligibility, partner universities, and FAQs.
+- [UG Credit Transfer](https://www.edumentora.com/ug-credit-transfer)
+- [PG Credit Transfer](https://www.edumentora.com/pg-credit-transfer)
+- [Diploma Credit Transfer](https://www.edumentora.com/diploma-credit-transfer)
+- [Apprenticeship Learning Program](https://www.edumentora.com/apprenticeship-learning-program)
+- [Programmes](https://www.edumentora.com/programs): Full list of available academic programs.
+- [Partner Universities](https://www.edumentora.com/universities): Recognized universities Edumentora works with.
+- [Blog](https://www.edumentora.com/blog): Articles on education and career topics.
+- [Gallery](https://www.edumentora.com/gallery): Photos from events and campus life.
+- [Contact](https://www.edumentora.com/contact): Office locations (Calicut, Kochi) and enquiry form.
 
 ## Location-specific B.Tech Credit Transfer pages
 
-Dedicated pages for B.Tech credit transfer guidance in: Alappuzha, Ernakulam, Idukki, Kochi, Kannur, Kasaragod, Kollam, Kottayam, Kozhikode, Malappuram, Palakkad, Pathanamthitta, Thiruvananthapuram, Thrissur, and Wayanad — all under `https://edumentora.com/b-tech-credit-transfer-<city>`.
+Dedicated pages for B.Tech credit transfer guidance in: Alappuzha, Ernakulam, Idukki, Kochi, Kannur, Kasaragod, Kollam, Kottayam, Kozhikode, Malappuram, Palakkad, Pathanamthitta, Thiruvananthapuram, Thrissur, and Wayanad — all under `https://www.edumentora.com/b-tech-credit-transfer-<city>`.
 
 ## Notes for automated crawlers
 
-- Full machine-readable page list: [sitemap.xml](https://edumentora.com/sitemap.xml)
-- Crawling rules: [robots.txt](https://edumentora.com/robots.txt)
+- Full machine-readable page list: [sitemap.xml](https://www.edumentora.com/sitemap.xml)
+- Crawling rules: [robots.txt](https://www.edumentora.com/robots.txt)
 - `/admin/*` is an internal, authenticated admin panel — not part of the public site content.
