@@ -68,7 +68,7 @@ export default function BTechCreditTransferPage() {
           href="/best-b-tech-credit-transfer-services-in-kerala-for-dropout-backlog-students/"
           className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
         >
-          Best B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
+          B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
         </Link>
         <Link
           href="/how-to-resume-your-b-tech-after-a-3-year-gap-in-india/"
@@ -116,7 +116,7 @@ export default function BTechCreditTransferPage() {
             href="/best-b-tech-credit-transfer-services-in-kerala-for-dropout-backlog-students/"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
           >
-            Best B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
+            B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
           </Link>
           <Link
             href="/ready-to-continue-your-education-credit-transfer-makes-it-easy-to-restart/"

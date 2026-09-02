@@ -76,19 +76,19 @@ export default function AboutUsClient({ faqs }: { faqs: Faq[] }) {
       <div className="bg-[#F9F9F9] py-24 border-t border-[#DDC7A0] dot-grid">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 text-lg text-gray-700 leading-relaxed text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-[#002147] text-center mb-10">
-            The Best Credit Transfer Institute
+            The Credit Transfer Institute
           </h2>
           <p>
-            When students think about shifting to another college or university, one of the biggest worries is whether their earlier studies will still count. Nobody wants to repeat the same subjects or lose valuable years. This is where choosing the Best Credit Transfer Institute makes all the difference.
+            When students think about shifting to another college or university, one of the biggest worries is whether their earlier studies will still count. Nobody wants to repeat the same subjects or lose valuable years. This is where choosing the Credit Transfer Institute makes all the difference.
           </p>
           <p>
-            The Best Credit Transfer Institute gives students a chance to carry their credits from one institution to another without starting the degree all over again. By submitting mark sheets, subject details, and the syllabus of the courses already completed, students can have their past work evaluated. Once the credits are approved, they can continue their studies directly from the right semester.
+            The Credit Transfer Institute gives students a chance to carry their credits from one institution to another without starting the degree all over again. By submitting mark sheets, subject details, and the syllabus of the courses already completed, students can have their past work evaluated. Once the credits are approved, they can continue their studies directly from the right semester.
           </p>
           <p>
-            For students who want to move forward without wasting time or money, the Best Credit Transfer Institute provides the right pathway. It makes sure that the effort already put in is not ignored, and it allows students to complete their education in a smooth and stress-free manner.
+            For students who want to move forward without wasting time or money, the Credit Transfer Institute provides the right pathway. It makes sure that the effort already put in is not ignored, and it allows students to complete their education in a smooth and stress-free manner.
           </p>
           <p>
-            Many learners face unexpected changes in life, but with the help of the Best Credit Transfer Institute, their education remains on track. It values hard work, supports growth, and opens doors to better opportunities.
+            Many learners face unexpected changes in life, but with the help of the Credit Transfer Institute, their education remains on track. It values hard work, supports growth, and opens doors to better opportunities.
           </p>
         </div>
       </div>

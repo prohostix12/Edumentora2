@@ -7,7 +7,7 @@ import { SITE_NAME, SITE_URL, websiteJsonLd } from '@/lib/seo';
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 const DEFAULT_TITLE = 'Edumentora - Credit Transfer Institution in Kerala';
-const DEFAULT_DESCRIPTION = 'Resume your education with the Best Academic Credit Transfer institution in Kerala.';
+const DEFAULT_DESCRIPTION = 'Resume your education with Academic Credit Transfer guidance in Kerala.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
