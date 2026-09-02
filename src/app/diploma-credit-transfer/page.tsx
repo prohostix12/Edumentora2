@@ -32,12 +32,29 @@ export default function DiplomaCreditTransferPage() {
           </p>
 
           <p className="text-base leading-relaxed text-justify">
-            EduMentora, offers a comprehensive Diploma Credit Transfer Programme in collaboration with renowned universities, including Glocal University, Radha Govind University, and Arni University. This program is designed to help students seamlessly transfer their existing diploma credits to recognized universities, allowing them to upgrade their qualifications without restarting their education. By leveraging this credit transfer system, students can save time and effort while continuing their academic journey toward higher education and career advancement.
+            Edumentora, offers a comprehensive Diploma Credit Transfer Programme in collaboration with renowned universities, including Glocal University, Radha Govind University, and Arni University. This program is designed to help students seamlessly transfer their existing diploma credits to recognized universities, allowing them to upgrade their qualifications without restarting their education. By leveraging this credit transfer system, students can save time and effort while continuing their academic journey toward higher education and career advancement.
           </p>
           
           <p className="text-base leading-relaxed text-justify">
-            Our Diploma Credit Transfer Programme is ideal for students who have completed diploma courses and wish to pursue advanced degrees with recognized accreditation. EduMentora ensures a hassle-free admission process, expert guidance, and flexible learning options to support students at every stage. The program covers a wide range of disciplines, catering to diverse academic interests and professional goals. With a focus on quality education and seamless credit recognition, EduMentora empowers students to achieve their academic aspirations efficiently and cost-effectively.
+            Our Diploma Credit Transfer Programme is ideal for students who have completed diploma courses and wish to pursue advanced degrees with recognized accreditation. Edumentora ensures a hassle-free admission process, expert guidance, and flexible learning options to support students at every stage. The program covers a wide range of disciplines, catering to diverse academic interests and professional goals. With a focus on quality education and seamless credit recognition, Edumentora empowers students to achieve their academic aspirations efficiently and cost-effectively.
           </p>
+
+          <div className="pt-2 space-y-3">
+            <h3 className="text-xl font-bold text-[#002147]">
+              Diploma Academic Credit Transfer and Lateral Entry
+            </h3>
+            <p className="text-base leading-relaxed text-justify">
+              Diploma holders exploring their options sometimes come across two different terms — academic credit transfer and lateral entry — and it helps to know they are not automatically the same process. Lateral entry generally refers to a specific admission pathway, typically direct admission into the second year of a B.Tech program for diploma holders. Academic credit transfer, on the other hand, generally applies to students who have already started a degree program and want previously completed academic work evaluated and recognized at another institution, rather than beginning a new degree. Which pathway is relevant depends on your own academic background — not every diploma holder automatically qualifies for lateral entry, and not every diploma-level qualification can be transferred as credits, since eligibility and the specific academic process can vary by institution and program. You can read a more detailed comparison in{' '}
+              <Link href="/blog/6a96c7cc70298b504074e813" className="text-[#8B0000] font-semibold underline decoration-[#D2B48C] underline-offset-2 hover:text-[#5C0000]">
+                Credit Transfer vs Lateral Entry: What&apos;s the Difference?
+              </Link>
+              {' '}Diploma holders specifically considering a move into engineering can also see our{' '}
+              <Link href="/b-tech-credit-transfer" className="text-[#8B0000] font-semibold underline decoration-[#D2B48C] underline-offset-2 hover:text-[#5C0000]">
+                B.Tech credit transfer
+              </Link>
+              {' '}program.
+            </p>
+          </div>
 
           <Link href="/about-us" className="mt-4 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
             Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>

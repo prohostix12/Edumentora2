@@ -96,7 +96,7 @@ export default function Header() {
         >
           <img
             src="/edumentora_logo.webp"
-            alt="eduMentora Logo"
+            alt="Edumentora Logo"
             className="w-auto h-[40px] object-contain"
           />
         </Link>

@@ -39,9 +39,13 @@ const STATIC_ROUTES = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Static routes are plain React components with no stored "last changed"
+  // date anywhere in the project, so lastModified is omitted for them
+  // rather than stamped with new Date() on every build — that previously
+  // made every static page falsely report as "modified today" on every
+  // deploy. Blog and University entries below keep their real updatedAt.
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
   }));
 
   let blogEntries: MetadataRoute.Sitemap = [];

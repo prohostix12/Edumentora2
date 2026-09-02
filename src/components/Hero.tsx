@@ -197,7 +197,7 @@ export default function Hero() {
             className="md:hidden self-start flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-2xl shadow-[0_10px_30px_-10px_rgba(23,42,83,0.25)]"
           >
             <ShieldCheck className="w-5 h-5 text-[#002147]" />
-            <span className="font-bold text-[#002147] text-sm">India&rsquo;s No. 1 Credit Transfer Platform</span>
+            <span className="font-bold text-[#002147] text-sm">Academic Credit Transfer Guidance</span>
           </motion.div>
 
           {/* 1: Content + paragraph */}
@@ -209,7 +209,7 @@ export default function Hero() {
               className="hidden md:flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-2xl shadow-[0_10px_30px_-10px_rgba(23,42,83,0.25)] mb-6"
             >
               <ShieldCheck className="w-5 h-5 text-[#002147]" />
-              <span className="font-bold text-[#002147] text-sm">India&rsquo;s No. 1 Credit Transfer Platform</span>
+              <span className="font-bold text-[#002147] text-sm">Academic Credit Transfer Guidance</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-[#002147] leading-[1.05] tracking-tight mb-6 h-[190px] sm:h-[170px] md:h-[200px] xl:h-[220px] flex flex-col justify-end">

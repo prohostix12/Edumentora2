@@ -6,6 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import PageBanner from '@/components/PageBanner';
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ArrowLeft, Send } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { postComment } from './actions';
@@ -17,6 +18,124 @@ const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const revalidate = 3600;
+
+// Renders one block's subPara as rich content instead of a flat string:
+//  - a run of lines starting with "|" is treated as a markdown-style table
+//    and rendered as a real <table>
+//  - "[label](/path)" inside any other line becomes an internal <Link>
+// Existing blog content contains neither "|" nor "[...](...)" (verified
+// against the current dataset), so this is purely additive — every
+// previously-published post renders exactly as before.
+function renderInlineLinks(text: string, keyPrefix: string) {
+  const linkPattern = /\[([^\]]+)\]\((\/[^)]+)\)/g;
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let i = 0;
+  while ((match = linkPattern.exec(text)) !== null) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+    nodes.push(
+      <Link key={`${keyPrefix}-link-${i++}`} href={match[2]} className="text-[#8B0000] font-semibold underline decoration-[#D2B48C] underline-offset-2 hover:text-[#5C0000]">
+        {match[1]}
+      </Link>
+    );
+    lastIndex = linkPattern.lastIndex;
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes;
+}
+
+function BlogParagraph({ subPara, blockKey }: { subPara: string; blockKey: string }) {
+  const lines = subPara.split('\n');
+  const elements: React.ReactNode[] = [];
+  let i = 0;
+  let paraBuffer: string[] = [];
+  let listBuffer: string[] = [];
+
+  const flushPara = () => {
+    if (paraBuffer.length === 0) return;
+    const text = paraBuffer.join('\n');
+    elements.push(
+      <p key={`${blockKey}-p-${elements.length}`} className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap mb-4 last:mb-0">
+        {renderInlineLinks(text, `${blockKey}-p-${elements.length}`)}
+      </p>
+    );
+    paraBuffer = [];
+  };
+
+  const flushList = () => {
+    if (listBuffer.length === 0) return;
+    elements.push(
+      <ul key={`${blockKey}-ul-${elements.length}`} className="list-disc pl-6 space-y-1.5 text-lg text-gray-700 leading-relaxed mb-4">
+        {listBuffer.map((item, idx) => (
+          <li key={`${blockKey}-li-${idx}`}>{renderInlineLinks(item, `${blockKey}-li-${idx}`)}</li>
+        ))}
+      </ul>
+    );
+    listBuffer = [];
+  };
+
+  while (i < lines.length) {
+    const line = lines[i];
+    if (line.trim().startsWith('|')) {
+      flushPara();
+      flushList();
+      const tableLines: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        tableLines.push(lines[i].trim());
+        i++;
+      }
+      const rows = tableLines
+        .map((l) => l.replace(/^\||\|$/g, '').split('|').map((c) => c.trim()))
+        .filter((cells) => !cells.every((c) => /^:?-+:?$/.test(c))); // drop the "---" separator row
+      const [headerRow, ...bodyRows] = rows;
+      if (headerRow) {
+        elements.push(
+          <div key={`${blockKey}-table-${elements.length}`} className="overflow-x-auto mb-6 rounded-xl border border-gray-200">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[#002147]/5">
+                  {headerRow.map((cell, idx) => (
+                    <th key={idx} className="px-4 py-3 text-sm font-bold text-[#002147] border-b border-gray-200">{cell}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {bodyRows.map((cells, rIdx) => (
+                  <tr key={rIdx} className="odd:bg-white even:bg-gray-50">
+                    {cells.map((cell, cIdx) => (
+                      <td key={cIdx} className="px-4 py-3 text-sm text-gray-700 align-top border-b border-gray-100 last:border-b-0">{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+      continue;
+    }
+    if (/^\s*[-*]\s+/.test(line)) {
+      flushPara();
+      listBuffer.push(line.replace(/^\s*[-*]\s+/, ''));
+      i++;
+      continue;
+    }
+    if (line.trim() === '') {
+      flushPara();
+      flushList();
+      i++;
+      continue;
+    }
+    flushList();
+    paraBuffer.push(line);
+    i++;
+  }
+  flushPara();
+  flushList();
+
+  return <>{elements}</>;
+}
 
 export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await props.params;
@@ -125,11 +244,14 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
           {/* Left Column: Blog Content */}
           <article className="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
             {blog.mainImage && (
-              <div className="w-full h-[300px] md:h-[450px] overflow-hidden">
-                <img 
-                  src={blog.mainImage} 
-                  alt={blog.category} 
-                  className="w-full h-full object-cover" 
+              <div className="relative w-full h-[300px] md:h-[450px] overflow-hidden">
+                <Image
+                  src={blog.mainImage}
+                  alt={blog.sectionDis}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover"
                 />
               </div>
             )}
@@ -144,9 +266,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                       </h2>
                     )}
                     {block.subPara && (
-                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
-                        {block.subPara}
-                      </p>
+                      <BlogParagraph subPara={block.subPara} blockKey={`block-${index}`} />
                     )}
                   </div>
                 ))}
@@ -167,8 +287,15 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                   {recentBlogs.map((recent) => (
                     <Link key={recent.id} href={`/blog/${recent.id}`} className="group flex gap-4 items-start">
                       {recent.mainImage ? (
-                        <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                          <img src={recent.mainImage} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                        <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                          <Image
+                            src={recent.mainImage}
+                            alt={recent.sectionDis}
+                            fill
+                            unoptimized
+                            sizes="80px"
+                            className="object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
                         </div>
                       ) : (
                         <div className="w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 text-gray-400">

@@ -43,6 +43,15 @@ export default function PGCreditTransferPage() {
             With Edumentora, you can efficiently complete your postgraduate degree, reclaim your academic progress, and achieve your career goals.
           </p>
 
+          <div className="pt-2 space-y-3">
+            <h3 className="text-xl font-bold text-[#002147]">
+              Changing Universities During a Postgraduate Program
+            </h3>
+            <p className="text-base leading-relaxed text-justify">
+              Postgraduate study often looks different from undergraduate study, and that affects how a university transfer is evaluated. PG programs can have more specialised subject structures, and completed coursework may need a closer academic comparison against the new program&apos;s syllabus. Where a program includes a research component, project work, or a dissertation, that portion is typically considered separately from standard coursework, since research work is generally tied closely to the specific university and guide it was carried out under. As with undergraduate transfers, how much of your previous postgraduate work is recognized, and how your continued studies are structured, depends on the receiving institution&apos;s own academic evaluation process.
+            </p>
+          </div>
+
           <Link href="/about-us" className="mt-4 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
             Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>

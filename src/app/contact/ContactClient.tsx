@@ -76,6 +76,14 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=YMCA%20Cross%20Road%2C%20Kozhikode%2C%20Kerala"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-2 self-start px-5 py-2.5 rounded-full bg-[#002147] text-white text-sm font-semibold hover:bg-[#002147]/90 transition-colors"
+            >
+              Get Directions
+            </a>
           </div>
 
           {/* Kochi Section */}
@@ -101,6 +109,14 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=National%20Pearl%20Star%20building%2C%20Edappally%2C%20Kochi%2C%20Kerala"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-2 self-start px-5 py-2.5 rounded-full bg-[#002147] text-white text-sm font-semibold hover:bg-[#002147]/90 transition-colors"
+            >
+              Get Directions
+            </a>
           </div>
 
         </div>

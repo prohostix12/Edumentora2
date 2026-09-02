@@ -15,7 +15,7 @@ export const revalidate = 3600;
 
 export const metadata = pageMetadata({
   title: 'Notifications',
-  description: 'Stay updated with the latest notifications and announcements from eduMentora.',
+  description: 'Stay updated with the latest notifications and announcements from Edumentora.',
   path: '/notifications',
 });
 

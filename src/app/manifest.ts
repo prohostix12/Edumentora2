@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Edumentora Services LLP',
-    short_name: 'eduMentora',
+    short_name: 'Edumentora',
     description: 'Resume your education with the Best Academic Credit Transfer institution in Kerala.',
     start_url: '/',
     display: 'standalone',

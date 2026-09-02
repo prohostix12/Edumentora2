@@ -43,6 +43,19 @@ export default function UGCreditTransferPage() {
             With Edumentora, you can complete your undergraduate degree efficiently, reclaim your academic progress, and achieve your educational goals with confidence.
           </p>
 
+          <div className="pt-2 space-y-3">
+            <h3 className="text-xl font-bold text-[#002147]">
+              Why Students May Consider Changing Universities During an Undergraduate Program
+            </h3>
+            <p className="text-base leading-relaxed text-justify">
+              Students consider changing universities midway through an undergraduate program for a range of reasons — a change in academic circumstances, relocation, financial or personal circumstances, or a need to continue their education after an interruption. In many of these situations, previously completed academic work may need to be reviewed before it can be recognized at the new institution. This kind of academic evaluation typically looks at the subjects already completed, the credits earned, and how closely they match the receiving university&apos;s own program requirements. Because this process can vary between institutions, outcomes such as which semester you continue from, or how many of your credits are recognized, depend on an individual evaluation rather than a fixed rule. If your undergraduate program is specifically engineering, our dedicated{' '}
+              <Link href="/b-tech-credit-transfer" className="text-[#8B0000] font-semibold underline decoration-[#D2B48C] underline-offset-2 hover:text-[#5C0000]">
+                B.Tech credit transfer
+              </Link>
+              {' '}page covers program-specific eligibility and evaluation details.
+            </p>
+          </div>
+
           <Link href="/about-us" className="mt-4 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-lg inline-flex items-center group w-fit">
             Know More <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>

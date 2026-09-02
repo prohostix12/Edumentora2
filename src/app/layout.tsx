@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/seo';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
-const DEFAULT_TITLE = 'eduMentora - Credit Transfer Institution in Kerala';
+const DEFAULT_TITLE = 'Edumentora - Credit Transfer Institution in Kerala';
 const DEFAULT_DESCRIPTION = 'Resume your education with the Best Academic Credit Transfer institution in Kerala.';
 
 export const metadata: Metadata = {
@@ -32,7 +32,10 @@ export const metadata: Metadata = {
 };
 
 // Organization schema, built only from facts already published in the
-// footer (phone/email/office cities) — no new claims, nothing invented.
+// footer and on /contact (phone/email/office addresses) — no new claims,
+// nothing invented. No geo coordinates: none are verifiable from existing
+// project data, so none are included (see ContactClient.tsx for the source
+// addresses these mirror, verbatim).
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'EducationalOrganization',
@@ -42,7 +45,33 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/edumentora_logo.webp`,
   email: 'info@edumentora.com',
   telephone: '+91-9744587777',
-  areaServed: ['Calicut', 'Kochi', 'Kerala'],
+  address: [
+    {
+      '@type': 'PostalAddress',
+      streetAddress: 'YMCA Cross Road',
+      addressLocality: 'Kozhikode',
+      addressRegion: 'Kerala',
+      postalCode: '673001',
+      addressCountry: 'IN',
+    },
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '6th Floor, National Pearl Star Building, Near Changampuzha Park Metro Station, Edappally',
+      addressLocality: 'Kochi',
+      addressRegion: 'Kerala',
+      postalCode: '682024',
+      addressCountry: 'IN',
+    },
+  ],
+  // Kept to the state + the office cities + the 15 city landing pages the
+  // site actually publishes (src/app/b-tech-credit-transfer-<city>/) —
+  // nothing added beyond what already has a real page.
+  areaServed: [
+    'Calicut', 'Kochi', 'Kerala',
+    'Alappuzha', 'Ernakulam', 'Idukki', 'Kannur', 'Kasaragod', 'Kollam',
+    'Kottayam', 'Kozhikode', 'Malappuram', 'Palakkad', 'Pathanamthitta',
+    'Thiruvananthapuram', 'Thrissur', 'Wayanad',
+  ],
   sameAs: [
     'https://www.facebook.com/edumentoradotcom/',
     'https://www.instagram.com/edumentora/?hl=en',

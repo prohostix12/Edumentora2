@@ -59,14 +59,14 @@ export default function MissionVisionSection() {
           <div className="hidden md:block space-y-2 pt-2">
             <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Mission</h3>
             <p className="text-[15px] md:text-[16px] text-[#3B2412]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
-              At EduMentora, our mission is to empower students to overcome academic setbacks by providing a seamless and fully supported pathway for credit transfers. We ensure that every previously earned credit is respected, helping learners transition to UGC-accredited universities. Through personalized guidance, we strive to save students valuable time and financial resources, turning educational interruptions into renewed opportunities for lifelong success.
+              At Edumentora, our mission is to empower students to overcome academic setbacks by providing a seamless and fully supported pathway for credit transfers. We ensure that every previously earned credit is respected, helping learners transition to UGC-accredited universities. Through personalized guidance, we strive to save students valuable time and financial resources, turning educational interruptions into renewed opportunities for lifelong success.
             </p>
           </div>
 
           <div className="hidden md:block space-y-2 pt-2">
             <h3 className="text-[24px] font-semibold text-[#5C3A21]">Our Vision</h3>
             <p className="text-[15px] md:text-[16px] text-[#3B2412]/90 leading-[1.6] w-full pr-4 lg:pr-12 text-justify">
-              Our vision at EduMentora is to create an inclusive educational landscape where no student is left behind due to past hurdles. We envision a future where every individual has unrestricted access to complete their higher education without having to start from scratch. By breaking down academic barriers and championing flexible learning pathways, we aim to be India's most trusted partner in transforming past progress into lasting achievement.
+              Our vision at Edumentora is to create an inclusive educational landscape where no student is left behind due to past hurdles. We envision a future where every individual has unrestricted access to complete their higher education without having to start from scratch. By breaking down academic barriers and championing flexible learning pathways, we aim to be India's most trusted partner in transforming past progress into lasting achievement.
             </p>
           </div>
 

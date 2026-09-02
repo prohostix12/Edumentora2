@@ -30,7 +30,7 @@ export const metadata = {
   // same way it does for every other page (verified directly in the built
   // HTML) — set the final title explicitly here rather than touch the
   // shared template in layout.tsx.
-  title: { absolute: 'Credit Transfer Institute in Kerala | eduMentora' },
+  title: { absolute: 'Credit Transfer Institute in Kerala | Edumentora' },
 };
 
 export default async function Home() {

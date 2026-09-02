@@ -57,7 +57,7 @@ export default function ProcessSection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#002147] leading-tight mb-4">
-              Ready To Grow with EduMentora
+              Ready To Grow with Edumentora
             </h2>
             <div className="w-16 h-1.5 bg-[#D2B48C] rounded-full mb-12"></div>
           </motion.div>

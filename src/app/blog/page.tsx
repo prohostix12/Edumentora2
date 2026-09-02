@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { pageMetadata } from '@/lib/seo';
 
@@ -51,10 +52,13 @@ export default async function BlogPage() {
               <div key={blog.id} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-[#DDC7A0] flex flex-col group">
                 <div className="relative h-64 overflow-hidden bg-gray-100">
                   {blog.mainImage ? (
-                    <img 
-                      src={blog.mainImage} 
-                      alt={blog.category} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    <Image
+                      src={blog.mainImage}
+                      alt={blog.sectionDis}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#002147]/5 text-[#002147]/30">

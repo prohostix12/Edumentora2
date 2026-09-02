@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_NAME = 'eduMentora';
+export const SITE_NAME = 'Edumentora';
 export const SITE_URL = 'https://www.edumentora.com';
 const DEFAULT_OG_IMAGE = '/edumentora_logo.webp';
 
