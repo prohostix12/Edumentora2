@@ -8,6 +8,7 @@ import ProcessSection from '@/components/ProcessSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import AboutInstituteSection from '@/components/AboutInstituteSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import SeoContentSection from '@/components/SeoContentSection';
 import TestimonialSection from '@/components/TestimonialSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -110,6 +111,7 @@ export default async function Home() {
       <ProcessSection />
       <ProgramsSection />
       <WhyChooseUsSection />
+      <SeoContentSection />
       <TestimonialSection reviews={reviews} galleryImages={galleryImages} promoVideos={promoVideos} successVideos={successVideos} />
       <Footer />
       <FloatingWhatsApp />

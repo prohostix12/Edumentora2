@@ -171,6 +171,19 @@ export function courseJsonLd(
     }));
 }
 
+// WebSite schema, sitewide. No SearchAction: the app has no free-text
+// search input anywhere (the closest thing, /universities?filter=, is a
+// fixed-value name filter, not an open query box), so a SearchAction
+// target would have to be invented rather than reflect something real.
+export function websiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+  };
+}
+
 // BreadcrumbList for a detail page one level under a hub page (e.g. a blog
 // post under /blog, a university under /universities).
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {

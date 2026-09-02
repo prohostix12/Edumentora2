@@ -18,7 +18,7 @@ export default function AboutInstituteSection() {
             transition={{ duration: 0.6 }}
             className="font-serif text-3xl md:text-5xl font-bold leading-tight text-center"
           >
-            Best Credit Transfer Institute in<br className="hidden md:block" /> Kerala for B.Tech Students
+            Credit Transfer Institute in<br className="hidden md:block" /> Kerala for B.Tech Students
           </motion.h2>
         </div>
         <div className="border-b-2 border-[#2b2418] mb-10" />

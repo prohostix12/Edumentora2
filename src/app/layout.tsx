@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
-import { SITE_NAME, SITE_URL } from '@/lib/seo';
+import { SITE_NAME, SITE_URL, websiteJsonLd } from '@/lib/seo';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
@@ -92,6 +92,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
         />
         <SmoothScroll>
           {children}
