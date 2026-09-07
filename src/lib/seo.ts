@@ -171,6 +171,41 @@ export function courseJsonLd(
     }));
 }
 
+// Google's course-list rich result requires the courses to be wrapped in
+// an ItemList (on a summary or "all-in-one" page), with at least 3
+// courses — see https://developers.google.com/search/docs/appearance/structured-data/course.
+// Reuses the exact same Course objects courseJsonLd() already builds, just
+// nested under ItemList/ListItem with one shared top-level @context
+// instead of each course carrying its own. Returns null when there are
+// fewer than 3 courses, since the page doesn't qualify for this feature —
+// callers should fall back to the plain per-Course output from
+// courseJsonLd() in that case.
+export function courseListJsonLd(
+  university: { name: string },
+  programs: {
+    programName: string | null;
+    courseDescription: string | null;
+    courseDuration: string | null;
+    feeStructure: string | null;
+  }[]
+) {
+  const courses = courseJsonLd(university, programs);
+  if (courses.length < 3) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: courses.map((course, index) => {
+      const { '@context': _omit, ...courseWithoutContext } = course;
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        item: courseWithoutContext,
+      };
+    }),
+  };
+}
+
 // WebSite schema, sitewide. No SearchAction: the app has no free-text
 // search input anywhere (the closest thing, /universities?filter=, is a
 // fixed-value name filter, not an open query box), so a SearchAction

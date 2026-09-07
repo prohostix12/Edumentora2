@@ -91,6 +91,17 @@ export default async function Home() {
     console.error("Failed to fetch universities:", error);
   }
 
+  let notifications: string[] = [];
+  try {
+    const activeNotifications = await prisma.notification.findMany({
+      where: { status: 'SHOW' },
+      orderBy: { createdAt: 'asc' },
+    });
+    notifications = activeNotifications.map(n => n.text);
+  } catch (error) {
+    console.error("Failed to fetch notifications:", error);
+  }
+
   const ratingJsonLd = aggregateRatingJsonLd(reviews);
 
   return (
@@ -102,7 +113,7 @@ export default async function Home() {
         />
       )}
       <Header />
-      <Hero />
+      <Hero notifications={notifications} />
       <StatsSection universities={statUniversities} />
       <MissionVisionSection />
       <ContactSection />

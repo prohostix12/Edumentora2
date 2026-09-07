@@ -11,7 +11,7 @@ import Link from 'next/link';
 import AdditionalUniversityDetails from './ViewMoreDetails';
 import UniversityProgramsSection from './UniversityProgramsSection';
 import type { Metadata } from 'next';
-import { pageMetadata, breadcrumbJsonLd, courseJsonLd } from '@/lib/seo';
+import { pageMetadata, breadcrumbJsonLd, courseJsonLd, courseListJsonLd } from '@/lib/seo';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -65,6 +65,7 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
     { name: university.name, path: `/universities/${id}` },
   ]);
   const courseLd = courseJsonLd(university, universityPrograms);
+  const courseListLd = courseListJsonLd(university, universityPrograms);
 
   return (
     <main className="min-h-screen bg-gray-50 font-[Poppins]">
@@ -72,13 +73,20 @@ export default async function UniversityDetailPage(props: { params: Promise<{ id
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      {courseLd.map((course, i) => (
+      {courseListLd ? (
         <script
-          key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(course) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseListLd) }}
         />
-      ))}
+      ) : (
+        courseLd.map((course, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(course) }}
+          />
+        ))
+      )}
       <Header />
 
       <PageBanner title={university.name}>

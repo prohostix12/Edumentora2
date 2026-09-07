@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, ShieldCheck, X, ArrowRight, Bell } from 'lucide-react';
 import EligibilityForm from '@/components/EligibilityForm';
-import { getPublicNotifications } from '@/app/admin/notifications/actions';
 
 const LoopingTypewriterText = ({
   baseSegments,
@@ -116,10 +115,12 @@ const LoopingTypewriterText = ({
   );
 };
 
-export default function Hero() {
+export default function Hero({ notifications = [] }: { notifications?: string[] }) {
   const shouldReduceMotion = useReducedMotion();
-  // Empty until the visible notifications finish loading — no placeholder content shown.
-  const [marqueeItems, setMarqueeItems] = useState<string[]>([]);
+  // Server-provided (src/app/page.tsx fetches these the same way it fetches
+  // reviews/gallery/reels) so the current notifications are present in the
+  // server-rendered HTML itself, not only after client hydration.
+  const [marqueeItems] = useState<string[]>(notifications);
   const marqueeBarRef = useRef<HTMLDivElement>(null);
   const [marqueeGap, setMarqueeGap] = useState(24);
   const [showEligibilityModal, setShowEligibilityModal] = useState(false);
@@ -135,12 +136,6 @@ export default function Hero() {
       document.body.style.overflow = '';
     };
   }, [showEligibilityModal]);
-
-  useEffect(() => {
-    getPublicNotifications().then((items) => {
-      setMarqueeItems(items);
-    });
-  }, []);
 
   // Keep the gap between notifications at a true 5% of the marquee bar's own width.
   useEffect(() => {

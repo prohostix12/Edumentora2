@@ -71,22 +71,22 @@ export default function BTechCreditTransferPage() {
           B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
         </Link>
         <Link
-          href="/how-to-resume-your-b-tech-after-a-3-year-gap-in-india/"
+          href="/blog/6a7ac6153f54f002c1660622"
           className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
         >
-          How to Resume Your B.Tech After a 3-Year Gap in India
+          B.Tech Discontinued After 2 or 3 Years? Know Your Options.
         </Link>
         <Link
-          href="/eligibility-process-and-benefits-of-btech-credit-transfer/"
+          href="/b-tech-credit-transfer"
           className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
         >
-          Eligibility, Process and Benefits of B.Tech Credit Transfer
+          Eligibility and Benefits of B.Tech Credit Transfer
         </Link>
         <Link
-          href="/new1/"
+          href="/blog/6a798b2c3e640d6933a2cdf2"
           className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
         >
-          What is university credit transfer and why is it important?
+          What Is Academic Credit Transfer?
         </Link>
       </div>
 
@@ -119,28 +119,28 @@ export default function BTechCreditTransferPage() {
             B Tech Credit Transfer Services in Kerala for Dropout & Backlog Students
           </Link>
           <Link
-            href="/ready-to-continue-your-education-credit-transfer-makes-it-easy-to-restart/"
+            href="/blog/6a7ac48b884d9293cd497181"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
           >
-            Ready to Continue Your Education? Credit Transfer Makes It Easy to Restart
+            B.Tech Credit Transfer: Is It Right for You?
           </Link>
           <Link
-            href="/how-to-resume-your-b-tech-after-a-3-year-gap-in-india/"
+            href="/blog/6a7ac6153f54f002c1660622"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
           >
-            How to Resume Your B.Tech After a 3-Year Gap in India
+            B.Tech Discontinued After 2 or 3 Years? Know Your Options.
           </Link>
           <Link
-            href="/eligibility-process-and-benefits-of-btech-credit-transfer/"
+            href="/b-tech-credit-transfer"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
           >
-            Eligibility, Process and Benefits of B.Tech Credit Transfer
+            Eligibility and Benefits of B.Tech Credit Transfer
           </Link>
           <Link
-            href="/new1/"
+            href="/blog/6a798b2c3e640d6933a2cdf2"
             className="block w-full text-gray-700 hover:text-blue-600 hover:underline text-sm md:text-base transition-colors font-medium"
           >
-            What is university credit transfer and why is it important?
+            What Is Academic Credit Transfer?
           </Link>
         </div>
       </div>
