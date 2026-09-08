@@ -160,8 +160,11 @@ export default function ManageNavManager() {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4">
-          <div className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/45 p-4 overscroll-contain">
+          <div
+            className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            onWheel={(event) => event.stopPropagation()}
+          >
             <div className="mb-5 flex items-center justify-between">
               <h3 className="text-2xl font-bold text-[#002147]">Update your nav</h3>
               <button
@@ -216,7 +219,7 @@ export default function ManageNavManager() {
                                   href: selected?.href ?? current.href,
                                 }));
                               }}
-                              className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm"
+                              className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-black"
                             >
                               {NAV_OPTIONS.map((option) => (
                                 <option key={option.name} value={option.name}>{option.name}</option>
@@ -299,7 +302,7 @@ export default function ManageNavManager() {
                                 <select
                                   value={row.parentId ?? ''}
                                   onChange={(e) => updateRow(row.temporaryId, (current) => ({ ...current, parentId: e.target.value || null }))}
-                                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm"
+                                  className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-black"
                                 >
                                   <option value="">Select parent nav</option>
                                   {parentOptions.map((option) => (
