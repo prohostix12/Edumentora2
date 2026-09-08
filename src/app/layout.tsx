@@ -16,18 +16,23 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
+  icons: {
+    icon: '/favcon/edumentora_favcon.png',
+    shortcut: '/favcon/edumentora_favcon.png',
+    apple: '/favcon/edumentora_favcon.png',
+  },
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: ['/edumentora_logo.webp'],
+    images: ['/favcon/edumentora_favcon.png'],
   },
   twitter: {
     card: 'summary',
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: ['/edumentora_logo.webp'],
+    images: ['/favcon/edumentora_favcon.png'],
   },
 };
 
@@ -42,7 +47,7 @@ const organizationJsonLd = {
   name: 'Edumentora Services LLP',
   alternateName: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/edumentora_logo.webp`,
+  logo: `${SITE_URL}/favcon/edumentora_favcon.png`,
   email: 'info@edumentora.com',
   telephone: '+91-9744587777',
   address: [

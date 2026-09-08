@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const SITE_NAME = 'Edumentora';
 export const SITE_URL = 'https://www.edumentora.com';
-const DEFAULT_OG_IMAGE = '/edumentora_logo.webp';
+const DEFAULT_OG_IMAGE = '/favcon/edumentora_favcon.png';
 
 // Shared per-page metadata builder: keeps the OpenGraph/Twitter image and
 // site name consistent everywhere (Next replaces the whole openGraph/twitter
@@ -94,7 +94,7 @@ export function articleJsonLd({
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/edumentora_logo.webp` },
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/favcon/edumentora_favcon.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${path}` },
   };

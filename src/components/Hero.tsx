@@ -165,23 +165,40 @@ export default function Hero({ notifications = [] }: { notifications?: string[] 
     }
   }
 
+  const heroDoodles = [
+    { left: '5%', top: '8%', width: '260px', rotate: '-12deg', opacity: 0.28 },
+    { left: '18%', top: '48%', width: '260px', rotate: '18deg', opacity: 0.3 },
+    { left: '42%', top: '18%', width: '230px', rotate: '8deg', opacity: 0.22 },
+    { left: '62%', top: '8%', width: '300px', rotate: '0deg', opacity: 0.34 },
+    { left: '68%', top: '48%', width: '270px', rotate: '18deg', opacity: 0.25 },
+    { left: '48%', top: '62%', width: '220px', rotate: '-12deg', opacity: 0.2 },
+  ];
+
   return (
     <section className="relative w-full h-[100dvh] flex overflow-hidden font-[Poppins]">
 
       {/* Main hero area */}
-      <div className="relative flex-1 h-full flex flex-col pt-32 lg:pt-[100px] pb-0 bg-[#F7EFE1] overflow-hidden">
-
-      {/* Background video */}
-      <video
-        src="/bg/hero-bg-live.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
-      {/* Tint over the video so the existing dark-navy text/UI stay readable */}
-      <div className="absolute inset-0 bg-[#F7EFE1]/80 z-[1]" />
+      <div className="relative flex-1 h-full flex flex-col pt-32 lg:pt-[100px] pb-0 overflow-hidden bg-[#eaf1fb]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {heroDoodles.map((doodle, index) => (
+            <img
+              key={index}
+              src="/favcon/edumentora_favcon.png"
+              alt=""
+              className="absolute select-none"
+              style={{
+                left: doodle.left,
+                top: doodle.top,
+                width: doodle.width,
+                transform: `rotate(${doodle.rotate})`,
+                opacity: doodle.opacity,
+                filter: index % 2 === 0 ? 'saturate(1.4) brightness(1.2) contrast(1.1)' : 'saturate(1.1) brightness(1.15)',
+              }}
+            />
+          ))}
+        </div>
+      {/* Softer, brighter overlay so doodles remain visible but text remains readable */}
+      <div className="absolute inset-0 bg-[#edf6ff]/65 z-[1]" />
 
       <div className="relative max-w-6xl mx-auto w-full px-4 md:px-8 z-10 flex-1 min-h-0 flex flex-col overflow-y-auto pb-6">
         <div className="flex flex-col md:flex-row flex-1 min-h-0 gap-8 lg:gap-10 items-stretch">

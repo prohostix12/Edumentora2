@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#002147',
     icons: [
       {
-        src: '/icon.png',
+        src: '/favcon/edumentora_favcon.png',
         type: 'image/png',
         sizes: '512x512',
       },

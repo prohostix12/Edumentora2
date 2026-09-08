@@ -204,8 +204,8 @@ export default function Footer() {
             <div className="flex flex-col items-start space-y-6 pl-4 max-w-sm">
               <Link href="/" className="bg-white p-3 rounded-xl shadow-xl inline-block transform hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="/edumentora_logo.webp" 
-                  alt="Edumentora Logo" 
+                  src="/favcon/edumentora_favcon.png" 
+                  alt="Edumentora doodle logo" 
                   className="h-16 w-auto object-contain"
                 />
               </Link>
