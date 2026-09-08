@@ -7,16 +7,36 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
+const fallbackNavLinks = [
   { name: 'Home', href: '/' },
   { name: 'B.Tech Credit Transfer', href: '/b-tech-credit-transfer' },
   { name: 'Programmes', href: '/programs' },
   { name: 'Universities', href: '/universities' },
+  { name: 'About', href: '/about-us' },
+  { name: 'Contact', href: '/contact' },
 ];
+
+const fallbackSubNavLinks = [
+  { name: 'About us', href: '/about-us', parentId: '/about-us' },
+  { name: 'Gallery', href: '/gallery', parentId: '/about-us' },
+  { name: 'Blog', href: '/blog', parentId: '/about-us' },
+];
+
+type NavItem = {
+  name: string;
+  href: string;
+  kind: 'nav' | 'sub';
+  parentId?: string | null;
+  visibility?: boolean;
+  order?: number;
+};
+
+type SubNavItem = NavItem & { kind: 'sub' };
 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -34,6 +54,47 @@ export default function Header() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    async function loadNavItems() {
+      try {
+        const res = await fetch('/api/navigation', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load nav');
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setNavItems(data.filter((item) => item.visibility !== false));
+          return;
+        }
+      } catch {
+        // ignore and keep fallback list below
+      }
+      setNavItems([
+        ...fallbackNavLinks.map((item, index) => ({
+          name: item.name,
+          href: item.href,
+          kind: 'nav' as const,
+          order: index,
+          visibility: true,
+        })),
+        ...fallbackSubNavLinks.map((item, index) => ({
+          ...item,
+          kind: 'sub' as const,
+          order: fallbackNavLinks.length + index,
+          visibility: true,
+        })),
+      ]);
+    }
+
+    loadNavItems();
+  }, []);
+
+  const visibleNavItems = navItems.length > 0 ? navItems.filter((item) => item.kind === 'nav' && item.visibility !== false) : fallbackNavLinks.map((item, index) => ({ name: item.name, href: item.href, kind: 'nav' as const, order: index, visibility: true }));
+  const subNavItems = navItems.filter((item): item is SubNavItem => item.kind === 'sub' && item.visibility !== false);
+  const dropdownMap = subNavItems.reduce<Record<string, SubNavItem[]>>((acc, item) => {
+    const key = item.parentId ?? 'root';
+    acc[key] = acc[key] ? [...acc[key], item] : [item];
+    return acc;
+  }, {});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,55 +164,66 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav ref={navRef} className="hidden lg:flex items-center justify-center gap-8 whitespace-nowrap text-[15px] font-bold text-[#002147] ml-[10%]">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="relative py-2 group"
-            >
+          {visibleNavItems.map((link) => {
+            const childLinks = dropdownMap[link.href] ?? [];
+            const hasDropdown = childLinks.length > 0;
+
+            if (!hasDropdown) {
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="relative py-2 group"
+                >
+                  <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
+                    {link.name}
+                  </span>
+                  <span className={`absolute left-0 bottom-0 h-[2px] bg-[#8B0000] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </Link>
+              );
+            }
+
+            return (
+              <div
+                key={link.name}
+                className="group relative flex items-center h-full"
+                onMouseEnter={() => setOpenDropdown(link.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button
+                  onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === link.name ? null : link.name); }}
+                  className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === link.name ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C] transition-colors duration-200'}`}
+                >
+                  {link.name} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === link.name ? 'rotate-180' : 'group-hover:rotate-180'}`} />
+                </button>
+                <AnimatePresence>
+                  {openDropdown === link.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-12 left-1/2 -translate-x-1/2 w-60 bg-white shadow-[0_10px_40px_rgb(0,0,0,0.1)] border border-gray-100 rounded-[16px] py-2 z-50 overflow-hidden"
+                      onClick={() => setOpenDropdown(null)}
+                    >
+                      {childLinks.map((child) => (
+                        <Link key={child.name} href={child.href} className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">{child.name}</Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+
+          {visibleNavItems.length === 0 && fallbackNavLinks.map((link) => (
+            <Link key={link.name} href={link.href} className="relative py-2 group">
               <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
                 {link.name}
               </span>
-              {/* Animated Underline */}
               <span className={`absolute left-0 bottom-0 h-[2px] bg-[#8B0000] transition-all duration-300 ${isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
           ))}
-
-          <div
-            className="group relative flex items-center h-full"
-            onMouseEnter={() => setOpenDropdown('about')}
-            onMouseLeave={() => setOpenDropdown(null)}
-          >
-            <button
-              onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === 'about' ? null : 'about'); }}
-              className={`relative flex items-center gap-1 cursor-pointer py-2 group ${openDropdown === 'about' ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C] transition-colors duration-200'}`}
-            >
-              About <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : 'group-hover:rotate-180'}`} />
-            </button>
-            <AnimatePresence>
-              {(openDropdown === 'about' || false) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-12 left-1/2 -translate-x-1/2 w-48 bg-white shadow-[0_10px_40px_rgb(0,0,0,0.1)] border border-gray-100 rounded-[16px] py-2 z-50 overflow-hidden"
-                  onClick={() => setOpenDropdown(null)}
-                >
-                  <Link href="/about-us" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">About us</Link>
-                  <Link href="/gallery" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">Gallery</Link>
-                  <Link href="/blog" className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#D2B48C] transition-colors">Blog</Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <Link href="/contact" className="relative py-2 group">
-            <span className={`transition-colors duration-200 ${isActive('/contact') ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
-              Contact
-            </span>
-            <span className={`absolute left-0 bottom-0 h-[2px] bg-[#8B0000] transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-          </Link>
         </nav>
 
         {/* Mobile Hamburger Button */}
@@ -174,39 +246,48 @@ export default function Header() {
             className="lg:hidden pointer-events-auto absolute top-24 left-4 right-4 bg-white shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-[20px] border border-gray-100 flex flex-col z-50 overflow-hidden"
           >
             <div className="flex flex-col py-4 px-6 space-y-2 text-base font-bold text-[#002147] h-max max-h-[80vh] overflow-y-auto">
-              {navLinks.map((link) => (
+              {visibleNavItems.map((link) => {
+                const childLinks = dropdownMap[link.href] ?? [];
+                if (childLinks.length === 0) {
+                  return (
+                    <Link key={link.name} href={link.href} onClick={closeMobileMenu} className={`py-3 transition-colors border-b border-gray-50 ${isActive(link.href) ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
+                      {link.name}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div key={link.name} className="py-2 border-b border-gray-50">
+                    <button
+                      onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.name ? null : link.name)}
+                      className="flex items-center justify-between w-full py-2 hover:text-[#D2B48C] transition-colors"
+                    >
+                      {link.name} <ChevronDown className={`w-5 h-5 transition-transform ${mobileOpenDropdown === link.name ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {mobileOpenDropdown === link.name && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex flex-col pl-4 mt-2 space-y-3 text-sm text-gray-600 border-l-2 border-red-100 overflow-hidden"
+                        >
+                          {childLinks.map((child) => (
+                            <Link key={child.name} href={child.href} onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">{child.name}</Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+
+              {visibleNavItems.length === 0 && fallbackNavLinks.map((link) => (
                 <Link key={link.name} href={link.href} onClick={closeMobileMenu} className={`py-3 transition-colors border-b border-gray-50 ${isActive(link.href) ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
                   {link.name}
                 </Link>
               ))}
-
-              <div className="py-2 border-b border-gray-50">
-                <button
-                  onClick={() => setMobileOpenDropdown(mobileOpenDropdown === 'about' ? null : 'about')}
-                  className="flex items-center justify-between w-full py-2 hover:text-[#D2B48C] transition-colors"
-                >
-                  About <ChevronDown className={`w-5 h-5 transition-transform ${mobileOpenDropdown === 'about' ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {mobileOpenDropdown === 'about' && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col pl-4 mt-2 space-y-3 text-sm text-gray-600 border-l-2 border-red-100 overflow-hidden"
-                    >
-                      <Link href="/about-us" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">About us</Link>
-                      <Link href="/gallery" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">Gallery</Link>
-                      <Link href="/blog" onClick={closeMobileMenu} className="hover:text-[#D2B48C] transition-colors py-1">Blog</Link>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <Link href="/contact" onClick={closeMobileMenu} className={`py-3 transition-colors ${isActive('/contact') ? 'text-[#D2B48C]' : 'hover:text-[#D2B48C]'}`}>
-                Contact
-              </Link>
 
               <Link href="/contact#contacts-section" onClick={closeMobileMenu} className="flex items-center justify-center mt-4 w-full px-6 py-3 bg-[#E91D24] text-white font-medium rounded-xl shadow-md hover:bg-[#B8151B] transition-colors">
                 Enquire Now
