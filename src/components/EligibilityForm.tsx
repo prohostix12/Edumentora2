@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { submitEligibilityRequest } from '@/app/eligibility/actions';
 
 interface EligibilityFormProps {
   className?: string;
@@ -21,8 +20,13 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
     setPopupState('checking');
     setShowPopup(true);
 
-    const formData = new FormData(form);
-    const result = await submitEligibilityRequest(formData);
+    const payload = Object.fromEntries(new FormData(form).entries());
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
 
     if (result.success) {
       setStatus('success');
@@ -48,18 +52,38 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
           <div className="relative">
             <input
               type="text"
-              id="name"
-              name="name"
+              id="firstName"
+              name="firstName"
               placeholder="Name"
               className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
               required
             />
             <label
-              htmlFor="name"
+              htmlFor="firstName"
               className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
             >
-              Name
+              First name
             </label>
+          </div>
+
+          <div className="relative">
+            <input type="text" id="lastName" name="lastName" placeholder="Last name" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" />
+            <label htmlFor="lastName" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Last name</label>
+          </div>
+
+          <div className="relative">
+            <input type="email" id="email" name="email" placeholder="Email" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" required />
+            <label htmlFor="email" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Email</label>
+          </div>
+
+          <div className="relative">
+            <input type="text" id="company" name="company" placeholder="Company" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" />
+            <label htmlFor="company" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Company</label>
+          </div>
+
+          <div className="relative col-span-2">
+            <textarea id="message" name="message" rows={3} placeholder="Enquiry / Message" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm resize-none placeholder-transparent" required />
+            <label htmlFor="message" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Enquiry / Message</label>
           </div>
 
           <div className="relative">
@@ -79,74 +103,9 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
             </label>
           </div>
 
-          <div className="relative">
-            <input
-              type="text"
-              id="place"
-              name="place"
-              placeholder="Place"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
-              required
-            />
-            <label
-              htmlFor="place"
-              className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-            >
-              Place
-            </label>
-          </div>
-
-          <div className="relative">
-            <input
-              type="text"
-              id="course"
-              name="course"
-              placeholder="Course"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
-              required
-            />
-            <label
-              htmlFor="course"
-              className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-            >
-              Course
-            </label>
-          </div>
-
-          <div className="relative col-span-2">
-            <input
-              type="text"
-              id="previousUniversity"
-              name="previousUniversity"
-              placeholder="Previous University"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
-              required
-            />
-            <label
-              htmlFor="previousUniversity"
-              className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-            >
-              Previous University
-            </label>
-          </div>
-
-          <div className="relative col-span-2">
-            <input
-              type="text"
-              id="courseCompletedYear"
-              name="courseCompletedYear"
-              placeholder="Course Completed Year"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
-              required
-            />
-            <label
-              htmlFor="courseCompletedYear"
-              className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-            >
-              Course Completed Year
-            </label>
-          </div>
         </div>
+
+        <input type="hidden" name="source" value="Eligibility form" />
 
         <button
           type="submit"

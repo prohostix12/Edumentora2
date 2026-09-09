@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import PageBanner from '@/components/PageBanner';
-import { submitEnquiry } from './actions';
 
 type Contact = {
   id: string;
@@ -24,8 +23,13 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
     const form = e.currentTarget;
     setStatus('loading');
 
-    const formData = new FormData(form);
-    const result = await submitEnquiry(formData);
+    const payload = Object.fromEntries(new FormData(form).entries());
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
 
     if (result.success) {
       setStatus('success');
@@ -212,18 +216,28 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                   <div className="relative">
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Enter your name"
+                      id="firstName"
+                      name="firstName"
+                      placeholder="First name"
                       className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
                       required
                     />
                     <label
-                      htmlFor="name"
+                      htmlFor="firstName"
                       className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
                     >
-                      Enter your name
+                      First name
                     </label>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="Last name"
+                      className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
+                    />
+                    <label htmlFor="lastName" className="absolute left-4 top-3 text-xs font-semibold text-[#002147] peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs pointer-events-none">Last name</label>
                   </div>
                   <div className="relative">
                     <input
@@ -261,6 +275,11 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 </div>
 
                 <div className="relative">
+                  <input type="text" id="company" name="company" placeholder="Company" className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent" />
+                  <label htmlFor="company" className="absolute left-4 top-3 text-xs font-semibold text-[#002147] peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs pointer-events-none">Company</label>
+                </div>
+
+                <div className="relative">
                   <textarea
                     id="message"
                     name="message"
@@ -273,9 +292,11 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                     htmlFor="message"
                     className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
                   >
-                    Message
+                    Enquiry / Message
                   </label>
                 </div>
+
+                <input type="hidden" name="source" value="Contact page" />
 
                 <button 
                   type="submit" 

@@ -48,24 +48,28 @@ model AdminConfig {
 
 model EnquiryList {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  phone     String
+  firstName String
+  lastName  String?
   email     String
+  phone     String
+  company   String?
   message   String
+  source    String
   createdAt DateTime @default(now())
 
   @@map("enquiry_list")
 }
 
 model EligibilityRequest {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  name                  String
-  place                 String
-  course                String
-  previousUniversity    String
-  courseCompletedYear   String
-  contactNumber         String
-  createdAt             DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String?
+  email     String
+  phone     String
+  company   String?
+  message   String
+  source    String
+  createdAt DateTime @default(now())
 
   @@map("eligibility_request")
 }

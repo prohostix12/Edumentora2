@@ -9,21 +9,25 @@ import { updateEligibilityRequest, deleteEligibilityRequest } from '@/app/admin/
 
 type Enquiry = {
   id: string;
-  name: string;
-  phone: string;
+  firstName: string;
+  lastName: string | null;
   email: string;
+  phone: string;
+  company: string | null;
   message: string;
+  source: string;
   createdAt: Date;
 };
 
 type EligibilityRequest = {
   id: string;
-  name: string;
-  place: string;
-  course: string;
-  previousUniversity: string;
-  courseCompletedYear: string;
-  contactNumber: string;
+  firstName: string;
+  lastName: string | null;
+  email: string;
+  phone: string;
+  company: string | null;
+  message: string;
+  source: string;
   createdAt: Date;
 };
 
@@ -88,10 +92,13 @@ export default function LeadsManager({
     if (showEnquiry) {
       const rows = initialEnquiries.map((e) => ({
         Date: formatDate(e.createdAt),
-        Name: e.name,
+        'First Name': e.firstName,
+        'Last Name': e.lastName || '',
         Phone: e.phone,
         Email: e.email,
+        Company: e.company || '',
         Message: e.message,
+        Source: e.source,
       }));
       const ws = XLSX.utils.json_to_sheet(rows);
       XLSX.utils.book_append_sheet(wb, ws, 'Your Enquiry');
@@ -100,12 +107,13 @@ export default function LeadsManager({
     if (showEligibility) {
       const rows = initialRequests.map((r) => ({
         Date: formatDate(r.createdAt),
-        Name: r.name,
-        Place: r.place,
-        Course: r.course,
-        'Previous University': r.previousUniversity,
-        'Course Completed Year': r.courseCompletedYear,
-        'Contact Number': r.contactNumber,
+        'First Name': r.firstName,
+        'Last Name': r.lastName || '',
+        Email: r.email,
+        Phone: r.phone,
+        Company: r.company || '',
+        Message: r.message,
+        Source: r.source,
       }));
       const ws = XLSX.utils.json_to_sheet(rows);
       XLSX.utils.book_append_sheet(wb, ws, 'Eligibility Request');
@@ -168,17 +176,20 @@ export default function LeadsManager({
                 <thead>
                   <tr className="bg-gray-50 border-b border-gray-100">
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Name</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">First Name</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Last Name</th>
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Phone</th>
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Company</th>
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Message</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Source</th>
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {initialEnquiries.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
+                      <td colSpan={9} className="px-6 py-12 text-center text-gray-500">
                         No enquiries found. Submissions from the contact form will appear here.
                       </td>
                     </tr>
@@ -186,12 +197,15 @@ export default function LeadsManager({
                     initialEnquiries.map((enquiry) => (
                       <tr key={enquiry.id} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{formatDate(enquiry.createdAt)}</td>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{enquiry.name}</td>
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{enquiry.firstName}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{enquiry.lastName || '-'}</td>
                         <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{enquiry.phone}</td>
                         <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">
                           <a href={`mailto:${enquiry.email}`} className="text-blue-600 hover:underline">{enquiry.email}</a>
                         </td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{enquiry.company || '-'}</td>
                         <td className="px-6 py-4 text-sm text-gray-700 max-w-md truncate" title={enquiry.message}>{enquiry.message}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={enquiry.source}>{enquiry.source}</td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap text-right">
                           <div className="flex items-center justify-end gap-1">
                             <button
@@ -232,19 +246,20 @@ export default function LeadsManager({
                 <thead>
                   <tr className="bg-gray-50 border-b border-gray-100">
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Name</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Place</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Course</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Previous University</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Course Completed Year</th>
-                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Contact Number</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">First Name</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Last Name</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Phone</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Company</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Message</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">Source</th>
                     <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {initialRequests.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
+                      <td colSpan={9} className="px-6 py-12 text-center text-gray-500">
                         No eligibility requests found.
                       </td>
                     </tr>
@@ -252,12 +267,13 @@ export default function LeadsManager({
                     initialRequests.map((request) => (
                       <tr key={request.id} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{formatDate(request.createdAt)}</td>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{request.name}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.place}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.course}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.previousUniversity}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.courseCompletedYear}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.contactNumber}</td>
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{request.firstName}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.lastName || '-'}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.email}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.phone}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{request.company || '-'}</td>
+                        <td className="px-6 py-4 text-sm text-gray-700 max-w-md truncate" title={request.message}>{request.message}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={request.source}>{request.source}</td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap text-right">
                           <div className="flex items-center justify-end gap-1">
                             <button
@@ -300,8 +316,12 @@ export default function LeadsManager({
             </div>
             <form action={handleUpdateEnquiry} className="p-6 space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Name</label>
-                <input type="text" name="name" defaultValue={editingEnquiry.name} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">First Name</label>
+                <input type="text" name="firstName" defaultValue={editingEnquiry.firstName} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700">Last Name</label>
+                <input type="text" name="lastName" defaultValue={editingEnquiry.lastName || ''} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-semibold text-gray-700">Phone</label>
@@ -312,8 +332,16 @@ export default function LeadsManager({
                 <input type="email" name="email" defaultValue={editingEnquiry.email} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
               </div>
               <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700">Company</label>
+                <input type="text" name="company" defaultValue={editingEnquiry.company || ''} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+              </div>
+              <div className="space-y-1.5">
                 <label className="text-sm font-semibold text-gray-700">Message</label>
                 <textarea name="message" defaultValue={editingEnquiry.message} required rows={4} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700">Source</label>
+                <input type="text" name="source" defaultValue={editingEnquiry.source} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
               </div>
               <button
                 type="submit"
@@ -340,28 +368,32 @@ export default function LeadsManager({
             </div>
             <form action={handleUpdateRequest} className="p-6 space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Name</label>
-                <input type="text" name="name" defaultValue={editingRequest.name} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">First Name</label>
+                <input type="text" name="firstName" defaultValue={editingRequest.firstName} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Place</label>
-                <input type="text" name="place" defaultValue={editingRequest.place} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">Last Name</label>
+                <input type="text" name="lastName" defaultValue={editingRequest.lastName || ''} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Course</label>
-                <input type="text" name="course" defaultValue={editingRequest.course} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">Email</label>
+                <input type="email" name="email" defaultValue={editingRequest.email} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Previous University</label>
-                <input type="text" name="previousUniversity" defaultValue={editingRequest.previousUniversity} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">Phone</label>
+                <input type="text" name="phone" defaultValue={editingRequest.phone} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Course Completed Year</label>
-                <input type="text" name="courseCompletedYear" defaultValue={editingRequest.courseCompletedYear} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">Company</label>
+                <input type="text" name="company" defaultValue={editingRequest.company || ''} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Contact Number</label>
-                <input type="text" name="contactNumber" defaultValue={editingRequest.contactNumber} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002147]/20 focus:border-[#002147]" />
+                <label className="text-sm font-semibold text-gray-700">Message</label>
+                <textarea name="message" defaultValue={editingRequest.message} required rows={4} className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl resize-none" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700">Source</label>
+                <input type="text" name="source" defaultValue={editingRequest.source} required className="w-full px-4 py-2 border border-gray-200 text-[#002147] rounded-xl" />
               </div>
               <button
                 type="submit"

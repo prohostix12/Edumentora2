@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { submitEnquiry } from '@/app/contact/actions';
 
 interface EnquiryFormProps {
   onSuccess?: () => void;
@@ -23,8 +22,16 @@ export default function EnquiryForm({
     const form = e.currentTarget;
     setStatus('loading');
 
-    const formData = new FormData(form);
-    const result = await submitEnquiry(formData);
+    const payload = {
+      ...Object.fromEntries(new FormData(form).entries()),
+      source: window.location.pathname,
+    };
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
 
     if (result.success) {
       setStatus('success');
@@ -56,39 +63,41 @@ export default function EnquiryForm({
     );
   }
 
+  const fieldClass = "peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent";
+  const labelClass = "absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none";
   const TopFields = (
     <>
       <div className="relative">
         <input
           type="text"
-          id="name"
-          name="name"
-          placeholder="Enter your name"
-          className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
+          id="firstName"
+          name="firstName"
+          placeholder="First name"
+          className={fieldClass}
           required
         />
         <label
-          htmlFor="name"
-          className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-        >
-          Enter your name
-        </label>
+          htmlFor="firstName"
+          className={labelClass}
+        >First name</label>
+      </div>
+      <div className="relative">
+        <input type="text" id="lastName" name="lastName" placeholder="Last name" className={fieldClass} />
+        <label htmlFor="lastName" className={labelClass}>Last name</label>
       </div>
       <div className="relative">
         <input
           type="tel"
           id="phone"
           name="phone"
-          placeholder="Enter phone number"
-          className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
+          placeholder="Phone"
+          className={fieldClass}
           required
         />
         <label
           htmlFor="phone"
-          className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-        >
-          Enter phone number
-        </label>
+          className={labelClass}
+        >Phone</label>
       </div>
     </>
   );
@@ -114,16 +123,19 @@ export default function EnquiryForm({
           type="email"
           id="email"
           name="email"
-          placeholder="Enter email"
-          className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
+          placeholder="Email"
+          className={fieldClass}
           required
         />
         <label
           htmlFor="email"
-          className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-        >
-          Enter email
-        </label>
+          className={labelClass}
+        >Email</label>
+      </div>
+
+      <div className="relative">
+        <input type="text" id="company" name="company" placeholder="Company" className={fieldClass} />
+        <label htmlFor="company" className={labelClass}>Company</label>
       </div>
 
       <div className="relative">
@@ -131,16 +143,14 @@ export default function EnquiryForm({
           id="message"
           name="message"
           rows={isGrid ? 3 : 4}
-          placeholder="Message"
-          className="peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white resize-none placeholder-transparent"
+          placeholder="Enquiry / Message"
+          className={`${fieldClass} resize-none`}
           required
         ></textarea>
         <label
           htmlFor="message"
-          className="absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-        >
-          Message
-        </label>
+          className={labelClass}
+        >Enquiry / Message</label>
       </div>
 
       <button 

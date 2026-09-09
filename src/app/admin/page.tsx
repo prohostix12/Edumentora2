@@ -128,21 +128,27 @@ export default async function AdminDashboard() {
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <Th>Date</Th>
-                <Th>Name</Th>
+                <Th>First Name</Th>
+                <Th>Last Name</Th>
                 <Th>Phone</Th>
                 <Th>Email</Th>
+                <Th>Company</Th>
                 <Th>Message</Th>
+                <Th>Source</Th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {enquiries.length === 0 && <EmptyRow colSpan={5} label="No enquiries yet." />}
+              {enquiries.length === 0 && <EmptyRow colSpan={8} label="No enquiries yet." />}
               {enquiries.map((e) => (
                 <tr key={e.id} className="hover:bg-gray-50 transition-colors">
                   <Td className="text-gray-500 whitespace-nowrap">{formatDate(e.createdAt)}</Td>
-                  <Td className="font-medium text-gray-900 whitespace-nowrap">{e.name}</Td>
+                  <Td className="font-medium text-gray-900 whitespace-nowrap">{e.firstName}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{e.lastName || '-'}</Td>
                   <Td className="text-gray-600 whitespace-nowrap">{e.phone}</Td>
                   <Td className="text-gray-600 whitespace-nowrap">{e.email}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{e.company || '-'}</Td>
                   <Td className="text-gray-600 max-w-xs truncate" >{e.message}</Td>
+                  <Td className="text-gray-600 max-w-xs truncate" >{e.source}</Td>
                 </tr>
               ))}
             </tbody>
@@ -157,23 +163,27 @@ export default async function AdminDashboard() {
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <Th>Date</Th>
-                <Th>Name</Th>
-                <Th>Place</Th>
-                <Th>Course</Th>
-                <Th>Previous University</Th>
-                <Th>Contact Number</Th>
+                <Th>First Name</Th>
+                <Th>Last Name</Th>
+                <Th>Email</Th>
+                <Th>Phone</Th>
+                <Th>Company</Th>
+                <Th>Message</Th>
+                <Th>Source</Th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {eligibilityRequests.length === 0 && <EmptyRow colSpan={6} label="No eligibility requests yet." />}
+              {eligibilityRequests.length === 0 && <EmptyRow colSpan={8} label="No eligibility requests yet." />}
               {eligibilityRequests.map((r) => (
                 <tr key={r.id} className="hover:bg-gray-50 transition-colors">
                   <Td className="text-gray-500 whitespace-nowrap">{formatDate(r.createdAt)}</Td>
-                  <Td className="font-medium text-gray-900 whitespace-nowrap">{r.name}</Td>
-                  <Td className="text-gray-600 whitespace-nowrap">{r.place}</Td>
-                  <Td className="text-gray-600 whitespace-nowrap">{r.course}</Td>
-                  <Td className="text-gray-600 whitespace-nowrap">{r.previousUniversity}</Td>
-                  <Td className="text-gray-600 whitespace-nowrap">{r.contactNumber}</Td>
+                  <Td className="font-medium text-gray-900 whitespace-nowrap">{r.firstName}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{r.lastName || '-'}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{r.email}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{r.phone}</Td>
+                  <Td className="text-gray-600 whitespace-nowrap">{r.company || '-'}</Td>
+                  <Td className="text-gray-600 max-w-xs truncate">{r.message}</Td>
+                  <Td className="text-gray-600 max-w-xs truncate">{r.source}</Td>
                 </tr>
               ))}
             </tbody>

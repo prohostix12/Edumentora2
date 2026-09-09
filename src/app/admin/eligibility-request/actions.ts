@@ -8,18 +8,19 @@ const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export async function updateEligibilityRequest(id: string, formData: FormData) {
-  const name = formData.get('name') as string;
-  const place = formData.get('place') as string;
-  const course = formData.get('course') as string;
-  const previousUniversity = formData.get('previousUniversity') as string;
-  const courseCompletedYear = formData.get('courseCompletedYear') as string;
-  const contactNumber = formData.get('contactNumber') as string;
+  const firstName = formData.get('firstName') as string;
+  const lastName = (formData.get('lastName') as string) || null;
+  const email = formData.get('email') as string;
+  const phone = formData.get('phone') as string;
+  const company = (formData.get('company') as string) || null;
+  const message = formData.get('message') as string;
+  const source = formData.get('source') as string;
 
-  if (!name || !place || !course || !previousUniversity || !courseCompletedYear || !contactNumber) return;
+  if (!firstName || !email || !phone || !message || !source) return;
 
   await prisma.eligibilityRequest.update({
     where: { id },
-    data: { name, place, course, previousUniversity, courseCompletedYear, contactNumber },
+    data: { firstName, lastName, email, phone, company, message, source },
   });
 
   revalidatePath('/admin/eligibility-request');
