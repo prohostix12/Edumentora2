@@ -46,6 +46,15 @@ model AdminConfig {
   @@map("admin_config")
 }
 
+model CrmConfig {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  apiKey      String
+  endpointUrl String
+  updatedAt   DateTime @updatedAt
+
+  @@map("crm_config")
+}
+
 model EnquiryList {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   firstName String

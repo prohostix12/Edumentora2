@@ -1,3 +1,5 @@
+import { prisma } from './prisma';
+
 type LeadInput = {
   firstName?: string | null;
   lastName?: string | null;
@@ -56,7 +58,9 @@ export function toCrmLead(input: LeadInput): CrmLead {
 }
 
 export async function sendLeadToCrm(input: LeadInput) {
-  const endpoint = process.env.CRM_LEAD_URL;
+  const config = await prisma.crmConfig.findFirst();
+  const endpoint = config?.endpointUrl || process.env.CRM_LEAD_URL;
+  const apiKey = config?.apiKey || process.env.CRM_API_KEY;
   if (!endpoint) return;
 
   const lead = toCrmLead(input);
@@ -64,7 +68,7 @@ export async function sendLeadToCrm(input: LeadInput) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      ...(process.env.CRM_API_KEY ? { Authorization: `Bearer ${process.env.CRM_API_KEY}` } : {}),
+      ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
     },
     body: JSON.stringify(lead),
     cache: 'no-store',

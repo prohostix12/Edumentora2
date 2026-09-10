@@ -1,4 +1,18 @@
-export default function IntegrationPage() {
+import { saveCrmConfig } from './actions';
+import { prisma } from '@/lib/prisma';
+
+export const dynamic = 'force-dynamic';
+
+export default async function IntegrationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ saved?: string }>;
+}) {
+  const [config, params] = await Promise.all([
+    prisma.crmConfig.findFirst(),
+    searchParams,
+  ]);
+
   return (
     <div className="p-8">
       <div className="mb-8">
@@ -6,7 +20,7 @@ export default function IntegrationPage() {
         <p className="mt-2 text-gray-600">Configure CRM connection details.</p>
       </div>
 
-      <div className="max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
+      <form action={saveCrmConfig} className="max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
         <div className="space-y-6">
           <div>
             <label htmlFor="crm-api-key" className="mb-2 block text-sm font-semibold text-gray-700">
@@ -15,7 +29,9 @@ export default function IntegrationPage() {
             <input
               id="crm-api-key"
               name="crmApiKey"
-              type="text"
+              type="password"
+              defaultValue={config?.apiKey || ''}
+              required
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-[#002147] outline-none transition focus:border-[#002147] focus:ring-2 focus:ring-[#002147]/10"
             />
           </div>
@@ -28,18 +44,21 @@ export default function IntegrationPage() {
               id="crm-endpoint-url"
               name="crmEndpointUrl"
               type="url"
+              defaultValue={config?.endpointUrl || ''}
+              required
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-[#002147] outline-none transition focus:border-[#002147] focus:ring-2 focus:ring-[#002147]/10"
             />
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="rounded-xl bg-[#8B0000] px-6 py-3 font-semibold text-white transition hover:bg-[#5C0000]"
           >
             Save
           </button>
+          {params.saved === '1' && <p className="text-sm font-medium text-green-700">CRM settings saved.</p>}
         </div>
-      </div>
+      </form>
     </div>
   );
 }
