@@ -212,7 +212,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                   </div>
                 )}
                 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="relative">
                     <input
                       type="text"
@@ -257,7 +257,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                   </div>
                 </div>
 
-                <div className="relative">
+                <div className="relative md:col-span-2">
                   <input
                     type="email"
                     id="email"
@@ -279,7 +279,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                   <label htmlFor="company" className="absolute left-4 top-3 text-xs font-semibold text-[#002147] peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs pointer-events-none">Company</label>
                 </div>
 
-                <div className="relative">
+                <div className="relative md:col-span-2">
                   <textarea
                     id="message"
                     name="message"
@@ -301,7 +301,7 @@ export default function ContactClient({ contacts }: { contacts: Contact[] }) {
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className="w-full bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full md:col-span-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </button>

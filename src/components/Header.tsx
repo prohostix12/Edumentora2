@@ -216,6 +216,13 @@ export default function Header() {
             );
           })}
 
+          <Link
+            href="/students-login"
+            className="ml-4 rounded-xl bg-[#E91D24] px-5 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-[#B8151B]"
+          >
+            Students Login
+          </Link>
+
           {visibleNavItems.length === 0 && fallbackNavLinks.map((link) => (
             <Link key={link.name} href={link.href} className="relative py-2 group">
               <span className={`transition-colors duration-200 ${isActive(link.href) ? 'text-[#8B0000]' : 'hover:text-[#8B0000]'}`}>
@@ -288,6 +295,14 @@ export default function Header() {
                   {link.name}
                 </Link>
               ))}
+
+              <Link
+                href="/students-login"
+                onClick={closeMobileMenu}
+                className="mt-4 flex w-full items-center justify-center rounded-xl bg-[#E91D24] px-6 py-3 font-medium text-white shadow-md transition-colors hover:bg-[#B8151B]"
+              >
+                Students Login
+              </Link>
 
               <Link href="/contact" onClick={closeMobileMenu} className="flex items-center justify-center mt-4 w-full px-6 py-3 bg-[#E91D24] text-white font-medium rounded-xl shadow-md hover:bg-[#B8151B] transition-colors">
                 Enquire Now

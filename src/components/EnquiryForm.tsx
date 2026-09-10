@@ -110,13 +110,8 @@ export default function EnquiryForm({
         </div>
       )}
       
-      {isGrid ? (
-        TopFields
-      ) : (
-        <div className="grid md:grid-cols-2 gap-6">
-          {TopFields}
-        </div>
-      )}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {TopFields}
 
       <div className="relative">
         <input
@@ -133,12 +128,12 @@ export default function EnquiryForm({
         >Email</label>
       </div>
 
-      <div className="relative">
+      <div className="relative md:col-span-2">
         <input type="text" id="company" name="company" placeholder="Company" className={fieldClass} />
         <label htmlFor="company" className={labelClass}>Company</label>
       </div>
 
-      <div className="relative">
+      <div className="relative md:col-span-2">
         <textarea
           id="message"
           name="message"
@@ -156,10 +151,11 @@ export default function EnquiryForm({
       <button 
         type="submit" 
         disabled={status === 'loading'}
-        className={`w-full bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed ${isGrid ? 'md:col-span-2' : ''}`}
+        className="w-full md:col-span-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {status === 'loading' ? 'Sending...' : buttonText}
       </button>
+      </div>
     </form>
   );
 }

@@ -48,7 +48,7 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div className="relative">
             <input
               type="text"
@@ -72,35 +72,23 @@ export default function EligibilityForm({ className = 'space-y-6' }: Eligibility
           </div>
 
           <div className="relative">
+            <input type="tel" id="phone" name="phone" placeholder="Phone" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" required />
+            <label htmlFor="phone" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none">Phone</label>
+          </div>
+
+          <div className="relative">
             <input type="email" id="email" name="email" placeholder="Email" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" required />
             <label htmlFor="email" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Email</label>
           </div>
 
-          <div className="relative">
+          <div className="relative md:col-span-2">
             <input type="text" id="company" name="company" placeholder="Company" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm placeholder-transparent" />
             <label htmlFor="company" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Company</label>
           </div>
 
-          <div className="relative col-span-2">
+          <div className="relative md:col-span-2">
             <textarea id="message" name="message" rows={3} placeholder="Enquiry / Message" className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm resize-none placeholder-transparent" required />
             <label htmlFor="message" className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:top-2.5 pointer-events-none">Enquiry / Message</label>
-          </div>
-
-          <div className="relative">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Phone"
-              className="peer w-full px-3.5 pt-5 pb-1.5 text-sm text-[#002147] font-medium rounded-xl border border-slate-200 bg-white shadow-sm hover:border-[#D2B48C]/40 focus:outline-none focus:ring-2 focus:ring-[#D2B48C]/15 focus:border-[#D2B48C] transition-all placeholder-transparent"
-              required
-            />
-            <label
-              htmlFor="phone"
-              className="absolute left-3.5 top-1.5 text-[10px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
-            >
-              Phone
-            </label>
           </div>
 
         </div>
