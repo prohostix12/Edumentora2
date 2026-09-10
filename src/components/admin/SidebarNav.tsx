@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, HelpCircle, ChevronDown, Clapperboard, Bell, Landmark, Navigation } from 'lucide-react';
+import { LayoutDashboard, Users, MessageSquare, Image, GraduationCap, FileText, BookOpen, Star, HelpCircle, ChevronDown, Clapperboard, Bell, Landmark, Navigation, Plug } from 'lucide-react';
 
 const links = [
   { href: '/admin',                   label: 'Dashboard',        icon: LayoutDashboard, exact: true },
@@ -106,6 +106,21 @@ export default function SidebarNav({ collapsed = false }: { collapsed?: boolean 
           </div>
         )}
       </div>
+
+      <Link
+        href="/admin/faq/integration"
+        title={collapsed ? 'Integration' : undefined}
+        className={`flex items-center rounded-xl transition-all duration-200 ${
+          collapsed ? 'justify-center p-2.5' : 'gap-3 px-4 py-3'
+        } ${
+          pathname === '/admin/faq/integration'
+            ? 'bg-white/20 text-white font-semibold shadow-inner'
+            : 'hover:bg-white/10 text-white/70 hover:text-white'
+        }`}
+      >
+        <Plug className={`w-5 h-5 flex-shrink-0 ${pathname === '/admin/faq/integration' ? 'text-[#D2B48C]' : ''}`} />
+        {!collapsed && <span className="font-medium whitespace-nowrap overflow-hidden">Integration</span>}
+      </Link>
     </nav>
   );
 }
