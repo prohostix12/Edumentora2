@@ -6,13 +6,15 @@ interface EnquiryFormProps {
   buttonText?: string;
   className?: string;
   isGrid?: boolean;
+  compact?: boolean;
 }
 
 export default function EnquiryForm({ 
   onSuccess, 
   buttonText = "Send Message", 
   className = "space-y-6",
-  isGrid = false
+  isGrid = false,
+  compact = false,
 }: EnquiryFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -63,8 +65,12 @@ export default function EnquiryForm({
     );
   }
 
-  const fieldClass = "peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent";
-  const labelClass = "absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none";
+  const fieldClass = compact
+    ? "peer w-full px-3.5 pt-5 pb-2 text-sm text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent"
+    : "peer w-full px-4 pt-7 pb-3 text-[#002147] font-medium rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors bg-gray-50 focus:bg-white placeholder-transparent";
+  const labelClass = compact
+    ? "absolute left-3.5 top-2 text-[11px] font-semibold text-[#002147] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-2.5 peer-focus:top-2 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none"
+    : "absolute left-4 top-3 text-xs font-semibold text-[#002147] transition-all peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#002147] peer-placeholder-shown:top-4 peer-focus:top-3 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-[#002147] pointer-events-none";
   const TopFields = (
     <>
       <div className="relative">
@@ -110,7 +116,7 @@ export default function EnquiryForm({
         </div>
       )}
       
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className={`grid grid-cols-1 md:grid-cols-2 ${compact ? 'gap-3' : 'gap-6'}`}>
         {TopFields}
 
       <div className="relative">
@@ -137,7 +143,7 @@ export default function EnquiryForm({
         <textarea
           id="message"
           name="message"
-          rows={isGrid ? 3 : 4}
+          rows={compact || isGrid ? 3 : 4}
           placeholder="Enquiry / Message"
           className={`${fieldClass} resize-none`}
           required
@@ -151,7 +157,7 @@ export default function EnquiryForm({
       <button 
         type="submit" 
         disabled={status === 'loading'}
-        className="w-full md:col-span-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold py-4 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+        className={`w-full md:col-span-2 bg-[#8B0000] hover:bg-[#5C0000] text-white font-bold ${compact ? 'py-3' : 'py-4'} rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 disabled:opacity-70 disabled:cursor-not-allowed`}
       >
         {status === 'loading' ? 'Sending...' : buttonText}
       </button>

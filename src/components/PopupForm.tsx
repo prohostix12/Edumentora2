@@ -58,7 +58,7 @@ export default function PopupForm() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: -20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl w-full max-w-lg relative border border-gray-100"
+              className="relative max-h-[calc(100vh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl border border-gray-100 bg-white p-5 shadow-2xl sm:p-6"
             >
               {/* Close Button */}
               <button 
@@ -69,13 +69,13 @@ export default function PopupForm() {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#002147] mb-3">Start Your Journey</h2>
-                <div className="w-16 h-1 bg-[#D2B48C] rounded-full mx-auto mb-3"></div>
+              <div className="mb-5 text-center">
+                <h2 className="mb-2 text-2xl font-bold text-[#002147]">Start Your Journey</h2>
+                <div className="mx-auto mb-2 h-1 w-12 rounded-full bg-[#D2B48C]"></div>
                 <p className="text-gray-600 text-sm">Fill out the form below and our academic advisors will get back to you shortly.</p>
               </div>
               
-              <EnquiryForm className="space-y-5" isGrid={false} onSuccess={() => setIsOpen(false)} />
+              <EnquiryForm className="space-y-3" compact onSuccess={() => setIsOpen(false)} />
             </motion.div>
           </motion.div>
         </>
